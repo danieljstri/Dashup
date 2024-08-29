@@ -13,7 +13,7 @@
 - Now, run the Vue frontend (actually --> http://localhost:5173/). To run, first install de npm modules:
   ```cmd
   cd frontend
-  npm install primeicons primevue @primevue/themes
+  npm install
   npm run dev
   ```
 
