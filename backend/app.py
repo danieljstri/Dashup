@@ -1,20 +1,17 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from flask_cors import CORS
-import json
+import pandas as pd
 
 app = Flask(__name__)
 CORS(app)
 
-# Load data from JSON file
-with open('../app/data.json') as f:
-    data = json.load(f)
+# Load data from CSV file
+data = pd.read_csv('../app/fluxo.csv')
 
-arr = []
+# Convert data to list of dictionaries
+arr = data.to_dict(orient='records')
 
-# Append data to array
-for item in data["transport"]:
-    arr.append(item)
-
+print(arr[0])
 # GET request
 @app.route('/api/items', methods=['GET'])
 def get_data():
