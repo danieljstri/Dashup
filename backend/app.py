@@ -1,21 +1,46 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-import pandas as pd
+from data import Data
 
 app = Flask(__name__)
 CORS(app)
 
-# Load data from CSV file
-data = pd.read_csv('../app/fluxo.csv')
+PATH = '../app/fluxo.csv'
 
-# Convert data to list of dictionaries
-arr = data.to_dict(orient='records')
+data = Data(PATH)
 
-print(arr[0])
-# GET request
-@app.route('/api/items', methods=['GET'])
-def get_data():
-    return jsonify(arr)
+# the route to the profit, by months
+@app.route('/api/lucros/<month>', methods=['GET'])
+def get_lucros(month):
+    try:
+        lucros = data.getLucro(month)
+        return jsonify({"month": month, "lucros": lucros})
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+# the route to the revenue, by months
+@app.route('/api/receitas/<month>', methods=['GET'])
+def get_receitas(month):
+    try:
+        receitas = data.getReceitas(month)
+        return jsonify({"month": month, "receitas": receitas})
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+# the route to the expenses, by months
+@app.route('/api/despesas/<month>', methods=['GET'])
+def get_despesas(month):
+    try:
+        despesas = data.getDespesas(month)
+        return jsonify({"month": month, "despesas": despesas})
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+# the route to all data 
+@app.route('/api/all', methods=['GET'])
+def get_all_data():
+    all_data = data.getAllData()
+    return jsonify(all_data)
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
