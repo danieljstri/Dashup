@@ -1,4 +1,9 @@
 acessar toda a data = /api/all
 acessar lucros =      /api/lucros/<month>
 acessar receitas =    /api/receitas/<month>
+acessar receitas de exames = /api/receitas/exames/<month>
+acessar receitas de anestesia = /api/receitas/anestesia/<month>
+acessar receitas de dinheiro = /api/receitas/dinheiro/<month>
 acessar despesas =    /api/despesas/<month>
+acessar despesas do aluguel = /api/despesas/aluguel/<month>
+acessar despesas da anestesia = /api/despesas/anestesia/<month>
