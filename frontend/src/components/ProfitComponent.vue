@@ -1,12 +1,14 @@
 <template>
     <div class="profit-card">
       <h2>{{ chartTitle }}</h2>
-      <p>{{ profit["lucros"] }}</p>
+      <p>{{ profit["value"] }}</p>
+      <h2>Despesas de anestesia de março</h2>
+      <p>{{ expense["value"]}}</p>
     </div>
   </template>
   
   <script>
-  import { getProfitData } from '../services/dataService';
+  import { getProfitData, getExpensesAnesthesiaData } from '../services/dataService';
   
   export default {
     name: 'ProfitComponent',
@@ -20,8 +22,10 @@
     async mounted() {
       try {
         // function of dataservice being used to get the data, see dataService.js
-        const response = await getProfitData("janeiro");
-        this.profit = response
+        const response1 = await getProfitData("janeiro");
+        const response2 = await getExpensesAnesthesiaData("marco");
+        this.profit = response1
+        this.expense = response2
         console.log(this.profit)
         this.chartTitle = `Lucro de ${this.month === 'total' ? 'Total' : this.month}`;
       } catch (error) {

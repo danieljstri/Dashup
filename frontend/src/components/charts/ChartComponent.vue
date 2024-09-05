@@ -20,7 +20,7 @@
     async mounted() {
       // function of dataservice being used to get the data, see dataService.js
       this.data = await getExpensesData("janeiro");
-      this.data = this.data["despesas"]
+      this.data = this.data["value"]
       this.chartTitle = "Gráfico das despesas de Janeiro";
       this.createChart();
     },
