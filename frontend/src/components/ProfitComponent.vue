@@ -15,6 +15,7 @@
     data() {
       return {
         profit: 0, // Inicializa com 0
+        expense: 0, 
         month: 'janeiro', // Mês a ser exibido no card, 'total' por padrão
         chartTitle: "Lucro Total", // Título dinâmico do card
       };
@@ -41,7 +42,7 @@
     border-radius: 8px;
     padding: 16px;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: #1e1c1c;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   

@@ -1,87 +1,95 @@
 <template>
-    <div>
-      <h2>{{ chartTitle }}</h2>
-      <div ref="chart"></div>
-    </div>
-  </template>
-  
-  <script>
-  import * as d3 from 'd3';
-  import { getAllData, getExpensesData } from '../../services/dataService';
-  export default {
-    name: 'DataBarChart',
-    data() {
-      return {
-        data: [],
-        month: 'Janeiro',
-        chartTitle: "Gráfico das despesas de Janeiro",
-      };
+  <div>
+    <h2>{{ titulo }}</h2>
+    <div ref="chart"></div>
+  </div>
+</template>
+
+<script>
+import { defineComponent } from 'vue';
+import * as d3 from 'd3';
+import { getRevenueAnesthesiaData, getRevenueExamsData, getRevenueCashData } from '@/services/dataService';
+
+export default defineComponent({
+  name: 'BarChart',
+  data() {
+    return {
+      titulo: "Este é o meu gráfico",
+    };
+  },
+  async mounted() {
+    await this.createChart();
+  },
+  methods: {
+    async getData() {
+      try {
+        const month = 'fevereiro';
+        const [anesthesia, exams, cash] = await Promise.all([
+          getRevenueAnesthesiaData(month),
+          getRevenueExamsData(month),
+          getRevenueCashData(month),
+        ]);
+        const combinedData = [
+          { categoria: 'Anesthesia', valor: anesthesia.value },
+          { categoria: 'Exams', valor: exams.value },
+          { categoria: 'Cash', valor: cash.value },
+        ];
+
+        return combinedData;
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
     },
-    async mounted() {
-      // function of dataservice being used to get the data, see dataService.js
-      this.data = await getExpensesData("janeiro");
-      this.data = this.data["value"]
-      this.chartTitle = "Gráfico das despesas de Janeiro";
-      this.createChart();
-    },
-    methods: {
-      createChart() {
-        const margin = { top: 20, right: 30, bottom: 40, left: 90 },
-          width = 600 - margin.left - margin.right,
-          height = 400 - margin.top - margin.bottom;
+    // Função para criar o gráfico usando D3.js
+    async createChart() {
+      const data = await this.getData(); // Use 'this' para chamar o método getData
+      if (!data) return;
 
-        const svg = d3.select(this.$refs.chart)
-          .append('svg')
-          .attr('width', width + margin.left + margin.right)
-          .attr('height', height + margin.top + margin.bottom)
-          .append('g')
-          .attr('transform', `translate(${margin.left},${margin.top})`);
+      // Define o tamanho do SVG
+      const svg = d3.select(this.$refs.chart)
+        .append('svg')
+        .attr('width', 600)
+        .attr('height', 300);
 
-        const x = d3.scaleLinear().range([0, width]);
-        const y = d3.scaleBand().range([height, 0]).padding(0.1);
+      // Escala para o gráfico
+      const x = d3.scaleBand()
+        .domain(data.map(d => d.categoria))
+        .range([0, 300])
+        .padding(0.1);
 
-        // Assuming this.data is a single integer value
-        const data = [{ label: this.month, value: this.data }];
+      const y = d3.scaleLinear()
+        .domain([0, d3.max(data, d => d.valor)])
+        .range([300, 0]);
 
-        x.domain([0, d3.max(data, d => d.value)]);
-        y.domain(data.map(d => d.label));
+      // Criação das barras do gráfico
+      svg.selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('x', d => x(d.categoria))
+        .attr('y', d => y(d.valor))
+        .attr('width', x.bandwidth())
+        .attr('height', d => 300 - y(d.valor))
+        .attr('fill', 'red');
 
-        svg.append('g')
-          .attr('class', 'x-axis')
-          .attr('transform', `translate(0,${height})`)
-          .call(d3.axisBottom(x));
+      // Adicionando rótulos de valores nas barras
+      svg.selectAll('text')
+        .data(data)
+        .enter()
+        .append('text')
+        .text(d => d.valor.toString())
+        .attr('x', d => x(d.categoria) + x.bandwidth() / 2)
+        .attr('y', d => y(d.valor) - 5)
+        .attr('text-anchor', 'middle')
+        .attr('fill', 'white');
+    }
+  },
+});
+</script>
 
-        svg.append('g')
-          .attr('class', 'y-axis')
-          .call(d3.axisLeft(y));
-
-        svg.selectAll('.bar')
-          .data(data)
-          .enter()
-          .append('rect')
-          .attr('class', 'bar')
-          .attr('x', 0)
-          .attr('y', d => y(d.label))
-          .attr('width', d => x(d.value))
-          .attr('height', y.bandwidth());
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .bar {
-    fill: steelblue;
-  }
-  .axis text {
-    font-size: 12px;
-  }
-  .axis path,
-  .axis line {
-    fill: none;
-    shape-rendering: crispEdges;
-  }
-  .x-axis path {
-    display: none;
-  }
-  </style>
+<style scoped>
+.chart {
+  margin: 20px;
+}
+</style>

@@ -1,13 +1,17 @@
 <script setup>
 import ChartPieComponent from '@/components/charts/ChartPieComponent.vue';
 import ChartComponent from '@/components/charts/ChartComponent.vue';
+import ProfitCard from '@/components/ProfitCard.vue';
+import ExpensesCard from '@/components/ExpensesCard.vue';
 </script>
 
 <template>
     <div class="chart">
-      <h1>Chart Page</h1>
+      <h1>gráficos</h1>
         <ChartComponent />
         <ChartPieComponent />
+        <ProfitCard />
+        <ExpensesCard />
     </div>
   </template>
   
