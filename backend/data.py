@@ -6,8 +6,7 @@ possible_months = ["janeiro", "fevereiro", "marco", "abril", "maio", "junho", "j
 class Data:
     def __init__(self, path):
         self.df = pd.read_csv(path)
-        self.df.columns = self.df.columns.str.lower()  # Convert columns to lowercase for consistency
-
+        
     def getLucro(self, month="total"):
         """
         Get the profit of the dataset (parameters: month)
@@ -15,7 +14,7 @@ class Data:
         """
         error_month(month)
         
-        lucro_str = self.df.at[12, month] # the |profit| is in the last row
+        lucro_str = self.df.loc[self.df['RESULTADO'] == 'LUCROPREJUIZO', month].values[0] # acess the row LUCROPREJUIZO and the column month selected
         lucro = convert_to_float(lucro_str)
         return lucro
     
@@ -27,7 +26,7 @@ class Data:
         """
         error_month(month)
         
-        receita_str = self.df.at[0, month]
+        receita_str = self.df.loc[self.df['RESULTADO'] == 'RECEITAS', month].values[0]
         receita = convert_to_float(receita_str)
         return receita
 
@@ -39,7 +38,7 @@ class Data:
         """
         error_month(month)
         
-        receita_exames_str = self.df.at[2, month]
+        receita_exames_str = self.df.loc[self.df['RESULTADO'] == 'ReceitaExames', month].values[0]
         receita_exames = convert_to_float(receita_exames_str)
         return receita_exames
     
@@ -51,7 +50,7 @@ class Data:
         """
         error_month(month)
         
-        receita_anestesia_str = self.df.at[3, month]
+        receita_anestesia_str = self.df.loc[self.df['RESULTADO'] == 'ReceitaAnestesia', month].values[0]
         receita_anestesia = convert_to_float(receita_anestesia_str)
         return receita_anestesia
 
@@ -63,7 +62,7 @@ class Data:
         """
         error_month(month)
         
-        receita_dinheiro_str = self.df.at[4, month]
+        receita_dinheiro_str = self.df.loc[self.df['RESULTADO'] == 'ReceitasDinheiro', month].values[0]
         receita_dinheiro = convert_to_float(receita_dinheiro_str)
         return receita_dinheiro
     
@@ -76,7 +75,7 @@ class Data:
         """
         error_month(month)
         
-        despesa_str = self.df.at[5, month]  # row 5 is DESPESAS TOTAIS
+        despesa_str = self.df.loc[self.df['RESULTADO'] == 'DESPESASTOTAIS', month].values[0]
         despesa = convert_to_float(despesa_str)
         return despesa
 
@@ -88,7 +87,7 @@ class Data:
         """
         error_month(month)
         
-        despesa_aluguel_str = self.df.at[8, month]
+        despesa_aluguel_str = self.df.loc[self.df['RESULTADO'] == 'DESPESAALUGUEL', month].values[0]
         despesa_aluguel = convert_to_float(despesa_aluguel_str)
         return despesa_aluguel
 
@@ -99,7 +98,7 @@ class Data:
         """
         error_month(month)
         
-        despesa_anestesia_str = self.df.at[7, month]
+        despesa_anestesia_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMANESTESIA', month].values[0]
         despesa_anestesia = convert_to_float(despesa_anestesia_str)
         return despesa_anestesia
 
