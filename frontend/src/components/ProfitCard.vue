@@ -20,7 +20,7 @@
     async mounted() {
       try {
         // function of dataservice being used to get the data, see dataService.js
-        const response1 = await getProfitData();
+        const response1 = await getProfitData(); // if you want to get the data for a specific month, pass the month as a parameter
         this.profit = response1
         console.log(this.profit)
         this.chartTitle = `Lucro ${this.month === 'total' ? 'Total' : this.month}`;

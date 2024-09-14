@@ -15,6 +15,7 @@ class Data:
         error_month(month)
         
         lucro_str = self.df.loc[self.df['RESULTADO'] == 'LUCROPREJUIZO', month].values[0] # acess the row LUCROPREJUIZO and the column month selected
+        print(lucro_str)
         lucro = convert_to_float(lucro_str)
         return lucro
     
