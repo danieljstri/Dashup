@@ -90,3 +90,24 @@ export const getExpensesAnesthesiaData = async (month="total") => {
     throw error;
   }
 }
+export const getEconomicCompanieData = async (company_name = "DRA ISABELLY DE MORAIS LTDA") => {
+  try {
+    // URL-encode the company name to handle spaces and special characters
+    const encodedCompanyName = encodeURIComponent(company_name);
+    const response = await axios.get(`http://localhost:3000/api/economia/${encodedCompanyName}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+}
+
+export const getAllEconomicCompaniesData = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/api/companies');
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+}
