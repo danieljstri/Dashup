@@ -1,13 +1,18 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from data import Data
+from data import Data, CompanyData
+from economia import economia
 
 app = Flask(__name__)
 CORS(app)
 
 PATH = '../app/fluxo.csv'
+COMPANY_DATA_PATH = '../app/empresas.csv'
+
 
 data = Data(PATH)
+company_data = CompanyData(COMPANY_DATA_PATH)
+
 
 # the route to the profit, by months
 @app.route('/api/lucros/<month>', methods=['GET'])
@@ -86,6 +91,36 @@ def get_despesas_anestesia(month):
 def get_all_data():
     all_data = data.getAllData()
     return jsonify(all_data)
+
+# Route to get data for a specific company
+@app.route('/api/company/<company_name>', methods=['GET'])
+def get_company_data(company_name):
+    try:
+        data = company_data.get_company_data(company_name)
+        return jsonify(data)
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+# Route to get economia results for a specific company
+@app.route('/api/economia/<company_name>', methods=['GET'])
+def get_economia_data(company_name):
+    try:
+        company = company_data.get_company_data(company_name)
+        receita_bruta = company['receita_bruta']
+        economia_result = economia(receita_bruta)
+        return jsonify({
+            "company_name": company_name,
+            "receita_bruta": receita_bruta,
+            "economia": economia_result
+        })
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+# Route to get data for all companies
+@app.route('/api/companies', methods=['GET'])
+def get_all_companies():
+    data = company_data.get_all_companies()
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000)
