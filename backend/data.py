@@ -128,7 +128,7 @@ class CompanyData:
     
     def get_company_data(self, company_name):
         for record in self.data:
-            if record['company_name'] == company_name:
+            if record['nome_da_empresa'] == company_name:
                 return record
         raise ValueError(f"Company '{company_name}' not found.")
     
