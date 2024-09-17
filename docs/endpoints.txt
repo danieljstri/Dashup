@@ -7,3 +7,10 @@ acessar receitas de dinheiro = /api/receitas/dinheiro/<month>
 acessar despesas =    /api/despesas/<month>
 acessar despesas do aluguel = /api/despesas/aluguel/<month>
 acessar despesas da anestesia = /api/despesas/anestesia/<month>
+
+acessar economia das empresas = /api/economia/<nome_da_empresa> 
+EXEMPLO = /api/economia/DR.%20RICARDO%20NILTON%20ANESTESIOLOGIA%20LTDA
+Mas no código do dataService, estou já passando um parser e usar %20 para espaço não é necessário,
+apenas definir o nome da empresa CORRETAMENTE no EconomicsView.vue
+
+acessar receita bruta e o nome de todas as empresas = /api/companies
