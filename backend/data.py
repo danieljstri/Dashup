@@ -1,3 +1,4 @@
+import csv
 from utils import convert_to_float
 import pandas as pd
 
@@ -109,6 +110,30 @@ class Data:
         """
         data = self.df.to_dict(orient='records')
         return data
+
+
+class CompanyData:
+    def __init__(self, csv_file_path):
+        self.csv_file_path = csv_file_path
+        self.data = self.load_data()
+    
+    def load_data(self):
+        data = []
+        with open(self.csv_file_path, 'r') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                row['receita_bruta'] = float(row['receita_bruta'])
+                data.append(row)
+        return data
+    
+    def get_company_data(self, company_name):
+        for record in self.data:
+            if record['company_name'] == company_name:
+                return record
+        raise ValueError(f"Company '{company_name}' not found.")
+    
+    def get_all_companies(self):
+        return self.data
 
 
 def error_month(month):
