@@ -35,3 +35,4 @@ backend/.venv
 frontend/.vscode
 
 /app/testes.js
+.venv
