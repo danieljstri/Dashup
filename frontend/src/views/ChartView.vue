@@ -8,7 +8,6 @@ import ExpensesCard from '@/components/ExpensesCard.vue';
 <template>
     <div class="chart">
       <h1>gráficos</h1>
-        <ChartComponent />
         <ChartPieComponent />
         <ProfitCard />
         <ExpensesCard />

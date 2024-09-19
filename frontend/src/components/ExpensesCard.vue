@@ -22,7 +22,6 @@
         // function of dataservice being used to get the data, see dataService.js
         const response1 = await getExpensesData();
         this.expenses = response1
-        console.log(this.expense)
         this.chartTitle = `Despesa total:  ${this.month === 'total' ? 'Total' : this.month}`;
       } catch (error) {
         console.error('Error fetching expenses data:', error);

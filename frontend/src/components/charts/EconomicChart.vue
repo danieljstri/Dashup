@@ -68,6 +68,7 @@
       const fetchData = async () => {
         try {
           const data = await getEconomicCompanieData(props.companyName);
+          console.log(data);
   
           if (data && data.economia && data.economia.medup && data.economia.non_medup) {
             const resultadoMedup = data.economia.medup.resultado * 100;
@@ -92,7 +93,7 @@
               plugins: {
                 legend: {
                   display: false,
-                },
+                }, 
               },
               responsive: true,
               maintainAspectRatio: false,

@@ -1,80 +1,100 @@
 <template>
-    <div>
-      <h2>{{ chartTitle }}</h2>
-      <div ref="chart"></div>
+  <div class="economic-chart">
+    <!-- Renderiza o gráfico somente se chartData estiver pronto -->
+    <div class="chart-container" v-if="isChartDataReady">
+      <bar-chart :chart-data="chartData" :chart-options="chartOptions"></bar-chart>
+      <!-- Conteúdo central do gráfico -->
+      <div class="chart-center">
+        <div class="center-icon">
+          <!-- Ícone de economia -->
+        </div>
+      </div>
     </div>
-  </template>
-  
-  <script>
-  import * as d3 from 'd3';
-  import { getAllData } from '../../services/dataService';
-  export default {
-    name: 'DataPieChart',
-    data() {
-      return {
-        data: [],
-        month: 'marco',
-        chartTitle: "Gráfico de Março",
-      };
-    },
-    async mounted() {
-      this.data = await getAllData();
-      this.createChart();
-    },
-    methods: {
-      createChart() {
-        const width = 450,
-          height = 450,
-          margin = 40;
-        const radius = Math.min(width, height) / 2 - margin;
-        const svg = d3.select(this.$refs.chart)
-          .append('svg')
-          .attr('width', width)
-          .attr('height', height)
-          .append('g')
-          .attr('transform', `translate(${width / 2},${height / 2})`);
-        const color = d3.scaleOrdinal()
-          .domain(this.data.map(d => d.RESULTADO))
-          .range(d3.schemeCategory10);
-        const pie = d3.pie()
-          .value(d => +d["marco"].replace('R$', '').replace(',', '').replace('.', ''));
-        const data_ready = pie(this.data);
-        svg.selectAll('path')
-          .data(data_ready)
-          .enter()
-          .append('path')
-          .attr('d', d3.arc()
-            .innerRadius(0)
-            .outerRadius(radius)
-          )
-          .attr('fill', d => color(d.data.RESULTADO))
-          .attr('stroke', 'white')
-          .style('stroke-width', '2px')
-          .style('opacity', 0.7);
-        // Legendas
-        svg.selectAll('text')
-          .data(data_ready)
-          .enter()
-          .append('text')
-          .text(d => d.data.RESULTADO)
-          .attr('transform', d => `translate(${d3.arc().innerRadius(0).outerRadius(radius).centroid(d)})`)
-          .style('text-anchor', 'middle')
-          .style('font-size', 12);
-      },
-    },
+    <div v-else>
+      <p>Carregando dados...</p>
+    </div>
+    <br>
+    <br>
+    <!-- Descrição dos Dados -->
+  </div>
+</template>
+
+<script>
+import { ref, onMounted } from 'vue';
+import { getProfitData } from '../../services/dataService';
+import { Bar } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+// Registrar os componentes do Chart.js
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+
+export default {
+  name: 'EconomicChart',
+  components: {
+    BarChart: Bar, 
+  },
+  setup() {
+    const chartData = ref({
+      labels: [],
+      datasets: [],
+    });
+    const chartOptions = ref({});
+    const isChartDataReady = ref(false);
+
+    const fetchData = async () => {
+      try {
+        const profit_janeiro = await getProfitData('janeiro');
+        const profit_fevereiro = await getProfitData('fevereiro');
+        const profit_marco = await getProfitData('marco');
+        const profit_abril = await getProfitData('abril');
+        const profit_maio = await getProfitData('maio');
+        const profit_junho = await getProfitData('junho');
+
+        const profitvaluejaneiro = profit_janeiro.value;
+        const profitvaluefevereiro = profit_fevereiro.value;
+        const profitvaluemarco = profit_marco.value;
+        const profitvalueabril = profit_abril.value;
+        const profitvaluemaio = profit_maio.value;
+        const profitvaluejunho = profit_junho.value;
+
+        console.log('Dados econômicos:', profitvaluejaneiro, profitvaluefevereiro, profitvaluemarco, profitvalueabril, profitvaluemaio, profitvaluejunho);
+
+          // Dados para o gráfico
+          chartData.value = {
+            labels: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho'],
+            datasets: [
+              {
+                data: [
+                  profitvaluejaneiro, profitvaluefevereiro, profitvaluemarco, 
+                  profitvalueabril, profitvaluemaio, profitvaluejunho
+                ],
+                backgroundColor: ['#36A2EB', '#FF6384'],
+              },
+            ],
+          };
+
+          // Opções do gráfico
+          chartOptions.value = { // Ajusta o tamanho do "furo" no meio do gráfico
+            responsive: true,
+            maintainAspectRatio: false,
+          };
+          isChartDataReady.value = true;
+      } catch (error) {
+        console.error('Erro ao buscar dados econômicos:', error);
+      }
+    };
+
+    onMounted(() => {
+      fetchData();
+    });
+
+    return {
+      chartData,
+      chartOptions,
+      isChartDataReady,
+    };
+  },
 };
 </script>
 
-<style scoped>
-svg {
-  font-family: sans-serif;
-}
-text {
-  fill: white;
-  font-size: 12px;
-}
-path {
-  stroke: white;
-  stroke-width: 2px;
-}
-</style>
+
