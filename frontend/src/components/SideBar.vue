@@ -1,202 +1,206 @@
 <template>
-	<aside :class="`${is_expanded ? 'is-expanded' : ''}`">
-		<div class="logo">
-			<img :src="logoURL" alt="MedUp" /> 
-		</div>
+    <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
+        <div class="logo">
+            <img :src="logoURL" alt="MedUp" /> 
+        </div>
 
-		<div class="menu-toggle-wrap">
-			<button class="menu-toggle" @click="ToggleMenu">
-				<span class="material-icons">keyboard_double_arrow_right</span>
-			</button>
-		</div>
+        <div class="menu-toggle-wrap">
+            <button class="menu-toggle" @click="ToggleMenu">
+                <span class="material-icons">keyboard_double_arrow_right</span>
+            </button>
+        </div>
 
-		<h3>Menu</h3>
-		<div class="menu">
-			<router-link to="/" class="button">
-				<span class="material-icons">home</span>
-				<span class="text">Home</span>
-			</router-link>
-			<router-link to="/about" class="button">
-				<span class="material-icons">description</span>
-				<span class="text">About</span>
-			</router-link>
-			<router-link to="/chart" class="button">
-				<span class="material-icons">group</span>
-				<span class="text">Chart</span>
-			</router-link>
-			<router-link to="/economics" class="button">
-				<span class="material-icons">email</span>
-				<span class="text">Economia</span>
-			</router-link>
-		</div>
-		<div class="flex"></div>
-		
-		<div class="menu">
-			<router-link to="/settings" class="button">
-				<span class="material-icons">settings</span>
-				<span class="text">Settings</span>
-			</router-link>
-		</div>
-	</aside>
-	<RouterView />
+        <h3>Menu</h3>
+        <div class="menu">
+            <router-link to="/" class="button">
+                <span class="material-icons">home</span>
+                <span class="text">Home</span>
+            </router-link>
+            <router-link to="/about" class="button">
+                <span class="material-icons">description</span>
+                <span class="text">About</span>
+            </router-link>
+            <router-link to="/chart" class="button">
+                <span class="material-icons">group</span>
+                <span class="text">Chart</span>
+            </router-link>
+            <router-link to="/economics" class="button">
+                <span class="material-icons">email</span>
+                <span class="text">Economia</span>
+            </router-link>
+        </div>
+        <div class="flex"></div>
+        
+        <div class="menu">
+            <router-link to="/settings" class="button">
+                <span class="material-icons">settings</span>
+                <span class="text">Settings</span>
+            </router-link>
+        </div>
+    </aside>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink } from 'vue-router'
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 
 const ToggleMenu = () => {
-	is_expanded.value = !is_expanded.value
-	localStorage.setItem("is_expanded", is_expanded.value)
+    is_expanded.value = !is_expanded.value
+    localStorage.setItem("is_expanded", is_expanded.value)
 }
 </script>
 
 <style lang="scss" scoped>
 aside {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-	background-color: var(--dark);
-	color: var(--light);
+    background-color: var(--dark);
+    color: var(--light);
 
-	width: calc(2rem + 32px);
-	overflow: hidden;
-	min-height: 100vh;
-	padding: 1rem;
+    width: calc(2rem + 32px);
+    overflow: hidden;
+    min-height: 100vh;
+    padding: 1rem;
 
-	transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
 
-	.flex {
-		flex: 1 1 0%;
-	}
+    /* Fixar a sidebar no canto esquerdo */
+    position: fixed;
+    top: 0;
+    left: 0;
 
-	.logo {
-		margin-bottom: 1rem;
+    .flex {
+        flex: 1 1 0%;
+    }
 
-		img {
-			width: 2rem;
-		}
-	}
+    .logo {
+        margin-bottom: 1rem;
 
-	.menu-toggle-wrap {
-		display: flex;
-		justify-content: flex-end;
-		margin-bottom: 1rem;
+        img {
+            width: 2rem;
+        }
+    }
 
-		position: relative;
-		top: 0;
-		transition: 0.2s ease-in-out;
+    .menu-toggle-wrap {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 1rem;
 
-		.menu-toggle {
-			transition: 0.2s ease-in-out;
-			.material-icons {
-				font-size: 2rem;
-				color: var(--light);
-				transition: 0.2s ease-out;
-			}
-			
-			&:hover {
-				.material-icons {
-					color: var(--primary);
-					transform: translateX(0.5rem);
-				}
-			}
-		}
-	}
+        position: relative;
+        top: 0;
+        transition: 0.2s ease-in-out;
 
-	h3, .button .text {
-		opacity: 0;
-		transition: opacity 0.3s ease-in-out;
-	}
+        .menu-toggle {
+            transition: 0.2s ease-in-out;
+            .material-icons {
+                font-size: 2rem;
+                color: var(--light);
+                transition: 0.2s ease-out;
+            }
+            
+            &:hover {
+                .material-icons {
+                    color: var(--primary);
+                    transform: translateX(0.5rem);
+                }
+            }
+        }
+    }
 
-	h3 {
-		color: var(--grey);
-		font-size: 0.875rem;
-		margin-bottom: 0.5rem;
-		text-transform: uppercase;
-	}
+    h3, .button .text {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
 
-	.menu {
-		margin: 0 -1rem;
+    h3 {
+        color: var(--grey);
+        font-size: 0.875rem;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+    }
 
-		.button {
-			display: flex;
-			align-items: center;
-			text-decoration: none;
+    .menu {
+        margin: 0 -1rem;
 
-			transition: 0.2s ease-in-out;
-			padding: 0.5rem 1rem;
+        .button {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
 
-			.material-icons {
-				font-size: 2rem;
-				color: var(--light);
-				transition: 0.2s ease-in-out;
-			}
-			.text {
-				color: var(--light);
-				transition: 0.2s ease-in-out;
-			}
+            transition: 0.2s ease-in-out;
+            padding: 0.5rem 1rem;
 
-			&:hover {
-				background-color: var(--dark-alt);
+            .material-icons {
+                font-size: 2rem;
+                color: var(--light);
+                transition: 0.2s ease-in-out;
+            }
+            .text {
+                color: var(--light);
+                transition: 0.2s ease-in-out;
+            }
 
-				.material-icons, .text {
-					color: var(--primary);
-				}
-			}
+            &:hover {
+                background-color: var(--dark-alt);
 
-			&.router-link-exact-active {
-				background-color: var(--dark-alt);
-				border-right: 5px solid var(--primary);
+                .material-icons, .text {
+                    color: var(--primary);
+                }
+            }
 
-				.material-icons, .text {
-					color: var(--primary);
-				}
-			}
-		}
-	}
+            &.router-link-exact-active {
+                background-color: var(--dark-alt);
+                border-right: 5px solid var(--primary);
 
-	.footer {
-		opacity: 0;
-		transition: opacity 0.3s ease-in-out;
+                .material-icons, .text {
+                    color: var(--primary);
+                }
+            }
+        }
+    }
 
-		p {
-			font-size: 0.875rem;
-			color: var(--grey);
-		}
-	}
+    .footer {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
 
-	&.is-expanded {
-		width: var(--sidebar-width);
+        p {
+            font-size: 0.875rem;
+            color: var(--grey);
+        }
+    }
 
-		.menu-toggle-wrap {
-			top: -3rem;
-			
-			.menu-toggle {
-				transform: rotate(-180deg);
-			}
-		}
+    &.is-expanded {
+        width: var(--sidebar-width);
 
-		h3, .button .text {
-			opacity: 1;
-		}
+        .menu-toggle-wrap {
+            top: -3rem;
+            
+            .menu-toggle {
+                transform: rotate(-180deg);
+            }
+        }
 
-		.button {
-			.material-icons {
-				margin-right: 1rem;
-			}
-		}
+        h3, .button .text {
+            opacity: 1;
+        }
 
-		.footer {
-			opacity: 0;
-		}
-	}
+        .button {
+            .material-icons {
+                margin-right: 1rem;
+            }
+        }
 
-	@media (max-width: 1024px) {
-		position: absolute;
-		z-index: 99;
-	}
+        .footer {
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        position: fixed;
+        z-index: 99;
+    }
 }
 </style>
