@@ -68,7 +68,7 @@ export default {
                   profitvaluejaneiro, profitvaluefevereiro, profitvaluemarco, 
                   profitvalueabril, profitvaluemaio, profitvaluejunho
                 ],
-                backgroundColor: ['#36A2EB', '#FF6384'],
+                backgroundColor: ['#36A2EB', '#42b989'],
               },
             ],
           };

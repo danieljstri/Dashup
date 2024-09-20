@@ -7,10 +7,13 @@ import ExpensesCard from '@/components/ExpensesCard.vue';
 
 <template>
     <div class="chart">
-      <h1>gráficos</h1>
+      <h1>Gráfico do lucro dos últimos 6 meses</h1>
         <ChartPieComponent />
+        <!-- Ícone de economia 
         <ProfitCard />
         <ExpensesCard />
+         
+        -->
     </div>
   </template>
   
