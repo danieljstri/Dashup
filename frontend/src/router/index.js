@@ -26,6 +26,11 @@ const router = createRouter({
       path: '/economics',
       name: 'economics',
       component: () => import('../views/EconomicsView.vue')
+    },
+    {
+      path: '/pie',
+      name: 'pie',
+      component: () => import('../views/PieView.vue')
     }
   ]
 })

@@ -1,17 +1,15 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import SideBar from './components/SideBar.vue';
-
+import { SideBar } from '../components/SideBar.vue';
 </script>
 
 <template>
-	<div class="app">
-		<!-- Sidebar -->
-		<SideBar />
-	</div>
-
-  <RouterView />
+  <main>
+    <div class="teste">
+      <SideBar/>
+    </div>
+  </main>
 </template>
+  
 
 <style lang="scss">
 :root {
@@ -43,7 +41,7 @@ button {
 	background: none;
 }
 
-.app {
+.teste {
 	display: flex;
 
 	main {
@@ -56,3 +54,6 @@ button {
 	}
 }
 </style>
+
+
+  
