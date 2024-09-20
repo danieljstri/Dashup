@@ -6,12 +6,15 @@
         <!-- Conteúdo central do gráfico -->
         <div class="chart-center">
           <div class="center-icon">
+            <br>
             <!-- Ícone de economia -->
-            <i class="fas fa-dollar-sign"></i>
+            <i class="fas fa-dollar-sign" style="color: green"></i>
           </div>
           <div class="center-text">
             <h2>{{ economyPercentage }}%</h2>
             <p>Economia Total</p>
+            <h3> R${{ totalDescount }}</h3>
+
           </div>
         </div>
       </div>
@@ -35,7 +38,7 @@
   </template>
   
   <script>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, watch } from 'vue';
   import { getEconomicCompanieData } from '../../services/dataService';
   import { Doughnut } from 'vue-chartjs';
   import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
@@ -62,27 +65,28 @@
       const chartOptions = ref({});
       const economyPercentage = ref(0);
       const taxPaidPercentage = ref(0);
+      const totalDescount = ref(0);
       const reductionPercentage = ref(0);
       const isChartDataReady = ref(false);
   
       const fetchData = async () => {
         try {
           const data = await getEconomicCompanieData(props.companyName);
-          console.log(data);
   
           if (data && data.economia && data.economia.medup && data.economia.non_medup) {
             const resultadoMedup = data.economia.medup.resultado * 100;
             const resultadoNonMedup = data.economia.non_medup.resultado * 100;
             const diferenca = data.economia.diferenca * 100;
-  
+            const discount = data.receita_bruta * data.economia.medup.resultado
+
             // Dados para o gráfico
             chartData.value = {
               labels: ['Imposto Pago', 'Economia Gerada'],
               datasets: [
                 {
                   data: [resultadoMedup.toFixed(2), diferenca.toFixed(2)],
-                  backgroundColor: ['#FF6384', '#36A2EB'],
-                  hoverBackgroundColor: ['#FF6384', '#36A2EB'],
+                  backgroundColor: ['#fc9e56', '#42b989'],
+                  hoverBackgroundColor: ['#fc9e56', '#42b989'],
                 },
               ],
             };
@@ -93,7 +97,7 @@
               plugins: {
                 legend: {
                   display: false,
-                }, 
+                },
               },
               responsive: true,
               maintainAspectRatio: false,
@@ -102,6 +106,7 @@
             taxPaidPercentage.value = resultadoMedup.toFixed(2);
             reductionPercentage.value = diferenca.toFixed(2);
             economyPercentage.value = reductionPercentage.value;
+            totalDescount.value = discount.toFixed(2);
   
             isChartDataReady.value = true;
           } else {
@@ -116,6 +121,11 @@
         fetchData();
       });
   
+      watch(() => props.companyName, () => {
+        isChartDataReady.value = false;
+        fetchData();
+      });
+
       return {
         chartData,
         chartOptions,
@@ -123,6 +133,7 @@
         taxPaidPercentage,
         reductionPercentage,
         isChartDataReady,
+        totalDescount,
       };
     },
   };
