@@ -32,11 +32,13 @@
   
   <style scoped>
   .profit-card {
-    border: 3px solid #5ee67e;
-    border-radius: 20px;
+    height:fit-content;
+    width: fit-content;
+    border: 3px solid #2f3b36;
+    border-radius: 5px;
     padding: 16px;
     text-align: center;
-    background-color: #0e1997;
+    background-color: #36A2EB;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
@@ -48,6 +50,6 @@
   .profit-card p {
     margin: 0;
     font-size: 1.2em;
-    color: #31a51f;
+    color: #2f3b36;
   }
   </style>

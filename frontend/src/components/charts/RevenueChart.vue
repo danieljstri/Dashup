@@ -1,14 +1,9 @@
 <template>
-  <div class="economic-chart">
+  <div class="revenue-chart">
     <!-- Renderiza o gráfico somente se chartData estiver pronto -->
     <div class="chart-container" v-if="isChartDataReady">
+      <h3>Faturamento nos útlimos 6 meses</h3>
       <bar-chart :chart-data="chartData" :chart-options="chartOptions"></bar-chart>
-      <!-- Conteúdo central do gráfico -->
-      <div class="chart-center">
-        <div class="center-icon">
-          <!-- Ícone de economia -->
-        </div>
-      </div>
     </div>
     <div v-else>
       <p>Carregando dados...</p>
@@ -21,7 +16,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { getProfitData } from '../../services/dataService';
+import { getRevenueData } from '../../services/dataService';
 import { Bar } from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
@@ -29,7 +24,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
-  name: 'EconomicChart',
+  name: 'RevenueChart',
   components: {
     BarChart: Bar, 
   },
@@ -43,21 +38,21 @@ export default {
 
     const fetchData = async () => {
       try {
-        const profit_janeiro = await getProfitData('janeiro');
-        const profit_fevereiro = await getProfitData('fevereiro');
-        const profit_marco = await getProfitData('marco');
-        const profit_abril = await getProfitData('abril');
-        const profit_maio = await getProfitData('maio');
-        const profit_junho = await getProfitData('junho');
+        const Revenue_janeiro = await getRevenueData('janeiro');
+        const Revenue_fevereiro = await getRevenueData('fevereiro');
+        const Revenue_marco = await getRevenueData('marco');
+        const Revenue_abril = await getRevenueData('abril');
+        const Revenue_maio = await getRevenueData('maio');
+        const Revenue_junho = await getRevenueData('junho');
 
-        const profitvaluejaneiro = profit_janeiro.value;
-        const profitvaluefevereiro = profit_fevereiro.value;
-        const profitvaluemarco = profit_marco.value;
-        const profitvalueabril = profit_abril.value;
-        const profitvaluemaio = profit_maio.value;
-        const profitvaluejunho = profit_junho.value;
+        const Revenuevaluejaneiro = Revenue_janeiro.value;
+        const Revenuevaluefevereiro = Revenue_fevereiro.value;
+        const Revenuevaluemarco = Revenue_marco.value;
+        const Revenuevalueabril = Revenue_abril.value;
+        const Revenuevaluemaio = Revenue_maio.value;
+        const Revenuevaluejunho = Revenue_junho.value;
 
-        console.log('Dados econômicos:', profitvaluejaneiro, profitvaluefevereiro, profitvaluemarco, profitvalueabril, profitvaluemaio, profitvaluejunho);
+        console.log('Dados econômicos:', Revenuevaluejaneiro, Revenuevaluefevereiro, Revenuevaluemarco, Revenuevalueabril, Revenuevaluemaio, Revenuevaluejunho);
 
           // Dados para o gráfico
           chartData.value = {
@@ -65,8 +60,8 @@ export default {
             datasets: [
               {
                 data: [
-                  profitvaluejaneiro, profitvaluefevereiro, profitvaluemarco, 
-                  profitvalueabril, profitvaluemaio, profitvaluejunho
+                  Revenuevaluejaneiro, Revenuevaluefevereiro, Revenuevaluemarco, 
+                  Revenuevalueabril, Revenuevaluemaio, Revenuevaluejunho
                 ],
                 backgroundColor: ['#36A2EB', '#42b989'],
               },
