@@ -3,19 +3,23 @@ import ChartPieComponent from '@/components/charts/RevenueChart.vue';
 import ChartComponent from '@/components/charts/ExpensesChart.vue';
 import ProfitCard from '@/components/ProfitCard.vue';
 import ExpensesCard from '@/components/ExpensesCard.vue';
+import ComparisionRxEChart from '@/components/charts/ComparisionRxEChart.vue';
 </script>
 
 <template>
     <div class="content">
       <h1>Gráficos</h1>
-      <div class="charts">
+      <div class="datacharts">
         <ChartPieComponent />
         <ChartComponent />
       </div>
       <container class="cards">
         <ProfitCard />
         <ExpensesCard />
-      </container>        
+      </container>
+      <div class="comparisioncharts">
+        <ComparisionRxEChart />
+      </div>
     </div>
   </template>
   
@@ -26,7 +30,7 @@ import ExpensesCard from '@/components/ExpensesCard.vue';
     padding: 0px 50px;
   }
 
-  .charts{
+  .datacharts{
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
@@ -37,6 +41,12 @@ import ExpensesCard from '@/components/ExpensesCard.vue';
     justify-content: space-around;
     margin-top: 20px;
     padding: 50px;
+  }
+
+  .comparisioncharts{
+    display: flex;
+    padding: 0px 50px;
+    margin-top: 20px;
   }
 
   </style>
