@@ -46,16 +46,16 @@
               labels: ['Receita', 'Despesa'],
               datasets: [
                 {
-                  data: [expensesValue, revenueValue],
-                  backgroundColor: ['#fc9e56', '#42b989'],
-                  hoverBackgroundColor: ['#fc9e56', '#42b989'],
+                  data: [revenueValue, expensesValue],
+                  backgroundColor: ['#42b989','#fc9e56'],
+                  hoverBackgroundColor: ['#42b989','#fc9e56'],
                 },
               ],
             };
   
             // Opções do gráfico
             chartOptions.value = {
-              cutout: '70%', // Ajusta o tamanho do "furo" no meio do gráfico
+              cutout: '80%', // Ajusta o tamanho do "furo" no meio do gráfico
               responsive: true,
               maintainAspectRatio: false,
             };
