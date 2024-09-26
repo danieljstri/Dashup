@@ -1,6 +1,6 @@
 <template>
     <div class="revenue-card">
-      <h4>{{ title }}</h4>
+      <h4>{{ chartTitle }}</h4>
       <p>{{ revenue["value"] }}</p>
     </div>
   </template>
@@ -20,9 +20,9 @@
     async mounted() {
       try {
         // function of dataservice being used to get the data, see dataService.js
-        const response1 = await getRevenueData();
+        const response1 = await getRevenueData('dezembro');
         this.revenue = response1
-        this.chartTitle = `Receita total:  ${this.month === 'total' ? 'Total' : this.month}`;
+        this.chartTitle = `Receita  ${this.revenue['month']}`;
       } catch (error) {
         console.error('Error fetching revenue data:', error);
       }
@@ -34,16 +34,18 @@
   .revenue-card {
     height:fit-content;
     width: fit-content;
-    min-width: 150px;
+    min-width: 200px;
     border: 2px solid #2f3b36;
     border-radius: 20px;
-    padding: 16px;
     text-align: center;
+    padding: 16px;
     background-color: #c8d2d9;
     box-shadow: 0 1px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
   .revenue-card h4 {
+    display: flex;
+    justify-content: center;
     margin: 0 0 8px;
     
   }

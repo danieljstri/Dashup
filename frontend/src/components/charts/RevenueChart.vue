@@ -95,6 +95,7 @@ export default {
 <style scoped>
 .chart-container {
   max-width: 300px;
+  padding-right: 16px;
 }
 h3 {
     text-align: center;

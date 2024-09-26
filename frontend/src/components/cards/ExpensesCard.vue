@@ -1,6 +1,6 @@
 <template>
     <div class="expenses-card">
-      <h4>{{ title }}</h4>
+      <h4>{{ chartTitle }}</h4>
       <p>{{ expenses["value"] }}</p>
     </div>
   </template>
@@ -14,15 +14,15 @@
       return {
         expenses: 0, // Inicializa com 0
          // Mês a ser exibido no card, 'total' por padrão
-        title: "Despesa Total", // Título dinâmico do card
+        title: "Despesa", // Título dinâmico do card
       };
     },
     async mounted() {
       try {
         // function of dataservice being used to get the data, see dataService.js
-        const response1 = await getExpensesData();
+        const response1 = await getExpensesData('dezembro'); // if you want to get the data for a specific month, pass the month as a parameter
         this.expenses = response1
-        this.chartTitle = `Despesa total:  ${this.month === 'total' ? 'Total' : this.month}`;
+        this.chartTitle = `Despesas  ${this.expenses['month']}`;
       } catch (error) {
         console.error('Error fetching expenses data:', error);
       }
@@ -45,6 +45,8 @@
   
   .expenses-card h4 {
     margin: 0 0 8px;
+    display: flex;
+    justify-content: center;
     
   }
   

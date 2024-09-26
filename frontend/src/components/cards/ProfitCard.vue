@@ -1,7 +1,11 @@
 <template>
     <div class="profit-card">
-      <h4>{{ title }}</h4>
-      <p>{{ profit["value"] }}</p>
+      <h4>{{ chartTitle }}</h4>
+      <div class="content">
+        <p>{{ profit["value"] }} </p>
+        <img src="../../assets/59043.png" alt="arrow" width="10" height="10">
+        <span> {{ growth_percentage }}%</span>
+    </div>
     </div>
   </template>
   
@@ -12,17 +16,21 @@
     name: 'ProfitCard',
     data() {
       return {
-        profit: 0, // Inicializa com 0
-         // Mês a ser exibido no card, 'total' por padrão
-        title: "Lucro Total", // Título dinâmico do card
+        profit: 0,
+        title: "Lucro", 
+        comparision: 0,
       };
     },
     async mounted() {
       try {
         // function of dataservice being used to get the data, see dataService.js
-        const response1 = await getProfitData(); // if you want to get the data for a specific month, pass the month as a parameter
+        const response1 = await getProfitData('dezembro');
+        const response2 = await getProfitData('novembro')
+        const growth_percentage = (response1['value'] - response2['value']) / response2['value'] * 100
+        console.log(growth_percentage.toFixed(1)) // if you want to get the data for a specific month, pass the month as a parameter
         this.profit = response1
-        this.chartTitle = `Lucro ${this.month === 'total' ? 'Total' : this.month}`;
+        this.growth_percentage = growth_percentage.toFixed(1)
+        this.chartTitle = `Lucro ${this.profit['month']}`;
       } catch (error) {
         console.error('Error fetching profit data:', error);
       }
@@ -45,12 +53,28 @@
   
   .profit-card h4 {
     margin: 0 0 8px;
+    display: flex;
+    justify-content: center;
     
   }
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   
-  .profit-card p {
+  .content p {
     margin: 0;
     font-size: 1.2em;
     color: #000000;
+  }
+  .content img {
+    color: green;
+    margin: 0;
+  }
+  .content span {
+    font-size: small;
+    color: green;
   }
   </style>
