@@ -1,12 +1,12 @@
 <template>
     <div class="profit-card">
-      <h2>{{ title }}</h2>
+      <h4>{{ title }}</h4>
       <p>{{ profit["value"] }}</p>
     </div>
   </template>
   
   <script>
-  import { getProfitData } from '../services/dataService';
+  import { getProfitData } from '../../services/dataService';
   
   export default {
     name: 'ProfitCard',
@@ -34,22 +34,23 @@
   .profit-card {
     height:fit-content;
     width: fit-content;
-    border: 3px solid #2f3b36;
-    border-radius: 5px;
+    min-width: 150px;
+    border: 2px solid #2f3b36;
+    border-radius: 20px;
     padding: 16px;
     text-align: center;
-    background-color: #36A2EB;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #c8d2d9;
+    box-shadow: 0 1px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .profit-card h2 {
+  .profit-card h4 {
     margin: 0 0 8px;
-    font-size: 1.5em;
+    
   }
   
   .profit-card p {
     margin: 0;
     font-size: 1.2em;
-    color: #2f3b36;
+    color: #000000;
   }
   </style>

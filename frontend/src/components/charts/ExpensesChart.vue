@@ -68,9 +68,9 @@ export default {
           };
 
           // Opções do gráfico
-          chartOptions.value = { // Ajusta o tamanho do "furo" no meio do gráfico
+          chartOptions.value = { 
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
           };
           isChartDataReady.value = true;
       } catch (error) {
@@ -90,4 +90,12 @@ export default {
   },
 };
 </script>
-
+<style>
+.chart-container {
+  max-width: 300px;
+}
+h3 {
+    text-align: center;
+    color: #b0c1ba;
+}
+</style>

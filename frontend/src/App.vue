@@ -31,7 +31,7 @@ import SideBar from './components/SideBar.vue';
 }
 
 body {
-    background: var(--light);
+    background-color: #26292d;
 }
 
 button {
