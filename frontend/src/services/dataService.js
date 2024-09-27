@@ -197,7 +197,7 @@ export const getEconomicCompanieData = async (company_name = "DRA ISABELLY DE MO
  * @async
  * @function getMarkupAnesthesiaData
  * @param {string} [month="total"] - The month for which to retrieve anesthesia markup data.
- * @returns {Promise<Object>} The anesthesia markup data retrieved from the API in the format { month: string, value: [number = fixed_expenses, number = variable_expenses, number = product_revenue] }.
+ * @returns {Promise<Object>} The anesthesia markup data retrieved from the API in the format { month: string, value: (number = fixed_expenses, number = variable_expenses, number = product_revenue) }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getMarkupAnesthesiaData = async (month = "total") => {
