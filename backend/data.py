@@ -1,5 +1,6 @@
 import csv
 from utils import convert_to_float
+from economia import expenses_product_calculation
 import pandas as pd
 
 possible_months = ["janeiro", "fevereiro", "marco", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro", "total"]
@@ -103,6 +104,139 @@ class Data:
         despesa_anestesia_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMANESTESIA', month].values[0]
         despesa_anestesia = convert_to_float(despesa_anestesia_str)
         return despesa_anestesia
+
+    def getDespesaTim(self, month="total"):
+        """
+        Get the TIM expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_tim_str = self.df.loc[self.df['RESULTADO'] == 'DESPESATIM', month].values[0]
+        despesa_tim = convert_to_float(despesa_tim_str)
+        return despesa_tim
+    
+    def getDespesaEnergia(self, month="total"):
+        """
+        Get the energy expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_energy_str = self.df.loc[self.df['RESULTADO'] == 'DESPESAENERGIA', month].values[0]
+        despesa_energy = convert_to_float(despesa_energy_str)
+        return despesa_energy
+    
+    def getDespesaInternet(self, month="total"):
+        """
+        Get the internet expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_internet_str = self.df.loc[self.df['RESULTADO'] == 'DESPESAINTERNET', month].values[0]
+        despesa_internet = convert_to_float(despesa_internet_str)
+        return despesa_internet
+    
+    def getDespesaCrmv(self, month="total"):
+        """
+        Get the CRMV expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_crmv_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACRMV', month].values[0]
+        despesa_crmv = convert_to_float(despesa_crmv_str)  
+        return despesa_crmv
+
+    def getDespesaRemedios(self, month="total"):
+        """
+        Get the medicine expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_medicine_str = self.df.loc[self.df['RESULTADO'] == 'DESPESAREMEDIOS', month].values[0]
+        despesa_medicine = convert_to_float(despesa_medicine_str)
+        return despesa_medicine
+
+    def getDespesaComAlimentacao(self, month="total"):
+        """
+        Get the food expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_com_alimentacao_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMALIMENTACAO', month].values[0]
+        despesa_com_alimentacao = convert_to_float(despesa_com_alimentacao_str)
+        return despesa_com_alimentacao
+
+    def getDespesaComCombustivel(self, month="total"):
+        """
+        Get the fuel expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_com_combustivel_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMCOMBUSTIVEL', month].values[0]
+        despesa_com_combustivel = convert_to_float(despesa_com_combustivel_str)
+        return despesa_com_combustivel
+
+    def getDespesaComPos(self, month="total"):
+        """
+        Get the POS expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_com_pos_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMPOS', month].values[0]
+        despesa_com_pos = convert_to_float(despesa_com_pos_str)
+        return despesa_com_pos
+
+    def getDespesaComPlanoDeSaude(self, month="total"):
+        """
+        Get the health plan expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_com_plano_de_saude_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMPLANODESAUDE', month].values[0]
+        despesa_com_plano_de_saude = convert_to_float(despesa_com_plano_de_saude_str)
+        return despesa_com_plano_de_saude
+
+    def getDespesaComLazer(self, month="total"):
+        """
+        Get the leisure expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        despesa_com_lazer_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMLAZER', month].values[0]
+        despesa_com_lazer = convert_to_float(despesa_com_lazer_str)
+        return despesa_com_lazer
+
+    def getImposto(self, month="total"):
+        """
+        Get the tax expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        imposto_str = self.df.loc[self.df['RESULTADO'] == 'IMPOSTO', month].values[0]
+        imposto = convert_to_float(imposto_str)
+        return imposto
+
+    def getContador(self, month="total"):
+        """
+        Get the accountant expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        contador_str = self.df.loc[self.df['RESULTADO'] == 'CONTADOR', month].values[0]
+        contador = convert_to_float(contador_str)
+        return contador
+
+    def getInvestimento(self, month="total"):
+        """
+        Get the investment expenses of the dataset (parameters: month)
+        """
+        error_month(month)
+
+        investimento_str = self.df.loc[self.df['RESULTADO'] == 'INVESTIMENTO', month].values[0]
+        investimento = convert_to_float(investimento_str)
+        return investimento
+
+
+
 
     def getAllData(self):
         """
