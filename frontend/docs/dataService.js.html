@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: dataService.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: dataService.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from 'axios';
+
+/**
+ * Fetches all data from the API.
+ *
+ * @async
+ * @function getAllData
+ * @returns {Promise&lt;Object>} The data retrieved from the API.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getAllData = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/api/all');
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches profit data for a specified month.
+ *
+ * @async
+ * @function getProfitData
+ * @param {string} [month="total"] - The month for which to retrieve profit data.
+ * @returns {Promise&lt;Object>} The profit data retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getProfitData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/lucros/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches revenue data for a specified month.
+ *
+ * @async
+ * @function getRevenueData
+ * @param {string} [month="total"] - The month for which to retrieve revenue data.
+ * @returns {Promise&lt;Object>} The revenue data retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getRevenueData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/receitas/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches revenue data for exams for a specified month.
+ *
+ * @async
+ * @function getRevenueExamsData
+ * @param {string} [month="total"] - The month for which to retrieve exam revenue data.
+ * @returns {Promise&lt;Object>} The exam revenue data retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getRevenueExamsData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/receitas/exames/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches revenue data for anesthesia for a specified month.
+ *
+ * @async
+ * @function getRevenueAnesthesiaData
+ * @param {string} [month="total"] - The month for which to retrieve anesthesia revenue data.
+ * @returns {Promise&lt;Object>} The anesthesia revenue data retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getRevenueAnesthesiaData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/receitas/anestesia/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches revenue data for cash transactions for a specified month.
+ *
+ * @async
+ * @function getRevenueCashData
+ * @param {string} [month="total"] - The month for which to retrieve cash revenue data.
+ * @returns {Promise&lt;Object>} The cash revenue data retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getRevenueCashData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/receitas/dinheiro/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches expenses data for a specified month.
+ *
+ * @async
+ * @function getExpensesData
+ * @param {string} [month="total"] - The month for which to retrieve expenses data.
+ * @returns {Promise&lt;Object>} The expenses data retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getExpensesData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/despesas/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches rent expenses data for a specified month.
+ *
+ * @async
+ * @function getExpensesRentData
+ * @param {string} [month="total"] - The month for which to retrieve rent expenses data.
+ * @returns {Promise&lt;Object>} The rent expenses data retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getExpensesRentData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/despesas/aluguel/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches anesthesia expenses data for a specified month.
+ *
+ * @async
+ * @function getExpensesAnesthesiaData
+ * @param {string} [month="total"] - The month for which to retrieve anesthesia expenses data.
+ * @returns {Promise&lt;Object>} The anesthesia expenses data retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getExpensesAnesthesiaData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/despesas/anestesia/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches economic data for a specified company.
+ *
+ * @async
+ * @function getEconomicCompanieData
+ * @param {string} [company_name="DRA ISABELLY DE MORAIS LTDA"] - The name of the company.
+ * @returns {Promise&lt;Object>} The economic data for the specified company in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getEconomicCompanieData = async (company_name = "DRA ISABELLY DE MORAIS LTDA") => {
+  try {
+    // URL-encode the company name to handle spaces and special characters
+    const encodedCompanyName = encodeURIComponent(company_name);
+    const response = await axios.get(`http://localhost:3000/api/economia/${encodedCompanyName}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches markup data for anesthesia for a specified month.
+ *
+ * @async
+ * @function getMarkupAnesthesiaData
+ * @param {string} [month="total"] - The month for which to retrieve anesthesia markup data.
+ * @returns {Promise&lt;Object>} The anesthesia markup data retrieved from the API in the format { month: string, value: [number = fixed_expenses, number = variable_expenses, number = product_revenue] }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getMarkupAnesthesiaData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/markup/anestesia/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches data for all economic companies.
+ *
+ * @async
+ * @function getAllEconomicCompaniesData
+ * @returns {Promise&lt;Object>} The data for all economic companies retrieved from the API in the format { month: string, value: number }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getAllEconomicCompaniesData = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/api/companies');
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getAllData">getAllData</a></li><li><a href="global.html#getAllEconomicCompaniesData">getAllEconomicCompaniesData</a></li><li><a href="global.html#getEconomicCompanieData">getEconomicCompanieData</a></li><li><a href="global.html#getExpensesAnesthesiaData">getExpensesAnesthesiaData</a></li><li><a href="global.html#getExpensesData">getExpensesData</a></li><li><a href="global.html#getExpensesRentData">getExpensesRentData</a></li><li><a href="global.html#getMarkupAnesthesiaData">getMarkupAnesthesiaData</a></li><li><a href="global.html#getProfitData">getProfitData</a></li><li><a href="global.html#getRevenueAnesthesiaData">getRevenueAnesthesiaData</a></li><li><a href="global.html#getRevenueCashData">getRevenueCashData</a></li><li><a href="global.html#getRevenueData">getRevenueData</a></li><li><a href="global.html#getRevenueExamsData">getRevenueExamsData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Fri Sep 27 2024 17:21:55 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
