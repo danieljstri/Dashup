@@ -79,3 +79,21 @@ def economia(receita_bruta):
     }
 
 
+def expenses_product_calculation(total_revenue, product_revenue, fixed_expenses, variable_expenses, expenses_product):
+    """
+    Calculate the proportion of the fixed expenses, and the variables expenses of a product, based on the total revenue and the product revenue, to calculate the MARKUP profit of the product.
+
+    :total_revenue: the total revenue of the company
+    :product_revenue: the revenue of the product
+    :fixed_expenses: the fixed expenses of the company
+    :variable_expenses: the variable expenses of the company
+    :variable_expenses_product: the variable expenses of the product 
+
+    :return: the proportion of the fixed expenses, and the variables expenses of a product
+    """
+    proportion = product_revenue / total_revenue
+    fixed_expenses_product = fixed_expenses * proportion
+    variable_expenses_product = (variable_expenses * proportion) + expenses_product
+
+    return fixed_expenses_product, variable_expenses_product
+    

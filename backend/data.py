@@ -141,7 +141,7 @@ class Data:
         """
         error_month(month)
 
-        despesa_crmv_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACRMV', month].values[0]
+        despesa_crmv_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMCRMV', month].values[0]
         despesa_crmv = convert_to_float(despesa_crmv_str)  
         return despesa_crmv
 
@@ -235,7 +235,32 @@ class Data:
         investimento = convert_to_float(investimento_str)
         return investimento
 
+    def getFixedExpenses(self, month="total"):
+        """
+        Get the fixed expenses of a company. This probably will change from company to company.
+        """
+        fixed_expenses = self.getDespesaAluguel(month) + self.getDespesaComPlanoDeSaude(month) + self.getDespesaComPos(month) + self.getDespesaCrmv(month) + self.getDespesaEnergia(month) + self.getDespesaInternet(month) + self.getDespesaTim(month)
+        return fixed_expenses
 
+    def getVariablesExpenses(self, month="total"):
+        """
+        Get the variables expenses of a company. This probably will change from company to company
+        """
+        variables_expenses = self.getDespesaComAlimentacao(month) + self.getDespesaRemedios(month) + self.getDespesaComLazer(month) + self.getDespesaComCombustivel(month)
+        return variables_expenses
+    
+    def getMarkupAnestesia(self, month="total"):
+        """
+        Get the anesthesia expenses (the proportion of fixed + variables, see  economia.expenses_product_calculation of the dataset (parameters: month)
+        """
+        fixed_expenses = self.getFixedExpenses(month)
+        variable_expenses = self.getVariablesExpenses(month)
+        total_revenue = self.getReceitas(month)
+        product_revenue = self.getReceitaAnestesia(month)
+        product_expenses = self.getDespesaAnestesia(month)
+        fixed_expenses, variable_expenses = expenses_product_calculation(expenses_product=product_expenses,fixed_expenses=fixed_expenses, variable_expenses=variable_expenses, total_revenue=total_revenue, product_revenue=product_revenue)
+
+        return fixed_expenses, variable_expenses, product_revenue
 
 
     def getAllData(self):
@@ -273,3 +298,4 @@ class CompanyData:
 def error_month(month):
     if month not in possible_months:
         raise ValueError(f"Month '{month}' is not valid. Choose from {possible_months}.")
+    
