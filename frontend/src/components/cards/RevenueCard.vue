@@ -1,7 +1,11 @@
 <template>
     <div class="revenue-card">
       <h4>{{ chartTitle }}</h4>
-      <p>{{ revenue["value"] }}</p>
+      <div class="content">
+        <p>{{ revenue["value"] }}</p>
+        <img src='../../assets/59043.png' alt='arrow' width='10' height='10'>
+        <span> {{ growth_percentage }}%</span>
+      </div>
     </div>
   </template>
   
@@ -21,8 +25,12 @@
       try {
         // function of dataservice being used to get the data, see dataService.js
         const response1 = await getRevenueData('dezembro');
+        const response2 = await getRevenueData('novembro')
         this.revenue = response1
         this.chartTitle = `Receita  ${this.revenue['month']}`;
+        const growth_percentage = (response1['value'] - response2['value']) / response2['value'] * 100
+        console.log(growth_percentage.toFixed(1))
+        this.growth_percentage = growth_percentage.toFixed(1)
       } catch (error) {
         console.error('Error fetching revenue data:', error);
       }
@@ -49,10 +57,23 @@
     margin: 0 0 8px;
     
   }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
   
-  .revenue-card p {
+  .content p {
     margin: 0;
     font-size: 1.2em;
     color: #000000;
+    padding-right: 10px;
+  }
+
+  .content span {
+    margin: 0;
+    font-size: 1.0em;
+    color: green;
   }
   </style>

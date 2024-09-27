@@ -37,32 +37,32 @@ export default {
 
     const fetchData = async () => {
       try {
-        const Expenses_janeiro = await getExpensesData('janeiro');
-        const Expenses_fevereiro = await getExpensesData('fevereiro');
-        const Expenses_marco = await getExpensesData('marco');
-        const Expenses_abril = await getExpensesData('abril');
-        const Expenses_maio = await getExpensesData('maio');
-        const Expenses_junho = await getExpensesData('junho');
+        const Expenses_julho = await getExpensesData('julho');
+        const Expenses_agosto = await getExpensesData('agosto');
+        const Expenses_setembro = await getExpensesData('setembro');
+        const Expenses_outubro = await getExpensesData('outubro');
+        const Expenses_novembro = await getExpensesData('novembro');
+        const Expenses_dezembro = await getExpensesData('dezembro');
 
-        const Expensesvaluejaneiro = Expenses_janeiro.value;
-        const Expensesvaluefevereiro = Expenses_fevereiro.value;
-        const Expensesvaluemarco = Expenses_marco.value;
-        const Expensesvalueabril = Expenses_abril.value;
-        const Expensesvaluemaio = Expenses_maio.value;
-        const Expensesvaluejunho = Expenses_junho.value;
+        const Expensesvaluejulho = Expenses_julho.value;
+        const Expensesvalueagosto = Expenses_agosto.value;
+        const Expensesvaluesetembro = Expenses_setembro.value;
+        const Expensesvalueoutubro = Expenses_outubro.value;
+        const Expensesvaluenovembro = Expenses_novembro.value;
+        const Expensesvaluedezembro = Expenses_dezembro.value;
 
-        console.log('Dados econômicos:', Expensesvaluejaneiro, Expensesvaluefevereiro, Expensesvaluemarco, Expensesvalueabril, Expensesvaluemaio, Expensesvaluejunho);
+        console.log('Dados econômicos:', Expensesvaluejulho, Expensesvalueagosto, Expensesvaluesetembro, Expensesvalueoutubro, Expensesvaluenovembro, Expensesvaluedezembro);
 
           // Dados para o gráfico
           chartData.value = {
-            labels: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho'],
+            labels: ['julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
             datasets: [
               {
                 data: [
-                  Expensesvaluejaneiro, Expensesvaluefevereiro, Expensesvaluemarco, 
-                  Expensesvalueabril, Expensesvaluemaio, Expensesvaluejunho
+                  Expensesvaluejulho, Expensesvalueagosto, Expensesvaluesetembro, 
+                  Expensesvalueoutubro, Expensesvaluenovembro, Expensesvaluedezembro
                 ],
-                backgroundColor: ['#36A2EB', '#42b989'],
+                backgroundColor: ['#c03535', '#d2b43d'],
               },
             ],
           };
@@ -71,6 +71,11 @@ export default {
           chartOptions.value = { 
             responsive: true,
             maintainAspectRatio: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
           };
           isChartDataReady.value = true;
       } catch (error) {

@@ -38,30 +38,30 @@
   
       const fetchData = async () => {
         try {
-          const Profit_janeiro = await getProfitData('janeiro');
-          const Profit_fevereiro = await getProfitData('fevereiro');
-          const Profit_marco = await getProfitData('marco');
-          const Profit_abril = await getProfitData('abril');
-          const Profit_maio = await getProfitData('maio');
-          const Profit_junho = await getProfitData('junho');
+          const Profit_julho = await getProfitData('julho');
+          const Profit_agosto = await getProfitData('agosto');
+          const Profit_setembro = await getProfitData('setembro');
+          const Profit_outubro = await getProfitData('outubro');
+          const Profit_novembro = await getProfitData('novembro');
+          const Profit_dezembro = await getProfitData('dezembro');
   
-          const Profitvaluejaneiro = Profit_janeiro.value;
-          const Profitvaluefevereiro = Profit_fevereiro.value;
-          const Profitvaluemarco = Profit_marco.value;
-          const Profitvalueabril = Profit_abril.value;
-          const Profitvaluemaio = Profit_maio.value;
-          const Profitvaluejunho = Profit_junho.value;
+          const Profitvaluejulho = Profit_julho.value;
+          const Profitvalueagosto = Profit_agosto.value;
+          const Profitvaluesetembro = Profit_setembro.value;
+          const Profitvalueoutubro = Profit_outubro.value;
+          const Profitvaluenovembro = Profit_novembro.value;
+          const Profitvaluedezembro = Profit_dezembro.value;
   
-          console.log('Dados econômicos:', Profitvaluejaneiro, Profitvaluefevereiro, Profitvaluemarco, Profitvalueabril, Profitvaluemaio, Profitvaluejunho);
+          console.log('Dados econômicos:', Profitvaluejulho, Profitvalueagosto, Profitvaluesetembro, Profitvalueoutubro, Profitvaluenovembro, Profitvaluedezembro);
   
             // Dados para o gráfico
             chartData.value = {
-              labels: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho'],
+              labels: ['julho', 'agosto', 'março', 'outubro', 'novembro', 'dezembro'],
               datasets: [
                 {
                   data: [
-                    Profitvaluejaneiro, Profitvaluefevereiro, Profitvaluemarco, 
-                    Profitvalueabril, Profitvaluemaio, Profitvaluejunho
+                    Profitvaluejulho, Profitvalueagosto, Profitvaluesetembro, 
+                    Profitvalueoutubro, Profitvaluenovembro, Profitvaluedezembro
                   ],
                   backgroundColor: ['#36A2EB', '#42b989'],
                 },
@@ -72,6 +72,11 @@
             chartOptions.value = { // Ajusta o tamanho do "furo" no meio do gráfico
               responsive: true,
               maintainAspectRatio: true,
+              plugins: {
+              legend: {
+                display: false,
+              },
+            },
             };
             isChartDataReady.value = true;
         } catch (error) {
