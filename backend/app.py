@@ -40,7 +40,17 @@ def get_receitas_exames(month):
         return jsonify({"month": month, "value": receitas_exames})
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
-    
+
+
+# the route to obtain the markup informations about anesthesia, by months
+@app.route('/api/markup/anestesia/<month>', methods=['GET'])
+def get_markup_anestesia(month):
+    try:
+        markup_anestesia = data.getMarkupAnestesia(month)
+        return jsonify({"month": month, "value": markup_anestesia})
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
 # the route to the anesthesia revenue, by months
 @app.route('/api/receitas/anestesia/<month>', methods=['GET'])
 def get_receitas_anestesia(month):
@@ -91,6 +101,7 @@ def get_despesas_anestesia(month):
 def get_all_data():
     all_data = data.getAllData()
     return jsonify(all_data)
+
 
 # Route to get data for a specific company
 @app.route('/api/company/<company_name>', methods=['GET'])
