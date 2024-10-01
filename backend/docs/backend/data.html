@@ -1,0 +1,1281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>backend.data API documentation</title>
+<meta name="description" content="Data Module …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>backend.data</code></h1>
+</header>
+<section id="section-intro">
+<p>Data Module</p>
+<p>This module provides classes to access and manipulate data from the dataset and
+company records. It includes a class to access the dataset and retrieve economic
+metrics such as profit, revenue, and expenses. Additionally, it offers a class
+to access company records and retrieve gross revenue data.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="backend.data.error_month"><code class="name flex">
+<span>def <span class="ident">error_month</span></span>(<span>month)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Verifies if the selected month is valid.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code></dt>
+<dd>The month to verify.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the month is not in the list of possible months.</dd>
+</dl></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="backend.data.CompanyData"><code class="flex name class">
+<span>class <span class="ident">CompanyData</span></span>
+<span>(</span><span>csv_file_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class to access the data of a specific company. This data only has 2 columns: 'nome_da_empresa' and 'receita_bruta'.</p>
+<p>Initializes the CompanyData class with the path of the CSV file.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>csv_file_path</code></strong> :&ensp;<code>str</code></dt>
+<dd>The path of the CSV file.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CompanyData:
+    &#34;&#34;&#34;
+    Class to access the data of a specific company. This data only has 2 columns: &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.
+    &#34;&#34;&#34;
+
+    def __init__(self, csv_file_path):
+        &#34;&#34;&#34;
+        Initializes the CompanyData class with the path of the CSV file.
+
+        Args:
+            csv_file_path (str): The path of the CSV file.
+        &#34;&#34;&#34;
+        self.csv_file_path = csv_file_path
+        self.data = self.load_data()
+
+    def load_data(self):
+        &#34;&#34;&#34;
+        Loads the data from the CSV file.
+
+        Returns:
+            list of dict: A list of company records with &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.
+        &#34;&#34;&#34;
+        data = []
+        with open(self.csv_file_path, &#39;r&#39;) as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                row[&#39;receita_bruta&#39;] = float(row[&#39;receita_bruta&#39;])
+                data.append(row)
+        return data
+
+    def get_company_data(self, company_name):
+        &#34;&#34;&#34;
+        Retrieves the data of a specific company.
+
+        Args:
+            company_name (str): The name of the company.
+
+        Returns:
+            dict: The company&#39;s data containing &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.
+
+        Raises:
+            ValueError: If the company is not found.
+        &#34;&#34;&#34;
+        for record in self.data:
+            if record[&#39;nome_da_empresa&#39;] == company_name:
+                return record
+        raise ValueError(f&#34;Company &#39;{company_name}&#39; not found.&#34;)
+
+    def get_all_companies(self):
+        &#34;&#34;&#34;
+        Retrieves the data of all companies.
+
+        Returns:
+            list of dict: A list of all company records.
+        &#34;&#34;&#34;
+        return self.data</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.data.CompanyData.get_all_companies"><code class="name flex">
+<span>def <span class="ident">get_all_companies</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the data of all companies.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code> of <code>dict</code></dt>
+<dd>A list of all company records.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.CompanyData.get_company_data"><code class="name flex">
+<span>def <span class="ident">get_company_data</span></span>(<span>self, company_name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the data of a specific company.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>company_name</code></strong> :&ensp;<code>str</code></dt>
+<dd>The name of the company.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict</code></dt>
+<dd>The company's data containing 'nome_da_empresa' and 'receita_bruta'.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the company is not found.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.CompanyData.load_data"><code class="name flex">
+<span>def <span class="ident">load_data</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the data from the CSV file.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code> of <code>dict</code></dt>
+<dd>A list of company records with 'nome_da_empresa' and 'receita_bruta'.</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+<dt id="backend.data.Data"><code class="flex name class">
+<span>class <span class="ident">Data</span></span>
+<span>(</span><span>path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class to access the data of the dataset.</p>
+<p>Initializes the Data class with the path of the dataset.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>path</code></strong> :&ensp;<code>str</code></dt>
+<dd>The path of the dataset.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Data:
+    &#34;&#34;&#34;
+    Class to access the data of the dataset.
+    &#34;&#34;&#34;
+
+    def __init__(self, path):
+        &#34;&#34;&#34;
+        Initializes the Data class with the path of the dataset.
+
+        Args:
+            path (str): The path of the dataset.
+        &#34;&#34;&#34;
+        self.df = pd.read_csv(path)
+
+    def getLucro(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the profit of the dataset for a specified month or the total annual profit.
+
+        Args:
+            month (str, optional): The month for which to retrieve the profit. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The profit value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        lucro_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;LUCROPREJUIZO&#39;, month].values[0]
+        print(lucro_str)
+        lucro = convert_to_float(lucro_str)
+        return lucro
+
+    def getReceitas(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the revenue of the dataset for a specified month or the total annual revenue.
+
+        Args:
+            month (str, optional): The month for which to retrieve the revenue. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The revenue value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        receita_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;RECEITAS&#39;, month].values[0]
+        receita = convert_to_float(receita_str)
+        return receita
+
+    def getReceitaExames(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the exams revenue of the dataset for a specified month or the total annual exams revenue.
+
+        Args:
+            month (str, optional): The month for which to retrieve the exams revenue. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The exams revenue value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        receita_exames_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;ReceitaExames&#39;, month].values[0]
+        receita_exames = convert_to_float(receita_exames_str)
+        return receita_exames
+
+    def getReceitaAnestesia(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the anesthesia revenue of the dataset for a specified month or the total annual anesthesia revenue.
+
+        Args:
+            month (str, optional): The month for which to retrieve the anesthesia revenue. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The anesthesia revenue value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        receita_anestesia_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;ReceitaAnestesia&#39;, month].values[0]
+        receita_anestesia = convert_to_float(receita_anestesia_str)
+        return receita_anestesia
+
+    def getReceitaDinheiro(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the cash revenue of the dataset for a specified month or the total annual cash revenue.
+
+        Args:
+            month (str, optional): The month for which to retrieve the cash revenue. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The cash revenue value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        receita_dinheiro_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;ReceitasDinheiro&#39;, month].values[0]
+        receita_dinheiro = convert_to_float(receita_dinheiro_str)
+        return receita_dinheiro
+
+    def getDespesas(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the expenses of the dataset for a specified month or the total annual expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESASTOTAIS&#39;, month].values[0]
+        despesa = convert_to_float(despesa_str)
+        return despesa
+
+    def getDespesaAluguel(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the rent expenses of the dataset for a specified month or the total annual rent expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the rent expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The rent expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_aluguel_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESAALUGUEL&#39;, month].values[0]
+        despesa_aluguel = convert_to_float(despesa_aluguel_str)
+        return despesa_aluguel
+
+    def getDespesaAnestesia(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the anesthesia expenses of the dataset for a specified month or the total annual anesthesia expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the anesthesia expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The anesthesia expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_anestesia_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESACOMANESTESIA&#39;, month].values[0]
+        despesa_anestesia = convert_to_float(despesa_anestesia_str)
+        return despesa_anestesia
+
+    def getDespesaTim(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the TIM expenses of the dataset for a specified month or the total annual TIM expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the TIM expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The TIM expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_tim_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESATIM&#39;, month].values[0]
+        despesa_tim = convert_to_float(despesa_tim_str)
+        return despesa_tim
+
+    def getDespesaEnergia(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the energy expenses of the dataset for a specified month or the total annual energy expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the energy expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The energy expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_energy_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESAENERGIA&#39;, month].values[0]
+        despesa_energy = convert_to_float(despesa_energy_str)
+        return despesa_energy
+
+    def getDespesaInternet(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the internet expenses of the dataset for a specified month or the total annual internet expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the internet expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The internet expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_internet_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESAINTERNET&#39;, month].values[0]
+        despesa_internet = convert_to_float(despesa_internet_str)
+        return despesa_internet
+
+    def getDespesaCrmv(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the CRMV expenses of the dataset for a specified month or the total annual CRMV expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the CRMV expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The CRMV expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_crmv_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESACOMCRMV&#39;, month].values[0]
+        despesa_crmv = convert_to_float(despesa_crmv_str)
+        return despesa_crmv
+
+    def getDespesaRemedios(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the medicine expenses of the dataset for a specified month or the total annual medicine expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the medicine expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The medicine expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_medicine_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESAREMEDIOS&#39;, month].values[0]
+        despesa_medicine = convert_to_float(despesa_medicine_str)
+        return despesa_medicine
+
+    def getDespesaComAlimentacao(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the food expenses of the dataset for a specified month or the total annual food expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the food expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The food expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_com_alimentacao_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESACOMALIMENTACAO&#39;, month].values[0]
+        despesa_com_alimentacao = convert_to_float(despesa_com_alimentacao_str)
+        return despesa_com_alimentacao
+
+    def getDespesaComCombustivel(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the fuel expenses of the dataset for a specified month or the total annual fuel expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the fuel expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The fuel expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_com_combustivel_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESACOMCOMBUSTIVEL&#39;, month].values[0]
+        despesa_com_combustivel = convert_to_float(despesa_com_combustivel_str)
+        return despesa_com_combustivel
+
+    def getDespesaComPos(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the POS expenses of the dataset for a specified month or the total annual POS expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the POS expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The POS expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_com_pos_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESACOMPOS&#39;, month].values[0]
+        despesa_com_pos = convert_to_float(despesa_com_pos_str)
+        return despesa_com_pos
+
+    def getDespesaComPlanoDeSaude(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the health plan expenses of the dataset for a specified month or the total annual health plan expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the health plan expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The health plan expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_com_plano_de_saude_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESACOMPLANODESAUDE&#39;, month].values[0]
+        despesa_com_plano_de_saude = convert_to_float(despesa_com_plano_de_saude_str)
+        return despesa_com_plano_de_saude
+
+    def getDespesaComLazer(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the leisure expenses of the dataset for a specified month or the total annual leisure expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the leisure expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The leisure expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        despesa_com_lazer_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;DESPESACOMLAZER&#39;, month].values[0]
+        despesa_com_lazer = convert_to_float(despesa_com_lazer_str)
+        return despesa_com_lazer
+
+    def getImposto(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the tax expenses of the dataset for a specified month or the total annual tax expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the tax expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The tax expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        imposto_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;IMPOSTO&#39;, month].values[0]
+        imposto = convert_to_float(imposto_str)
+        return imposto
+
+    def getContador(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the accountant expenses of the dataset for a specified month or the total annual accountant expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the accountant expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The accountant expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        contador_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;CONTADOR&#39;, month].values[0]
+        contador = convert_to_float(contador_str)
+        return contador
+
+    def getInvestimento(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Retrieves the investment expenses of the dataset for a specified month or the total annual investment expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the investment expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The investment expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        error_month(month)
+
+        investimento_str = self.df.loc[self.df[&#39;RESULTADO&#39;] == &#39;INVESTIMENTO&#39;, month].values[0]
+        investimento = convert_to_float(investimento_str)
+        return investimento
+
+    def getFixedExpenses(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Calculates the fixed expenses of the company for a specified month or the total annual fixed expenses.
+
+        This may vary between companies.
+
+        Args:
+            month (str, optional): The month for which to calculate the fixed expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The total fixed expenses.
+        &#34;&#34;&#34;
+        fixed_expenses = (
+            self.getDespesaAluguel(month) +
+            self.getDespesaComPlanoDeSaude(month) +
+            self.getDespesaComPos(month) +
+            self.getDespesaCrmv(month) +
+            self.getDespesaEnergia(month) +
+            self.getDespesaInternet(month) +
+            self.getDespesaTim(month)
+        )
+        return fixed_expenses
+
+    def getVariablesExpenses(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Calculates the variable expenses of the company for a specified month or the total annual variable expenses.
+
+        This may vary between companies.
+
+        Args:
+            month (str, optional): The month for which to calculate the variable expenses. Defaults to &#34;total&#34;.
+
+        Returns:
+            float: The total variable expenses.
+        &#34;&#34;&#34;
+        variables_expenses = (
+            self.getDespesaComAlimentacao(month) +
+            self.getDespesaRemedios(month) +
+            self.getDespesaComLazer(month) +
+            self.getDespesaComCombustivel(month)
+        )
+        return variables_expenses
+
+    def getMarkupAnestesia(self, month=&#34;total&#34;):
+        &#34;&#34;&#34;
+        Calculates the markup for anesthesia expenses based on fixed and variable expenses.
+
+        Utilizes `economia.expenses_product_calculation` to adjust expenses.
+
+        Args:
+            month (str, optional): The month for which to calculate the markup. Defaults to &#34;total&#34;.
+
+        Returns:
+            tuple:
+                float: Adjusted fixed expenses.
+                float: Adjusted variable expenses.
+                float: Product revenue.
+
+        Raises:
+            ValueError: If the provided month is not valid.
+        &#34;&#34;&#34;
+        fixed_expenses = self.getFixedExpenses(month)
+        variable_expenses = self.getVariablesExpenses(month)
+        total_revenue = self.getReceitas(month)
+        product_revenue = self.getReceitaAnestesia(month)
+        product_expenses = self.getDespesaAnestesia(month)
+        fixed_expenses, variable_expenses = expenses_product_calculation(
+            expenses_product=product_expenses,
+            fixed_expenses=fixed_expenses,
+            variable_expenses=variable_expenses,
+            total_revenue=total_revenue,
+            product_revenue=product_revenue
+        )
+
+        return fixed_expenses, variable_expenses, product_revenue
+
+    def getAllData(self):
+        &#34;&#34;&#34;
+        Retrieves all data from the dataset.
+
+        Returns:
+            list of dict: A list of records representing the dataset.
+        &#34;&#34;&#34;
+        data = self.df.to_dict(orient=&#39;records&#39;)
+        return data</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="backend.data.Data.getAllData"><code class="name flex">
+<span>def <span class="ident">getAllData</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves all data from the dataset.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code> of <code>dict</code></dt>
+<dd>A list of records representing the dataset.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getContador"><code class="name flex">
+<span>def <span class="ident">getContador</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the accountant expenses of the dataset for a specified month or the total annual accountant expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the accountant expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The accountant expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaAluguel"><code class="name flex">
+<span>def <span class="ident">getDespesaAluguel</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the rent expenses of the dataset for a specified month or the total annual rent expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the rent expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The rent expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaAnestesia"><code class="name flex">
+<span>def <span class="ident">getDespesaAnestesia</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the anesthesia expenses of the dataset for a specified month or the total annual anesthesia expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the anesthesia expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The anesthesia expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaComAlimentacao"><code class="name flex">
+<span>def <span class="ident">getDespesaComAlimentacao</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the food expenses of the dataset for a specified month or the total annual food expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the food expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The food expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaComCombustivel"><code class="name flex">
+<span>def <span class="ident">getDespesaComCombustivel</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the fuel expenses of the dataset for a specified month or the total annual fuel expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the fuel expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The fuel expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaComLazer"><code class="name flex">
+<span>def <span class="ident">getDespesaComLazer</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the leisure expenses of the dataset for a specified month or the total annual leisure expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the leisure expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The leisure expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaComPlanoDeSaude"><code class="name flex">
+<span>def <span class="ident">getDespesaComPlanoDeSaude</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the health plan expenses of the dataset for a specified month or the total annual health plan expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the health plan expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The health plan expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaComPos"><code class="name flex">
+<span>def <span class="ident">getDespesaComPos</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the POS expenses of the dataset for a specified month or the total annual POS expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the POS expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The POS expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaCrmv"><code class="name flex">
+<span>def <span class="ident">getDespesaCrmv</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the CRMV expenses of the dataset for a specified month or the total annual CRMV expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the CRMV expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The CRMV expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaEnergia"><code class="name flex">
+<span>def <span class="ident">getDespesaEnergia</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the energy expenses of the dataset for a specified month or the total annual energy expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the energy expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The energy expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaInternet"><code class="name flex">
+<span>def <span class="ident">getDespesaInternet</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the internet expenses of the dataset for a specified month or the total annual internet expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the internet expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The internet expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaRemedios"><code class="name flex">
+<span>def <span class="ident">getDespesaRemedios</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the medicine expenses of the dataset for a specified month or the total annual medicine expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the medicine expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The medicine expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesaTim"><code class="name flex">
+<span>def <span class="ident">getDespesaTim</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the TIM expenses of the dataset for a specified month or the total annual TIM expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the TIM expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The TIM expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getDespesas"><code class="name flex">
+<span>def <span class="ident">getDespesas</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the expenses of the dataset for a specified month or the total annual expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getFixedExpenses"><code class="name flex">
+<span>def <span class="ident">getFixedExpenses</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculates the fixed expenses of the company for a specified month or the total annual fixed expenses.</p>
+<p>This may vary between companies.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to calculate the fixed expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The total fixed expenses.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getImposto"><code class="name flex">
+<span>def <span class="ident">getImposto</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the tax expenses of the dataset for a specified month or the total annual tax expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the tax expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The tax expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getInvestimento"><code class="name flex">
+<span>def <span class="ident">getInvestimento</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the investment expenses of the dataset for a specified month or the total annual investment expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the investment expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The investment expenses value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getLucro"><code class="name flex">
+<span>def <span class="ident">getLucro</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the profit of the dataset for a specified month or the total annual profit.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the profit. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The profit value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getMarkupAnestesia"><code class="name flex">
+<span>def <span class="ident">getMarkupAnestesia</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculates the markup for anesthesia expenses based on fixed and variable expenses.</p>
+<p>Utilizes <code>economia.expenses_product_calculation</code> to adjust expenses.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to calculate the markup. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt>tuple:</dt>
+<dt><code>
+float</code></dt>
+<dd>Adjusted fixed expenses.
+float: Adjusted variable expenses.
+float: Product revenue.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getReceitaAnestesia"><code class="name flex">
+<span>def <span class="ident">getReceitaAnestesia</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the anesthesia revenue of the dataset for a specified month or the total annual anesthesia revenue.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the anesthesia revenue. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The anesthesia revenue value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getReceitaDinheiro"><code class="name flex">
+<span>def <span class="ident">getReceitaDinheiro</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the cash revenue of the dataset for a specified month or the total annual cash revenue.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the cash revenue. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The cash revenue value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getReceitaExames"><code class="name flex">
+<span>def <span class="ident">getReceitaExames</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the exams revenue of the dataset for a specified month or the total annual exams revenue.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the exams revenue. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The exams revenue value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getReceitas"><code class="name flex">
+<span>def <span class="ident">getReceitas</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the revenue of the dataset for a specified month or the total annual revenue.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to retrieve the revenue. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The revenue value.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the provided month is not valid.</dd>
+</dl></div>
+</dd>
+<dt id="backend.data.Data.getVariablesExpenses"><code class="name flex">
+<span>def <span class="ident">getVariablesExpenses</span></span>(<span>self, month='total')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculates the variable expenses of the company for a specified month or the total annual variable expenses.</p>
+<p>This may vary between companies.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>month</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The month for which to calculate the variable expenses. Defaults to "total".</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>The total variable expenses.</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="backend" href="index.html">backend</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="backend.data.error_month" href="#backend.data.error_month">error_month</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="backend.data.CompanyData" href="#backend.data.CompanyData">CompanyData</a></code></h4>
+<ul class="">
+<li><code><a title="backend.data.CompanyData.get_all_companies" href="#backend.data.CompanyData.get_all_companies">get_all_companies</a></code></li>
+<li><code><a title="backend.data.CompanyData.get_company_data" href="#backend.data.CompanyData.get_company_data">get_company_data</a></code></li>
+<li><code><a title="backend.data.CompanyData.load_data" href="#backend.data.CompanyData.load_data">load_data</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="backend.data.Data" href="#backend.data.Data">Data</a></code></h4>
+<ul class="">
+<li><code><a title="backend.data.Data.getAllData" href="#backend.data.Data.getAllData">getAllData</a></code></li>
+<li><code><a title="backend.data.Data.getContador" href="#backend.data.Data.getContador">getContador</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaAluguel" href="#backend.data.Data.getDespesaAluguel">getDespesaAluguel</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaAnestesia" href="#backend.data.Data.getDespesaAnestesia">getDespesaAnestesia</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaComAlimentacao" href="#backend.data.Data.getDespesaComAlimentacao">getDespesaComAlimentacao</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaComCombustivel" href="#backend.data.Data.getDespesaComCombustivel">getDespesaComCombustivel</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaComLazer" href="#backend.data.Data.getDespesaComLazer">getDespesaComLazer</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaComPlanoDeSaude" href="#backend.data.Data.getDespesaComPlanoDeSaude">getDespesaComPlanoDeSaude</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaComPos" href="#backend.data.Data.getDespesaComPos">getDespesaComPos</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaCrmv" href="#backend.data.Data.getDespesaCrmv">getDespesaCrmv</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaEnergia" href="#backend.data.Data.getDespesaEnergia">getDespesaEnergia</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaInternet" href="#backend.data.Data.getDespesaInternet">getDespesaInternet</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaRemedios" href="#backend.data.Data.getDespesaRemedios">getDespesaRemedios</a></code></li>
+<li><code><a title="backend.data.Data.getDespesaTim" href="#backend.data.Data.getDespesaTim">getDespesaTim</a></code></li>
+<li><code><a title="backend.data.Data.getDespesas" href="#backend.data.Data.getDespesas">getDespesas</a></code></li>
+<li><code><a title="backend.data.Data.getFixedExpenses" href="#backend.data.Data.getFixedExpenses">getFixedExpenses</a></code></li>
+<li><code><a title="backend.data.Data.getImposto" href="#backend.data.Data.getImposto">getImposto</a></code></li>
+<li><code><a title="backend.data.Data.getInvestimento" href="#backend.data.Data.getInvestimento">getInvestimento</a></code></li>
+<li><code><a title="backend.data.Data.getLucro" href="#backend.data.Data.getLucro">getLucro</a></code></li>
+<li><code><a title="backend.data.Data.getMarkupAnestesia" href="#backend.data.Data.getMarkupAnestesia">getMarkupAnestesia</a></code></li>
+<li><code><a title="backend.data.Data.getReceitaAnestesia" href="#backend.data.Data.getReceitaAnestesia">getReceitaAnestesia</a></code></li>
+<li><code><a title="backend.data.Data.getReceitaDinheiro" href="#backend.data.Data.getReceitaDinheiro">getReceitaDinheiro</a></code></li>
+<li><code><a title="backend.data.Data.getReceitaExames" href="#backend.data.Data.getReceitaExames">getReceitaExames</a></code></li>
+<li><code><a title="backend.data.Data.getReceitas" href="#backend.data.Data.getReceitas">getReceitas</a></code></li>
+<li><code><a title="backend.data.Data.getVariablesExpenses" href="#backend.data.Data.getVariablesExpenses">getVariablesExpenses</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>
