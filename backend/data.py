@@ -10,8 +10,8 @@ to access company records and retrieve gross revenue data.
 __docformat__ = "google"
 
 import csv
-from utils import convert_to_float
-from economia import expenses_product_calculation
+from backend.utils import convert_to_float
+from backend.economia import expenses_product_calculation
 import pandas as pd
 
 possible_months = [

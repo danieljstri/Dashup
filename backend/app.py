@@ -7,14 +7,14 @@ for different companies on a monthly basis.
 
 from flask import Flask, jsonify
 from flask_cors import CORS
-from data import Data, CompanyData
-from economia import economia
+from backend.data import Data, CompanyData
+from backend.economia import economia
 
 app = Flask(__name__)
 CORS(app)
 
-PATH = '../app/fluxo.csv'
-COMPANY_DATA_PATH = '../app/empresas.csv'
+PATH = './app/fluxo.csv'
+COMPANY_DATA_PATH = './app/empresas.csv'
 
 data = Data(PATH)
 company_data = CompanyData(COMPANY_DATA_PATH)
