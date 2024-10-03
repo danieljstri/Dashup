@@ -1,153 +1,280 @@
+"""
+Data Module
+
+This module provides classes to access and manipulate data from the dataset and
+company records. It includes a class to access the dataset and retrieve economic
+metrics such as profit, revenue, and expenses. Additionally, it offers a class
+to access company records and retrieve gross revenue data.
+"""
+
+__docformat__ = "google"
+
 import csv
 from utils import convert_to_float
 from economia import expenses_product_calculation
 import pandas as pd
 
-possible_months = ["janeiro", "fevereiro", "marco", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro", "total"]
+possible_months = [
+    "janeiro", "fevereiro", "marco", "abril", "maio", "junho",
+    "julho", "agosto", "setembro", "outubro", "novembro", "dezembro", "total"
+]
+
 
 class Data:
+    """
+    Class to access the data of the dataset.
+    """
+
     def __init__(self, path):
+        """
+        Initializes the Data class with the path of the dataset.
+
+        Args:
+            path (str): The path of the dataset.
+        """
         self.df = pd.read_csv(path)
-        
+
     def getLucro(self, month="total"):
         """
-        Get the profit of the dataset (parameters: month)
-        :month: get the expenses of the month selected. the standard is "total" (the profit of all the year)
+        Retrieves the profit of the dataset for a specified month or the total annual profit.
+
+        Args:
+            month (str, optional): The month for which to retrieve the profit. Defaults to "total".
+
+        Returns:
+            float: The profit value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
-        
-        lucro_str = self.df.loc[self.df['RESULTADO'] == 'LUCROPREJUIZO', month].values[0] # acess the row LUCROPREJUIZO and the column month selected
+
+        lucro_str = self.df.loc[self.df['RESULTADO'] == 'LUCROPREJUIZO', month].values[0]
         print(lucro_str)
         lucro = convert_to_float(lucro_str)
         return lucro
-    
+
     def getReceitas(self, month="total"):
         """
-        Get the revenue of the dataset (parameters: month)
-        
-        :month: get the revenue of the month selected. the standard is "total" (the revenue of all the year)
+        Retrieves the revenue of the dataset for a specified month or the total annual revenue.
+
+        Args:
+            month (str, optional): The month for which to retrieve the revenue. Defaults to "total".
+
+        Returns:
+            float: The revenue value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
-        
+
         receita_str = self.df.loc[self.df['RESULTADO'] == 'RECEITAS', month].values[0]
         receita = convert_to_float(receita_str)
         return receita
 
     def getReceitaExames(self, month="total"):
         """
-        Get the exams revenue of the dataset (parameters: month)
+        Retrieves the exams revenue of the dataset for a specified month or the total annual exams revenue.
 
-        :month: get the revenue of the month selected. the standard is "total" (the exams revenue of all the year)
+        Args:
+            month (str, optional): The month for which to retrieve the exams revenue. Defaults to "total".
+
+        Returns:
+            float: The exams revenue value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
-        
+
         receita_exames_str = self.df.loc[self.df['RESULTADO'] == 'ReceitaExames', month].values[0]
         receita_exames = convert_to_float(receita_exames_str)
         return receita_exames
-    
+
     def getReceitaAnestesia(self, month="total"):
         """
-        Get the anesthesia revenue of the dataset (parameters: month)
+        Retrieves the anesthesia revenue of the dataset for a specified month or the total annual anesthesia revenue.
 
-        :month: get the revenue of the month selected. the standard is "total" (the anesthesia revenue of all the year)
+        Args:
+            month (str, optional): The month for which to retrieve the anesthesia revenue. Defaults to "total".
+
+        Returns:
+            float: The anesthesia revenue value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
-        
+
         receita_anestesia_str = self.df.loc[self.df['RESULTADO'] == 'ReceitaAnestesia', month].values[0]
         receita_anestesia = convert_to_float(receita_anestesia_str)
         return receita_anestesia
 
     def getReceitaDinheiro(self, month="total"):
-        """ 
-        Get the cash revenue of the dataset (parameters: month)
+        """
+        Retrieves the cash revenue of the dataset for a specified month or the total annual cash revenue.
 
-        :month: get the revenue of the month selected. the standard is "total" (the cash revenue of all the year)
+        Args:
+            month (str, optional): The month for which to retrieve the cash revenue. Defaults to "total".
+
+        Returns:
+            float: The cash revenue value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
-        
+
         receita_dinheiro_str = self.df.loc[self.df['RESULTADO'] == 'ReceitasDinheiro', month].values[0]
         receita_dinheiro = convert_to_float(receita_dinheiro_str)
         return receita_dinheiro
-    
 
     def getDespesas(self, month="total"):
         """
-        Get the expenses of the dataset (parameters: month)
-        
-        :month: get the expenses of the month selected. the standard is "total" (the expenses of all the year)
+        Retrieves the expenses of the dataset for a specified month or the total annual expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the expenses. Defaults to "total".
+
+        Returns:
+            float: The expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
-        
+
         despesa_str = self.df.loc[self.df['RESULTADO'] == 'DESPESASTOTAIS', month].values[0]
         despesa = convert_to_float(despesa_str)
         return despesa
 
-    
     def getDespesaAluguel(self, month="total"):
         """
-        Get the rent expenses of the dataset (parameters: month)
-        :month: get the expenses of the month selected. the standard is "total" (the rent expenses of all the year)
+        Retrieves the rent expenses of the dataset for a specified month or the total annual rent expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the rent expenses. Defaults to "total".
+
+        Returns:
+            float: The rent expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
-        
+
         despesa_aluguel_str = self.df.loc[self.df['RESULTADO'] == 'DESPESAALUGUEL', month].values[0]
         despesa_aluguel = convert_to_float(despesa_aluguel_str)
         return despesa_aluguel
 
     def getDespesaAnestesia(self, month="total"):
         """
-        Get the anesthesia expenses of the dataset (parameters: month)
-        :month: get the expenses of the month selected. the standard is "total" (the anesthesia expenses of all the year)
+        Retrieves the anesthesia expenses of the dataset for a specified month or the total annual anesthesia expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the anesthesia expenses. Defaults to "total".
+
+        Returns:
+            float: The anesthesia expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
-        
+
         despesa_anestesia_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMANESTESIA', month].values[0]
         despesa_anestesia = convert_to_float(despesa_anestesia_str)
         return despesa_anestesia
 
     def getDespesaTim(self, month="total"):
         """
-        Get the TIM expenses of the dataset (parameters: month)
+        Retrieves the TIM expenses of the dataset for a specified month or the total annual TIM expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the TIM expenses. Defaults to "total".
+
+        Returns:
+            float: The TIM expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
         despesa_tim_str = self.df.loc[self.df['RESULTADO'] == 'DESPESATIM', month].values[0]
         despesa_tim = convert_to_float(despesa_tim_str)
         return despesa_tim
-    
+
     def getDespesaEnergia(self, month="total"):
         """
-        Get the energy expenses of the dataset (parameters: month)
+        Retrieves the energy expenses of the dataset for a specified month or the total annual energy expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the energy expenses. Defaults to "total".
+
+        Returns:
+            float: The energy expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
         despesa_energy_str = self.df.loc[self.df['RESULTADO'] == 'DESPESAENERGIA', month].values[0]
         despesa_energy = convert_to_float(despesa_energy_str)
         return despesa_energy
-    
+
     def getDespesaInternet(self, month="total"):
         """
-        Get the internet expenses of the dataset (parameters: month)
+        Retrieves the internet expenses of the dataset for a specified month or the total annual internet expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the internet expenses. Defaults to "total".
+
+        Returns:
+            float: The internet expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
         despesa_internet_str = self.df.loc[self.df['RESULTADO'] == 'DESPESAINTERNET', month].values[0]
         despesa_internet = convert_to_float(despesa_internet_str)
         return despesa_internet
-    
+
     def getDespesaCrmv(self, month="total"):
         """
-        Get the CRMV expenses of the dataset (parameters: month)
+        Retrieves the CRMV expenses of the dataset for a specified month or the total annual CRMV expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the CRMV expenses. Defaults to "total".
+
+        Returns:
+            float: The CRMV expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
         despesa_crmv_str = self.df.loc[self.df['RESULTADO'] == 'DESPESACOMCRMV', month].values[0]
-        despesa_crmv = convert_to_float(despesa_crmv_str)  
+        despesa_crmv = convert_to_float(despesa_crmv_str)
         return despesa_crmv
 
     def getDespesaRemedios(self, month="total"):
         """
-        Get the medicine expenses of the dataset (parameters: month)
+        Retrieves the medicine expenses of the dataset for a specified month or the total annual medicine expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the medicine expenses. Defaults to "total".
+
+        Returns:
+            float: The medicine expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -157,7 +284,16 @@ class Data:
 
     def getDespesaComAlimentacao(self, month="total"):
         """
-        Get the food expenses of the dataset (parameters: month)
+        Retrieves the food expenses of the dataset for a specified month or the total annual food expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the food expenses. Defaults to "total".
+
+        Returns:
+            float: The food expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -167,7 +303,16 @@ class Data:
 
     def getDespesaComCombustivel(self, month="total"):
         """
-        Get the fuel expenses of the dataset (parameters: month)
+        Retrieves the fuel expenses of the dataset for a specified month or the total annual fuel expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the fuel expenses. Defaults to "total".
+
+        Returns:
+            float: The fuel expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -177,7 +322,16 @@ class Data:
 
     def getDespesaComPos(self, month="total"):
         """
-        Get the POS expenses of the dataset (parameters: month)
+        Retrieves the POS expenses of the dataset for a specified month or the total annual POS expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the POS expenses. Defaults to "total".
+
+        Returns:
+            float: The POS expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -187,7 +341,16 @@ class Data:
 
     def getDespesaComPlanoDeSaude(self, month="total"):
         """
-        Get the health plan expenses of the dataset (parameters: month)
+        Retrieves the health plan expenses of the dataset for a specified month or the total annual health plan expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the health plan expenses. Defaults to "total".
+
+        Returns:
+            float: The health plan expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -197,7 +360,16 @@ class Data:
 
     def getDespesaComLazer(self, month="total"):
         """
-        Get the leisure expenses of the dataset (parameters: month)
+        Retrieves the leisure expenses of the dataset for a specified month or the total annual leisure expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the leisure expenses. Defaults to "total".
+
+        Returns:
+            float: The leisure expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -207,7 +379,16 @@ class Data:
 
     def getImposto(self, month="total"):
         """
-        Get the tax expenses of the dataset (parameters: month)
+        Retrieves the tax expenses of the dataset for a specified month or the total annual tax expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the tax expenses. Defaults to "total".
+
+        Returns:
+            float: The tax expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -217,7 +398,16 @@ class Data:
 
     def getContador(self, month="total"):
         """
-        Get the accountant expenses of the dataset (parameters: month)
+        Retrieves the accountant expenses of the dataset for a specified month or the total annual accountant expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the accountant expenses. Defaults to "total".
+
+        Returns:
+            float: The accountant expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -227,7 +417,16 @@ class Data:
 
     def getInvestimento(self, month="total"):
         """
-        Get the investment expenses of the dataset (parameters: month)
+        Retrieves the investment expenses of the dataset for a specified month or the total annual investment expenses.
+
+        Args:
+            month (str, optional): The month for which to retrieve the investment expenses. Defaults to "total".
+
+        Returns:
+            float: The investment expenses value.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         error_month(month)
 
@@ -237,46 +436,113 @@ class Data:
 
     def getFixedExpenses(self, month="total"):
         """
-        Get the fixed expenses of a company. This probably will change from company to company.
+        Calculates the fixed expenses of the company for a specified month or the total annual fixed expenses.
+
+        This may vary between companies.
+
+        Args:
+            month (str, optional): The month for which to calculate the fixed expenses. Defaults to "total".
+
+        Returns:
+            float: The total fixed expenses.
         """
-        fixed_expenses = self.getDespesaAluguel(month) + self.getDespesaComPlanoDeSaude(month) + self.getDespesaComPos(month) + self.getDespesaCrmv(month) + self.getDespesaEnergia(month) + self.getDespesaInternet(month) + self.getDespesaTim(month)
+        fixed_expenses = (
+            self.getDespesaAluguel(month) +
+            self.getDespesaComPlanoDeSaude(month) +
+            self.getDespesaComPos(month) +
+            self.getDespesaCrmv(month) +
+            self.getDespesaEnergia(month) +
+            self.getDespesaInternet(month) +
+            self.getDespesaTim(month)
+        )
         return fixed_expenses
 
     def getVariablesExpenses(self, month="total"):
         """
-        Get the variables expenses of a company. This probably will change from company to company
+        Calculates the variable expenses of the company for a specified month or the total annual variable expenses.
+
+        This may vary between companies.
+
+        Args:
+            month (str, optional): The month for which to calculate the variable expenses. Defaults to "total".
+
+        Returns:
+            float: The total variable expenses.
         """
-        variables_expenses = self.getDespesaComAlimentacao(month) + self.getDespesaRemedios(month) + self.getDespesaComLazer(month) + self.getDespesaComCombustivel(month)
+        variables_expenses = (
+            self.getDespesaComAlimentacao(month) +
+            self.getDespesaRemedios(month) +
+            self.getDespesaComLazer(month) +
+            self.getDespesaComCombustivel(month)
+        )
         return variables_expenses
-    
+
     def getMarkupAnestesia(self, month="total"):
         """
-        Get the anesthesia expenses (the proportion of fixed + variables, see  economia.expenses_product_calculation of the dataset (parameters: month)
+        Calculates the markup for anesthesia expenses based on fixed and variable expenses.
+
+        Utilizes `economia.expenses_product_calculation` to adjust expenses.
+
+        Args:
+            month (str, optional): The month for which to calculate the markup. Defaults to "total".
+
+        Returns:
+            tuple:
+                float: Adjusted fixed expenses.
+                float: Adjusted variable expenses.
+                float: Product revenue.
+
+        Raises:
+            ValueError: If the provided month is not valid.
         """
         fixed_expenses = self.getFixedExpenses(month)
         variable_expenses = self.getVariablesExpenses(month)
         total_revenue = self.getReceitas(month)
         product_revenue = self.getReceitaAnestesia(month)
         product_expenses = self.getDespesaAnestesia(month)
-        fixed_expenses, variable_expenses = expenses_product_calculation(expenses_product=product_expenses,fixed_expenses=fixed_expenses, variable_expenses=variable_expenses, total_revenue=total_revenue, product_revenue=product_revenue)
+        fixed_expenses, variable_expenses = expenses_product_calculation(
+            expenses_product=product_expenses,
+            fixed_expenses=fixed_expenses,
+            variable_expenses=variable_expenses,
+            total_revenue=total_revenue,
+            product_revenue=product_revenue
+        )
 
         return fixed_expenses, variable_expenses, product_revenue
 
-
     def getAllData(self):
         """
-        Get all data from the dataset
+        Retrieves all data from the dataset.
+
+        Returns:
+            list of dict: A list of records representing the dataset.
         """
         data = self.df.to_dict(orient='records')
         return data
 
 
 class CompanyData:
+    """
+    Class to access the data of a specific company. This data only has 2 columns: 'nome_da_empresa' and 'receita_bruta'.
+    """
+
     def __init__(self, csv_file_path):
+        """
+        Initializes the CompanyData class with the path of the CSV file.
+
+        Args:
+            csv_file_path (str): The path of the CSV file.
+        """
         self.csv_file_path = csv_file_path
         self.data = self.load_data()
-    
+
     def load_data(self):
+        """
+        Loads the data from the CSV file.
+
+        Returns:
+            list of dict: A list of company records with 'nome_da_empresa' and 'receita_bruta'.
+        """
         data = []
         with open(self.csv_file_path, 'r') as csvfile:
             reader = csv.DictReader(csvfile)
@@ -284,18 +550,44 @@ class CompanyData:
                 row['receita_bruta'] = float(row['receita_bruta'])
                 data.append(row)
         return data
-    
+
     def get_company_data(self, company_name):
+        """
+        Retrieves the data of a specific company.
+
+        Args:
+            company_name (str): The name of the company.
+
+        Returns:
+            dict: The company's data containing 'nome_da_empresa' and 'receita_bruta'.
+
+        Raises:
+            ValueError: If the company is not found.
+        """
         for record in self.data:
             if record['nome_da_empresa'] == company_name:
                 return record
         raise ValueError(f"Company '{company_name}' not found.")
-    
+
     def get_all_companies(self):
+        """
+        Retrieves the data of all companies.
+
+        Returns:
+            list of dict: A list of all company records.
+        """
         return self.data
 
 
 def error_month(month):
+    """
+    Verifies if the selected month is valid.
+
+    Args:
+        month (str): The month to verify.
+
+    Raises:
+        ValueError: If the month is not in the list of possible months.
+    """
     if month not in possible_months:
         raise ValueError(f"Month '{month}' is not valid. Choose from {possible_months}.")
-    
