@@ -1,6 +1,6 @@
 <template>
     <div class="comparision-chart">
-        <h2>Comparação Receita x Despesa</h2>
+        <h3>Comparação Receita x Despesa</h3>
       <!-- Renderiza o gráfico somente se chartData estiver pronto -->
       <div class="chart-container" v-if="isChartDataReady">
         <doughnut-chart :chart-data="chartData" :chart-options="chartOptions"></doughnut-chart>
@@ -55,7 +55,7 @@
   
             // Opções do gráfico
             chartOptions.value = {
-              cutout: '80%', // Ajusta o tamanho do "furo" no meio do gráfico
+              cutout: '70%', // Ajusta o tamanho do "furo" no meio do gráfico
               responsive: true,
               maintainAspectRatio: false,
             };
@@ -82,60 +82,16 @@
 
 
   <style scoped>
-  .economic-chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .comparision-chart {
+    margin: 10px 0;
   }
-  
-  .chart-container {
-    position: relative;
-    width: 300px;
-    height: 300px;
-  }
-  
-  .chart-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .comparision-chart h3 {
     text-align: center;
-  }
-  
-  .center-icon {
-    font-size: 2em;
-    color: #36A2EB;
-  }
-  
-  .center-text h2 {
-    margin: 0;
-    font-size: 1.5em;
-  }
-  
-  .center-text p {
-    margin: 0;
-    font-size: 0.9em;
-    color: #666;
-  }
-  
-  .data-description {
-    margin-top: 20px;
-    width: 100%;
-    max-width: 300px;
-  }
-  
-  .data-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .data-label {
-    font-weight: bold;
-  }
-  
-  .data-value {
-    color: #36A2EB;
+    color: #b0c1ba;
+    padding-top: 10px;
+   }
+  .chart-container {
+    min-width: 200px;
   }
   </style>
   

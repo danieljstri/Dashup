@@ -1,11 +1,39 @@
-import axios from 'axios';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: dataService.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: dataService.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from 'axios';
 
 /**
  * Fetches all data from the API.
  *
  * @async
  * @function getAllData
- * @returns {Promise<Object>} The data retrieved from the API.
+ * @returns {Promise&lt;Object>} The data retrieved from the API.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getAllData = async () => {
@@ -24,7 +52,7 @@ export const getAllData = async () => {
  * @async
  * @function getProfitData
  * @param {string} [month="total"] - The month for which to retrieve profit data.
- * @returns {Promise<Object>} The profit data retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The profit data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getProfitData = async (month = "total") => {
@@ -43,7 +71,7 @@ export const getProfitData = async (month = "total") => {
  * @async
  * @function getRevenueData
  * @param {string} [month="total"] - The month for which to retrieve revenue data.
- * @returns {Promise<Object>} The revenue data retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The revenue data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getRevenueData = async (month = "total") => {
@@ -62,7 +90,7 @@ export const getRevenueData = async (month = "total") => {
  * @async
  * @function getRevenueExamsData
  * @param {string} [month="total"] - The month for which to retrieve exam revenue data.
- * @returns {Promise<Object>} The exam revenue data retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The exam revenue data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getRevenueExamsData = async (month = "total") => {
@@ -81,7 +109,7 @@ export const getRevenueExamsData = async (month = "total") => {
  * @async
  * @function getRevenueAnesthesiaData
  * @param {string} [month="total"] - The month for which to retrieve anesthesia revenue data.
- * @returns {Promise<Object>} The anesthesia revenue data retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The anesthesia revenue data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getRevenueAnesthesiaData = async (month = "total") => {
@@ -100,7 +128,7 @@ export const getRevenueAnesthesiaData = async (month = "total") => {
  * @async
  * @function getRevenueCashData
  * @param {string} [month="total"] - The month for which to retrieve cash revenue data.
- * @returns {Promise<Object>} The cash revenue data retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The cash revenue data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getRevenueCashData = async (month = "total") => {
@@ -119,7 +147,7 @@ export const getRevenueCashData = async (month = "total") => {
  * @async
  * @function getExpensesData
  * @param {string} [month="total"] - The month for which to retrieve expenses data.
- * @returns {Promise<Object>} The expenses data retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The expenses data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getExpensesData = async (month = "total") => {
@@ -138,7 +166,7 @@ export const getExpensesData = async (month = "total") => {
  * @async
  * @function getExpensesRentData
  * @param {string} [month="total"] - The month for which to retrieve rent expenses data.
- * @returns {Promise<Object>} The rent expenses data retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The rent expenses data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getExpensesRentData = async (month = "total") => {
@@ -157,7 +185,7 @@ export const getExpensesRentData = async (month = "total") => {
  * @async
  * @function getExpensesAnesthesiaData
  * @param {string} [month="total"] - The month for which to retrieve anesthesia expenses data.
- * @returns {Promise<Object>} The anesthesia expenses data retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The anesthesia expenses data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getExpensesAnesthesiaData = async (month = "total") => {
@@ -176,7 +204,7 @@ export const getExpensesAnesthesiaData = async (month = "total") => {
  * @async
  * @function getEconomicCompanieData
  * @param {string} [company_name="DRA ISABELLY DE MORAIS LTDA"] - The name of the company.
- * @returns {Promise<Object>} The economic data for the specified company in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The economic data for the specified company in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getEconomicCompanieData = async (company_name = "DRA ISABELLY DE MORAIS LTDA") => {
@@ -197,7 +225,7 @@ export const getEconomicCompanieData = async (company_name = "DRA ISABELLY DE MO
  * @async
  * @function getMarkupAnesthesiaData
  * @param {string} [month="total"] - The month for which to retrieve anesthesia markup data.
- * @returns {Promise<Object>} The anesthesia markup data retrieved from the API in the format { month: string, value: (number = fixed_expenses, number = variable_expenses, number = product_revenue) }.
+ * @returns {Promise&lt;Object>} The anesthesia markup data retrieved from the API in the format { month: string, value: (number = fixed_expenses, number = variable_expenses, number = product_revenue) }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getMarkupAnesthesiaData = async (month = "total") => {
@@ -215,7 +243,7 @@ export const getMarkupAnesthesiaData = async (month = "total") => {
  *
  * @async
  * @function getAllEconomicCompaniesData
- * @returns {Promise<Object>} The data for all economic companies retrieved from the API in the format { month: string, value: number }.
+ * @returns {Promise&lt;Object>} The data for all economic companies retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
 export const getAllEconomicCompaniesData = async () => {
@@ -226,4 +254,26 @@ export const getAllEconomicCompaniesData = async () => {
     console.error("Error fetching data:", error);
     throw error;
   }
-};
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getAllData">getAllData</a></li><li><a href="global.html#getAllEconomicCompaniesData">getAllEconomicCompaniesData</a></li><li><a href="global.html#getEconomicCompanieData">getEconomicCompanieData</a></li><li><a href="global.html#getExpensesAnesthesiaData">getExpensesAnesthesiaData</a></li><li><a href="global.html#getExpensesData">getExpensesData</a></li><li><a href="global.html#getExpensesRentData">getExpensesRentData</a></li><li><a href="global.html#getMarkupAnesthesiaData">getMarkupAnesthesiaData</a></li><li><a href="global.html#getProfitData">getProfitData</a></li><li><a href="global.html#getRevenueAnesthesiaData">getRevenueAnesthesiaData</a></li><li><a href="global.html#getRevenueCashData">getRevenueCashData</a></li><li><a href="global.html#getRevenueData">getRevenueData</a></li><li><a href="global.html#getRevenueExamsData">getRevenueExamsData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Tue Oct 01 2024 15:53:12 GMT-0300 (Horário Padrão de Brasília)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

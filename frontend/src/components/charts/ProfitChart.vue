@@ -2,7 +2,8 @@
     <div class="profit-chart">
       <!-- Renderiza o gráfico somente se chartData estiver pronto -->
       <div class="chart-container" v-if="isChartDataReady">
-        <h3>Lucro nos útlimos 6 meses</h3>
+        <h3>Dados dos últimos 6 meses
+        </h3>
         <bar-chart :chart-data="chartData" :chart-options="chartOptions"></bar-chart>
       </div>
       <div v-else>
@@ -16,9 +17,9 @@
   
   <script>
   import { ref, onMounted } from 'vue';
-  import { getProfitData } from '../../services/dataService';
+  import { getProfitData, getExpensesData, getRevenueData } from '../../services/dataService';
   import { Bar } from 'vue-chartjs';
-  import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+  import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
   
   // Registrar os componentes do Chart.js
   ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
@@ -38,32 +39,84 @@
   
       const fetchData = async () => {
         try {
-          const Profit_janeiro = await getProfitData('janeiro');
-          const Profit_fevereiro = await getProfitData('fevereiro');
-          const Profit_marco = await getProfitData('marco');
-          const Profit_abril = await getProfitData('abril');
-          const Profit_maio = await getProfitData('maio');
-          const Profit_junho = await getProfitData('junho');
+          const Profit_julho = await getProfitData('julho');
+          const Profit_agosto = await getProfitData('agosto');
+          const Profit_setembro = await getProfitData('setembro');
+          const Profit_outubro = await getProfitData('outubro');
+          const Profit_novembro = await getProfitData('novembro');
+          const Profit_dezembro = await getProfitData('dezembro');
   
-          const Profitvaluejaneiro = Profit_janeiro.value;
-          const Profitvaluefevereiro = Profit_fevereiro.value;
-          const Profitvaluemarco = Profit_marco.value;
-          const Profitvalueabril = Profit_abril.value;
-          const Profitvaluemaio = Profit_maio.value;
-          const Profitvaluejunho = Profit_junho.value;
+          const Profitvaluejulho = Profit_julho.value;
+          const Profitvalueagosto = Profit_agosto.value;
+          const Profitvaluesetembro = Profit_setembro.value;
+          const Profitvalueoutubro = Profit_outubro.value;
+          const Profitvaluenovembro = Profit_novembro.value;
+          const Profitvaluedezembro = Profit_dezembro.value;
+
+        const Expenses_julho = await getExpensesData('julho');
+        const Expenses_agosto = await getExpensesData('agosto');
+        const Expenses_setembro = await getExpensesData('setembro');
+        const Expenses_outubro = await getExpensesData('outubro');
+        const Expenses_novembro = await getExpensesData('novembro');
+        const Expenses_dezembro = await getExpensesData('dezembro');
+
+        const Expensesvaluejulho = Expenses_julho.value;
+        const Expensesvalueagosto = Expenses_agosto.value;
+        const Expensesvaluesetembro = Expenses_setembro.value;
+        const Expensesvalueoutubro = Expenses_outubro.value;
+        const Expensesvaluenovembro = Expenses_novembro.value;
+        const Expensesvaluedezembro = Expenses_dezembro.value;
+
+        const Revenue_julho = await getRevenueData('julho');
+        const Revenue_agosto = await getRevenueData('agosto');
+        const Revenue_setembro = await getRevenueData('setembro');
+        const Revenue_outubro = await getRevenueData('outubro');
+        const Revenue_novembro = await getRevenueData('novembro');
+        const Revenue_dezembro = await getRevenueData('dezembro');
+
+        const Revenuevaluejulho = Revenue_julho.value;
+        const Revenuevalueagosto = Revenue_agosto.value;
+        const Revenuevaluesetembro  = Revenue_setembro.value;
+        const Revenuevalueoutubro = Revenue_outubro.value;
+        const Revenuevaluenovembro = Revenue_novembro.value;
+        const Revenuevaluedezembro = Revenue_dezembro.value;
   
-          console.log('Dados econômicos:', Profitvaluejaneiro, Profitvaluefevereiro, Profitvaluemarco, Profitvalueabril, Profitvaluemaio, Profitvaluejunho);
+          console.log('Dados econômicos:', Profitvaluejulho, Profitvalueagosto, Profitvaluesetembro, Profitvalueoutubro, Profitvaluenovembro, Profitvaluedezembro);
   
             // Dados para o gráfico
             chartData.value = {
-              labels: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho'],
+              labels: ['julho', 'agosto', 'março', 'outubro', 'novembro', 'dezembro'],
               datasets: [
                 {
+                  barPercentage: 0.5,
+                  categoryPercentage: 0.8,
+                  label:'Lucro',
                   data: [
-                    Profitvaluejaneiro, Profitvaluefevereiro, Profitvaluemarco, 
-                    Profitvalueabril, Profitvaluemaio, Profitvaluejunho
+                    Profitvaluejulho, Profitvalueagosto, Profitvaluesetembro, 
+                    Profitvalueoutubro, Profitvaluenovembro, Profitvaluedezembro
                   ],
-                  backgroundColor: ['#36A2EB', '#42b989'],
+                  backgroundColor: ['#36A2EB'],
+                },
+                {
+                  barPercentage: 0.5,
+                  categoryPercentage: 0.8,
+                  label:'Receitas',
+                data: [
+                  Revenuevaluejulho, Revenuevalueagosto, Revenuevaluesetembro, 
+                  Revenuevalueoutubro, Revenuevaluenovembro, Revenuevaluedezembro
+                ],
+                backgroundColor: ['#28A745'],
+
+               },
+                {
+                  barPercentage: 0.5,
+                  categoryPercentage: 0.8,
+                  label:'Despesas',
+                data: [
+                  Expensesvaluejulho, Expensesvalueagosto, Expensesvaluesetembro, 
+                  Expensesvalueoutubro, Expensesvaluenovembro, Expensesvaluedezembro
+                ],
+                backgroundColor: ['#c03535'],
                 },
               ],
             };
@@ -72,6 +125,12 @@
             chartOptions.value = { // Ajusta o tamanho do "furo" no meio do gráfico
               responsive: true,
               maintainAspectRatio: true,
+              scales: {
+                x: {
+                  barPercentage: 0.5,
+                  categoryPercentage: 0.8,
+                }
+              }
             };
             isChartDataReady.value = true;
         } catch (error) {
@@ -94,7 +153,7 @@
   
   <style scoped>
   .chart-container {
-    max-width: 300px;
+    min-width: 200px;
   }
    h3 {
     text-align: center;

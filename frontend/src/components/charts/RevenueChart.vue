@@ -13,7 +13,7 @@
     <!-- Descrição dos Dados -->
   </div>
 </template>
-
+ 
 <script>
 import { ref, onMounted } from 'vue';
 import { getRevenueData } from '../../services/dataService';
@@ -38,32 +38,32 @@ export default {
 
     const fetchData = async () => {
       try {
-        const Revenue_janeiro = await getRevenueData('janeiro');
-        const Revenue_fevereiro = await getRevenueData('fevereiro');
-        const Revenue_marco = await getRevenueData('marco');
-        const Revenue_abril = await getRevenueData('abril');
-        const Revenue_maio = await getRevenueData('maio');
-        const Revenue_junho = await getRevenueData('junho');
+        const Revenue_julho = await getRevenueData('julho');
+        const Revenue_agosto = await getRevenueData('agosto');
+        const Revenue_setembro = await getRevenueData('setembro');
+        const Revenue_outubro = await getRevenueData('outubro');
+        const Revenue_novembro = await getRevenueData('novembro');
+        const Revenue_dezembro = await getRevenueData('dezembro');
 
-        const Revenuevaluejaneiro = Revenue_janeiro.value;
-        const Revenuevaluefevereiro = Revenue_fevereiro.value;
-        const Revenuevaluemarco = Revenue_marco.value;
-        const Revenuevalueabril = Revenue_abril.value;
-        const Revenuevaluemaio = Revenue_maio.value;
-        const Revenuevaluejunho = Revenue_junho.value;
+        const Revenuevaluejulho = Revenue_julho.value;
+        const Revenuevalueagosto = Revenue_agosto.value;
+        const Revenuevaluesetembro  = Revenue_setembro.value;
+        const Revenuevalueoutubro = Revenue_outubro.value;
+        const Revenuevaluenovembro = Revenue_novembro.value;
+        const Revenuevaluedezembro = Revenue_dezembro.value;
 
-        console.log('Dados econômicos:', Revenuevaluejaneiro, Revenuevaluefevereiro, Revenuevaluemarco, Revenuevalueabril, Revenuevaluemaio, Revenuevaluejunho);
+        console.log('Dados econômicos:', Revenuevaluejulho, Revenuevalueagosto, Revenuevaluesetembro , Revenuevalueoutubro, Revenuevaluenovembro, Revenuevaluedezembro);
 
           // Dados para o gráfico
           chartData.value = {
-            labels: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho'],
+            labels: ['julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
             datasets: [
               {
                 data: [
-                  Revenuevaluejaneiro, Revenuevaluefevereiro, Revenuevaluemarco, 
-                  Revenuevalueabril, Revenuevaluemaio, Revenuevaluejunho
+                  Revenuevaluejulho, Revenuevalueagosto, Revenuevaluesetembro, 
+                  Revenuevalueoutubro, Revenuevaluenovembro, Revenuevaluedezembro
                 ],
-                backgroundColor: ['#36A2EB', '#42b989'],
+                backgroundColor: ['#28A745', '#d4bb2c'],
               },
             ],
           };
@@ -72,6 +72,11 @@ export default {
           chartOptions.value = { // Ajusta o tamanho do "furo" no meio do gráfico
             responsive: true,
             maintainAspectRatio: true,
+            plugins: {
+              legend: {
+                display: false,
+              },
+            },
           };
           isChartDataReady.value = true;
       } catch (error) {

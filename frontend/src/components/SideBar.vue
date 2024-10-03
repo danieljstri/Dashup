@@ -1,7 +1,7 @@
 <template>
     <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
         <div class="logo">
-            <img :src="logoURL" alt="MedUp" /> 
+            <img :src="logoIMG" alt="MedUp" /> 
         </div>
 
         <div class="menu-toggle-wrap">
@@ -16,17 +16,17 @@
                 <span class="material-icons">home</span>
                 <span class="text">Home</span>
             </router-link>
-            <router-link to="/about" class="button">
-                <span class="material-icons">description</span>
-                <span class="text">About</span>
-            </router-link>
             <router-link to="/chart" class="button">
-                <span class="material-icons">group</span>
-                <span class="text">Chart</span>
+                <span class="material-icons">bar_chart</span>
+                <span class="text">Gráfico do Lucro</span>
             </router-link>
             <router-link to="/economics" class="button">
-                <span class="material-icons">email</span>
+                <span class="material-icons">currency_exchange</span>
                 <span class="text">Economia</span>
+            </router-link>
+            <router-link to="/servicos" class="button">
+                <span class="material-icons">description</span>
+                <span class="text">Serviços</span>
             </router-link>
         </div>
         <div class="flex"></div>
@@ -34,7 +34,7 @@
         <div class="menu">
             <router-link to="/settings" class="button">
                 <span class="material-icons">settings</span>
-                <span class="text">Settings</span>
+                <span class="text">Config.</span>
             </router-link>
         </div>
     </aside>

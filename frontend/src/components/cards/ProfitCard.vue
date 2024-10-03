@@ -60,21 +60,20 @@
 
   .content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    align-items: center
   }
   
   .content p {
     margin: 0;
     font-size: 1.2em;
     color: #000000;
+    padding-right: 10px;
   }
-  .content img {
-    color: green;
-    margin: 0;
-  }
+
   .content span {
-    font-size: small;
+    margin: 0;
+    font-size: 1.0em;
     color: green;
   }
   </style>

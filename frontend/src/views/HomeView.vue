@@ -1,8 +1,7 @@
 <script setup>
 import ProfitCard from '@/components/cards/ProfitCard.vue';
 import ExpensesCard from '@/components/cards/ExpensesCard.vue';
-import RevenueChart from '@/components/charts/RevenueChart.vue';
-import ExpensesChart from '@/components/charts/ExpensesChart.vue';
+import ComparisionRxEChart from '@/components/charts/ComparisionRxEChart.vue';
 import RevenueCard from '@/components/cards/RevenueCard.vue';
 import ProfitChart from '@/components/charts/ProfitChart.vue'
 </script>
@@ -12,17 +11,16 @@ import ProfitChart from '@/components/charts/ProfitChart.vue'
     <header class="header">
       <h2>Bem vindo ao DashUp!</h2>
     </header>
-    <section class="profit">
-      <ProfitCard/>
-      <ProfitChart/>
-    </section>
-    <section class="revenue">
-      <RevenueChart/>
-      <RevenueCard/>
-    </section>
-    <section class="expenses">
-      <ExpensesCard/>
-      <ExpensesChart/>
+    <section class="content">
+      <div class="charts">
+       <ProfitChart />
+       <ComparisionRxEChart id="comparisionchart"/>
+      </div>
+      <div class="cards">
+        <ProfitCard/>
+        <ExpensesCard/>
+        <RevenueCard/>
+      </div>
     </section>
   </main>
 </template>
@@ -38,17 +36,23 @@ header {
   border-bottom: 2px solid #2f3b36;
 }
 
-.profit {
+#comparisionchart {
+  height: fit-content;
+  padding-bottom: 35px;
+}
+.content {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.charts {
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
 }
-.revenue{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.expenses {
+
+.cards {
   display: flex;
   justify-content: space-around;
   align-items: center;
