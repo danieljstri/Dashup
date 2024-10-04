@@ -24,7 +24,7 @@
                 <span class="material-icons">currency_exchange</span>
                 <span class="text">Economia</span>
             </router-link>
-            <router-link to="/servicos" class="button">
+            <router-link to="/services" class="button">
                 <span class="material-icons">description</span>
                 <span class="text">Serviços</span>
             </router-link>
