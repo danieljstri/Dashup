@@ -6,7 +6,7 @@ import PieChart from '@/components/charts/PieChart.vue';
   <div class="header">
     <h2>Bem vindo ao DashUp!</h2>
     <div class="piechart">
-    <PieChart/>
+      <PieChart/>
     </div>
   </div>
 </template>
@@ -24,10 +24,6 @@ import PieChart from '@/components/charts/PieChart.vue';
   margin-top: 20px;
 }
 
-.comparisioncharts{
-  display: flex;
-  padding: 0px 50px;
-  margin-top: 20px;
-}
+
 
 </style>
