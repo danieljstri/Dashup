@@ -3,7 +3,7 @@ import ProfitCard from '@/components/cards/ProfitCard.vue';
 import ExpensesCard from '@/components/cards/ExpensesCard.vue';
 import ComparisionRxEChart from '@/components/charts/ComparisionRxEChart.vue';
 import RevenueCard from '@/components/cards/RevenueCard.vue';
-import ProfitChart from '@/components/charts/ProfitChart.vue'
+import ProfitChart from '@/components/charts/ProfitChart.vue';
 </script>
 
 <template>
