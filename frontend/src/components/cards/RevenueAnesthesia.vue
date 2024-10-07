@@ -1,0 +1,78 @@
+<template>
+    <div class="cardReceita">
+      <h4>{{ chartTitle }}</h4>
+      <div class="content">
+        <p>{{ receita["value"] }}</p>    
+        <img src='../../assets/59043.png' alt='arrow' width='10' height='10'>
+        <span> {{ growth_percentage }}%</span>
+        </div>
+    </div>
+  </template>
+  
+  <script>
+  import { getRevenueAnesthesiaData } from '../../services/dataService';
+  
+  export default {
+    name: 'cardReceita',
+    data() {
+      return {
+        receita: 0, // Inicializa com 0
+         // Mês a ser exibido no card, 'total' por padrão
+        title: "Receita", // Título dinâmico do card
+      };
+    },
+    async mounted() {
+      try {
+        // function of dataservice being used to get the data, see dataService.js
+        const response1 = await getRevenueAnesthesiaData();
+        this.receita = response1
+        this.chartTitle = `Receita  ${this.receita['month']}`;
+        const growth_percentage = (response1['value'])
+        console.log(growth_percentage.toFixed(1))
+        this.growth_percentage = growth_percentage.toFixed(1)
+      } catch (error) {
+        console.error('Error fetching revenue data:', error);
+      }
+    },
+  };
+  </script>
+  
+  <style scoped>
+  .cardReceita {
+    height:fit-content;
+    width: fit-content;
+    min-width: 150px;
+    border: 2px solid #2f3b36;
+    border-radius: 20px;
+    padding: 16px;
+    text-align: center;
+    background-color: #c8d2d9;
+    box-shadow: 0 1px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardReceita h4 {
+    margin: 0 0 8px;
+    display: flex;
+    justify-content: center;
+    
+  }
+  
+  .content {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+  }
+  .content p {
+    margin: 0;
+    font-size: 1.2em;
+    color: #000000;
+    padding-right: 10%;
+  }
+
+  .content span {
+    margin: 0;
+    font-size: 1.0em;
+    color: rgb(60, 55, 196);
+    padding-left: 5px;
+  }
+  </style>

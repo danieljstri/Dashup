@@ -1,5 +1,9 @@
 <script setup>
-import PieChart from '@/components/charts/RxEAnethesia.vue';
+import PieChart from '@/components/charts/Anestesia.vue';
+import receitaAnestesia from '@/components/cards/RevenueAnesthesia.vue';
+import despezaAnestesia from '@/components/cards/ExpensesAnesthesia.vue';
+import lucroAnestesia from '@/components/cards/ProfitAnesthesia.vue';
+
 </script>
 
 <template>
@@ -7,6 +11,11 @@ import PieChart from '@/components/charts/RxEAnethesia.vue';
     <h2>Bem vindo ao DashUp!</h2>
     <div class="piechart">
       <PieChart/>
+      <div class="cards">
+        <receitaAnestesia/>
+      <despezaAnestesia/>
+      <lucroAnestesia/>
+      </div>
     </div>
   </div>
 </template>
@@ -18,9 +27,10 @@ import PieChart from '@/components/charts/RxEAnethesia.vue';
   padding: 0px 50px;
 }
 
-.datacharts{
+.piechart {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Altera a direção do flex para coluna */
+  align-items: center; /* Centraliza os itens */
   margin-top: 20px;
 }
 
