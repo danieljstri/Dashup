@@ -95,6 +95,41 @@ def get_markup_anestesia(month):
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
 
+@app.route('/api/markup/consulta/<month>', methods=['GET'])
+def get_markup_consulta(month):
+    """
+    Retrieves the markup information for consultation for a specified month.
+
+    Args:
+        month (str): The month for which to retrieve the markup information. Should be one of the possible_months.
+
+    Returns:
+        flask.Response: A JSON response containing the month and its corresponding markup information.
+                        If an error occurs, returns a JSON response with the error message and a 400 status code.
+    """
+    try:
+        markup_consulta = data.getMarkupConsulta(month)
+        return jsonify({"month": month, "value": markup_consulta})
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
+
+@app.route('/api/markup/exames/<month>', methods=['GET'])
+def get_markup_exames(month):
+    """
+    Retrieves the markup information for exams for a specified month.
+
+    Args:
+        month (str): The month for which to retrieve the markup information. Should be one of the possible_months.
+
+    Returns:
+        flask.Response: A JSON response containing the month and its corresponding markup information.
+                        If an error occurs, returns a JSON response with the error message and a 400 status code.
+    """
+    try:
+        markup_exames = data.getMarkupExames(month)
+        return jsonify({"month": month, "value": markup_exames})
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 400
 
 @app.route('/api/receitas/anestesia/<month>', methods=['GET'])
 def get_receitas_anestesia(month):
@@ -115,8 +150,8 @@ def get_receitas_anestesia(month):
         return jsonify({"error": str(e)}), 400
 
 
-@app.route('/api/receitas/dinheiro/<month>', methods=['GET'])
-def get_receitas_dinheiro(month):
+@app.route('/api/receitas/consulta/<month>', methods=['GET'])
+def get_receitas_consulta(month):
     """
     Retrieves the cash revenue for a specified month.
 
@@ -128,7 +163,7 @@ def get_receitas_dinheiro(month):
                         If an error occurs, returns a JSON response with the error message and a 400 status code.
     """
     try:
-        receitas_dinheiro = data.getReceitaDinheiro(month)
+        receitas_dinheiro = data.getReceitaConsulta(month)
         return jsonify({"month": month, "value": receitas_dinheiro})
     except ValueError as e:
         return jsonify({"error": str(e)}), 400

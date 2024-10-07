@@ -58,10 +58,16 @@
                     <a class="function" href="#get_markup_anestesia">get_markup_anestesia</a>
             </li>
             <li>
+                    <a class="function" href="#get_markup_consulta">get_markup_consulta</a>
+            </li>
+            <li>
+                    <a class="function" href="#get_markup_exames">get_markup_exames</a>
+            </li>
+            <li>
                     <a class="function" href="#get_receitas_anestesia">get_receitas_anestesia</a>
             </li>
             <li>
-                    <a class="function" href="#get_receitas_dinheiro">get_receitas_dinheiro</a>
+                    <a class="function" href="#get_receitas_consulta">get_receitas_consulta</a>
             </li>
             <li>
                     <a class="function" href="#get_despesas">get_despesas</a>
@@ -207,172 +213,207 @@ for different companies on a monthly basis.</p>
 </span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 </span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
 </span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>
-</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>
-</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/receitas/anestesia/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a><span class="k">def</span> <span class="nf">get_receitas_anestesia</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a><span class="sd">    Retrieves the anesthesia revenue for a specified month.</span>
-</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>
-</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="sd">    Args:</span>
-</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a><span class="sd">        month (str): The month for which to retrieve the anesthesia revenue. Should be one of the possible_months.</span>
-</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>
-</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a><span class="sd">    Returns:</span>
-</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding anesthesia revenue.</span>
-</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>        <span class="n">receitas_anestesia</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">receitas_anestesia</span><span class="p">})</span>
-</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
-</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a>
-</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>
-</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/receitas/dinheiro/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="k">def</span> <span class="nf">get_receitas_dinheiro</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a><span class="sd">    Retrieves the cash revenue for a specified month.</span>
-</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a>
-</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a><span class="sd">    Args:</span>
-</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a><span class="sd">        month (str): The month for which to retrieve the cash revenue. Should be one of the possible_months.</span>
-</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>
-</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a><span class="sd">    Returns:</span>
-</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding cash revenue.</span>
-</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>        <span class="n">receitas_dinheiro</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getReceitaDinheiro</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">receitas_dinheiro</span><span class="p">})</span>
-</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
-</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a>
-</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a>
-</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a><span class="k">def</span> <span class="nf">get_despesas</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a><span class="sd">    Retrieves the expenses for a specified month.</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/markup/consulta/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a><span class="k">def</span> <span class="nf">get_markup_consulta</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a><span class="sd">    Retrieves the markup information for consultation for a specified month.</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a><span class="sd">    Args:</span>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="sd">        month (str): The month for which to retrieve the markup information. Should be one of the possible_months.</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a><span class="sd">    Returns:</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding markup information.</span>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>        <span class="n">markup_consulta</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getMarkupConsulta</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">markup_consulta</span><span class="p">})</span>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/markup/exames/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a><span class="k">def</span> <span class="nf">get_markup_exames</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="sd">    Retrieves the markup information for exams for a specified month.</span>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a><span class="sd">    Args:</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a><span class="sd">        month (str): The month for which to retrieve the markup information. Should be one of the possible_months.</span>
+</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a><span class="sd">    Returns:</span>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding markup information.</span>
+</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>        <span class="n">markup_exames</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getMarkupExames</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">markup_exames</span><span class="p">})</span>
+</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/receitas/anestesia/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a><span class="k">def</span> <span class="nf">get_receitas_anestesia</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a><span class="sd">    Retrieves the anesthesia revenue for a specified month.</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a><span class="sd">    Args:</span>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a><span class="sd">        month (str): The month for which to retrieve the anesthesia revenue. Should be one of the possible_months.</span>
 </span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>
-</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a><span class="sd">    Args:</span>
-</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a><span class="sd">        month (str): The month for which to retrieve the expenses. Should be one of the possible_months.</span>
-</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>
-</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a><span class="sd">    Returns:</span>
-</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding expenses.</span>
-</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a>        <span class="n">despesas</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas</span><span class="p">})</span>
-</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
-</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a>
-</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a>
-</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/aluguel/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a><span class="k">def</span> <span class="nf">get_despesas_aluguel</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a><span class="sd">    Retrieves the rent expenses for a specified month.</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a><span class="sd">    Returns:</span>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding anesthesia revenue.</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>        <span class="n">receitas_anestesia</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">receitas_anestesia</span><span class="p">})</span>
+</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a>
+</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a>
+</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/receitas/consulta/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a><span class="k">def</span> <span class="nf">get_receitas_consulta</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a><span class="sd">    Retrieves the cash revenue for a specified month.</span>
+</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a>
+</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a><span class="sd">    Args:</span>
+</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a><span class="sd">        month (str): The month for which to retrieve the cash revenue. Should be one of the possible_months.</span>
 </span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a>
-</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a><span class="sd">    Args:</span>
-</span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a><span class="sd">        month (str): The month for which to retrieve the rent expenses. Should be one of the possible_months.</span>
-</span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a>
-</span><span id="L-164"><a href="#L-164"><span class="linenos">164</span></a><span class="sd">    Returns:</span>
-</span><span id="L-165"><a href="#L-165"><span class="linenos">165</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding rent expenses.</span>
-</span><span id="L-166"><a href="#L-166"><span class="linenos">166</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="L-167"><a href="#L-167"><span class="linenos">167</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-168"><a href="#L-168"><span class="linenos">168</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="L-169"><a href="#L-169"><span class="linenos">169</span></a>        <span class="n">despesas_aluguel</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesaAluguel</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-170"><a href="#L-170"><span class="linenos">170</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas_aluguel</span><span class="p">})</span>
-</span><span id="L-171"><a href="#L-171"><span class="linenos">171</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="L-172"><a href="#L-172"><span class="linenos">172</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
-</span><span id="L-173"><a href="#L-173"><span class="linenos">173</span></a>
-</span><span id="L-174"><a href="#L-174"><span class="linenos">174</span></a>
-</span><span id="L-175"><a href="#L-175"><span class="linenos">175</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/anestesia/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-176"><a href="#L-176"><span class="linenos">176</span></a><span class="k">def</span> <span class="nf">get_despesas_anestesia</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="L-177"><a href="#L-177"><span class="linenos">177</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-178"><a href="#L-178"><span class="linenos">178</span></a><span class="sd">    Retrieves the anesthesia expenses for a specified month.</span>
+</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a><span class="sd">    Returns:</span>
+</span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding cash revenue.</span>
+</span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-164"><a href="#L-164"><span class="linenos">164</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-165"><a href="#L-165"><span class="linenos">165</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-166"><a href="#L-166"><span class="linenos">166</span></a>        <span class="n">receitas_dinheiro</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getReceitaConsulta</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-167"><a href="#L-167"><span class="linenos">167</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">receitas_dinheiro</span><span class="p">})</span>
+</span><span id="L-168"><a href="#L-168"><span class="linenos">168</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-169"><a href="#L-169"><span class="linenos">169</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-170"><a href="#L-170"><span class="linenos">170</span></a>
+</span><span id="L-171"><a href="#L-171"><span class="linenos">171</span></a>
+</span><span id="L-172"><a href="#L-172"><span class="linenos">172</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-173"><a href="#L-173"><span class="linenos">173</span></a><span class="k">def</span> <span class="nf">get_despesas</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="L-174"><a href="#L-174"><span class="linenos">174</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-175"><a href="#L-175"><span class="linenos">175</span></a><span class="sd">    Retrieves the expenses for a specified month.</span>
+</span><span id="L-176"><a href="#L-176"><span class="linenos">176</span></a>
+</span><span id="L-177"><a href="#L-177"><span class="linenos">177</span></a><span class="sd">    Args:</span>
+</span><span id="L-178"><a href="#L-178"><span class="linenos">178</span></a><span class="sd">        month (str): The month for which to retrieve the expenses. Should be one of the possible_months.</span>
 </span><span id="L-179"><a href="#L-179"><span class="linenos">179</span></a>
-</span><span id="L-180"><a href="#L-180"><span class="linenos">180</span></a><span class="sd">    Args:</span>
-</span><span id="L-181"><a href="#L-181"><span class="linenos">181</span></a><span class="sd">        month (str): The month for which to retrieve the anesthesia expenses. Should be one of the possible_months.</span>
-</span><span id="L-182"><a href="#L-182"><span class="linenos">182</span></a>
-</span><span id="L-183"><a href="#L-183"><span class="linenos">183</span></a><span class="sd">    Returns:</span>
-</span><span id="L-184"><a href="#L-184"><span class="linenos">184</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding anesthesia expenses.</span>
-</span><span id="L-185"><a href="#L-185"><span class="linenos">185</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="L-186"><a href="#L-186"><span class="linenos">186</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-187"><a href="#L-187"><span class="linenos">187</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="L-188"><a href="#L-188"><span class="linenos">188</span></a>        <span class="n">despesas_anestesia</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-189"><a href="#L-189"><span class="linenos">189</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas_anestesia</span><span class="p">})</span>
-</span><span id="L-190"><a href="#L-190"><span class="linenos">190</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="L-191"><a href="#L-191"><span class="linenos">191</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
-</span><span id="L-192"><a href="#L-192"><span class="linenos">192</span></a>
-</span><span id="L-193"><a href="#L-193"><span class="linenos">193</span></a>
-</span><span id="L-194"><a href="#L-194"><span class="linenos">194</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/all&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-195"><a href="#L-195"><span class="linenos">195</span></a><span class="k">def</span> <span class="nf">get_all_data</span><span class="p">():</span>
-</span><span id="L-196"><a href="#L-196"><span class="linenos">196</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-197"><a href="#L-197"><span class="linenos">197</span></a><span class="sd">    Retrieves all data from the dataset.</span>
+</span><span id="L-180"><a href="#L-180"><span class="linenos">180</span></a><span class="sd">    Returns:</span>
+</span><span id="L-181"><a href="#L-181"><span class="linenos">181</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding expenses.</span>
+</span><span id="L-182"><a href="#L-182"><span class="linenos">182</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-183"><a href="#L-183"><span class="linenos">183</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-184"><a href="#L-184"><span class="linenos">184</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-185"><a href="#L-185"><span class="linenos">185</span></a>        <span class="n">despesas</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-186"><a href="#L-186"><span class="linenos">186</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas</span><span class="p">})</span>
+</span><span id="L-187"><a href="#L-187"><span class="linenos">187</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-188"><a href="#L-188"><span class="linenos">188</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-189"><a href="#L-189"><span class="linenos">189</span></a>
+</span><span id="L-190"><a href="#L-190"><span class="linenos">190</span></a>
+</span><span id="L-191"><a href="#L-191"><span class="linenos">191</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/aluguel/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-192"><a href="#L-192"><span class="linenos">192</span></a><span class="k">def</span> <span class="nf">get_despesas_aluguel</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="L-193"><a href="#L-193"><span class="linenos">193</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-194"><a href="#L-194"><span class="linenos">194</span></a><span class="sd">    Retrieves the rent expenses for a specified month.</span>
+</span><span id="L-195"><a href="#L-195"><span class="linenos">195</span></a>
+</span><span id="L-196"><a href="#L-196"><span class="linenos">196</span></a><span class="sd">    Args:</span>
+</span><span id="L-197"><a href="#L-197"><span class="linenos">197</span></a><span class="sd">        month (str): The month for which to retrieve the rent expenses. Should be one of the possible_months.</span>
 </span><span id="L-198"><a href="#L-198"><span class="linenos">198</span></a>
 </span><span id="L-199"><a href="#L-199"><span class="linenos">199</span></a><span class="sd">    Returns:</span>
-</span><span id="L-200"><a href="#L-200"><span class="linenos">200</span></a><span class="sd">        flask.Response: A JSON response containing all records from the dataset.</span>
-</span><span id="L-201"><a href="#L-201"><span class="linenos">201</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-202"><a href="#L-202"><span class="linenos">202</span></a>    <span class="n">all_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getAllData</span><span class="p">()</span>
-</span><span id="L-203"><a href="#L-203"><span class="linenos">203</span></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
-</span><span id="L-204"><a href="#L-204"><span class="linenos">204</span></a>
-</span><span id="L-205"><a href="#L-205"><span class="linenos">205</span></a>
-</span><span id="L-206"><a href="#L-206"><span class="linenos">206</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/company/&lt;company_name&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-207"><a href="#L-207"><span class="linenos">207</span></a><span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">):</span>
-</span><span id="L-208"><a href="#L-208"><span class="linenos">208</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-209"><a href="#L-209"><span class="linenos">209</span></a><span class="sd">    Retrieves data for a specific company.</span>
-</span><span id="L-210"><a href="#L-210"><span class="linenos">210</span></a>
-</span><span id="L-211"><a href="#L-211"><span class="linenos">211</span></a><span class="sd">    Args:</span>
-</span><span id="L-212"><a href="#L-212"><span class="linenos">212</span></a><span class="sd">        company_name (str): The name of the company to retrieve data for.</span>
-</span><span id="L-213"><a href="#L-213"><span class="linenos">213</span></a>
-</span><span id="L-214"><a href="#L-214"><span class="linenos">214</span></a><span class="sd">    Returns:</span>
-</span><span id="L-215"><a href="#L-215"><span class="linenos">215</span></a><span class="sd">        flask.Response: A JSON response containing the company&#39;s data.</span>
-</span><span id="L-216"><a href="#L-216"><span class="linenos">216</span></a><span class="sd">                        If the company is not found, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="L-217"><a href="#L-217"><span class="linenos">217</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-218"><a href="#L-218"><span class="linenos">218</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="L-219"><a href="#L-219"><span class="linenos">219</span></a>        <span class="n">company</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">)</span>
-</span><span id="L-220"><a href="#L-220"><span class="linenos">220</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">company</span><span class="p">)</span>
-</span><span id="L-221"><a href="#L-221"><span class="linenos">221</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="L-222"><a href="#L-222"><span class="linenos">222</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
-</span><span id="L-223"><a href="#L-223"><span class="linenos">223</span></a>
-</span><span id="L-224"><a href="#L-224"><span class="linenos">224</span></a>
-</span><span id="L-225"><a href="#L-225"><span class="linenos">225</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/economia/&lt;company_name&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-226"><a href="#L-226"><span class="linenos">226</span></a><span class="k">def</span> <span class="nf">get_economia_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">):</span>
-</span><span id="L-227"><a href="#L-227"><span class="linenos">227</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-228"><a href="#L-228"><span class="linenos">228</span></a><span class="sd">    Retrieves the economia results for a specific company.</span>
-</span><span id="L-229"><a href="#L-229"><span class="linenos">229</span></a>
-</span><span id="L-230"><a href="#L-230"><span class="linenos">230</span></a><span class="sd">    Args:</span>
-</span><span id="L-231"><a href="#L-231"><span class="linenos">231</span></a><span class="sd">        company_name (str): The name of the company to retrieve economia data for.</span>
-</span><span id="L-232"><a href="#L-232"><span class="linenos">232</span></a>
-</span><span id="L-233"><a href="#L-233"><span class="linenos">233</span></a><span class="sd">    Returns:</span>
-</span><span id="L-234"><a href="#L-234"><span class="linenos">234</span></a><span class="sd">        flask.Response: A JSON response containing the company&#39;s name, receita_bruta, and economia results.</span>
-</span><span id="L-235"><a href="#L-235"><span class="linenos">235</span></a><span class="sd">                        If the company is not found, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-200"><a href="#L-200"><span class="linenos">200</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding rent expenses.</span>
+</span><span id="L-201"><a href="#L-201"><span class="linenos">201</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-202"><a href="#L-202"><span class="linenos">202</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-203"><a href="#L-203"><span class="linenos">203</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-204"><a href="#L-204"><span class="linenos">204</span></a>        <span class="n">despesas_aluguel</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesaAluguel</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-205"><a href="#L-205"><span class="linenos">205</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas_aluguel</span><span class="p">})</span>
+</span><span id="L-206"><a href="#L-206"><span class="linenos">206</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-207"><a href="#L-207"><span class="linenos">207</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-208"><a href="#L-208"><span class="linenos">208</span></a>
+</span><span id="L-209"><a href="#L-209"><span class="linenos">209</span></a>
+</span><span id="L-210"><a href="#L-210"><span class="linenos">210</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/anestesia/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-211"><a href="#L-211"><span class="linenos">211</span></a><span class="k">def</span> <span class="nf">get_despesas_anestesia</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="L-212"><a href="#L-212"><span class="linenos">212</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-213"><a href="#L-213"><span class="linenos">213</span></a><span class="sd">    Retrieves the anesthesia expenses for a specified month.</span>
+</span><span id="L-214"><a href="#L-214"><span class="linenos">214</span></a>
+</span><span id="L-215"><a href="#L-215"><span class="linenos">215</span></a><span class="sd">    Args:</span>
+</span><span id="L-216"><a href="#L-216"><span class="linenos">216</span></a><span class="sd">        month (str): The month for which to retrieve the anesthesia expenses. Should be one of the possible_months.</span>
+</span><span id="L-217"><a href="#L-217"><span class="linenos">217</span></a>
+</span><span id="L-218"><a href="#L-218"><span class="linenos">218</span></a><span class="sd">    Returns:</span>
+</span><span id="L-219"><a href="#L-219"><span class="linenos">219</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding anesthesia expenses.</span>
+</span><span id="L-220"><a href="#L-220"><span class="linenos">220</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-221"><a href="#L-221"><span class="linenos">221</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-222"><a href="#L-222"><span class="linenos">222</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-223"><a href="#L-223"><span class="linenos">223</span></a>        <span class="n">despesas_anestesia</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-224"><a href="#L-224"><span class="linenos">224</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas_anestesia</span><span class="p">})</span>
+</span><span id="L-225"><a href="#L-225"><span class="linenos">225</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-226"><a href="#L-226"><span class="linenos">226</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-227"><a href="#L-227"><span class="linenos">227</span></a>
+</span><span id="L-228"><a href="#L-228"><span class="linenos">228</span></a>
+</span><span id="L-229"><a href="#L-229"><span class="linenos">229</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/all&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-230"><a href="#L-230"><span class="linenos">230</span></a><span class="k">def</span> <span class="nf">get_all_data</span><span class="p">():</span>
+</span><span id="L-231"><a href="#L-231"><span class="linenos">231</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-232"><a href="#L-232"><span class="linenos">232</span></a><span class="sd">    Retrieves all data from the dataset.</span>
+</span><span id="L-233"><a href="#L-233"><span class="linenos">233</span></a>
+</span><span id="L-234"><a href="#L-234"><span class="linenos">234</span></a><span class="sd">    Returns:</span>
+</span><span id="L-235"><a href="#L-235"><span class="linenos">235</span></a><span class="sd">        flask.Response: A JSON response containing all records from the dataset.</span>
 </span><span id="L-236"><a href="#L-236"><span class="linenos">236</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-237"><a href="#L-237"><span class="linenos">237</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="L-238"><a href="#L-238"><span class="linenos">238</span></a>        <span class="n">company</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">)</span>
-</span><span id="L-239"><a href="#L-239"><span class="linenos">239</span></a>        <span class="n">receita_bruta</span> <span class="o">=</span> <span class="n">company</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span>
-</span><span id="L-240"><a href="#L-240"><span class="linenos">240</span></a>        <span class="n">economia_result</span> <span class="o">=</span> <span class="n">economia</span><span class="p">(</span><span class="n">receita_bruta</span><span class="p">)</span>
-</span><span id="L-241"><a href="#L-241"><span class="linenos">241</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
-</span><span id="L-242"><a href="#L-242"><span class="linenos">242</span></a>            <span class="s2">&quot;company_name&quot;</span><span class="p">:</span> <span class="n">company_name</span><span class="p">,</span>
-</span><span id="L-243"><a href="#L-243"><span class="linenos">243</span></a>            <span class="s2">&quot;receita_bruta&quot;</span><span class="p">:</span> <span class="n">receita_bruta</span><span class="p">,</span>
-</span><span id="L-244"><a href="#L-244"><span class="linenos">244</span></a>            <span class="s2">&quot;economia&quot;</span><span class="p">:</span> <span class="n">economia_result</span>
-</span><span id="L-245"><a href="#L-245"><span class="linenos">245</span></a>        <span class="p">})</span>
-</span><span id="L-246"><a href="#L-246"><span class="linenos">246</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="L-247"><a href="#L-247"><span class="linenos">247</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-237"><a href="#L-237"><span class="linenos">237</span></a>    <span class="n">all_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getAllData</span><span class="p">()</span>
+</span><span id="L-238"><a href="#L-238"><span class="linenos">238</span></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
+</span><span id="L-239"><a href="#L-239"><span class="linenos">239</span></a>
+</span><span id="L-240"><a href="#L-240"><span class="linenos">240</span></a>
+</span><span id="L-241"><a href="#L-241"><span class="linenos">241</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/company/&lt;company_name&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-242"><a href="#L-242"><span class="linenos">242</span></a><span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">):</span>
+</span><span id="L-243"><a href="#L-243"><span class="linenos">243</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-244"><a href="#L-244"><span class="linenos">244</span></a><span class="sd">    Retrieves data for a specific company.</span>
+</span><span id="L-245"><a href="#L-245"><span class="linenos">245</span></a>
+</span><span id="L-246"><a href="#L-246"><span class="linenos">246</span></a><span class="sd">    Args:</span>
+</span><span id="L-247"><a href="#L-247"><span class="linenos">247</span></a><span class="sd">        company_name (str): The name of the company to retrieve data for.</span>
 </span><span id="L-248"><a href="#L-248"><span class="linenos">248</span></a>
-</span><span id="L-249"><a href="#L-249"><span class="linenos">249</span></a>
-</span><span id="L-250"><a href="#L-250"><span class="linenos">250</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/companies&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="L-251"><a href="#L-251"><span class="linenos">251</span></a><span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">():</span>
-</span><span id="L-252"><a href="#L-252"><span class="linenos">252</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-253"><a href="#L-253"><span class="linenos">253</span></a><span class="sd">    Retrieves data for all companies.</span>
-</span><span id="L-254"><a href="#L-254"><span class="linenos">254</span></a>
-</span><span id="L-255"><a href="#L-255"><span class="linenos">255</span></a><span class="sd">    Returns:</span>
-</span><span id="L-256"><a href="#L-256"><span class="linenos">256</span></a><span class="sd">        flask.Response: A JSON response containing data for all companies.</span>
-</span><span id="L-257"><a href="#L-257"><span class="linenos">257</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-258"><a href="#L-258"><span class="linenos">258</span></a>    <span class="n">companies</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_all_companies</span><span class="p">()</span>
-</span><span id="L-259"><a href="#L-259"><span class="linenos">259</span></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">companies</span><span class="p">)</span>
-</span><span id="L-260"><a href="#L-260"><span class="linenos">260</span></a>
-</span><span id="L-261"><a href="#L-261"><span class="linenos">261</span></a>
-</span><span id="L-262"><a href="#L-262"><span class="linenos">262</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-</span><span id="L-263"><a href="#L-263"><span class="linenos">263</span></a>    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
+</span><span id="L-249"><a href="#L-249"><span class="linenos">249</span></a><span class="sd">    Returns:</span>
+</span><span id="L-250"><a href="#L-250"><span class="linenos">250</span></a><span class="sd">        flask.Response: A JSON response containing the company&#39;s data.</span>
+</span><span id="L-251"><a href="#L-251"><span class="linenos">251</span></a><span class="sd">                        If the company is not found, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-252"><a href="#L-252"><span class="linenos">252</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-253"><a href="#L-253"><span class="linenos">253</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-254"><a href="#L-254"><span class="linenos">254</span></a>        <span class="n">company</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">)</span>
+</span><span id="L-255"><a href="#L-255"><span class="linenos">255</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">company</span><span class="p">)</span>
+</span><span id="L-256"><a href="#L-256"><span class="linenos">256</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-257"><a href="#L-257"><span class="linenos">257</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-258"><a href="#L-258"><span class="linenos">258</span></a>
+</span><span id="L-259"><a href="#L-259"><span class="linenos">259</span></a>
+</span><span id="L-260"><a href="#L-260"><span class="linenos">260</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/economia/&lt;company_name&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-261"><a href="#L-261"><span class="linenos">261</span></a><span class="k">def</span> <span class="nf">get_economia_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">):</span>
+</span><span id="L-262"><a href="#L-262"><span class="linenos">262</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-263"><a href="#L-263"><span class="linenos">263</span></a><span class="sd">    Retrieves the economia results for a specific company.</span>
+</span><span id="L-264"><a href="#L-264"><span class="linenos">264</span></a>
+</span><span id="L-265"><a href="#L-265"><span class="linenos">265</span></a><span class="sd">    Args:</span>
+</span><span id="L-266"><a href="#L-266"><span class="linenos">266</span></a><span class="sd">        company_name (str): The name of the company to retrieve economia data for.</span>
+</span><span id="L-267"><a href="#L-267"><span class="linenos">267</span></a>
+</span><span id="L-268"><a href="#L-268"><span class="linenos">268</span></a><span class="sd">    Returns:</span>
+</span><span id="L-269"><a href="#L-269"><span class="linenos">269</span></a><span class="sd">        flask.Response: A JSON response containing the company&#39;s name, receita_bruta, and economia results.</span>
+</span><span id="L-270"><a href="#L-270"><span class="linenos">270</span></a><span class="sd">                        If the company is not found, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="L-271"><a href="#L-271"><span class="linenos">271</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-272"><a href="#L-272"><span class="linenos">272</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="L-273"><a href="#L-273"><span class="linenos">273</span></a>        <span class="n">company</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">)</span>
+</span><span id="L-274"><a href="#L-274"><span class="linenos">274</span></a>        <span class="n">receita_bruta</span> <span class="o">=</span> <span class="n">company</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span>
+</span><span id="L-275"><a href="#L-275"><span class="linenos">275</span></a>        <span class="n">economia_result</span> <span class="o">=</span> <span class="n">economia</span><span class="p">(</span><span class="n">receita_bruta</span><span class="p">)</span>
+</span><span id="L-276"><a href="#L-276"><span class="linenos">276</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+</span><span id="L-277"><a href="#L-277"><span class="linenos">277</span></a>            <span class="s2">&quot;company_name&quot;</span><span class="p">:</span> <span class="n">company_name</span><span class="p">,</span>
+</span><span id="L-278"><a href="#L-278"><span class="linenos">278</span></a>            <span class="s2">&quot;receita_bruta&quot;</span><span class="p">:</span> <span class="n">receita_bruta</span><span class="p">,</span>
+</span><span id="L-279"><a href="#L-279"><span class="linenos">279</span></a>            <span class="s2">&quot;economia&quot;</span><span class="p">:</span> <span class="n">economia_result</span>
+</span><span id="L-280"><a href="#L-280"><span class="linenos">280</span></a>        <span class="p">})</span>
+</span><span id="L-281"><a href="#L-281"><span class="linenos">281</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="L-282"><a href="#L-282"><span class="linenos">282</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span><span id="L-283"><a href="#L-283"><span class="linenos">283</span></a>
+</span><span id="L-284"><a href="#L-284"><span class="linenos">284</span></a>
+</span><span id="L-285"><a href="#L-285"><span class="linenos">285</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/companies&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="L-286"><a href="#L-286"><span class="linenos">286</span></a><span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">():</span>
+</span><span id="L-287"><a href="#L-287"><span class="linenos">287</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-288"><a href="#L-288"><span class="linenos">288</span></a><span class="sd">    Retrieves data for all companies.</span>
+</span><span id="L-289"><a href="#L-289"><span class="linenos">289</span></a>
+</span><span id="L-290"><a href="#L-290"><span class="linenos">290</span></a><span class="sd">    Returns:</span>
+</span><span id="L-291"><a href="#L-291"><span class="linenos">291</span></a><span class="sd">        flask.Response: A JSON response containing data for all companies.</span>
+</span><span id="L-292"><a href="#L-292"><span class="linenos">292</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-293"><a href="#L-293"><span class="linenos">293</span></a>    <span class="n">companies</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_all_companies</span><span class="p">()</span>
+</span><span id="L-294"><a href="#L-294"><span class="linenos">294</span></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">companies</span><span class="p">)</span>
+</span><span id="L-295"><a href="#L-295"><span class="linenos">295</span></a>
+</span><span id="L-296"><a href="#L-296"><span class="linenos">296</span></a>
+</span><span id="L-297"><a href="#L-297"><span class="linenos">297</span></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="L-298"><a href="#L-298"><span class="linenos">298</span></a>    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -637,6 +678,106 @@ for different companies on a monthly basis.</p>
 
 
                 </section>
+                <section id="get_markup_consulta">
+                            <input id="get_markup_consulta-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@app.route(&#39;/api/markup/consulta/&lt;month&gt;&#39;, methods=[&#39;GET&#39;])</div>
+
+        <span class="def">def</span>
+        <span class="name">get_markup_consulta</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">month</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="get_markup_consulta-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#get_markup_consulta"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_markup_consulta-99"><a href="#get_markup_consulta-99"><span class="linenos"> 99</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/markup/consulta/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_markup_consulta-100"><a href="#get_markup_consulta-100"><span class="linenos">100</span></a><span class="k">def</span> <span class="nf">get_markup_consulta</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="get_markup_consulta-101"><a href="#get_markup_consulta-101"><span class="linenos">101</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_markup_consulta-102"><a href="#get_markup_consulta-102"><span class="linenos">102</span></a><span class="sd">    Retrieves the markup information for consultation for a specified month.</span>
+</span><span id="get_markup_consulta-103"><a href="#get_markup_consulta-103"><span class="linenos">103</span></a>
+</span><span id="get_markup_consulta-104"><a href="#get_markup_consulta-104"><span class="linenos">104</span></a><span class="sd">    Args:</span>
+</span><span id="get_markup_consulta-105"><a href="#get_markup_consulta-105"><span class="linenos">105</span></a><span class="sd">        month (str): The month for which to retrieve the markup information. Should be one of the possible_months.</span>
+</span><span id="get_markup_consulta-106"><a href="#get_markup_consulta-106"><span class="linenos">106</span></a>
+</span><span id="get_markup_consulta-107"><a href="#get_markup_consulta-107"><span class="linenos">107</span></a><span class="sd">    Returns:</span>
+</span><span id="get_markup_consulta-108"><a href="#get_markup_consulta-108"><span class="linenos">108</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding markup information.</span>
+</span><span id="get_markup_consulta-109"><a href="#get_markup_consulta-109"><span class="linenos">109</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_markup_consulta-110"><a href="#get_markup_consulta-110"><span class="linenos">110</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_markup_consulta-111"><a href="#get_markup_consulta-111"><span class="linenos">111</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_markup_consulta-112"><a href="#get_markup_consulta-112"><span class="linenos">112</span></a>        <span class="n">markup_consulta</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getMarkupConsulta</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="get_markup_consulta-113"><a href="#get_markup_consulta-113"><span class="linenos">113</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">markup_consulta</span><span class="p">})</span>
+</span><span id="get_markup_consulta-114"><a href="#get_markup_consulta-114"><span class="linenos">114</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_markup_consulta-115"><a href="#get_markup_consulta-115"><span class="linenos">115</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retrieves the markup information for consultation for a specified month.</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>month (str):</strong>  The month for which to retrieve the markup information. Should be one of the possible_months.</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>flask.Response: A JSON response containing the month and its corresponding markup information.
+                  If an error occurs, returns a JSON response with the error message and a 400 status code.</p>
+</blockquote>
+</div>
+
+
+                </section>
+                <section id="get_markup_exames">
+                            <input id="get_markup_exames-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+                    <div class="decorator">@app.route(&#39;/api/markup/exames/&lt;month&gt;&#39;, methods=[&#39;GET&#39;])</div>
+
+        <span class="def">def</span>
+        <span class="name">get_markup_exames</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">month</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="get_markup_exames-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#get_markup_exames"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_markup_exames-117"><a href="#get_markup_exames-117"><span class="linenos">117</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/markup/exames/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_markup_exames-118"><a href="#get_markup_exames-118"><span class="linenos">118</span></a><span class="k">def</span> <span class="nf">get_markup_exames</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="get_markup_exames-119"><a href="#get_markup_exames-119"><span class="linenos">119</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_markup_exames-120"><a href="#get_markup_exames-120"><span class="linenos">120</span></a><span class="sd">    Retrieves the markup information for exams for a specified month.</span>
+</span><span id="get_markup_exames-121"><a href="#get_markup_exames-121"><span class="linenos">121</span></a>
+</span><span id="get_markup_exames-122"><a href="#get_markup_exames-122"><span class="linenos">122</span></a><span class="sd">    Args:</span>
+</span><span id="get_markup_exames-123"><a href="#get_markup_exames-123"><span class="linenos">123</span></a><span class="sd">        month (str): The month for which to retrieve the markup information. Should be one of the possible_months.</span>
+</span><span id="get_markup_exames-124"><a href="#get_markup_exames-124"><span class="linenos">124</span></a>
+</span><span id="get_markup_exames-125"><a href="#get_markup_exames-125"><span class="linenos">125</span></a><span class="sd">    Returns:</span>
+</span><span id="get_markup_exames-126"><a href="#get_markup_exames-126"><span class="linenos">126</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding markup information.</span>
+</span><span id="get_markup_exames-127"><a href="#get_markup_exames-127"><span class="linenos">127</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_markup_exames-128"><a href="#get_markup_exames-128"><span class="linenos">128</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_markup_exames-129"><a href="#get_markup_exames-129"><span class="linenos">129</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_markup_exames-130"><a href="#get_markup_exames-130"><span class="linenos">130</span></a>        <span class="n">markup_exames</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getMarkupExames</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="get_markup_exames-131"><a href="#get_markup_exames-131"><span class="linenos">131</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">markup_exames</span><span class="p">})</span>
+</span><span id="get_markup_exames-132"><a href="#get_markup_exames-132"><span class="linenos">132</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_markup_exames-133"><a href="#get_markup_exames-133"><span class="linenos">133</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Retrieves the markup information for exams for a specified month.</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>month (str):</strong>  The month for which to retrieve the markup information. Should be one of the possible_months.</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>flask.Response: A JSON response containing the month and its corresponding markup information.
+                  If an error occurs, returns a JSON response with the error message and a 400 status code.</p>
+</blockquote>
+</div>
+
+
+                </section>
                 <section id="get_receitas_anestesia">
                             <input id="get_receitas_anestesia-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
@@ -649,23 +790,23 @@ for different companies on a monthly basis.</p>
 
     </div>
     <a class="headerlink" href="#get_receitas_anestesia"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_receitas_anestesia-100"><a href="#get_receitas_anestesia-100"><span class="linenos">100</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/receitas/anestesia/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_receitas_anestesia-101"><a href="#get_receitas_anestesia-101"><span class="linenos">101</span></a><span class="k">def</span> <span class="nf">get_receitas_anestesia</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="get_receitas_anestesia-102"><a href="#get_receitas_anestesia-102"><span class="linenos">102</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_receitas_anestesia-103"><a href="#get_receitas_anestesia-103"><span class="linenos">103</span></a><span class="sd">    Retrieves the anesthesia revenue for a specified month.</span>
-</span><span id="get_receitas_anestesia-104"><a href="#get_receitas_anestesia-104"><span class="linenos">104</span></a>
-</span><span id="get_receitas_anestesia-105"><a href="#get_receitas_anestesia-105"><span class="linenos">105</span></a><span class="sd">    Args:</span>
-</span><span id="get_receitas_anestesia-106"><a href="#get_receitas_anestesia-106"><span class="linenos">106</span></a><span class="sd">        month (str): The month for which to retrieve the anesthesia revenue. Should be one of the possible_months.</span>
-</span><span id="get_receitas_anestesia-107"><a href="#get_receitas_anestesia-107"><span class="linenos">107</span></a>
-</span><span id="get_receitas_anestesia-108"><a href="#get_receitas_anestesia-108"><span class="linenos">108</span></a><span class="sd">    Returns:</span>
-</span><span id="get_receitas_anestesia-109"><a href="#get_receitas_anestesia-109"><span class="linenos">109</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding anesthesia revenue.</span>
-</span><span id="get_receitas_anestesia-110"><a href="#get_receitas_anestesia-110"><span class="linenos">110</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="get_receitas_anestesia-111"><a href="#get_receitas_anestesia-111"><span class="linenos">111</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_receitas_anestesia-112"><a href="#get_receitas_anestesia-112"><span class="linenos">112</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="get_receitas_anestesia-113"><a href="#get_receitas_anestesia-113"><span class="linenos">113</span></a>        <span class="n">receitas_anestesia</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="get_receitas_anestesia-114"><a href="#get_receitas_anestesia-114"><span class="linenos">114</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">receitas_anestesia</span><span class="p">})</span>
-</span><span id="get_receitas_anestesia-115"><a href="#get_receitas_anestesia-115"><span class="linenos">115</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="get_receitas_anestesia-116"><a href="#get_receitas_anestesia-116"><span class="linenos">116</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_receitas_anestesia-135"><a href="#get_receitas_anestesia-135"><span class="linenos">135</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/receitas/anestesia/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_receitas_anestesia-136"><a href="#get_receitas_anestesia-136"><span class="linenos">136</span></a><span class="k">def</span> <span class="nf">get_receitas_anestesia</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="get_receitas_anestesia-137"><a href="#get_receitas_anestesia-137"><span class="linenos">137</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_receitas_anestesia-138"><a href="#get_receitas_anestesia-138"><span class="linenos">138</span></a><span class="sd">    Retrieves the anesthesia revenue for a specified month.</span>
+</span><span id="get_receitas_anestesia-139"><a href="#get_receitas_anestesia-139"><span class="linenos">139</span></a>
+</span><span id="get_receitas_anestesia-140"><a href="#get_receitas_anestesia-140"><span class="linenos">140</span></a><span class="sd">    Args:</span>
+</span><span id="get_receitas_anestesia-141"><a href="#get_receitas_anestesia-141"><span class="linenos">141</span></a><span class="sd">        month (str): The month for which to retrieve the anesthesia revenue. Should be one of the possible_months.</span>
+</span><span id="get_receitas_anestesia-142"><a href="#get_receitas_anestesia-142"><span class="linenos">142</span></a>
+</span><span id="get_receitas_anestesia-143"><a href="#get_receitas_anestesia-143"><span class="linenos">143</span></a><span class="sd">    Returns:</span>
+</span><span id="get_receitas_anestesia-144"><a href="#get_receitas_anestesia-144"><span class="linenos">144</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding anesthesia revenue.</span>
+</span><span id="get_receitas_anestesia-145"><a href="#get_receitas_anestesia-145"><span class="linenos">145</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_receitas_anestesia-146"><a href="#get_receitas_anestesia-146"><span class="linenos">146</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_receitas_anestesia-147"><a href="#get_receitas_anestesia-147"><span class="linenos">147</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_receitas_anestesia-148"><a href="#get_receitas_anestesia-148"><span class="linenos">148</span></a>        <span class="n">receitas_anestesia</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="get_receitas_anestesia-149"><a href="#get_receitas_anestesia-149"><span class="linenos">149</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">receitas_anestesia</span><span class="p">})</span>
+</span><span id="get_receitas_anestesia-150"><a href="#get_receitas_anestesia-150"><span class="linenos">150</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_receitas_anestesia-151"><a href="#get_receitas_anestesia-151"><span class="linenos">151</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
 </span></pre></div>
 
 
@@ -687,35 +828,35 @@ for different companies on a monthly basis.</p>
 
 
                 </section>
-                <section id="get_receitas_dinheiro">
-                            <input id="get_receitas_dinheiro-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                <section id="get_receitas_consulta">
+                            <input id="get_receitas_consulta-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
-                    <div class="decorator">@app.route(&#39;/api/receitas/dinheiro/&lt;month&gt;&#39;, methods=[&#39;GET&#39;])</div>
+                    <div class="decorator">@app.route(&#39;/api/receitas/consulta/&lt;month&gt;&#39;, methods=[&#39;GET&#39;])</div>
 
         <span class="def">def</span>
-        <span class="name">get_receitas_dinheiro</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">month</span></span><span class="return-annotation">):</span></span>
+        <span class="name">get_receitas_consulta</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">month</span></span><span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="get_receitas_dinheiro-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="get_receitas_consulta-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#get_receitas_dinheiro"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_receitas_dinheiro-119"><a href="#get_receitas_dinheiro-119"><span class="linenos">119</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/receitas/dinheiro/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_receitas_dinheiro-120"><a href="#get_receitas_dinheiro-120"><span class="linenos">120</span></a><span class="k">def</span> <span class="nf">get_receitas_dinheiro</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="get_receitas_dinheiro-121"><a href="#get_receitas_dinheiro-121"><span class="linenos">121</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_receitas_dinheiro-122"><a href="#get_receitas_dinheiro-122"><span class="linenos">122</span></a><span class="sd">    Retrieves the cash revenue for a specified month.</span>
-</span><span id="get_receitas_dinheiro-123"><a href="#get_receitas_dinheiro-123"><span class="linenos">123</span></a>
-</span><span id="get_receitas_dinheiro-124"><a href="#get_receitas_dinheiro-124"><span class="linenos">124</span></a><span class="sd">    Args:</span>
-</span><span id="get_receitas_dinheiro-125"><a href="#get_receitas_dinheiro-125"><span class="linenos">125</span></a><span class="sd">        month (str): The month for which to retrieve the cash revenue. Should be one of the possible_months.</span>
-</span><span id="get_receitas_dinheiro-126"><a href="#get_receitas_dinheiro-126"><span class="linenos">126</span></a>
-</span><span id="get_receitas_dinheiro-127"><a href="#get_receitas_dinheiro-127"><span class="linenos">127</span></a><span class="sd">    Returns:</span>
-</span><span id="get_receitas_dinheiro-128"><a href="#get_receitas_dinheiro-128"><span class="linenos">128</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding cash revenue.</span>
-</span><span id="get_receitas_dinheiro-129"><a href="#get_receitas_dinheiro-129"><span class="linenos">129</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="get_receitas_dinheiro-130"><a href="#get_receitas_dinheiro-130"><span class="linenos">130</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_receitas_dinheiro-131"><a href="#get_receitas_dinheiro-131"><span class="linenos">131</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="get_receitas_dinheiro-132"><a href="#get_receitas_dinheiro-132"><span class="linenos">132</span></a>        <span class="n">receitas_dinheiro</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getReceitaDinheiro</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="get_receitas_dinheiro-133"><a href="#get_receitas_dinheiro-133"><span class="linenos">133</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">receitas_dinheiro</span><span class="p">})</span>
-</span><span id="get_receitas_dinheiro-134"><a href="#get_receitas_dinheiro-134"><span class="linenos">134</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="get_receitas_dinheiro-135"><a href="#get_receitas_dinheiro-135"><span class="linenos">135</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+    <a class="headerlink" href="#get_receitas_consulta"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_receitas_consulta-154"><a href="#get_receitas_consulta-154"><span class="linenos">154</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/receitas/consulta/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_receitas_consulta-155"><a href="#get_receitas_consulta-155"><span class="linenos">155</span></a><span class="k">def</span> <span class="nf">get_receitas_consulta</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="get_receitas_consulta-156"><a href="#get_receitas_consulta-156"><span class="linenos">156</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_receitas_consulta-157"><a href="#get_receitas_consulta-157"><span class="linenos">157</span></a><span class="sd">    Retrieves the cash revenue for a specified month.</span>
+</span><span id="get_receitas_consulta-158"><a href="#get_receitas_consulta-158"><span class="linenos">158</span></a>
+</span><span id="get_receitas_consulta-159"><a href="#get_receitas_consulta-159"><span class="linenos">159</span></a><span class="sd">    Args:</span>
+</span><span id="get_receitas_consulta-160"><a href="#get_receitas_consulta-160"><span class="linenos">160</span></a><span class="sd">        month (str): The month for which to retrieve the cash revenue. Should be one of the possible_months.</span>
+</span><span id="get_receitas_consulta-161"><a href="#get_receitas_consulta-161"><span class="linenos">161</span></a>
+</span><span id="get_receitas_consulta-162"><a href="#get_receitas_consulta-162"><span class="linenos">162</span></a><span class="sd">    Returns:</span>
+</span><span id="get_receitas_consulta-163"><a href="#get_receitas_consulta-163"><span class="linenos">163</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding cash revenue.</span>
+</span><span id="get_receitas_consulta-164"><a href="#get_receitas_consulta-164"><span class="linenos">164</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_receitas_consulta-165"><a href="#get_receitas_consulta-165"><span class="linenos">165</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_receitas_consulta-166"><a href="#get_receitas_consulta-166"><span class="linenos">166</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_receitas_consulta-167"><a href="#get_receitas_consulta-167"><span class="linenos">167</span></a>        <span class="n">receitas_dinheiro</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getReceitaConsulta</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="get_receitas_consulta-168"><a href="#get_receitas_consulta-168"><span class="linenos">168</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">receitas_dinheiro</span><span class="p">})</span>
+</span><span id="get_receitas_consulta-169"><a href="#get_receitas_consulta-169"><span class="linenos">169</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_receitas_consulta-170"><a href="#get_receitas_consulta-170"><span class="linenos">170</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
 </span></pre></div>
 
 
@@ -749,23 +890,23 @@ for different companies on a monthly basis.</p>
 
     </div>
     <a class="headerlink" href="#get_despesas"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_despesas-138"><a href="#get_despesas-138"><span class="linenos">138</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_despesas-139"><a href="#get_despesas-139"><span class="linenos">139</span></a><span class="k">def</span> <span class="nf">get_despesas</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="get_despesas-140"><a href="#get_despesas-140"><span class="linenos">140</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_despesas-141"><a href="#get_despesas-141"><span class="linenos">141</span></a><span class="sd">    Retrieves the expenses for a specified month.</span>
-</span><span id="get_despesas-142"><a href="#get_despesas-142"><span class="linenos">142</span></a>
-</span><span id="get_despesas-143"><a href="#get_despesas-143"><span class="linenos">143</span></a><span class="sd">    Args:</span>
-</span><span id="get_despesas-144"><a href="#get_despesas-144"><span class="linenos">144</span></a><span class="sd">        month (str): The month for which to retrieve the expenses. Should be one of the possible_months.</span>
-</span><span id="get_despesas-145"><a href="#get_despesas-145"><span class="linenos">145</span></a>
-</span><span id="get_despesas-146"><a href="#get_despesas-146"><span class="linenos">146</span></a><span class="sd">    Returns:</span>
-</span><span id="get_despesas-147"><a href="#get_despesas-147"><span class="linenos">147</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding expenses.</span>
-</span><span id="get_despesas-148"><a href="#get_despesas-148"><span class="linenos">148</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="get_despesas-149"><a href="#get_despesas-149"><span class="linenos">149</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_despesas-150"><a href="#get_despesas-150"><span class="linenos">150</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="get_despesas-151"><a href="#get_despesas-151"><span class="linenos">151</span></a>        <span class="n">despesas</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="get_despesas-152"><a href="#get_despesas-152"><span class="linenos">152</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas</span><span class="p">})</span>
-</span><span id="get_despesas-153"><a href="#get_despesas-153"><span class="linenos">153</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="get_despesas-154"><a href="#get_despesas-154"><span class="linenos">154</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_despesas-173"><a href="#get_despesas-173"><span class="linenos">173</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_despesas-174"><a href="#get_despesas-174"><span class="linenos">174</span></a><span class="k">def</span> <span class="nf">get_despesas</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="get_despesas-175"><a href="#get_despesas-175"><span class="linenos">175</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_despesas-176"><a href="#get_despesas-176"><span class="linenos">176</span></a><span class="sd">    Retrieves the expenses for a specified month.</span>
+</span><span id="get_despesas-177"><a href="#get_despesas-177"><span class="linenos">177</span></a>
+</span><span id="get_despesas-178"><a href="#get_despesas-178"><span class="linenos">178</span></a><span class="sd">    Args:</span>
+</span><span id="get_despesas-179"><a href="#get_despesas-179"><span class="linenos">179</span></a><span class="sd">        month (str): The month for which to retrieve the expenses. Should be one of the possible_months.</span>
+</span><span id="get_despesas-180"><a href="#get_despesas-180"><span class="linenos">180</span></a>
+</span><span id="get_despesas-181"><a href="#get_despesas-181"><span class="linenos">181</span></a><span class="sd">    Returns:</span>
+</span><span id="get_despesas-182"><a href="#get_despesas-182"><span class="linenos">182</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding expenses.</span>
+</span><span id="get_despesas-183"><a href="#get_despesas-183"><span class="linenos">183</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_despesas-184"><a href="#get_despesas-184"><span class="linenos">184</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_despesas-185"><a href="#get_despesas-185"><span class="linenos">185</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_despesas-186"><a href="#get_despesas-186"><span class="linenos">186</span></a>        <span class="n">despesas</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="get_despesas-187"><a href="#get_despesas-187"><span class="linenos">187</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas</span><span class="p">})</span>
+</span><span id="get_despesas-188"><a href="#get_despesas-188"><span class="linenos">188</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_despesas-189"><a href="#get_despesas-189"><span class="linenos">189</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
 </span></pre></div>
 
 
@@ -799,23 +940,23 @@ for different companies on a monthly basis.</p>
 
     </div>
     <a class="headerlink" href="#get_despesas_aluguel"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_despesas_aluguel-157"><a href="#get_despesas_aluguel-157"><span class="linenos">157</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/aluguel/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_despesas_aluguel-158"><a href="#get_despesas_aluguel-158"><span class="linenos">158</span></a><span class="k">def</span> <span class="nf">get_despesas_aluguel</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="get_despesas_aluguel-159"><a href="#get_despesas_aluguel-159"><span class="linenos">159</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_despesas_aluguel-160"><a href="#get_despesas_aluguel-160"><span class="linenos">160</span></a><span class="sd">    Retrieves the rent expenses for a specified month.</span>
-</span><span id="get_despesas_aluguel-161"><a href="#get_despesas_aluguel-161"><span class="linenos">161</span></a>
-</span><span id="get_despesas_aluguel-162"><a href="#get_despesas_aluguel-162"><span class="linenos">162</span></a><span class="sd">    Args:</span>
-</span><span id="get_despesas_aluguel-163"><a href="#get_despesas_aluguel-163"><span class="linenos">163</span></a><span class="sd">        month (str): The month for which to retrieve the rent expenses. Should be one of the possible_months.</span>
-</span><span id="get_despesas_aluguel-164"><a href="#get_despesas_aluguel-164"><span class="linenos">164</span></a>
-</span><span id="get_despesas_aluguel-165"><a href="#get_despesas_aluguel-165"><span class="linenos">165</span></a><span class="sd">    Returns:</span>
-</span><span id="get_despesas_aluguel-166"><a href="#get_despesas_aluguel-166"><span class="linenos">166</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding rent expenses.</span>
-</span><span id="get_despesas_aluguel-167"><a href="#get_despesas_aluguel-167"><span class="linenos">167</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="get_despesas_aluguel-168"><a href="#get_despesas_aluguel-168"><span class="linenos">168</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_despesas_aluguel-169"><a href="#get_despesas_aluguel-169"><span class="linenos">169</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="get_despesas_aluguel-170"><a href="#get_despesas_aluguel-170"><span class="linenos">170</span></a>        <span class="n">despesas_aluguel</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesaAluguel</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="get_despesas_aluguel-171"><a href="#get_despesas_aluguel-171"><span class="linenos">171</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas_aluguel</span><span class="p">})</span>
-</span><span id="get_despesas_aluguel-172"><a href="#get_despesas_aluguel-172"><span class="linenos">172</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="get_despesas_aluguel-173"><a href="#get_despesas_aluguel-173"><span class="linenos">173</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_despesas_aluguel-192"><a href="#get_despesas_aluguel-192"><span class="linenos">192</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/aluguel/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_despesas_aluguel-193"><a href="#get_despesas_aluguel-193"><span class="linenos">193</span></a><span class="k">def</span> <span class="nf">get_despesas_aluguel</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="get_despesas_aluguel-194"><a href="#get_despesas_aluguel-194"><span class="linenos">194</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_despesas_aluguel-195"><a href="#get_despesas_aluguel-195"><span class="linenos">195</span></a><span class="sd">    Retrieves the rent expenses for a specified month.</span>
+</span><span id="get_despesas_aluguel-196"><a href="#get_despesas_aluguel-196"><span class="linenos">196</span></a>
+</span><span id="get_despesas_aluguel-197"><a href="#get_despesas_aluguel-197"><span class="linenos">197</span></a><span class="sd">    Args:</span>
+</span><span id="get_despesas_aluguel-198"><a href="#get_despesas_aluguel-198"><span class="linenos">198</span></a><span class="sd">        month (str): The month for which to retrieve the rent expenses. Should be one of the possible_months.</span>
+</span><span id="get_despesas_aluguel-199"><a href="#get_despesas_aluguel-199"><span class="linenos">199</span></a>
+</span><span id="get_despesas_aluguel-200"><a href="#get_despesas_aluguel-200"><span class="linenos">200</span></a><span class="sd">    Returns:</span>
+</span><span id="get_despesas_aluguel-201"><a href="#get_despesas_aluguel-201"><span class="linenos">201</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding rent expenses.</span>
+</span><span id="get_despesas_aluguel-202"><a href="#get_despesas_aluguel-202"><span class="linenos">202</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_despesas_aluguel-203"><a href="#get_despesas_aluguel-203"><span class="linenos">203</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_despesas_aluguel-204"><a href="#get_despesas_aluguel-204"><span class="linenos">204</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_despesas_aluguel-205"><a href="#get_despesas_aluguel-205"><span class="linenos">205</span></a>        <span class="n">despesas_aluguel</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesaAluguel</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="get_despesas_aluguel-206"><a href="#get_despesas_aluguel-206"><span class="linenos">206</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas_aluguel</span><span class="p">})</span>
+</span><span id="get_despesas_aluguel-207"><a href="#get_despesas_aluguel-207"><span class="linenos">207</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_despesas_aluguel-208"><a href="#get_despesas_aluguel-208"><span class="linenos">208</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
 </span></pre></div>
 
 
@@ -849,23 +990,23 @@ for different companies on a monthly basis.</p>
 
     </div>
     <a class="headerlink" href="#get_despesas_anestesia"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_despesas_anestesia-176"><a href="#get_despesas_anestesia-176"><span class="linenos">176</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/anestesia/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_despesas_anestesia-177"><a href="#get_despesas_anestesia-177"><span class="linenos">177</span></a><span class="k">def</span> <span class="nf">get_despesas_anestesia</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="get_despesas_anestesia-178"><a href="#get_despesas_anestesia-178"><span class="linenos">178</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_despesas_anestesia-179"><a href="#get_despesas_anestesia-179"><span class="linenos">179</span></a><span class="sd">    Retrieves the anesthesia expenses for a specified month.</span>
-</span><span id="get_despesas_anestesia-180"><a href="#get_despesas_anestesia-180"><span class="linenos">180</span></a>
-</span><span id="get_despesas_anestesia-181"><a href="#get_despesas_anestesia-181"><span class="linenos">181</span></a><span class="sd">    Args:</span>
-</span><span id="get_despesas_anestesia-182"><a href="#get_despesas_anestesia-182"><span class="linenos">182</span></a><span class="sd">        month (str): The month for which to retrieve the anesthesia expenses. Should be one of the possible_months.</span>
-</span><span id="get_despesas_anestesia-183"><a href="#get_despesas_anestesia-183"><span class="linenos">183</span></a>
-</span><span id="get_despesas_anestesia-184"><a href="#get_despesas_anestesia-184"><span class="linenos">184</span></a><span class="sd">    Returns:</span>
-</span><span id="get_despesas_anestesia-185"><a href="#get_despesas_anestesia-185"><span class="linenos">185</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding anesthesia expenses.</span>
-</span><span id="get_despesas_anestesia-186"><a href="#get_despesas_anestesia-186"><span class="linenos">186</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="get_despesas_anestesia-187"><a href="#get_despesas_anestesia-187"><span class="linenos">187</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_despesas_anestesia-188"><a href="#get_despesas_anestesia-188"><span class="linenos">188</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="get_despesas_anestesia-189"><a href="#get_despesas_anestesia-189"><span class="linenos">189</span></a>        <span class="n">despesas_anestesia</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="get_despesas_anestesia-190"><a href="#get_despesas_anestesia-190"><span class="linenos">190</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas_anestesia</span><span class="p">})</span>
-</span><span id="get_despesas_anestesia-191"><a href="#get_despesas_anestesia-191"><span class="linenos">191</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="get_despesas_anestesia-192"><a href="#get_despesas_anestesia-192"><span class="linenos">192</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_despesas_anestesia-211"><a href="#get_despesas_anestesia-211"><span class="linenos">211</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/despesas/anestesia/&lt;month&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_despesas_anestesia-212"><a href="#get_despesas_anestesia-212"><span class="linenos">212</span></a><span class="k">def</span> <span class="nf">get_despesas_anestesia</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="get_despesas_anestesia-213"><a href="#get_despesas_anestesia-213"><span class="linenos">213</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_despesas_anestesia-214"><a href="#get_despesas_anestesia-214"><span class="linenos">214</span></a><span class="sd">    Retrieves the anesthesia expenses for a specified month.</span>
+</span><span id="get_despesas_anestesia-215"><a href="#get_despesas_anestesia-215"><span class="linenos">215</span></a>
+</span><span id="get_despesas_anestesia-216"><a href="#get_despesas_anestesia-216"><span class="linenos">216</span></a><span class="sd">    Args:</span>
+</span><span id="get_despesas_anestesia-217"><a href="#get_despesas_anestesia-217"><span class="linenos">217</span></a><span class="sd">        month (str): The month for which to retrieve the anesthesia expenses. Should be one of the possible_months.</span>
+</span><span id="get_despesas_anestesia-218"><a href="#get_despesas_anestesia-218"><span class="linenos">218</span></a>
+</span><span id="get_despesas_anestesia-219"><a href="#get_despesas_anestesia-219"><span class="linenos">219</span></a><span class="sd">    Returns:</span>
+</span><span id="get_despesas_anestesia-220"><a href="#get_despesas_anestesia-220"><span class="linenos">220</span></a><span class="sd">        flask.Response: A JSON response containing the month and its corresponding anesthesia expenses.</span>
+</span><span id="get_despesas_anestesia-221"><a href="#get_despesas_anestesia-221"><span class="linenos">221</span></a><span class="sd">                        If an error occurs, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_despesas_anestesia-222"><a href="#get_despesas_anestesia-222"><span class="linenos">222</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_despesas_anestesia-223"><a href="#get_despesas_anestesia-223"><span class="linenos">223</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_despesas_anestesia-224"><a href="#get_despesas_anestesia-224"><span class="linenos">224</span></a>        <span class="n">despesas_anestesia</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="get_despesas_anestesia-225"><a href="#get_despesas_anestesia-225"><span class="linenos">225</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;month&quot;</span><span class="p">:</span> <span class="n">month</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">despesas_anestesia</span><span class="p">})</span>
+</span><span id="get_despesas_anestesia-226"><a href="#get_despesas_anestesia-226"><span class="linenos">226</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_despesas_anestesia-227"><a href="#get_despesas_anestesia-227"><span class="linenos">227</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
 </span></pre></div>
 
 
@@ -899,16 +1040,16 @@ for different companies on a monthly basis.</p>
 
     </div>
     <a class="headerlink" href="#get_all_data"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_all_data-195"><a href="#get_all_data-195"><span class="linenos">195</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/all&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_all_data-196"><a href="#get_all_data-196"><span class="linenos">196</span></a><span class="k">def</span> <span class="nf">get_all_data</span><span class="p">():</span>
-</span><span id="get_all_data-197"><a href="#get_all_data-197"><span class="linenos">197</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_all_data-198"><a href="#get_all_data-198"><span class="linenos">198</span></a><span class="sd">    Retrieves all data from the dataset.</span>
-</span><span id="get_all_data-199"><a href="#get_all_data-199"><span class="linenos">199</span></a>
-</span><span id="get_all_data-200"><a href="#get_all_data-200"><span class="linenos">200</span></a><span class="sd">    Returns:</span>
-</span><span id="get_all_data-201"><a href="#get_all_data-201"><span class="linenos">201</span></a><span class="sd">        flask.Response: A JSON response containing all records from the dataset.</span>
-</span><span id="get_all_data-202"><a href="#get_all_data-202"><span class="linenos">202</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_all_data-203"><a href="#get_all_data-203"><span class="linenos">203</span></a>    <span class="n">all_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getAllData</span><span class="p">()</span>
-</span><span id="get_all_data-204"><a href="#get_all_data-204"><span class="linenos">204</span></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_all_data-230"><a href="#get_all_data-230"><span class="linenos">230</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/all&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_all_data-231"><a href="#get_all_data-231"><span class="linenos">231</span></a><span class="k">def</span> <span class="nf">get_all_data</span><span class="p">():</span>
+</span><span id="get_all_data-232"><a href="#get_all_data-232"><span class="linenos">232</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_all_data-233"><a href="#get_all_data-233"><span class="linenos">233</span></a><span class="sd">    Retrieves all data from the dataset.</span>
+</span><span id="get_all_data-234"><a href="#get_all_data-234"><span class="linenos">234</span></a>
+</span><span id="get_all_data-235"><a href="#get_all_data-235"><span class="linenos">235</span></a><span class="sd">    Returns:</span>
+</span><span id="get_all_data-236"><a href="#get_all_data-236"><span class="linenos">236</span></a><span class="sd">        flask.Response: A JSON response containing all records from the dataset.</span>
+</span><span id="get_all_data-237"><a href="#get_all_data-237"><span class="linenos">237</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_all_data-238"><a href="#get_all_data-238"><span class="linenos">238</span></a>    <span class="n">all_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">getAllData</span><span class="p">()</span>
+</span><span id="get_all_data-239"><a href="#get_all_data-239"><span class="linenos">239</span></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -935,23 +1076,23 @@ for different companies on a monthly basis.</p>
 
     </div>
     <a class="headerlink" href="#get_company_data"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_company_data-207"><a href="#get_company_data-207"><span class="linenos">207</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/company/&lt;company_name&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_company_data-208"><a href="#get_company_data-208"><span class="linenos">208</span></a><span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">):</span>
-</span><span id="get_company_data-209"><a href="#get_company_data-209"><span class="linenos">209</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_company_data-210"><a href="#get_company_data-210"><span class="linenos">210</span></a><span class="sd">    Retrieves data for a specific company.</span>
-</span><span id="get_company_data-211"><a href="#get_company_data-211"><span class="linenos">211</span></a>
-</span><span id="get_company_data-212"><a href="#get_company_data-212"><span class="linenos">212</span></a><span class="sd">    Args:</span>
-</span><span id="get_company_data-213"><a href="#get_company_data-213"><span class="linenos">213</span></a><span class="sd">        company_name (str): The name of the company to retrieve data for.</span>
-</span><span id="get_company_data-214"><a href="#get_company_data-214"><span class="linenos">214</span></a>
-</span><span id="get_company_data-215"><a href="#get_company_data-215"><span class="linenos">215</span></a><span class="sd">    Returns:</span>
-</span><span id="get_company_data-216"><a href="#get_company_data-216"><span class="linenos">216</span></a><span class="sd">        flask.Response: A JSON response containing the company&#39;s data.</span>
-</span><span id="get_company_data-217"><a href="#get_company_data-217"><span class="linenos">217</span></a><span class="sd">                        If the company is not found, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="get_company_data-218"><a href="#get_company_data-218"><span class="linenos">218</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_company_data-219"><a href="#get_company_data-219"><span class="linenos">219</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="get_company_data-220"><a href="#get_company_data-220"><span class="linenos">220</span></a>        <span class="n">company</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">)</span>
-</span><span id="get_company_data-221"><a href="#get_company_data-221"><span class="linenos">221</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">company</span><span class="p">)</span>
-</span><span id="get_company_data-222"><a href="#get_company_data-222"><span class="linenos">222</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="get_company_data-223"><a href="#get_company_data-223"><span class="linenos">223</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_company_data-242"><a href="#get_company_data-242"><span class="linenos">242</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/company/&lt;company_name&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_company_data-243"><a href="#get_company_data-243"><span class="linenos">243</span></a><span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">):</span>
+</span><span id="get_company_data-244"><a href="#get_company_data-244"><span class="linenos">244</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_company_data-245"><a href="#get_company_data-245"><span class="linenos">245</span></a><span class="sd">    Retrieves data for a specific company.</span>
+</span><span id="get_company_data-246"><a href="#get_company_data-246"><span class="linenos">246</span></a>
+</span><span id="get_company_data-247"><a href="#get_company_data-247"><span class="linenos">247</span></a><span class="sd">    Args:</span>
+</span><span id="get_company_data-248"><a href="#get_company_data-248"><span class="linenos">248</span></a><span class="sd">        company_name (str): The name of the company to retrieve data for.</span>
+</span><span id="get_company_data-249"><a href="#get_company_data-249"><span class="linenos">249</span></a>
+</span><span id="get_company_data-250"><a href="#get_company_data-250"><span class="linenos">250</span></a><span class="sd">    Returns:</span>
+</span><span id="get_company_data-251"><a href="#get_company_data-251"><span class="linenos">251</span></a><span class="sd">        flask.Response: A JSON response containing the company&#39;s data.</span>
+</span><span id="get_company_data-252"><a href="#get_company_data-252"><span class="linenos">252</span></a><span class="sd">                        If the company is not found, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_company_data-253"><a href="#get_company_data-253"><span class="linenos">253</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_company_data-254"><a href="#get_company_data-254"><span class="linenos">254</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_company_data-255"><a href="#get_company_data-255"><span class="linenos">255</span></a>        <span class="n">company</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">)</span>
+</span><span id="get_company_data-256"><a href="#get_company_data-256"><span class="linenos">256</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">company</span><span class="p">)</span>
+</span><span id="get_company_data-257"><a href="#get_company_data-257"><span class="linenos">257</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_company_data-258"><a href="#get_company_data-258"><span class="linenos">258</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
 </span></pre></div>
 
 
@@ -985,29 +1126,29 @@ for different companies on a monthly basis.</p>
 
     </div>
     <a class="headerlink" href="#get_economia_data"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_economia_data-226"><a href="#get_economia_data-226"><span class="linenos">226</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/economia/&lt;company_name&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_economia_data-227"><a href="#get_economia_data-227"><span class="linenos">227</span></a><span class="k">def</span> <span class="nf">get_economia_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">):</span>
-</span><span id="get_economia_data-228"><a href="#get_economia_data-228"><span class="linenos">228</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_economia_data-229"><a href="#get_economia_data-229"><span class="linenos">229</span></a><span class="sd">    Retrieves the economia results for a specific company.</span>
-</span><span id="get_economia_data-230"><a href="#get_economia_data-230"><span class="linenos">230</span></a>
-</span><span id="get_economia_data-231"><a href="#get_economia_data-231"><span class="linenos">231</span></a><span class="sd">    Args:</span>
-</span><span id="get_economia_data-232"><a href="#get_economia_data-232"><span class="linenos">232</span></a><span class="sd">        company_name (str): The name of the company to retrieve economia data for.</span>
-</span><span id="get_economia_data-233"><a href="#get_economia_data-233"><span class="linenos">233</span></a>
-</span><span id="get_economia_data-234"><a href="#get_economia_data-234"><span class="linenos">234</span></a><span class="sd">    Returns:</span>
-</span><span id="get_economia_data-235"><a href="#get_economia_data-235"><span class="linenos">235</span></a><span class="sd">        flask.Response: A JSON response containing the company&#39;s name, receita_bruta, and economia results.</span>
-</span><span id="get_economia_data-236"><a href="#get_economia_data-236"><span class="linenos">236</span></a><span class="sd">                        If the company is not found, returns a JSON response with the error message and a 400 status code.</span>
-</span><span id="get_economia_data-237"><a href="#get_economia_data-237"><span class="linenos">237</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_economia_data-238"><a href="#get_economia_data-238"><span class="linenos">238</span></a>    <span class="k">try</span><span class="p">:</span>
-</span><span id="get_economia_data-239"><a href="#get_economia_data-239"><span class="linenos">239</span></a>        <span class="n">company</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">)</span>
-</span><span id="get_economia_data-240"><a href="#get_economia_data-240"><span class="linenos">240</span></a>        <span class="n">receita_bruta</span> <span class="o">=</span> <span class="n">company</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span>
-</span><span id="get_economia_data-241"><a href="#get_economia_data-241"><span class="linenos">241</span></a>        <span class="n">economia_result</span> <span class="o">=</span> <span class="n">economia</span><span class="p">(</span><span class="n">receita_bruta</span><span class="p">)</span>
-</span><span id="get_economia_data-242"><a href="#get_economia_data-242"><span class="linenos">242</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
-</span><span id="get_economia_data-243"><a href="#get_economia_data-243"><span class="linenos">243</span></a>            <span class="s2">&quot;company_name&quot;</span><span class="p">:</span> <span class="n">company_name</span><span class="p">,</span>
-</span><span id="get_economia_data-244"><a href="#get_economia_data-244"><span class="linenos">244</span></a>            <span class="s2">&quot;receita_bruta&quot;</span><span class="p">:</span> <span class="n">receita_bruta</span><span class="p">,</span>
-</span><span id="get_economia_data-245"><a href="#get_economia_data-245"><span class="linenos">245</span></a>            <span class="s2">&quot;economia&quot;</span><span class="p">:</span> <span class="n">economia_result</span>
-</span><span id="get_economia_data-246"><a href="#get_economia_data-246"><span class="linenos">246</span></a>        <span class="p">})</span>
-</span><span id="get_economia_data-247"><a href="#get_economia_data-247"><span class="linenos">247</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="get_economia_data-248"><a href="#get_economia_data-248"><span class="linenos">248</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_economia_data-261"><a href="#get_economia_data-261"><span class="linenos">261</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/economia/&lt;company_name&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_economia_data-262"><a href="#get_economia_data-262"><span class="linenos">262</span></a><span class="k">def</span> <span class="nf">get_economia_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">):</span>
+</span><span id="get_economia_data-263"><a href="#get_economia_data-263"><span class="linenos">263</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_economia_data-264"><a href="#get_economia_data-264"><span class="linenos">264</span></a><span class="sd">    Retrieves the economia results for a specific company.</span>
+</span><span id="get_economia_data-265"><a href="#get_economia_data-265"><span class="linenos">265</span></a>
+</span><span id="get_economia_data-266"><a href="#get_economia_data-266"><span class="linenos">266</span></a><span class="sd">    Args:</span>
+</span><span id="get_economia_data-267"><a href="#get_economia_data-267"><span class="linenos">267</span></a><span class="sd">        company_name (str): The name of the company to retrieve economia data for.</span>
+</span><span id="get_economia_data-268"><a href="#get_economia_data-268"><span class="linenos">268</span></a>
+</span><span id="get_economia_data-269"><a href="#get_economia_data-269"><span class="linenos">269</span></a><span class="sd">    Returns:</span>
+</span><span id="get_economia_data-270"><a href="#get_economia_data-270"><span class="linenos">270</span></a><span class="sd">        flask.Response: A JSON response containing the company&#39;s name, receita_bruta, and economia results.</span>
+</span><span id="get_economia_data-271"><a href="#get_economia_data-271"><span class="linenos">271</span></a><span class="sd">                        If the company is not found, returns a JSON response with the error message and a 400 status code.</span>
+</span><span id="get_economia_data-272"><a href="#get_economia_data-272"><span class="linenos">272</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_economia_data-273"><a href="#get_economia_data-273"><span class="linenos">273</span></a>    <span class="k">try</span><span class="p">:</span>
+</span><span id="get_economia_data-274"><a href="#get_economia_data-274"><span class="linenos">274</span></a>        <span class="n">company</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_company_data</span><span class="p">(</span><span class="n">company_name</span><span class="p">)</span>
+</span><span id="get_economia_data-275"><a href="#get_economia_data-275"><span class="linenos">275</span></a>        <span class="n">receita_bruta</span> <span class="o">=</span> <span class="n">company</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span>
+</span><span id="get_economia_data-276"><a href="#get_economia_data-276"><span class="linenos">276</span></a>        <span class="n">economia_result</span> <span class="o">=</span> <span class="n">economia</span><span class="p">(</span><span class="n">receita_bruta</span><span class="p">)</span>
+</span><span id="get_economia_data-277"><a href="#get_economia_data-277"><span class="linenos">277</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span>
+</span><span id="get_economia_data-278"><a href="#get_economia_data-278"><span class="linenos">278</span></a>            <span class="s2">&quot;company_name&quot;</span><span class="p">:</span> <span class="n">company_name</span><span class="p">,</span>
+</span><span id="get_economia_data-279"><a href="#get_economia_data-279"><span class="linenos">279</span></a>            <span class="s2">&quot;receita_bruta&quot;</span><span class="p">:</span> <span class="n">receita_bruta</span><span class="p">,</span>
+</span><span id="get_economia_data-280"><a href="#get_economia_data-280"><span class="linenos">280</span></a>            <span class="s2">&quot;economia&quot;</span><span class="p">:</span> <span class="n">economia_result</span>
+</span><span id="get_economia_data-281"><a href="#get_economia_data-281"><span class="linenos">281</span></a>        <span class="p">})</span>
+</span><span id="get_economia_data-282"><a href="#get_economia_data-282"><span class="linenos">282</span></a>    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="get_economia_data-283"><a href="#get_economia_data-283"><span class="linenos">283</span></a>        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">400</span>
 </span></pre></div>
 
 
@@ -1041,16 +1182,16 @@ for different companies on a monthly basis.</p>
 
     </div>
     <a class="headerlink" href="#get_all_companies"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="get_all_companies-251"><a href="#get_all_companies-251"><span class="linenos">251</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/companies&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
-</span><span id="get_all_companies-252"><a href="#get_all_companies-252"><span class="linenos">252</span></a><span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">():</span>
-</span><span id="get_all_companies-253"><a href="#get_all_companies-253"><span class="linenos">253</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="get_all_companies-254"><a href="#get_all_companies-254"><span class="linenos">254</span></a><span class="sd">    Retrieves data for all companies.</span>
-</span><span id="get_all_companies-255"><a href="#get_all_companies-255"><span class="linenos">255</span></a>
-</span><span id="get_all_companies-256"><a href="#get_all_companies-256"><span class="linenos">256</span></a><span class="sd">    Returns:</span>
-</span><span id="get_all_companies-257"><a href="#get_all_companies-257"><span class="linenos">257</span></a><span class="sd">        flask.Response: A JSON response containing data for all companies.</span>
-</span><span id="get_all_companies-258"><a href="#get_all_companies-258"><span class="linenos">258</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="get_all_companies-259"><a href="#get_all_companies-259"><span class="linenos">259</span></a>    <span class="n">companies</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_all_companies</span><span class="p">()</span>
-</span><span id="get_all_companies-260"><a href="#get_all_companies-260"><span class="linenos">260</span></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">companies</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="get_all_companies-286"><a href="#get_all_companies-286"><span class="linenos">286</span></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/companies&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+</span><span id="get_all_companies-287"><a href="#get_all_companies-287"><span class="linenos">287</span></a><span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">():</span>
+</span><span id="get_all_companies-288"><a href="#get_all_companies-288"><span class="linenos">288</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="get_all_companies-289"><a href="#get_all_companies-289"><span class="linenos">289</span></a><span class="sd">    Retrieves data for all companies.</span>
+</span><span id="get_all_companies-290"><a href="#get_all_companies-290"><span class="linenos">290</span></a>
+</span><span id="get_all_companies-291"><a href="#get_all_companies-291"><span class="linenos">291</span></a><span class="sd">    Returns:</span>
+</span><span id="get_all_companies-292"><a href="#get_all_companies-292"><span class="linenos">292</span></a><span class="sd">        flask.Response: A JSON response containing data for all companies.</span>
+</span><span id="get_all_companies-293"><a href="#get_all_companies-293"><span class="linenos">293</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="get_all_companies-294"><a href="#get_all_companies-294"><span class="linenos">294</span></a>    <span class="n">companies</span> <span class="o">=</span> <span class="n">company_data</span><span class="o">.</span><span class="n">get_all_companies</span><span class="p">()</span>
+</span><span id="get_all_companies-295"><a href="#get_all_companies-295"><span class="linenos">295</span></a>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">companies</span><span class="p">)</span>
 </span></pre></div>
 
 

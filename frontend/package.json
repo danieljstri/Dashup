@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "docs": "jsdoc -c jsdoc.json",
+    "docs": "jsdoc -c jsdoc.json -d docs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
@@ -19,6 +19,7 @@
     "chart.js": "^3.9.1",
     "chartjs": "^0.3.24",
     "d3": "^7.9.0",
+    "jsdoc": "^4.0.3",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.4",
     "vue": "^3.4.29",
