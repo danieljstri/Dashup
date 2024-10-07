@@ -211,6 +211,46 @@ export const getMarkupAnesthesiaData = async (month = "total") => {
 };
 
 /**
+ * Fetches markup data for exams for a specified month.
+ *
+ * @async
+ * @function getMarkupExamsData
+ * @param {string} [month="total"] - The month for which to retrieve exams markup data.
+ * @returns {Promise<Object>} The exams markup data retrieved from the API in the format { month: string, value: (number = fixed_expenses, number = variable_expenses, number = product_revenue) }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getMarkupExamsData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/markup/exames/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+/**
+ * Fetches markup data for consultation for a specified month.
+ *
+ * @async
+ * @function getMarkupConsultationData
+ * @param {string} [month="total"] - The month for which to retrieve consultation markup data.
+ * @returns {Promise<Object>} The exams markup data retrieved from the API in the format { month: string, value: (number = fixed_expenses, number = variable_expenses, number = product_revenue) }.
+ * @throws Will throw an error if the HTTP request fails.
+ */
+export const getMarkupConsultationData = async (month = "total") => {
+  try {
+    const response = await axios.get(`http://localhost:3000/api/markup/consulta/${month}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
+};
+
+
+
+/**
  * Fetches data for all economic companies.
  *
  * @async

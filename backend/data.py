@@ -477,6 +477,7 @@ class Data:
         )
         return variables_expenses
 
+
     def getMarkupAnestesia(self, month="total"):
         """
         Calculates the markup for anesthesia expenses based on fixed and variable expenses.
@@ -500,7 +501,7 @@ class Data:
         total_revenue = self.getReceitas(month)
         product_revenue = self.getReceitaAnestesia(month)
         product_expenses = self.getDespesaAnestesia(month)
-        fixed_expenses, variable_expenses = expenses_product_calculation(
+        product_fixed_expenses, product_variable_expenses = expenses_product_calculation(
             expenses_product=product_expenses,
             fixed_expenses=fixed_expenses,
             variable_expenses=variable_expenses,
@@ -508,7 +509,74 @@ class Data:
             product_revenue=product_revenue
         )
 
-        return fixed_expenses, variable_expenses, product_revenue
+        return product_fixed_expenses, product_variable_expenses, product_revenue
+
+
+    def getMarkupConsulta(self, month="total"):
+        """
+        Calculates the markup for consult expenses based on fixed and variable expenses.
+
+        Utilizes `economia.expenses_product_calculation` to adjust expenses.
+
+        Args:
+            month (str, optional): The month for which to calculate the markup. Defaults to "total".
+        
+        Returns:
+            tuple:
+                float: Adjusted fixed expenses.
+                float: Adjusted variable expenses.
+                float: Product revenue.
+        
+        Raises:
+            ValueError: If the provided month is not valid.
+        """
+        fixed_expenses = self.getFixedExpenses(month)
+        variable_expenses = self.getVariablesExpenses(month)
+        total_revenue = self.getReceitas(month)
+        product_revenue = self.getReceitaConsulta(month)
+        product_expenses = 0 # No specific expenses for consult
+        product_fixed_expenses, product_variable_expenses = expenses_product_calculation(
+            expenses_product=product_expenses,
+            fixed_expenses=fixed_expenses,
+            variable_expenses=variable_expenses,
+            total_revenue=total_revenue,
+            product_revenue=product_revenue
+        )
+
+        return product_fixed_expenses, product_variable_expenses, product_revenue
+
+    def getMarkupExames(self, month="total"):
+        """
+        Calculates the markup for exams expenses based on fixed and variable expenses.
+
+        Utilizes `economia.expenses_product_calculation` to adjust expenses.
+
+        Args:
+            month (str, optional): The month for which to calculate the markup. Defaults to "total".
+        
+        Returns:
+            tuple:
+                float: Adjusted fixed expenses.
+                float: Adjusted variable expenses.
+                float: Product revenue.
+        
+        Raises:
+            ValueError: If the provided month is not valid.
+        """
+        fixed_expenses = self.getFixedExpenses(month)
+        variable_expenses = self.getVariablesExpenses(month)
+        total_revenue = self.getReceitas(month)
+        product_revenue = self.getReceitaExames(month)
+        product_expenses = 0 # No specific expenses for exams
+        product_fixed_expenses, product_variable_expenses = expenses_product_calculation(
+            expenses_product=product_expenses,
+            fixed_expenses=fixed_expenses,
+            variable_expenses=variable_expenses,
+            total_revenue=total_revenue,
+            product_revenue=product_revenue
+        )
+
+        return product_fixed_expenses, product_variable_expenses, product_revenue
 
     def getAllData(self):
         """
