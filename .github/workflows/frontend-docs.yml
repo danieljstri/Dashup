@@ -1,5 +1,5 @@
-name: website
-# build the documentation whenever there are new commits on main
+name: frontend-website
+# Build the documentation whenever there are new commits on main
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
     # Alternative: only build for tags.
     # tags:
     #   - '*'
-# security: restrict permissions for CI jobs.
+# Security: restrict permissions for CI jobs.
 permissions:
   contents: read
 jobs:
@@ -16,13 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          python-version: '3.12'
-      # Install all dependencies (including pdoc)
-      - run: pip install -r backend/requirements.txt 
-      # Build your backend documentation into docs/backend/
-      - run: pdoc -d google backend/ -o ./docs/backend
+          node-version: '16'
       # Install frontend dependencies
       - run: |
           cd frontend
@@ -33,9 +30,7 @@ jobs:
           npm run docs
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: |
-            docs/backend
-            frontend/docs
+          path: frontend/docs/
   # Deploy the artifact to GitHub pages.
   # This is a separate job so that only actions/deploy-pages has the necessary permissions.
   deploy:
