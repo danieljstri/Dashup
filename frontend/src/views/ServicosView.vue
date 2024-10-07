@@ -1,5 +1,5 @@
 <script setup>
-import PieChart from '@/components/charts/PieChart.vue';
+import PieChart from '@/components/charts/RxEAnethesia.vue';
 </script>
 
 <template>
