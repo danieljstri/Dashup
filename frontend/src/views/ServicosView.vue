@@ -2,6 +2,7 @@
 import PieChart from '@/components/charts/Anestesia.vue';
 import receitaAnestesia from '@/components/cards/RevenueAnesthesia.vue';
 import despezaAnestesia from '@/components/cards/ExpensesAnesthesia.vue';
+import lucroAnestesia from '@/components/cards/ProfitAnesthesia.vue';
 
 </script>
 
@@ -13,6 +14,7 @@ import despezaAnestesia from '@/components/cards/ExpensesAnesthesia.vue';
       <div class="cards">
         <receitaAnestesia/>
       <despezaAnestesia/>
+      <lucroAnestesia/>
       </div>
     </div>
   </div>
