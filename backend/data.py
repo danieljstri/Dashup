@@ -111,9 +111,9 @@ class Data:
         receita_anestesia = convert_to_float(receita_anestesia_str)
         return receita_anestesia
 
-    def getReceitaDinheiro(self, month="total"):
+    def getReceitaConsulta(self, month="total"):
         """
-        Retrieves the cash revenue of the dataset for a specified month or the total annual cash revenue.
+        Retrieves the consult revenue of the dataset for a specified month or the total annual cash revenue.
 
         Args:
             month (str, optional): The month for which to retrieve the cash revenue. Defaults to "total".
@@ -126,7 +126,7 @@ class Data:
         """
         error_month(month)
 
-        receita_dinheiro_str = self.df.loc[self.df['RESULTADO'] == 'ReceitasDinheiro', month].values[0]
+        receita_dinheiro_str = self.df.loc[self.df['RESULTADO'] == 'ReceitasConsulta', month].values[0]
         receita_dinheiro = convert_to_float(receita_dinheiro_str)
         return receita_dinheiro
 

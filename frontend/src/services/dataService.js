@@ -95,17 +95,17 @@ export const getRevenueAnesthesiaData = async (month = "total") => {
 };
 
 /**
- * Fetches revenue data for cash transactions for a specified month.
+ * Fetches revenue data of consultations for a specified month.
  *
  * @async
- * @function getRevenueCashData
+ * @function getRevenueConsultationData
  * @param {string} [month="total"] - The month for which to retrieve cash revenue data.
  * @returns {Promise<Object>} The cash revenue data retrieved from the API in the format { month: string, value: number }.
  * @throws Will throw an error if the HTTP request fails.
  */
-export const getRevenueCashData = async (month = "total") => {
+export const getRevenueConsultationData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/receitas/dinheiro/${month}`);
+    const response = await axios.get(`http://localhost:3000/api/receitas/consulta/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
