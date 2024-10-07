@@ -27,10 +27,8 @@ jobs:
       - run: |
           cd frontend
           npm install
-      # Build your frontend documentation into frontend/docs/
-      - run: |
-          cd frontend
           npm run docs
+      # Build your frontend documentation into frontend/docs/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: |
