@@ -21,19 +21,21 @@ jobs:
           python-version: '3.12'
       # Install all dependencies (including pdoc)
       - run: pip install -r backend/requirements.txt 
-      # Build your backend documentation into docs/
+      # Build your backend documentation into docs/backend/
       - run: pdoc -d google backend/ -o ./docs/backend
       # Install frontend dependencies
       - run: |
           cd frontend
           npm install
-          npm run docs
       # Build your frontend documentation into frontend/docs/
+      - run: |
+          cd frontend
+          npm run docs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: |
-            docs/
-            frontend/docs/
+            docs/backend
+            frontend/docs
   # Deploy the artifact to GitHub pages.
   # This is a separate job so that only actions/deploy-pages has the necessary permissions.
   deploy:
