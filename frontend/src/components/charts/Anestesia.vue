@@ -45,21 +45,19 @@ export default {
           // 'expenses', 'revenue' e 'profit' recebem os resultados das funções que buscam os dados de despesas, receitas e lucros
           const expenses = await getExpensesAnesthesiaData();
           const revenue = await getRevenueAnesthesiaData();
-          const profit = await getProfitData();
 
           // Extrai os valores específicos de cada objeto retornado para uso no Chart
           const expensesValue = expenses.value;
           const revenueValue = revenue.value;
-          const profitValue = profit.value;
 
           // Dados para o gráfico
           chartData.value = {
-            labels: ['Receita', 'Despesa', 'Lucro'],
+            labels: ['Receita', 'Despesa'],
             datasets: [
               {
-                data: [revenueValue, expensesValue, profitValue],
-                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'], // Cores dos segmentos
-                hoverBackgroundColor: ['#42b989','#fc9e56', '#00ff06'],
+                data: [revenueValue, expensesValue],
+                backgroundColor: ['#FF6384', '#36A2EB'], // Cores dos segmentos
+                hoverBackgroundColor: ['#42b989','#fc9e56'],
                 borderColor: '#000000', // Cor da borda (preto, neste caso)
                 borderWidth: 2 // Largura da borda
               },
