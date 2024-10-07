@@ -17,7 +17,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { getExpensesAnesthesiaData, getProfitData, getRevenueAnesthesiaData } from '../../services/dataService';
+import { getExpensesAnesthesiaData, getRevenueAnesthesiaData } from '../../services/dataService';
 import { Pie } from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 
