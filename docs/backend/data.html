@@ -55,7 +55,7 @@
                                 <a class="function" href="#Data.getReceitaAnestesia">getReceitaAnestesia</a>
                         </li>
                         <li>
-                                <a class="function" href="#Data.getReceitaDinheiro">getReceitaDinheiro</a>
+                                <a class="function" href="#Data.getReceitaConsulta">getReceitaConsulta</a>
                         </li>
                         <li>
                                 <a class="function" href="#Data.getDespesas">getDespesas</a>
@@ -113,6 +113,12 @@
                         </li>
                         <li>
                                 <a class="function" href="#Data.getMarkupAnestesia">getMarkupAnestesia</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Data.getMarkupConsulta">getMarkupConsulta</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#Data.getMarkupExames">getMarkupExames</a>
                         </li>
                         <li>
                                 <a class="function" href="#Data.getAllData">getAllData</a>
@@ -288,9 +294,9 @@ to access company records and retrieve gross revenue data.</p>
 </span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>        <span class="n">receita_anestesia</span> <span class="o">=</span> <span class="n">convert_to_float</span><span class="p">(</span><span class="n">receita_anestesia_str</span><span class="p">)</span>
 </span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="n">receita_anestesia</span>
 </span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>
-</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>    <span class="k">def</span> <span class="nf">getReceitaDinheiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a>    <span class="k">def</span> <span class="nf">getReceitaConsulta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
 </span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="sd">        Retrieves the cash revenue of the dataset for a specified month or the total annual cash revenue.</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a><span class="sd">        Retrieves the consult revenue of the dataset for a specified month or the total annual cash revenue.</span>
 </span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>
 </span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a><span class="sd">        Args:</span>
 </span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a><span class="sd">            month (str, optional): The month for which to retrieve the cash revenue. Defaults to &quot;total&quot;.</span>
@@ -303,7 +309,7 @@ to access company records and retrieve gross revenue data.</p>
 </span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>        <span class="n">error_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
 </span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a>
-</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>        <span class="n">receita_dinheiro_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;RESULTADO&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ReceitasDinheiro&#39;</span><span class="p">,</span> <span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>        <span class="n">receita_dinheiro_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;RESULTADO&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ReceitasConsulta&#39;</span><span class="p">,</span> <span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>        <span class="n">receita_dinheiro</span> <span class="o">=</span> <span class="n">convert_to_float</span><span class="p">(</span><span class="n">receita_dinheiro_str</span><span class="p">)</span>
 </span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>        <span class="k">return</span> <span class="n">receita_dinheiro</span>
 </span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>
@@ -654,120 +660,188 @@ to access company records and retrieve gross revenue data.</p>
 </span><span id="L-477"><a href="#L-477"><span class="linenos">477</span></a>        <span class="p">)</span>
 </span><span id="L-478"><a href="#L-478"><span class="linenos">478</span></a>        <span class="k">return</span> <span class="n">variables_expenses</span>
 </span><span id="L-479"><a href="#L-479"><span class="linenos">479</span></a>
-</span><span id="L-480"><a href="#L-480"><span class="linenos">480</span></a>    <span class="k">def</span> <span class="nf">getMarkupAnestesia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
-</span><span id="L-481"><a href="#L-481"><span class="linenos">481</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-482"><a href="#L-482"><span class="linenos">482</span></a><span class="sd">        Calculates the markup for anesthesia expenses based on fixed and variable expenses.</span>
-</span><span id="L-483"><a href="#L-483"><span class="linenos">483</span></a>
-</span><span id="L-484"><a href="#L-484"><span class="linenos">484</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
-</span><span id="L-485"><a href="#L-485"><span class="linenos">485</span></a>
-</span><span id="L-486"><a href="#L-486"><span class="linenos">486</span></a><span class="sd">        Args:</span>
-</span><span id="L-487"><a href="#L-487"><span class="linenos">487</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
-</span><span id="L-488"><a href="#L-488"><span class="linenos">488</span></a>
-</span><span id="L-489"><a href="#L-489"><span class="linenos">489</span></a><span class="sd">        Returns:</span>
-</span><span id="L-490"><a href="#L-490"><span class="linenos">490</span></a><span class="sd">            tuple:</span>
-</span><span id="L-491"><a href="#L-491"><span class="linenos">491</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
-</span><span id="L-492"><a href="#L-492"><span class="linenos">492</span></a><span class="sd">                float: Adjusted variable expenses.</span>
-</span><span id="L-493"><a href="#L-493"><span class="linenos">493</span></a><span class="sd">                float: Product revenue.</span>
-</span><span id="L-494"><a href="#L-494"><span class="linenos">494</span></a>
-</span><span id="L-495"><a href="#L-495"><span class="linenos">495</span></a><span class="sd">        Raises:</span>
-</span><span id="L-496"><a href="#L-496"><span class="linenos">496</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
-</span><span id="L-497"><a href="#L-497"><span class="linenos">497</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-498"><a href="#L-498"><span class="linenos">498</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-499"><a href="#L-499"><span class="linenos">499</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-500"><a href="#L-500"><span class="linenos">500</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-501"><a href="#L-501"><span class="linenos">501</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-502"><a href="#L-502"><span class="linenos">502</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="L-503"><a href="#L-503"><span class="linenos">503</span></a>        <span class="n">fixed_expenses</span><span class="p">,</span> <span class="n">variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
-</span><span id="L-504"><a href="#L-504"><span class="linenos">504</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
-</span><span id="L-505"><a href="#L-505"><span class="linenos">505</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
-</span><span id="L-506"><a href="#L-506"><span class="linenos">506</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
-</span><span id="L-507"><a href="#L-507"><span class="linenos">507</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
-</span><span id="L-508"><a href="#L-508"><span class="linenos">508</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
-</span><span id="L-509"><a href="#L-509"><span class="linenos">509</span></a>        <span class="p">)</span>
-</span><span id="L-510"><a href="#L-510"><span class="linenos">510</span></a>
-</span><span id="L-511"><a href="#L-511"><span class="linenos">511</span></a>        <span class="k">return</span> <span class="n">fixed_expenses</span><span class="p">,</span> <span class="n">variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
-</span><span id="L-512"><a href="#L-512"><span class="linenos">512</span></a>
-</span><span id="L-513"><a href="#L-513"><span class="linenos">513</span></a>    <span class="k">def</span> <span class="nf">getAllData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-514"><a href="#L-514"><span class="linenos">514</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-515"><a href="#L-515"><span class="linenos">515</span></a><span class="sd">        Retrieves all data from the dataset.</span>
-</span><span id="L-516"><a href="#L-516"><span class="linenos">516</span></a>
-</span><span id="L-517"><a href="#L-517"><span class="linenos">517</span></a><span class="sd">        Returns:</span>
-</span><span id="L-518"><a href="#L-518"><span class="linenos">518</span></a><span class="sd">            list of dict: A list of records representing the dataset.</span>
-</span><span id="L-519"><a href="#L-519"><span class="linenos">519</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-520"><a href="#L-520"><span class="linenos">520</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
-</span><span id="L-521"><a href="#L-521"><span class="linenos">521</span></a>        <span class="k">return</span> <span class="n">data</span>
-</span><span id="L-522"><a href="#L-522"><span class="linenos">522</span></a>
-</span><span id="L-523"><a href="#L-523"><span class="linenos">523</span></a>
-</span><span id="L-524"><a href="#L-524"><span class="linenos">524</span></a><span class="k">class</span> <span class="nc">CompanyData</span><span class="p">:</span>
-</span><span id="L-525"><a href="#L-525"><span class="linenos">525</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-526"><a href="#L-526"><span class="linenos">526</span></a><span class="sd">    Class to access the data of a specific company. This data only has 2 columns: &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
-</span><span id="L-527"><a href="#L-527"><span class="linenos">527</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-528"><a href="#L-528"><span class="linenos">528</span></a>
-</span><span id="L-529"><a href="#L-529"><span class="linenos">529</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_path</span><span class="p">):</span>
-</span><span id="L-530"><a href="#L-530"><span class="linenos">530</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-531"><a href="#L-531"><span class="linenos">531</span></a><span class="sd">        Initializes the CompanyData class with the path of the CSV file.</span>
-</span><span id="L-532"><a href="#L-532"><span class="linenos">532</span></a>
-</span><span id="L-533"><a href="#L-533"><span class="linenos">533</span></a><span class="sd">        Args:</span>
-</span><span id="L-534"><a href="#L-534"><span class="linenos">534</span></a><span class="sd">            csv_file_path (str): The path of the CSV file.</span>
-</span><span id="L-535"><a href="#L-535"><span class="linenos">535</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-536"><a href="#L-536"><span class="linenos">536</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span> <span class="o">=</span> <span class="n">csv_file_path</span>
-</span><span id="L-537"><a href="#L-537"><span class="linenos">537</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-</span><span id="L-538"><a href="#L-538"><span class="linenos">538</span></a>
-</span><span id="L-539"><a href="#L-539"><span class="linenos">539</span></a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-540"><a href="#L-540"><span class="linenos">540</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-541"><a href="#L-541"><span class="linenos">541</span></a><span class="sd">        Loads the data from the CSV file.</span>
-</span><span id="L-542"><a href="#L-542"><span class="linenos">542</span></a>
-</span><span id="L-543"><a href="#L-543"><span class="linenos">543</span></a><span class="sd">        Returns:</span>
-</span><span id="L-544"><a href="#L-544"><span class="linenos">544</span></a><span class="sd">            list of dict: A list of company records with &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
-</span><span id="L-545"><a href="#L-545"><span class="linenos">545</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-546"><a href="#L-546"><span class="linenos">546</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="L-547"><a href="#L-547"><span class="linenos">547</span></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-</span><span id="L-548"><a href="#L-548"><span class="linenos">548</span></a>            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
-</span><span id="L-549"><a href="#L-549"><span class="linenos">549</span></a>            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-</span><span id="L-550"><a href="#L-550"><span class="linenos">550</span></a>                <span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">])</span>
-</span><span id="L-551"><a href="#L-551"><span class="linenos">551</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-</span><span id="L-552"><a href="#L-552"><span class="linenos">552</span></a>        <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-480"><a href="#L-480"><span class="linenos">480</span></a>
+</span><span id="L-481"><a href="#L-481"><span class="linenos">481</span></a>    <span class="k">def</span> <span class="nf">getMarkupAnestesia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="L-482"><a href="#L-482"><span class="linenos">482</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-483"><a href="#L-483"><span class="linenos">483</span></a><span class="sd">        Calculates the markup for anesthesia expenses based on fixed and variable expenses.</span>
+</span><span id="L-484"><a href="#L-484"><span class="linenos">484</span></a>
+</span><span id="L-485"><a href="#L-485"><span class="linenos">485</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
+</span><span id="L-486"><a href="#L-486"><span class="linenos">486</span></a>
+</span><span id="L-487"><a href="#L-487"><span class="linenos">487</span></a><span class="sd">        Args:</span>
+</span><span id="L-488"><a href="#L-488"><span class="linenos">488</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="L-489"><a href="#L-489"><span class="linenos">489</span></a>
+</span><span id="L-490"><a href="#L-490"><span class="linenos">490</span></a><span class="sd">        Returns:</span>
+</span><span id="L-491"><a href="#L-491"><span class="linenos">491</span></a><span class="sd">            tuple:</span>
+</span><span id="L-492"><a href="#L-492"><span class="linenos">492</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="L-493"><a href="#L-493"><span class="linenos">493</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="L-494"><a href="#L-494"><span class="linenos">494</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="L-495"><a href="#L-495"><span class="linenos">495</span></a>
+</span><span id="L-496"><a href="#L-496"><span class="linenos">496</span></a><span class="sd">        Raises:</span>
+</span><span id="L-497"><a href="#L-497"><span class="linenos">497</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="L-498"><a href="#L-498"><span class="linenos">498</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-499"><a href="#L-499"><span class="linenos">499</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-500"><a href="#L-500"><span class="linenos">500</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-501"><a href="#L-501"><span class="linenos">501</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-502"><a href="#L-502"><span class="linenos">502</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-503"><a href="#L-503"><span class="linenos">503</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-504"><a href="#L-504"><span class="linenos">504</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="L-505"><a href="#L-505"><span class="linenos">505</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="L-506"><a href="#L-506"><span class="linenos">506</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="L-507"><a href="#L-507"><span class="linenos">507</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="L-508"><a href="#L-508"><span class="linenos">508</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="L-509"><a href="#L-509"><span class="linenos">509</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="L-510"><a href="#L-510"><span class="linenos">510</span></a>        <span class="p">)</span>
+</span><span id="L-511"><a href="#L-511"><span class="linenos">511</span></a>
+</span><span id="L-512"><a href="#L-512"><span class="linenos">512</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
+</span><span id="L-513"><a href="#L-513"><span class="linenos">513</span></a>
+</span><span id="L-514"><a href="#L-514"><span class="linenos">514</span></a>
+</span><span id="L-515"><a href="#L-515"><span class="linenos">515</span></a>    <span class="k">def</span> <span class="nf">getMarkupConsulta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="L-516"><a href="#L-516"><span class="linenos">516</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-517"><a href="#L-517"><span class="linenos">517</span></a><span class="sd">        Calculates the markup for consult expenses based on fixed and variable expenses.</span>
+</span><span id="L-518"><a href="#L-518"><span class="linenos">518</span></a>
+</span><span id="L-519"><a href="#L-519"><span class="linenos">519</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
+</span><span id="L-520"><a href="#L-520"><span class="linenos">520</span></a>
+</span><span id="L-521"><a href="#L-521"><span class="linenos">521</span></a><span class="sd">        Args:</span>
+</span><span id="L-522"><a href="#L-522"><span class="linenos">522</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="L-523"><a href="#L-523"><span class="linenos">523</span></a><span class="sd">        </span>
+</span><span id="L-524"><a href="#L-524"><span class="linenos">524</span></a><span class="sd">        Returns:</span>
+</span><span id="L-525"><a href="#L-525"><span class="linenos">525</span></a><span class="sd">            tuple:</span>
+</span><span id="L-526"><a href="#L-526"><span class="linenos">526</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="L-527"><a href="#L-527"><span class="linenos">527</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="L-528"><a href="#L-528"><span class="linenos">528</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="L-529"><a href="#L-529"><span class="linenos">529</span></a><span class="sd">        </span>
+</span><span id="L-530"><a href="#L-530"><span class="linenos">530</span></a><span class="sd">        Raises:</span>
+</span><span id="L-531"><a href="#L-531"><span class="linenos">531</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="L-532"><a href="#L-532"><span class="linenos">532</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-533"><a href="#L-533"><span class="linenos">533</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-534"><a href="#L-534"><span class="linenos">534</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-535"><a href="#L-535"><span class="linenos">535</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-536"><a href="#L-536"><span class="linenos">536</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaConsulta</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-537"><a href="#L-537"><span class="linenos">537</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># No specific expenses for consult</span>
+</span><span id="L-538"><a href="#L-538"><span class="linenos">538</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="L-539"><a href="#L-539"><span class="linenos">539</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="L-540"><a href="#L-540"><span class="linenos">540</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="L-541"><a href="#L-541"><span class="linenos">541</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="L-542"><a href="#L-542"><span class="linenos">542</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="L-543"><a href="#L-543"><span class="linenos">543</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="L-544"><a href="#L-544"><span class="linenos">544</span></a>        <span class="p">)</span>
+</span><span id="L-545"><a href="#L-545"><span class="linenos">545</span></a>
+</span><span id="L-546"><a href="#L-546"><span class="linenos">546</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
+</span><span id="L-547"><a href="#L-547"><span class="linenos">547</span></a>
+</span><span id="L-548"><a href="#L-548"><span class="linenos">548</span></a>    <span class="k">def</span> <span class="nf">getMarkupExames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="L-549"><a href="#L-549"><span class="linenos">549</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-550"><a href="#L-550"><span class="linenos">550</span></a><span class="sd">        Calculates the markup for exams expenses based on fixed and variable expenses.</span>
+</span><span id="L-551"><a href="#L-551"><span class="linenos">551</span></a>
+</span><span id="L-552"><a href="#L-552"><span class="linenos">552</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
 </span><span id="L-553"><a href="#L-553"><span class="linenos">553</span></a>
-</span><span id="L-554"><a href="#L-554"><span class="linenos">554</span></a>    <span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company_name</span><span class="p">):</span>
-</span><span id="L-555"><a href="#L-555"><span class="linenos">555</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-556"><a href="#L-556"><span class="linenos">556</span></a><span class="sd">        Retrieves the data of a specific company.</span>
-</span><span id="L-557"><a href="#L-557"><span class="linenos">557</span></a>
-</span><span id="L-558"><a href="#L-558"><span class="linenos">558</span></a><span class="sd">        Args:</span>
-</span><span id="L-559"><a href="#L-559"><span class="linenos">559</span></a><span class="sd">            company_name (str): The name of the company.</span>
-</span><span id="L-560"><a href="#L-560"><span class="linenos">560</span></a>
-</span><span id="L-561"><a href="#L-561"><span class="linenos">561</span></a><span class="sd">        Returns:</span>
-</span><span id="L-562"><a href="#L-562"><span class="linenos">562</span></a><span class="sd">            dict: The company&#39;s data containing &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
-</span><span id="L-563"><a href="#L-563"><span class="linenos">563</span></a>
-</span><span id="L-564"><a href="#L-564"><span class="linenos">564</span></a><span class="sd">        Raises:</span>
-</span><span id="L-565"><a href="#L-565"><span class="linenos">565</span></a><span class="sd">            ValueError: If the company is not found.</span>
-</span><span id="L-566"><a href="#L-566"><span class="linenos">566</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-567"><a href="#L-567"><span class="linenos">567</span></a>        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-</span><span id="L-568"><a href="#L-568"><span class="linenos">568</span></a>            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;nome_da_empresa&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">company_name</span><span class="p">:</span>
-</span><span id="L-569"><a href="#L-569"><span class="linenos">569</span></a>                <span class="k">return</span> <span class="n">record</span>
-</span><span id="L-570"><a href="#L-570"><span class="linenos">570</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Company &#39;</span><span class="si">{</span><span class="n">company_name</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
-</span><span id="L-571"><a href="#L-571"><span class="linenos">571</span></a>
-</span><span id="L-572"><a href="#L-572"><span class="linenos">572</span></a>    <span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-573"><a href="#L-573"><span class="linenos">573</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-574"><a href="#L-574"><span class="linenos">574</span></a><span class="sd">        Retrieves the data of all companies.</span>
-</span><span id="L-575"><a href="#L-575"><span class="linenos">575</span></a>
-</span><span id="L-576"><a href="#L-576"><span class="linenos">576</span></a><span class="sd">        Returns:</span>
-</span><span id="L-577"><a href="#L-577"><span class="linenos">577</span></a><span class="sd">            list of dict: A list of all company records.</span>
-</span><span id="L-578"><a href="#L-578"><span class="linenos">578</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-579"><a href="#L-579"><span class="linenos">579</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+</span><span id="L-554"><a href="#L-554"><span class="linenos">554</span></a><span class="sd">        Args:</span>
+</span><span id="L-555"><a href="#L-555"><span class="linenos">555</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="L-556"><a href="#L-556"><span class="linenos">556</span></a><span class="sd">        </span>
+</span><span id="L-557"><a href="#L-557"><span class="linenos">557</span></a><span class="sd">        Returns:</span>
+</span><span id="L-558"><a href="#L-558"><span class="linenos">558</span></a><span class="sd">            tuple:</span>
+</span><span id="L-559"><a href="#L-559"><span class="linenos">559</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="L-560"><a href="#L-560"><span class="linenos">560</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="L-561"><a href="#L-561"><span class="linenos">561</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="L-562"><a href="#L-562"><span class="linenos">562</span></a><span class="sd">        </span>
+</span><span id="L-563"><a href="#L-563"><span class="linenos">563</span></a><span class="sd">        Raises:</span>
+</span><span id="L-564"><a href="#L-564"><span class="linenos">564</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="L-565"><a href="#L-565"><span class="linenos">565</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-566"><a href="#L-566"><span class="linenos">566</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-567"><a href="#L-567"><span class="linenos">567</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-568"><a href="#L-568"><span class="linenos">568</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-569"><a href="#L-569"><span class="linenos">569</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaExames</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="L-570"><a href="#L-570"><span class="linenos">570</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># No specific expenses for exams</span>
+</span><span id="L-571"><a href="#L-571"><span class="linenos">571</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="L-572"><a href="#L-572"><span class="linenos">572</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="L-573"><a href="#L-573"><span class="linenos">573</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="L-574"><a href="#L-574"><span class="linenos">574</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="L-575"><a href="#L-575"><span class="linenos">575</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="L-576"><a href="#L-576"><span class="linenos">576</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="L-577"><a href="#L-577"><span class="linenos">577</span></a>        <span class="p">)</span>
+</span><span id="L-578"><a href="#L-578"><span class="linenos">578</span></a>
+</span><span id="L-579"><a href="#L-579"><span class="linenos">579</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
 </span><span id="L-580"><a href="#L-580"><span class="linenos">580</span></a>
-</span><span id="L-581"><a href="#L-581"><span class="linenos">581</span></a>
-</span><span id="L-582"><a href="#L-582"><span class="linenos">582</span></a><span class="k">def</span> <span class="nf">error_month</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="L-583"><a href="#L-583"><span class="linenos">583</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-584"><a href="#L-584"><span class="linenos">584</span></a><span class="sd">    Verifies if the selected month is valid.</span>
-</span><span id="L-585"><a href="#L-585"><span class="linenos">585</span></a>
-</span><span id="L-586"><a href="#L-586"><span class="linenos">586</span></a><span class="sd">    Args:</span>
-</span><span id="L-587"><a href="#L-587"><span class="linenos">587</span></a><span class="sd">        month (str): The month to verify.</span>
-</span><span id="L-588"><a href="#L-588"><span class="linenos">588</span></a>
-</span><span id="L-589"><a href="#L-589"><span class="linenos">589</span></a><span class="sd">    Raises:</span>
-</span><span id="L-590"><a href="#L-590"><span class="linenos">590</span></a><span class="sd">        ValueError: If the month is not in the list of possible months.</span>
-</span><span id="L-591"><a href="#L-591"><span class="linenos">591</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-592"><a href="#L-592"><span class="linenos">592</span></a>    <span class="k">if</span> <span class="n">month</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">possible_months</span><span class="p">:</span>
-</span><span id="L-593"><a href="#L-593"><span class="linenos">593</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Month &#39;</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s2">&#39; is not valid. Choose from </span><span class="si">{</span><span class="n">possible_months</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</span><span id="L-581"><a href="#L-581"><span class="linenos">581</span></a>    <span class="k">def</span> <span class="nf">getAllData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-582"><a href="#L-582"><span class="linenos">582</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-583"><a href="#L-583"><span class="linenos">583</span></a><span class="sd">        Retrieves all data from the dataset.</span>
+</span><span id="L-584"><a href="#L-584"><span class="linenos">584</span></a>
+</span><span id="L-585"><a href="#L-585"><span class="linenos">585</span></a><span class="sd">        Returns:</span>
+</span><span id="L-586"><a href="#L-586"><span class="linenos">586</span></a><span class="sd">            list of dict: A list of records representing the dataset.</span>
+</span><span id="L-587"><a href="#L-587"><span class="linenos">587</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-588"><a href="#L-588"><span class="linenos">588</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</span><span id="L-589"><a href="#L-589"><span class="linenos">589</span></a>        <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-590"><a href="#L-590"><span class="linenos">590</span></a>
+</span><span id="L-591"><a href="#L-591"><span class="linenos">591</span></a>
+</span><span id="L-592"><a href="#L-592"><span class="linenos">592</span></a><span class="k">class</span> <span class="nc">CompanyData</span><span class="p">:</span>
+</span><span id="L-593"><a href="#L-593"><span class="linenos">593</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-594"><a href="#L-594"><span class="linenos">594</span></a><span class="sd">    Class to access the data of a specific company. This data only has 2 columns: &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
+</span><span id="L-595"><a href="#L-595"><span class="linenos">595</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-596"><a href="#L-596"><span class="linenos">596</span></a>
+</span><span id="L-597"><a href="#L-597"><span class="linenos">597</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_path</span><span class="p">):</span>
+</span><span id="L-598"><a href="#L-598"><span class="linenos">598</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-599"><a href="#L-599"><span class="linenos">599</span></a><span class="sd">        Initializes the CompanyData class with the path of the CSV file.</span>
+</span><span id="L-600"><a href="#L-600"><span class="linenos">600</span></a>
+</span><span id="L-601"><a href="#L-601"><span class="linenos">601</span></a><span class="sd">        Args:</span>
+</span><span id="L-602"><a href="#L-602"><span class="linenos">602</span></a><span class="sd">            csv_file_path (str): The path of the CSV file.</span>
+</span><span id="L-603"><a href="#L-603"><span class="linenos">603</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-604"><a href="#L-604"><span class="linenos">604</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span> <span class="o">=</span> <span class="n">csv_file_path</span>
+</span><span id="L-605"><a href="#L-605"><span class="linenos">605</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</span><span id="L-606"><a href="#L-606"><span class="linenos">606</span></a>
+</span><span id="L-607"><a href="#L-607"><span class="linenos">607</span></a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-608"><a href="#L-608"><span class="linenos">608</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-609"><a href="#L-609"><span class="linenos">609</span></a><span class="sd">        Loads the data from the CSV file.</span>
+</span><span id="L-610"><a href="#L-610"><span class="linenos">610</span></a>
+</span><span id="L-611"><a href="#L-611"><span class="linenos">611</span></a><span class="sd">        Returns:</span>
+</span><span id="L-612"><a href="#L-612"><span class="linenos">612</span></a><span class="sd">            list of dict: A list of company records with &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
+</span><span id="L-613"><a href="#L-613"><span class="linenos">613</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-614"><a href="#L-614"><span class="linenos">614</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-615"><a href="#L-615"><span class="linenos">615</span></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+</span><span id="L-616"><a href="#L-616"><span class="linenos">616</span></a>            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+</span><span id="L-617"><a href="#L-617"><span class="linenos">617</span></a>            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+</span><span id="L-618"><a href="#L-618"><span class="linenos">618</span></a>                <span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">])</span>
+</span><span id="L-619"><a href="#L-619"><span class="linenos">619</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span><span id="L-620"><a href="#L-620"><span class="linenos">620</span></a>        <span class="k">return</span> <span class="n">data</span>
+</span><span id="L-621"><a href="#L-621"><span class="linenos">621</span></a>
+</span><span id="L-622"><a href="#L-622"><span class="linenos">622</span></a>    <span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company_name</span><span class="p">):</span>
+</span><span id="L-623"><a href="#L-623"><span class="linenos">623</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-624"><a href="#L-624"><span class="linenos">624</span></a><span class="sd">        Retrieves the data of a specific company.</span>
+</span><span id="L-625"><a href="#L-625"><span class="linenos">625</span></a>
+</span><span id="L-626"><a href="#L-626"><span class="linenos">626</span></a><span class="sd">        Args:</span>
+</span><span id="L-627"><a href="#L-627"><span class="linenos">627</span></a><span class="sd">            company_name (str): The name of the company.</span>
+</span><span id="L-628"><a href="#L-628"><span class="linenos">628</span></a>
+</span><span id="L-629"><a href="#L-629"><span class="linenos">629</span></a><span class="sd">        Returns:</span>
+</span><span id="L-630"><a href="#L-630"><span class="linenos">630</span></a><span class="sd">            dict: The company&#39;s data containing &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
+</span><span id="L-631"><a href="#L-631"><span class="linenos">631</span></a>
+</span><span id="L-632"><a href="#L-632"><span class="linenos">632</span></a><span class="sd">        Raises:</span>
+</span><span id="L-633"><a href="#L-633"><span class="linenos">633</span></a><span class="sd">            ValueError: If the company is not found.</span>
+</span><span id="L-634"><a href="#L-634"><span class="linenos">634</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-635"><a href="#L-635"><span class="linenos">635</span></a>        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span><span id="L-636"><a href="#L-636"><span class="linenos">636</span></a>            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;nome_da_empresa&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">company_name</span><span class="p">:</span>
+</span><span id="L-637"><a href="#L-637"><span class="linenos">637</span></a>                <span class="k">return</span> <span class="n">record</span>
+</span><span id="L-638"><a href="#L-638"><span class="linenos">638</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Company &#39;</span><span class="si">{</span><span class="n">company_name</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
+</span><span id="L-639"><a href="#L-639"><span class="linenos">639</span></a>
+</span><span id="L-640"><a href="#L-640"><span class="linenos">640</span></a>    <span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-641"><a href="#L-641"><span class="linenos">641</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-642"><a href="#L-642"><span class="linenos">642</span></a><span class="sd">        Retrieves the data of all companies.</span>
+</span><span id="L-643"><a href="#L-643"><span class="linenos">643</span></a>
+</span><span id="L-644"><a href="#L-644"><span class="linenos">644</span></a><span class="sd">        Returns:</span>
+</span><span id="L-645"><a href="#L-645"><span class="linenos">645</span></a><span class="sd">            list of dict: A list of all company records.</span>
+</span><span id="L-646"><a href="#L-646"><span class="linenos">646</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-647"><a href="#L-647"><span class="linenos">647</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+</span><span id="L-648"><a href="#L-648"><span class="linenos">648</span></a>
+</span><span id="L-649"><a href="#L-649"><span class="linenos">649</span></a>
+</span><span id="L-650"><a href="#L-650"><span class="linenos">650</span></a><span class="k">def</span> <span class="nf">error_month</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="L-651"><a href="#L-651"><span class="linenos">651</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-652"><a href="#L-652"><span class="linenos">652</span></a><span class="sd">    Verifies if the selected month is valid.</span>
+</span><span id="L-653"><a href="#L-653"><span class="linenos">653</span></a>
+</span><span id="L-654"><a href="#L-654"><span class="linenos">654</span></a><span class="sd">    Args:</span>
+</span><span id="L-655"><a href="#L-655"><span class="linenos">655</span></a><span class="sd">        month (str): The month to verify.</span>
+</span><span id="L-656"><a href="#L-656"><span class="linenos">656</span></a>
+</span><span id="L-657"><a href="#L-657"><span class="linenos">657</span></a><span class="sd">    Raises:</span>
+</span><span id="L-658"><a href="#L-658"><span class="linenos">658</span></a><span class="sd">        ValueError: If the month is not in the list of possible months.</span>
+</span><span id="L-659"><a href="#L-659"><span class="linenos">659</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-660"><a href="#L-660"><span class="linenos">660</span></a>    <span class="k">if</span> <span class="n">month</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">possible_months</span><span class="p">:</span>
+</span><span id="L-661"><a href="#L-661"><span class="linenos">661</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Month &#39;</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s2">&#39; is not valid. Choose from </span><span class="si">{</span><span class="n">possible_months</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -887,9 +961,9 @@ to access company records and retrieve gross revenue data.</p>
 </span><span id="Data-112"><a href="#Data-112"><span class="linenos">112</span></a>        <span class="n">receita_anestesia</span> <span class="o">=</span> <span class="n">convert_to_float</span><span class="p">(</span><span class="n">receita_anestesia_str</span><span class="p">)</span>
 </span><span id="Data-113"><a href="#Data-113"><span class="linenos">113</span></a>        <span class="k">return</span> <span class="n">receita_anestesia</span>
 </span><span id="Data-114"><a href="#Data-114"><span class="linenos">114</span></a>
-</span><span id="Data-115"><a href="#Data-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="nf">getReceitaDinheiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="Data-115"><a href="#Data-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="nf">getReceitaConsulta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
 </span><span id="Data-116"><a href="#Data-116"><span class="linenos">116</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="Data-117"><a href="#Data-117"><span class="linenos">117</span></a><span class="sd">        Retrieves the cash revenue of the dataset for a specified month or the total annual cash revenue.</span>
+</span><span id="Data-117"><a href="#Data-117"><span class="linenos">117</span></a><span class="sd">        Retrieves the consult revenue of the dataset for a specified month or the total annual cash revenue.</span>
 </span><span id="Data-118"><a href="#Data-118"><span class="linenos">118</span></a>
 </span><span id="Data-119"><a href="#Data-119"><span class="linenos">119</span></a><span class="sd">        Args:</span>
 </span><span id="Data-120"><a href="#Data-120"><span class="linenos">120</span></a><span class="sd">            month (str, optional): The month for which to retrieve the cash revenue. Defaults to &quot;total&quot;.</span>
@@ -902,7 +976,7 @@ to access company records and retrieve gross revenue data.</p>
 </span><span id="Data-127"><a href="#Data-127"><span class="linenos">127</span></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="Data-128"><a href="#Data-128"><span class="linenos">128</span></a>        <span class="n">error_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
 </span><span id="Data-129"><a href="#Data-129"><span class="linenos">129</span></a>
-</span><span id="Data-130"><a href="#Data-130"><span class="linenos">130</span></a>        <span class="n">receita_dinheiro_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;RESULTADO&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ReceitasDinheiro&#39;</span><span class="p">,</span> <span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="Data-130"><a href="#Data-130"><span class="linenos">130</span></a>        <span class="n">receita_dinheiro_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;RESULTADO&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ReceitasConsulta&#39;</span><span class="p">,</span> <span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </span><span id="Data-131"><a href="#Data-131"><span class="linenos">131</span></a>        <span class="n">receita_dinheiro</span> <span class="o">=</span> <span class="n">convert_to_float</span><span class="p">(</span><span class="n">receita_dinheiro_str</span><span class="p">)</span>
 </span><span id="Data-132"><a href="#Data-132"><span class="linenos">132</span></a>        <span class="k">return</span> <span class="n">receita_dinheiro</span>
 </span><span id="Data-133"><a href="#Data-133"><span class="linenos">133</span></a>
@@ -1253,48 +1327,116 @@ to access company records and retrieve gross revenue data.</p>
 </span><span id="Data-478"><a href="#Data-478"><span class="linenos">478</span></a>        <span class="p">)</span>
 </span><span id="Data-479"><a href="#Data-479"><span class="linenos">479</span></a>        <span class="k">return</span> <span class="n">variables_expenses</span>
 </span><span id="Data-480"><a href="#Data-480"><span class="linenos">480</span></a>
-</span><span id="Data-481"><a href="#Data-481"><span class="linenos">481</span></a>    <span class="k">def</span> <span class="nf">getMarkupAnestesia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
-</span><span id="Data-482"><a href="#Data-482"><span class="linenos">482</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="Data-483"><a href="#Data-483"><span class="linenos">483</span></a><span class="sd">        Calculates the markup for anesthesia expenses based on fixed and variable expenses.</span>
-</span><span id="Data-484"><a href="#Data-484"><span class="linenos">484</span></a>
-</span><span id="Data-485"><a href="#Data-485"><span class="linenos">485</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
-</span><span id="Data-486"><a href="#Data-486"><span class="linenos">486</span></a>
-</span><span id="Data-487"><a href="#Data-487"><span class="linenos">487</span></a><span class="sd">        Args:</span>
-</span><span id="Data-488"><a href="#Data-488"><span class="linenos">488</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
-</span><span id="Data-489"><a href="#Data-489"><span class="linenos">489</span></a>
-</span><span id="Data-490"><a href="#Data-490"><span class="linenos">490</span></a><span class="sd">        Returns:</span>
-</span><span id="Data-491"><a href="#Data-491"><span class="linenos">491</span></a><span class="sd">            tuple:</span>
-</span><span id="Data-492"><a href="#Data-492"><span class="linenos">492</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
-</span><span id="Data-493"><a href="#Data-493"><span class="linenos">493</span></a><span class="sd">                float: Adjusted variable expenses.</span>
-</span><span id="Data-494"><a href="#Data-494"><span class="linenos">494</span></a><span class="sd">                float: Product revenue.</span>
-</span><span id="Data-495"><a href="#Data-495"><span class="linenos">495</span></a>
-</span><span id="Data-496"><a href="#Data-496"><span class="linenos">496</span></a><span class="sd">        Raises:</span>
-</span><span id="Data-497"><a href="#Data-497"><span class="linenos">497</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
-</span><span id="Data-498"><a href="#Data-498"><span class="linenos">498</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Data-499"><a href="#Data-499"><span class="linenos">499</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data-500"><a href="#Data-500"><span class="linenos">500</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data-501"><a href="#Data-501"><span class="linenos">501</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data-502"><a href="#Data-502"><span class="linenos">502</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data-503"><a href="#Data-503"><span class="linenos">503</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data-504"><a href="#Data-504"><span class="linenos">504</span></a>        <span class="n">fixed_expenses</span><span class="p">,</span> <span class="n">variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
-</span><span id="Data-505"><a href="#Data-505"><span class="linenos">505</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
-</span><span id="Data-506"><a href="#Data-506"><span class="linenos">506</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
-</span><span id="Data-507"><a href="#Data-507"><span class="linenos">507</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
-</span><span id="Data-508"><a href="#Data-508"><span class="linenos">508</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
-</span><span id="Data-509"><a href="#Data-509"><span class="linenos">509</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
-</span><span id="Data-510"><a href="#Data-510"><span class="linenos">510</span></a>        <span class="p">)</span>
-</span><span id="Data-511"><a href="#Data-511"><span class="linenos">511</span></a>
-</span><span id="Data-512"><a href="#Data-512"><span class="linenos">512</span></a>        <span class="k">return</span> <span class="n">fixed_expenses</span><span class="p">,</span> <span class="n">variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
-</span><span id="Data-513"><a href="#Data-513"><span class="linenos">513</span></a>
-</span><span id="Data-514"><a href="#Data-514"><span class="linenos">514</span></a>    <span class="k">def</span> <span class="nf">getAllData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Data-515"><a href="#Data-515"><span class="linenos">515</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="Data-516"><a href="#Data-516"><span class="linenos">516</span></a><span class="sd">        Retrieves all data from the dataset.</span>
-</span><span id="Data-517"><a href="#Data-517"><span class="linenos">517</span></a>
-</span><span id="Data-518"><a href="#Data-518"><span class="linenos">518</span></a><span class="sd">        Returns:</span>
-</span><span id="Data-519"><a href="#Data-519"><span class="linenos">519</span></a><span class="sd">            list of dict: A list of records representing the dataset.</span>
-</span><span id="Data-520"><a href="#Data-520"><span class="linenos">520</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Data-521"><a href="#Data-521"><span class="linenos">521</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
-</span><span id="Data-522"><a href="#Data-522"><span class="linenos">522</span></a>        <span class="k">return</span> <span class="n">data</span>
+</span><span id="Data-481"><a href="#Data-481"><span class="linenos">481</span></a>
+</span><span id="Data-482"><a href="#Data-482"><span class="linenos">482</span></a>    <span class="k">def</span> <span class="nf">getMarkupAnestesia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="Data-483"><a href="#Data-483"><span class="linenos">483</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data-484"><a href="#Data-484"><span class="linenos">484</span></a><span class="sd">        Calculates the markup for anesthesia expenses based on fixed and variable expenses.</span>
+</span><span id="Data-485"><a href="#Data-485"><span class="linenos">485</span></a>
+</span><span id="Data-486"><a href="#Data-486"><span class="linenos">486</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
+</span><span id="Data-487"><a href="#Data-487"><span class="linenos">487</span></a>
+</span><span id="Data-488"><a href="#Data-488"><span class="linenos">488</span></a><span class="sd">        Args:</span>
+</span><span id="Data-489"><a href="#Data-489"><span class="linenos">489</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="Data-490"><a href="#Data-490"><span class="linenos">490</span></a>
+</span><span id="Data-491"><a href="#Data-491"><span class="linenos">491</span></a><span class="sd">        Returns:</span>
+</span><span id="Data-492"><a href="#Data-492"><span class="linenos">492</span></a><span class="sd">            tuple:</span>
+</span><span id="Data-493"><a href="#Data-493"><span class="linenos">493</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="Data-494"><a href="#Data-494"><span class="linenos">494</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="Data-495"><a href="#Data-495"><span class="linenos">495</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="Data-496"><a href="#Data-496"><span class="linenos">496</span></a>
+</span><span id="Data-497"><a href="#Data-497"><span class="linenos">497</span></a><span class="sd">        Raises:</span>
+</span><span id="Data-498"><a href="#Data-498"><span class="linenos">498</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="Data-499"><a href="#Data-499"><span class="linenos">499</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data-500"><a href="#Data-500"><span class="linenos">500</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-501"><a href="#Data-501"><span class="linenos">501</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-502"><a href="#Data-502"><span class="linenos">502</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-503"><a href="#Data-503"><span class="linenos">503</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-504"><a href="#Data-504"><span class="linenos">504</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-505"><a href="#Data-505"><span class="linenos">505</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="Data-506"><a href="#Data-506"><span class="linenos">506</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="Data-507"><a href="#Data-507"><span class="linenos">507</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="Data-508"><a href="#Data-508"><span class="linenos">508</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="Data-509"><a href="#Data-509"><span class="linenos">509</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="Data-510"><a href="#Data-510"><span class="linenos">510</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="Data-511"><a href="#Data-511"><span class="linenos">511</span></a>        <span class="p">)</span>
+</span><span id="Data-512"><a href="#Data-512"><span class="linenos">512</span></a>
+</span><span id="Data-513"><a href="#Data-513"><span class="linenos">513</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
+</span><span id="Data-514"><a href="#Data-514"><span class="linenos">514</span></a>
+</span><span id="Data-515"><a href="#Data-515"><span class="linenos">515</span></a>
+</span><span id="Data-516"><a href="#Data-516"><span class="linenos">516</span></a>    <span class="k">def</span> <span class="nf">getMarkupConsulta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="Data-517"><a href="#Data-517"><span class="linenos">517</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data-518"><a href="#Data-518"><span class="linenos">518</span></a><span class="sd">        Calculates the markup for consult expenses based on fixed and variable expenses.</span>
+</span><span id="Data-519"><a href="#Data-519"><span class="linenos">519</span></a>
+</span><span id="Data-520"><a href="#Data-520"><span class="linenos">520</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
+</span><span id="Data-521"><a href="#Data-521"><span class="linenos">521</span></a>
+</span><span id="Data-522"><a href="#Data-522"><span class="linenos">522</span></a><span class="sd">        Args:</span>
+</span><span id="Data-523"><a href="#Data-523"><span class="linenos">523</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="Data-524"><a href="#Data-524"><span class="linenos">524</span></a><span class="sd">        </span>
+</span><span id="Data-525"><a href="#Data-525"><span class="linenos">525</span></a><span class="sd">        Returns:</span>
+</span><span id="Data-526"><a href="#Data-526"><span class="linenos">526</span></a><span class="sd">            tuple:</span>
+</span><span id="Data-527"><a href="#Data-527"><span class="linenos">527</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="Data-528"><a href="#Data-528"><span class="linenos">528</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="Data-529"><a href="#Data-529"><span class="linenos">529</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="Data-530"><a href="#Data-530"><span class="linenos">530</span></a><span class="sd">        </span>
+</span><span id="Data-531"><a href="#Data-531"><span class="linenos">531</span></a><span class="sd">        Raises:</span>
+</span><span id="Data-532"><a href="#Data-532"><span class="linenos">532</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="Data-533"><a href="#Data-533"><span class="linenos">533</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data-534"><a href="#Data-534"><span class="linenos">534</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-535"><a href="#Data-535"><span class="linenos">535</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-536"><a href="#Data-536"><span class="linenos">536</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-537"><a href="#Data-537"><span class="linenos">537</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaConsulta</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-538"><a href="#Data-538"><span class="linenos">538</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># No specific expenses for consult</span>
+</span><span id="Data-539"><a href="#Data-539"><span class="linenos">539</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="Data-540"><a href="#Data-540"><span class="linenos">540</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="Data-541"><a href="#Data-541"><span class="linenos">541</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="Data-542"><a href="#Data-542"><span class="linenos">542</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="Data-543"><a href="#Data-543"><span class="linenos">543</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="Data-544"><a href="#Data-544"><span class="linenos">544</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="Data-545"><a href="#Data-545"><span class="linenos">545</span></a>        <span class="p">)</span>
+</span><span id="Data-546"><a href="#Data-546"><span class="linenos">546</span></a>
+</span><span id="Data-547"><a href="#Data-547"><span class="linenos">547</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
+</span><span id="Data-548"><a href="#Data-548"><span class="linenos">548</span></a>
+</span><span id="Data-549"><a href="#Data-549"><span class="linenos">549</span></a>    <span class="k">def</span> <span class="nf">getMarkupExames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="Data-550"><a href="#Data-550"><span class="linenos">550</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data-551"><a href="#Data-551"><span class="linenos">551</span></a><span class="sd">        Calculates the markup for exams expenses based on fixed and variable expenses.</span>
+</span><span id="Data-552"><a href="#Data-552"><span class="linenos">552</span></a>
+</span><span id="Data-553"><a href="#Data-553"><span class="linenos">553</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
+</span><span id="Data-554"><a href="#Data-554"><span class="linenos">554</span></a>
+</span><span id="Data-555"><a href="#Data-555"><span class="linenos">555</span></a><span class="sd">        Args:</span>
+</span><span id="Data-556"><a href="#Data-556"><span class="linenos">556</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="Data-557"><a href="#Data-557"><span class="linenos">557</span></a><span class="sd">        </span>
+</span><span id="Data-558"><a href="#Data-558"><span class="linenos">558</span></a><span class="sd">        Returns:</span>
+</span><span id="Data-559"><a href="#Data-559"><span class="linenos">559</span></a><span class="sd">            tuple:</span>
+</span><span id="Data-560"><a href="#Data-560"><span class="linenos">560</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="Data-561"><a href="#Data-561"><span class="linenos">561</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="Data-562"><a href="#Data-562"><span class="linenos">562</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="Data-563"><a href="#Data-563"><span class="linenos">563</span></a><span class="sd">        </span>
+</span><span id="Data-564"><a href="#Data-564"><span class="linenos">564</span></a><span class="sd">        Raises:</span>
+</span><span id="Data-565"><a href="#Data-565"><span class="linenos">565</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="Data-566"><a href="#Data-566"><span class="linenos">566</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data-567"><a href="#Data-567"><span class="linenos">567</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-568"><a href="#Data-568"><span class="linenos">568</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-569"><a href="#Data-569"><span class="linenos">569</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-570"><a href="#Data-570"><span class="linenos">570</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaExames</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data-571"><a href="#Data-571"><span class="linenos">571</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># No specific expenses for exams</span>
+</span><span id="Data-572"><a href="#Data-572"><span class="linenos">572</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="Data-573"><a href="#Data-573"><span class="linenos">573</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="Data-574"><a href="#Data-574"><span class="linenos">574</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="Data-575"><a href="#Data-575"><span class="linenos">575</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="Data-576"><a href="#Data-576"><span class="linenos">576</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="Data-577"><a href="#Data-577"><span class="linenos">577</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="Data-578"><a href="#Data-578"><span class="linenos">578</span></a>        <span class="p">)</span>
+</span><span id="Data-579"><a href="#Data-579"><span class="linenos">579</span></a>
+</span><span id="Data-580"><a href="#Data-580"><span class="linenos">580</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
+</span><span id="Data-581"><a href="#Data-581"><span class="linenos">581</span></a>
+</span><span id="Data-582"><a href="#Data-582"><span class="linenos">582</span></a>    <span class="k">def</span> <span class="nf">getAllData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Data-583"><a href="#Data-583"><span class="linenos">583</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data-584"><a href="#Data-584"><span class="linenos">584</span></a><span class="sd">        Retrieves all data from the dataset.</span>
+</span><span id="Data-585"><a href="#Data-585"><span class="linenos">585</span></a>
+</span><span id="Data-586"><a href="#Data-586"><span class="linenos">586</span></a><span class="sd">        Returns:</span>
+</span><span id="Data-587"><a href="#Data-587"><span class="linenos">587</span></a><span class="sd">            list of dict: A list of records representing the dataset.</span>
+</span><span id="Data-588"><a href="#Data-588"><span class="linenos">588</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data-589"><a href="#Data-589"><span class="linenos">589</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</span><span id="Data-590"><a href="#Data-590"><span class="linenos">590</span></a>        <span class="k">return</span> <span class="n">data</span>
 </span></pre></div>
 
 
@@ -1566,39 +1708,39 @@ to access company records and retrieve gross revenue data.</p>
 
 
                             </div>
-                            <div id="Data.getReceitaDinheiro" class="classattr">
-                                        <input id="Data.getReceitaDinheiro-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+                            <div id="Data.getReceitaConsulta" class="classattr">
+                                        <input id="Data.getReceitaConsulta-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">getReceitaDinheiro</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">month</span><span class="o">=</span><span class="s1">&#39;total&#39;</span></span><span class="return-annotation">):</span></span>
+        <span class="name">getReceitaConsulta</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">month</span><span class="o">=</span><span class="s1">&#39;total&#39;</span></span><span class="return-annotation">):</span></span>
 
-                <label class="view-source-button" for="Data.getReceitaDinheiro-view-source"><span>View Source</span></label>
+                <label class="view-source-button" for="Data.getReceitaConsulta-view-source"><span>View Source</span></label>
 
     </div>
-    <a class="headerlink" href="#Data.getReceitaDinheiro"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Data.getReceitaDinheiro-115"><a href="#Data.getReceitaDinheiro-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="nf">getReceitaDinheiro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
-</span><span id="Data.getReceitaDinheiro-116"><a href="#Data.getReceitaDinheiro-116"><span class="linenos">116</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="Data.getReceitaDinheiro-117"><a href="#Data.getReceitaDinheiro-117"><span class="linenos">117</span></a><span class="sd">        Retrieves the cash revenue of the dataset for a specified month or the total annual cash revenue.</span>
-</span><span id="Data.getReceitaDinheiro-118"><a href="#Data.getReceitaDinheiro-118"><span class="linenos">118</span></a>
-</span><span id="Data.getReceitaDinheiro-119"><a href="#Data.getReceitaDinheiro-119"><span class="linenos">119</span></a><span class="sd">        Args:</span>
-</span><span id="Data.getReceitaDinheiro-120"><a href="#Data.getReceitaDinheiro-120"><span class="linenos">120</span></a><span class="sd">            month (str, optional): The month for which to retrieve the cash revenue. Defaults to &quot;total&quot;.</span>
-</span><span id="Data.getReceitaDinheiro-121"><a href="#Data.getReceitaDinheiro-121"><span class="linenos">121</span></a>
-</span><span id="Data.getReceitaDinheiro-122"><a href="#Data.getReceitaDinheiro-122"><span class="linenos">122</span></a><span class="sd">        Returns:</span>
-</span><span id="Data.getReceitaDinheiro-123"><a href="#Data.getReceitaDinheiro-123"><span class="linenos">123</span></a><span class="sd">            float: The cash revenue value.</span>
-</span><span id="Data.getReceitaDinheiro-124"><a href="#Data.getReceitaDinheiro-124"><span class="linenos">124</span></a>
-</span><span id="Data.getReceitaDinheiro-125"><a href="#Data.getReceitaDinheiro-125"><span class="linenos">125</span></a><span class="sd">        Raises:</span>
-</span><span id="Data.getReceitaDinheiro-126"><a href="#Data.getReceitaDinheiro-126"><span class="linenos">126</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
-</span><span id="Data.getReceitaDinheiro-127"><a href="#Data.getReceitaDinheiro-127"><span class="linenos">127</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Data.getReceitaDinheiro-128"><a href="#Data.getReceitaDinheiro-128"><span class="linenos">128</span></a>        <span class="n">error_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data.getReceitaDinheiro-129"><a href="#Data.getReceitaDinheiro-129"><span class="linenos">129</span></a>
-</span><span id="Data.getReceitaDinheiro-130"><a href="#Data.getReceitaDinheiro-130"><span class="linenos">130</span></a>        <span class="n">receita_dinheiro_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;RESULTADO&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ReceitasDinheiro&#39;</span><span class="p">,</span> <span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="Data.getReceitaDinheiro-131"><a href="#Data.getReceitaDinheiro-131"><span class="linenos">131</span></a>        <span class="n">receita_dinheiro</span> <span class="o">=</span> <span class="n">convert_to_float</span><span class="p">(</span><span class="n">receita_dinheiro_str</span><span class="p">)</span>
-</span><span id="Data.getReceitaDinheiro-132"><a href="#Data.getReceitaDinheiro-132"><span class="linenos">132</span></a>        <span class="k">return</span> <span class="n">receita_dinheiro</span>
+    <a class="headerlink" href="#Data.getReceitaConsulta"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Data.getReceitaConsulta-115"><a href="#Data.getReceitaConsulta-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="nf">getReceitaConsulta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="Data.getReceitaConsulta-116"><a href="#Data.getReceitaConsulta-116"><span class="linenos">116</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data.getReceitaConsulta-117"><a href="#Data.getReceitaConsulta-117"><span class="linenos">117</span></a><span class="sd">        Retrieves the consult revenue of the dataset for a specified month or the total annual cash revenue.</span>
+</span><span id="Data.getReceitaConsulta-118"><a href="#Data.getReceitaConsulta-118"><span class="linenos">118</span></a>
+</span><span id="Data.getReceitaConsulta-119"><a href="#Data.getReceitaConsulta-119"><span class="linenos">119</span></a><span class="sd">        Args:</span>
+</span><span id="Data.getReceitaConsulta-120"><a href="#Data.getReceitaConsulta-120"><span class="linenos">120</span></a><span class="sd">            month (str, optional): The month for which to retrieve the cash revenue. Defaults to &quot;total&quot;.</span>
+</span><span id="Data.getReceitaConsulta-121"><a href="#Data.getReceitaConsulta-121"><span class="linenos">121</span></a>
+</span><span id="Data.getReceitaConsulta-122"><a href="#Data.getReceitaConsulta-122"><span class="linenos">122</span></a><span class="sd">        Returns:</span>
+</span><span id="Data.getReceitaConsulta-123"><a href="#Data.getReceitaConsulta-123"><span class="linenos">123</span></a><span class="sd">            float: The cash revenue value.</span>
+</span><span id="Data.getReceitaConsulta-124"><a href="#Data.getReceitaConsulta-124"><span class="linenos">124</span></a>
+</span><span id="Data.getReceitaConsulta-125"><a href="#Data.getReceitaConsulta-125"><span class="linenos">125</span></a><span class="sd">        Raises:</span>
+</span><span id="Data.getReceitaConsulta-126"><a href="#Data.getReceitaConsulta-126"><span class="linenos">126</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="Data.getReceitaConsulta-127"><a href="#Data.getReceitaConsulta-127"><span class="linenos">127</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data.getReceitaConsulta-128"><a href="#Data.getReceitaConsulta-128"><span class="linenos">128</span></a>        <span class="n">error_month</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getReceitaConsulta-129"><a href="#Data.getReceitaConsulta-129"><span class="linenos">129</span></a>
+</span><span id="Data.getReceitaConsulta-130"><a href="#Data.getReceitaConsulta-130"><span class="linenos">130</span></a>        <span class="n">receita_dinheiro_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;RESULTADO&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ReceitasConsulta&#39;</span><span class="p">,</span> <span class="n">month</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="Data.getReceitaConsulta-131"><a href="#Data.getReceitaConsulta-131"><span class="linenos">131</span></a>        <span class="n">receita_dinheiro</span> <span class="o">=</span> <span class="n">convert_to_float</span><span class="p">(</span><span class="n">receita_dinheiro_str</span><span class="p">)</span>
+</span><span id="Data.getReceitaConsulta-132"><a href="#Data.getReceitaConsulta-132"><span class="linenos">132</span></a>        <span class="k">return</span> <span class="n">receita_dinheiro</span>
 </span></pre></div>
 
 
-            <div class="docstring"><p>Retrieves the cash revenue of the dataset for a specified month or the total annual cash revenue.</p>
+            <div class="docstring"><p>Retrieves the consult revenue of the dataset for a specified month or the total annual cash revenue.</p>
 
 <h6 id="arguments">Arguments:</h6>
 
@@ -2619,42 +2761,190 @@ to access company records and retrieve gross revenue data.</p>
 
     </div>
     <a class="headerlink" href="#Data.getMarkupAnestesia"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Data.getMarkupAnestesia-481"><a href="#Data.getMarkupAnestesia-481"><span class="linenos">481</span></a>    <span class="k">def</span> <span class="nf">getMarkupAnestesia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
-</span><span id="Data.getMarkupAnestesia-482"><a href="#Data.getMarkupAnestesia-482"><span class="linenos">482</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="Data.getMarkupAnestesia-483"><a href="#Data.getMarkupAnestesia-483"><span class="linenos">483</span></a><span class="sd">        Calculates the markup for anesthesia expenses based on fixed and variable expenses.</span>
-</span><span id="Data.getMarkupAnestesia-484"><a href="#Data.getMarkupAnestesia-484"><span class="linenos">484</span></a>
-</span><span id="Data.getMarkupAnestesia-485"><a href="#Data.getMarkupAnestesia-485"><span class="linenos">485</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
-</span><span id="Data.getMarkupAnestesia-486"><a href="#Data.getMarkupAnestesia-486"><span class="linenos">486</span></a>
-</span><span id="Data.getMarkupAnestesia-487"><a href="#Data.getMarkupAnestesia-487"><span class="linenos">487</span></a><span class="sd">        Args:</span>
-</span><span id="Data.getMarkupAnestesia-488"><a href="#Data.getMarkupAnestesia-488"><span class="linenos">488</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
-</span><span id="Data.getMarkupAnestesia-489"><a href="#Data.getMarkupAnestesia-489"><span class="linenos">489</span></a>
-</span><span id="Data.getMarkupAnestesia-490"><a href="#Data.getMarkupAnestesia-490"><span class="linenos">490</span></a><span class="sd">        Returns:</span>
-</span><span id="Data.getMarkupAnestesia-491"><a href="#Data.getMarkupAnestesia-491"><span class="linenos">491</span></a><span class="sd">            tuple:</span>
-</span><span id="Data.getMarkupAnestesia-492"><a href="#Data.getMarkupAnestesia-492"><span class="linenos">492</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
-</span><span id="Data.getMarkupAnestesia-493"><a href="#Data.getMarkupAnestesia-493"><span class="linenos">493</span></a><span class="sd">                float: Adjusted variable expenses.</span>
-</span><span id="Data.getMarkupAnestesia-494"><a href="#Data.getMarkupAnestesia-494"><span class="linenos">494</span></a><span class="sd">                float: Product revenue.</span>
-</span><span id="Data.getMarkupAnestesia-495"><a href="#Data.getMarkupAnestesia-495"><span class="linenos">495</span></a>
-</span><span id="Data.getMarkupAnestesia-496"><a href="#Data.getMarkupAnestesia-496"><span class="linenos">496</span></a><span class="sd">        Raises:</span>
-</span><span id="Data.getMarkupAnestesia-497"><a href="#Data.getMarkupAnestesia-497"><span class="linenos">497</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
-</span><span id="Data.getMarkupAnestesia-498"><a href="#Data.getMarkupAnestesia-498"><span class="linenos">498</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Data.getMarkupAnestesia-499"><a href="#Data.getMarkupAnestesia-499"><span class="linenos">499</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data.getMarkupAnestesia-500"><a href="#Data.getMarkupAnestesia-500"><span class="linenos">500</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data.getMarkupAnestesia-501"><a href="#Data.getMarkupAnestesia-501"><span class="linenos">501</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data.getMarkupAnestesia-502"><a href="#Data.getMarkupAnestesia-502"><span class="linenos">502</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data.getMarkupAnestesia-503"><a href="#Data.getMarkupAnestesia-503"><span class="linenos">503</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
-</span><span id="Data.getMarkupAnestesia-504"><a href="#Data.getMarkupAnestesia-504"><span class="linenos">504</span></a>        <span class="n">fixed_expenses</span><span class="p">,</span> <span class="n">variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
-</span><span id="Data.getMarkupAnestesia-505"><a href="#Data.getMarkupAnestesia-505"><span class="linenos">505</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
-</span><span id="Data.getMarkupAnestesia-506"><a href="#Data.getMarkupAnestesia-506"><span class="linenos">506</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
-</span><span id="Data.getMarkupAnestesia-507"><a href="#Data.getMarkupAnestesia-507"><span class="linenos">507</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
-</span><span id="Data.getMarkupAnestesia-508"><a href="#Data.getMarkupAnestesia-508"><span class="linenos">508</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
-</span><span id="Data.getMarkupAnestesia-509"><a href="#Data.getMarkupAnestesia-509"><span class="linenos">509</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
-</span><span id="Data.getMarkupAnestesia-510"><a href="#Data.getMarkupAnestesia-510"><span class="linenos">510</span></a>        <span class="p">)</span>
-</span><span id="Data.getMarkupAnestesia-511"><a href="#Data.getMarkupAnestesia-511"><span class="linenos">511</span></a>
-</span><span id="Data.getMarkupAnestesia-512"><a href="#Data.getMarkupAnestesia-512"><span class="linenos">512</span></a>        <span class="k">return</span> <span class="n">fixed_expenses</span><span class="p">,</span> <span class="n">variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Data.getMarkupAnestesia-482"><a href="#Data.getMarkupAnestesia-482"><span class="linenos">482</span></a>    <span class="k">def</span> <span class="nf">getMarkupAnestesia</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="Data.getMarkupAnestesia-483"><a href="#Data.getMarkupAnestesia-483"><span class="linenos">483</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data.getMarkupAnestesia-484"><a href="#Data.getMarkupAnestesia-484"><span class="linenos">484</span></a><span class="sd">        Calculates the markup for anesthesia expenses based on fixed and variable expenses.</span>
+</span><span id="Data.getMarkupAnestesia-485"><a href="#Data.getMarkupAnestesia-485"><span class="linenos">485</span></a>
+</span><span id="Data.getMarkupAnestesia-486"><a href="#Data.getMarkupAnestesia-486"><span class="linenos">486</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
+</span><span id="Data.getMarkupAnestesia-487"><a href="#Data.getMarkupAnestesia-487"><span class="linenos">487</span></a>
+</span><span id="Data.getMarkupAnestesia-488"><a href="#Data.getMarkupAnestesia-488"><span class="linenos">488</span></a><span class="sd">        Args:</span>
+</span><span id="Data.getMarkupAnestesia-489"><a href="#Data.getMarkupAnestesia-489"><span class="linenos">489</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="Data.getMarkupAnestesia-490"><a href="#Data.getMarkupAnestesia-490"><span class="linenos">490</span></a>
+</span><span id="Data.getMarkupAnestesia-491"><a href="#Data.getMarkupAnestesia-491"><span class="linenos">491</span></a><span class="sd">        Returns:</span>
+</span><span id="Data.getMarkupAnestesia-492"><a href="#Data.getMarkupAnestesia-492"><span class="linenos">492</span></a><span class="sd">            tuple:</span>
+</span><span id="Data.getMarkupAnestesia-493"><a href="#Data.getMarkupAnestesia-493"><span class="linenos">493</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="Data.getMarkupAnestesia-494"><a href="#Data.getMarkupAnestesia-494"><span class="linenos">494</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="Data.getMarkupAnestesia-495"><a href="#Data.getMarkupAnestesia-495"><span class="linenos">495</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="Data.getMarkupAnestesia-496"><a href="#Data.getMarkupAnestesia-496"><span class="linenos">496</span></a>
+</span><span id="Data.getMarkupAnestesia-497"><a href="#Data.getMarkupAnestesia-497"><span class="linenos">497</span></a><span class="sd">        Raises:</span>
+</span><span id="Data.getMarkupAnestesia-498"><a href="#Data.getMarkupAnestesia-498"><span class="linenos">498</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="Data.getMarkupAnestesia-499"><a href="#Data.getMarkupAnestesia-499"><span class="linenos">499</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data.getMarkupAnestesia-500"><a href="#Data.getMarkupAnestesia-500"><span class="linenos">500</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupAnestesia-501"><a href="#Data.getMarkupAnestesia-501"><span class="linenos">501</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupAnestesia-502"><a href="#Data.getMarkupAnestesia-502"><span class="linenos">502</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupAnestesia-503"><a href="#Data.getMarkupAnestesia-503"><span class="linenos">503</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupAnestesia-504"><a href="#Data.getMarkupAnestesia-504"><span class="linenos">504</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDespesaAnestesia</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupAnestesia-505"><a href="#Data.getMarkupAnestesia-505"><span class="linenos">505</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="Data.getMarkupAnestesia-506"><a href="#Data.getMarkupAnestesia-506"><span class="linenos">506</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupAnestesia-507"><a href="#Data.getMarkupAnestesia-507"><span class="linenos">507</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupAnestesia-508"><a href="#Data.getMarkupAnestesia-508"><span class="linenos">508</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupAnestesia-509"><a href="#Data.getMarkupAnestesia-509"><span class="linenos">509</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="Data.getMarkupAnestesia-510"><a href="#Data.getMarkupAnestesia-510"><span class="linenos">510</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="Data.getMarkupAnestesia-511"><a href="#Data.getMarkupAnestesia-511"><span class="linenos">511</span></a>        <span class="p">)</span>
+</span><span id="Data.getMarkupAnestesia-512"><a href="#Data.getMarkupAnestesia-512"><span class="linenos">512</span></a>
+</span><span id="Data.getMarkupAnestesia-513"><a href="#Data.getMarkupAnestesia-513"><span class="linenos">513</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
 </span></pre></div>
 
 
             <div class="docstring"><p>Calculates the markup for anesthesia expenses based on fixed and variable expenses.</p>
+
+<p>Utilizes <code>economia.expenses_product_calculation</code> to adjust expenses.</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>month (str, optional):</strong>  The month for which to calculate the markup. Defaults to "total".</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>tuple:
+      float: Adjusted fixed expenses.
+      float: Adjusted variable expenses.
+      float: Product revenue.</p>
+</blockquote>
+
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>ValueError:</strong>  If the provided month is not valid.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="Data.getMarkupConsulta" class="classattr">
+                                        <input id="Data.getMarkupConsulta-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getMarkupConsulta</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">month</span><span class="o">=</span><span class="s1">&#39;total&#39;</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Data.getMarkupConsulta-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Data.getMarkupConsulta"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Data.getMarkupConsulta-516"><a href="#Data.getMarkupConsulta-516"><span class="linenos">516</span></a>    <span class="k">def</span> <span class="nf">getMarkupConsulta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="Data.getMarkupConsulta-517"><a href="#Data.getMarkupConsulta-517"><span class="linenos">517</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data.getMarkupConsulta-518"><a href="#Data.getMarkupConsulta-518"><span class="linenos">518</span></a><span class="sd">        Calculates the markup for consult expenses based on fixed and variable expenses.</span>
+</span><span id="Data.getMarkupConsulta-519"><a href="#Data.getMarkupConsulta-519"><span class="linenos">519</span></a>
+</span><span id="Data.getMarkupConsulta-520"><a href="#Data.getMarkupConsulta-520"><span class="linenos">520</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
+</span><span id="Data.getMarkupConsulta-521"><a href="#Data.getMarkupConsulta-521"><span class="linenos">521</span></a>
+</span><span id="Data.getMarkupConsulta-522"><a href="#Data.getMarkupConsulta-522"><span class="linenos">522</span></a><span class="sd">        Args:</span>
+</span><span id="Data.getMarkupConsulta-523"><a href="#Data.getMarkupConsulta-523"><span class="linenos">523</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="Data.getMarkupConsulta-524"><a href="#Data.getMarkupConsulta-524"><span class="linenos">524</span></a><span class="sd">        </span>
+</span><span id="Data.getMarkupConsulta-525"><a href="#Data.getMarkupConsulta-525"><span class="linenos">525</span></a><span class="sd">        Returns:</span>
+</span><span id="Data.getMarkupConsulta-526"><a href="#Data.getMarkupConsulta-526"><span class="linenos">526</span></a><span class="sd">            tuple:</span>
+</span><span id="Data.getMarkupConsulta-527"><a href="#Data.getMarkupConsulta-527"><span class="linenos">527</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="Data.getMarkupConsulta-528"><a href="#Data.getMarkupConsulta-528"><span class="linenos">528</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="Data.getMarkupConsulta-529"><a href="#Data.getMarkupConsulta-529"><span class="linenos">529</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="Data.getMarkupConsulta-530"><a href="#Data.getMarkupConsulta-530"><span class="linenos">530</span></a><span class="sd">        </span>
+</span><span id="Data.getMarkupConsulta-531"><a href="#Data.getMarkupConsulta-531"><span class="linenos">531</span></a><span class="sd">        Raises:</span>
+</span><span id="Data.getMarkupConsulta-532"><a href="#Data.getMarkupConsulta-532"><span class="linenos">532</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="Data.getMarkupConsulta-533"><a href="#Data.getMarkupConsulta-533"><span class="linenos">533</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data.getMarkupConsulta-534"><a href="#Data.getMarkupConsulta-534"><span class="linenos">534</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupConsulta-535"><a href="#Data.getMarkupConsulta-535"><span class="linenos">535</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupConsulta-536"><a href="#Data.getMarkupConsulta-536"><span class="linenos">536</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupConsulta-537"><a href="#Data.getMarkupConsulta-537"><span class="linenos">537</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaConsulta</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupConsulta-538"><a href="#Data.getMarkupConsulta-538"><span class="linenos">538</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># No specific expenses for consult</span>
+</span><span id="Data.getMarkupConsulta-539"><a href="#Data.getMarkupConsulta-539"><span class="linenos">539</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="Data.getMarkupConsulta-540"><a href="#Data.getMarkupConsulta-540"><span class="linenos">540</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupConsulta-541"><a href="#Data.getMarkupConsulta-541"><span class="linenos">541</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupConsulta-542"><a href="#Data.getMarkupConsulta-542"><span class="linenos">542</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupConsulta-543"><a href="#Data.getMarkupConsulta-543"><span class="linenos">543</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="Data.getMarkupConsulta-544"><a href="#Data.getMarkupConsulta-544"><span class="linenos">544</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="Data.getMarkupConsulta-545"><a href="#Data.getMarkupConsulta-545"><span class="linenos">545</span></a>        <span class="p">)</span>
+</span><span id="Data.getMarkupConsulta-546"><a href="#Data.getMarkupConsulta-546"><span class="linenos">546</span></a>
+</span><span id="Data.getMarkupConsulta-547"><a href="#Data.getMarkupConsulta-547"><span class="linenos">547</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Calculates the markup for consult expenses based on fixed and variable expenses.</p>
+
+<p>Utilizes <code>economia.expenses_product_calculation</code> to adjust expenses.</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>month (str, optional):</strong>  The month for which to calculate the markup. Defaults to "total".</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>tuple:
+      float: Adjusted fixed expenses.
+      float: Adjusted variable expenses.
+      float: Product revenue.</p>
+</blockquote>
+
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>ValueError:</strong>  If the provided month is not valid.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="Data.getMarkupExames" class="classattr">
+                                        <input id="Data.getMarkupExames-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getMarkupExames</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">month</span><span class="o">=</span><span class="s1">&#39;total&#39;</span></span><span class="return-annotation">):</span></span>
+
+                <label class="view-source-button" for="Data.getMarkupExames-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#Data.getMarkupExames"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Data.getMarkupExames-549"><a href="#Data.getMarkupExames-549"><span class="linenos">549</span></a>    <span class="k">def</span> <span class="nf">getMarkupExames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;total&quot;</span><span class="p">):</span>
+</span><span id="Data.getMarkupExames-550"><a href="#Data.getMarkupExames-550"><span class="linenos">550</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data.getMarkupExames-551"><a href="#Data.getMarkupExames-551"><span class="linenos">551</span></a><span class="sd">        Calculates the markup for exams expenses based on fixed and variable expenses.</span>
+</span><span id="Data.getMarkupExames-552"><a href="#Data.getMarkupExames-552"><span class="linenos">552</span></a>
+</span><span id="Data.getMarkupExames-553"><a href="#Data.getMarkupExames-553"><span class="linenos">553</span></a><span class="sd">        Utilizes `economia.expenses_product_calculation` to adjust expenses.</span>
+</span><span id="Data.getMarkupExames-554"><a href="#Data.getMarkupExames-554"><span class="linenos">554</span></a>
+</span><span id="Data.getMarkupExames-555"><a href="#Data.getMarkupExames-555"><span class="linenos">555</span></a><span class="sd">        Args:</span>
+</span><span id="Data.getMarkupExames-556"><a href="#Data.getMarkupExames-556"><span class="linenos">556</span></a><span class="sd">            month (str, optional): The month for which to calculate the markup. Defaults to &quot;total&quot;.</span>
+</span><span id="Data.getMarkupExames-557"><a href="#Data.getMarkupExames-557"><span class="linenos">557</span></a><span class="sd">        </span>
+</span><span id="Data.getMarkupExames-558"><a href="#Data.getMarkupExames-558"><span class="linenos">558</span></a><span class="sd">        Returns:</span>
+</span><span id="Data.getMarkupExames-559"><a href="#Data.getMarkupExames-559"><span class="linenos">559</span></a><span class="sd">            tuple:</span>
+</span><span id="Data.getMarkupExames-560"><a href="#Data.getMarkupExames-560"><span class="linenos">560</span></a><span class="sd">                float: Adjusted fixed expenses.</span>
+</span><span id="Data.getMarkupExames-561"><a href="#Data.getMarkupExames-561"><span class="linenos">561</span></a><span class="sd">                float: Adjusted variable expenses.</span>
+</span><span id="Data.getMarkupExames-562"><a href="#Data.getMarkupExames-562"><span class="linenos">562</span></a><span class="sd">                float: Product revenue.</span>
+</span><span id="Data.getMarkupExames-563"><a href="#Data.getMarkupExames-563"><span class="linenos">563</span></a><span class="sd">        </span>
+</span><span id="Data.getMarkupExames-564"><a href="#Data.getMarkupExames-564"><span class="linenos">564</span></a><span class="sd">        Raises:</span>
+</span><span id="Data.getMarkupExames-565"><a href="#Data.getMarkupExames-565"><span class="linenos">565</span></a><span class="sd">            ValueError: If the provided month is not valid.</span>
+</span><span id="Data.getMarkupExames-566"><a href="#Data.getMarkupExames-566"><span class="linenos">566</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data.getMarkupExames-567"><a href="#Data.getMarkupExames-567"><span class="linenos">567</span></a>        <span class="n">fixed_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFixedExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupExames-568"><a href="#Data.getMarkupExames-568"><span class="linenos">568</span></a>        <span class="n">variable_expenses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getVariablesExpenses</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupExames-569"><a href="#Data.getMarkupExames-569"><span class="linenos">569</span></a>        <span class="n">total_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitas</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupExames-570"><a href="#Data.getMarkupExames-570"><span class="linenos">570</span></a>        <span class="n">product_revenue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getReceitaExames</span><span class="p">(</span><span class="n">month</span><span class="p">)</span>
+</span><span id="Data.getMarkupExames-571"><a href="#Data.getMarkupExames-571"><span class="linenos">571</span></a>        <span class="n">product_expenses</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># No specific expenses for exams</span>
+</span><span id="Data.getMarkupExames-572"><a href="#Data.getMarkupExames-572"><span class="linenos">572</span></a>        <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span> <span class="o">=</span> <span class="n">expenses_product_calculation</span><span class="p">(</span>
+</span><span id="Data.getMarkupExames-573"><a href="#Data.getMarkupExames-573"><span class="linenos">573</span></a>            <span class="n">expenses_product</span><span class="o">=</span><span class="n">product_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupExames-574"><a href="#Data.getMarkupExames-574"><span class="linenos">574</span></a>            <span class="n">fixed_expenses</span><span class="o">=</span><span class="n">fixed_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupExames-575"><a href="#Data.getMarkupExames-575"><span class="linenos">575</span></a>            <span class="n">variable_expenses</span><span class="o">=</span><span class="n">variable_expenses</span><span class="p">,</span>
+</span><span id="Data.getMarkupExames-576"><a href="#Data.getMarkupExames-576"><span class="linenos">576</span></a>            <span class="n">total_revenue</span><span class="o">=</span><span class="n">total_revenue</span><span class="p">,</span>
+</span><span id="Data.getMarkupExames-577"><a href="#Data.getMarkupExames-577"><span class="linenos">577</span></a>            <span class="n">product_revenue</span><span class="o">=</span><span class="n">product_revenue</span>
+</span><span id="Data.getMarkupExames-578"><a href="#Data.getMarkupExames-578"><span class="linenos">578</span></a>        <span class="p">)</span>
+</span><span id="Data.getMarkupExames-579"><a href="#Data.getMarkupExames-579"><span class="linenos">579</span></a>
+</span><span id="Data.getMarkupExames-580"><a href="#Data.getMarkupExames-580"><span class="linenos">580</span></a>        <span class="k">return</span> <span class="n">product_fixed_expenses</span><span class="p">,</span> <span class="n">product_variable_expenses</span><span class="p">,</span> <span class="n">product_revenue</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Calculates the markup for exams expenses based on fixed and variable expenses.</p>
 
 <p>Utilizes <code>economia.expenses_product_calculation</code> to adjust expenses.</p>
 
@@ -2693,15 +2983,15 @@ to access company records and retrieve gross revenue data.</p>
 
     </div>
     <a class="headerlink" href="#Data.getAllData"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Data.getAllData-514"><a href="#Data.getAllData-514"><span class="linenos">514</span></a>    <span class="k">def</span> <span class="nf">getAllData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="Data.getAllData-515"><a href="#Data.getAllData-515"><span class="linenos">515</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="Data.getAllData-516"><a href="#Data.getAllData-516"><span class="linenos">516</span></a><span class="sd">        Retrieves all data from the dataset.</span>
-</span><span id="Data.getAllData-517"><a href="#Data.getAllData-517"><span class="linenos">517</span></a>
-</span><span id="Data.getAllData-518"><a href="#Data.getAllData-518"><span class="linenos">518</span></a><span class="sd">        Returns:</span>
-</span><span id="Data.getAllData-519"><a href="#Data.getAllData-519"><span class="linenos">519</span></a><span class="sd">            list of dict: A list of records representing the dataset.</span>
-</span><span id="Data.getAllData-520"><a href="#Data.getAllData-520"><span class="linenos">520</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Data.getAllData-521"><a href="#Data.getAllData-521"><span class="linenos">521</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
-</span><span id="Data.getAllData-522"><a href="#Data.getAllData-522"><span class="linenos">522</span></a>        <span class="k">return</span> <span class="n">data</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Data.getAllData-582"><a href="#Data.getAllData-582"><span class="linenos">582</span></a>    <span class="k">def</span> <span class="nf">getAllData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="Data.getAllData-583"><a href="#Data.getAllData-583"><span class="linenos">583</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="Data.getAllData-584"><a href="#Data.getAllData-584"><span class="linenos">584</span></a><span class="sd">        Retrieves all data from the dataset.</span>
+</span><span id="Data.getAllData-585"><a href="#Data.getAllData-585"><span class="linenos">585</span></a>
+</span><span id="Data.getAllData-586"><a href="#Data.getAllData-586"><span class="linenos">586</span></a><span class="sd">        Returns:</span>
+</span><span id="Data.getAllData-587"><a href="#Data.getAllData-587"><span class="linenos">587</span></a><span class="sd">            list of dict: A list of records representing the dataset.</span>
+</span><span id="Data.getAllData-588"><a href="#Data.getAllData-588"><span class="linenos">588</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Data.getAllData-589"><a href="#Data.getAllData-589"><span class="linenos">589</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</span><span id="Data.getAllData-590"><a href="#Data.getAllData-590"><span class="linenos">590</span></a>        <span class="k">return</span> <span class="n">data</span>
 </span></pre></div>
 
 
@@ -2728,62 +3018,62 @@ to access company records and retrieve gross revenue data.</p>
 
     </div>
     <a class="headerlink" href="#CompanyData"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData-525"><a href="#CompanyData-525"><span class="linenos">525</span></a><span class="k">class</span> <span class="nc">CompanyData</span><span class="p">:</span>
-</span><span id="CompanyData-526"><a href="#CompanyData-526"><span class="linenos">526</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData-527"><a href="#CompanyData-527"><span class="linenos">527</span></a><span class="sd">    Class to access the data of a specific company. This data only has 2 columns: &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
-</span><span id="CompanyData-528"><a href="#CompanyData-528"><span class="linenos">528</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="CompanyData-529"><a href="#CompanyData-529"><span class="linenos">529</span></a>
-</span><span id="CompanyData-530"><a href="#CompanyData-530"><span class="linenos">530</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_path</span><span class="p">):</span>
-</span><span id="CompanyData-531"><a href="#CompanyData-531"><span class="linenos">531</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData-532"><a href="#CompanyData-532"><span class="linenos">532</span></a><span class="sd">        Initializes the CompanyData class with the path of the CSV file.</span>
-</span><span id="CompanyData-533"><a href="#CompanyData-533"><span class="linenos">533</span></a>
-</span><span id="CompanyData-534"><a href="#CompanyData-534"><span class="linenos">534</span></a><span class="sd">        Args:</span>
-</span><span id="CompanyData-535"><a href="#CompanyData-535"><span class="linenos">535</span></a><span class="sd">            csv_file_path (str): The path of the CSV file.</span>
-</span><span id="CompanyData-536"><a href="#CompanyData-536"><span class="linenos">536</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CompanyData-537"><a href="#CompanyData-537"><span class="linenos">537</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span> <span class="o">=</span> <span class="n">csv_file_path</span>
-</span><span id="CompanyData-538"><a href="#CompanyData-538"><span class="linenos">538</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-</span><span id="CompanyData-539"><a href="#CompanyData-539"><span class="linenos">539</span></a>
-</span><span id="CompanyData-540"><a href="#CompanyData-540"><span class="linenos">540</span></a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="CompanyData-541"><a href="#CompanyData-541"><span class="linenos">541</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData-542"><a href="#CompanyData-542"><span class="linenos">542</span></a><span class="sd">        Loads the data from the CSV file.</span>
-</span><span id="CompanyData-543"><a href="#CompanyData-543"><span class="linenos">543</span></a>
-</span><span id="CompanyData-544"><a href="#CompanyData-544"><span class="linenos">544</span></a><span class="sd">        Returns:</span>
-</span><span id="CompanyData-545"><a href="#CompanyData-545"><span class="linenos">545</span></a><span class="sd">            list of dict: A list of company records with &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
-</span><span id="CompanyData-546"><a href="#CompanyData-546"><span class="linenos">546</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CompanyData-547"><a href="#CompanyData-547"><span class="linenos">547</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="CompanyData-548"><a href="#CompanyData-548"><span class="linenos">548</span></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-</span><span id="CompanyData-549"><a href="#CompanyData-549"><span class="linenos">549</span></a>            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
-</span><span id="CompanyData-550"><a href="#CompanyData-550"><span class="linenos">550</span></a>            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-</span><span id="CompanyData-551"><a href="#CompanyData-551"><span class="linenos">551</span></a>                <span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">])</span>
-</span><span id="CompanyData-552"><a href="#CompanyData-552"><span class="linenos">552</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-</span><span id="CompanyData-553"><a href="#CompanyData-553"><span class="linenos">553</span></a>        <span class="k">return</span> <span class="n">data</span>
-</span><span id="CompanyData-554"><a href="#CompanyData-554"><span class="linenos">554</span></a>
-</span><span id="CompanyData-555"><a href="#CompanyData-555"><span class="linenos">555</span></a>    <span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company_name</span><span class="p">):</span>
-</span><span id="CompanyData-556"><a href="#CompanyData-556"><span class="linenos">556</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData-557"><a href="#CompanyData-557"><span class="linenos">557</span></a><span class="sd">        Retrieves the data of a specific company.</span>
-</span><span id="CompanyData-558"><a href="#CompanyData-558"><span class="linenos">558</span></a>
-</span><span id="CompanyData-559"><a href="#CompanyData-559"><span class="linenos">559</span></a><span class="sd">        Args:</span>
-</span><span id="CompanyData-560"><a href="#CompanyData-560"><span class="linenos">560</span></a><span class="sd">            company_name (str): The name of the company.</span>
-</span><span id="CompanyData-561"><a href="#CompanyData-561"><span class="linenos">561</span></a>
-</span><span id="CompanyData-562"><a href="#CompanyData-562"><span class="linenos">562</span></a><span class="sd">        Returns:</span>
-</span><span id="CompanyData-563"><a href="#CompanyData-563"><span class="linenos">563</span></a><span class="sd">            dict: The company&#39;s data containing &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
-</span><span id="CompanyData-564"><a href="#CompanyData-564"><span class="linenos">564</span></a>
-</span><span id="CompanyData-565"><a href="#CompanyData-565"><span class="linenos">565</span></a><span class="sd">        Raises:</span>
-</span><span id="CompanyData-566"><a href="#CompanyData-566"><span class="linenos">566</span></a><span class="sd">            ValueError: If the company is not found.</span>
-</span><span id="CompanyData-567"><a href="#CompanyData-567"><span class="linenos">567</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CompanyData-568"><a href="#CompanyData-568"><span class="linenos">568</span></a>        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-</span><span id="CompanyData-569"><a href="#CompanyData-569"><span class="linenos">569</span></a>            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;nome_da_empresa&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">company_name</span><span class="p">:</span>
-</span><span id="CompanyData-570"><a href="#CompanyData-570"><span class="linenos">570</span></a>                <span class="k">return</span> <span class="n">record</span>
-</span><span id="CompanyData-571"><a href="#CompanyData-571"><span class="linenos">571</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Company &#39;</span><span class="si">{</span><span class="n">company_name</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
-</span><span id="CompanyData-572"><a href="#CompanyData-572"><span class="linenos">572</span></a>
-</span><span id="CompanyData-573"><a href="#CompanyData-573"><span class="linenos">573</span></a>    <span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="CompanyData-574"><a href="#CompanyData-574"><span class="linenos">574</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData-575"><a href="#CompanyData-575"><span class="linenos">575</span></a><span class="sd">        Retrieves the data of all companies.</span>
-</span><span id="CompanyData-576"><a href="#CompanyData-576"><span class="linenos">576</span></a>
-</span><span id="CompanyData-577"><a href="#CompanyData-577"><span class="linenos">577</span></a><span class="sd">        Returns:</span>
-</span><span id="CompanyData-578"><a href="#CompanyData-578"><span class="linenos">578</span></a><span class="sd">            list of dict: A list of all company records.</span>
-</span><span id="CompanyData-579"><a href="#CompanyData-579"><span class="linenos">579</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CompanyData-580"><a href="#CompanyData-580"><span class="linenos">580</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData-593"><a href="#CompanyData-593"><span class="linenos">593</span></a><span class="k">class</span> <span class="nc">CompanyData</span><span class="p">:</span>
+</span><span id="CompanyData-594"><a href="#CompanyData-594"><span class="linenos">594</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData-595"><a href="#CompanyData-595"><span class="linenos">595</span></a><span class="sd">    Class to access the data of a specific company. This data only has 2 columns: &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
+</span><span id="CompanyData-596"><a href="#CompanyData-596"><span class="linenos">596</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="CompanyData-597"><a href="#CompanyData-597"><span class="linenos">597</span></a>
+</span><span id="CompanyData-598"><a href="#CompanyData-598"><span class="linenos">598</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_path</span><span class="p">):</span>
+</span><span id="CompanyData-599"><a href="#CompanyData-599"><span class="linenos">599</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData-600"><a href="#CompanyData-600"><span class="linenos">600</span></a><span class="sd">        Initializes the CompanyData class with the path of the CSV file.</span>
+</span><span id="CompanyData-601"><a href="#CompanyData-601"><span class="linenos">601</span></a>
+</span><span id="CompanyData-602"><a href="#CompanyData-602"><span class="linenos">602</span></a><span class="sd">        Args:</span>
+</span><span id="CompanyData-603"><a href="#CompanyData-603"><span class="linenos">603</span></a><span class="sd">            csv_file_path (str): The path of the CSV file.</span>
+</span><span id="CompanyData-604"><a href="#CompanyData-604"><span class="linenos">604</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CompanyData-605"><a href="#CompanyData-605"><span class="linenos">605</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span> <span class="o">=</span> <span class="n">csv_file_path</span>
+</span><span id="CompanyData-606"><a href="#CompanyData-606"><span class="linenos">606</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+</span><span id="CompanyData-607"><a href="#CompanyData-607"><span class="linenos">607</span></a>
+</span><span id="CompanyData-608"><a href="#CompanyData-608"><span class="linenos">608</span></a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="CompanyData-609"><a href="#CompanyData-609"><span class="linenos">609</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData-610"><a href="#CompanyData-610"><span class="linenos">610</span></a><span class="sd">        Loads the data from the CSV file.</span>
+</span><span id="CompanyData-611"><a href="#CompanyData-611"><span class="linenos">611</span></a>
+</span><span id="CompanyData-612"><a href="#CompanyData-612"><span class="linenos">612</span></a><span class="sd">        Returns:</span>
+</span><span id="CompanyData-613"><a href="#CompanyData-613"><span class="linenos">613</span></a><span class="sd">            list of dict: A list of company records with &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
+</span><span id="CompanyData-614"><a href="#CompanyData-614"><span class="linenos">614</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CompanyData-615"><a href="#CompanyData-615"><span class="linenos">615</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="CompanyData-616"><a href="#CompanyData-616"><span class="linenos">616</span></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+</span><span id="CompanyData-617"><a href="#CompanyData-617"><span class="linenos">617</span></a>            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+</span><span id="CompanyData-618"><a href="#CompanyData-618"><span class="linenos">618</span></a>            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+</span><span id="CompanyData-619"><a href="#CompanyData-619"><span class="linenos">619</span></a>                <span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">])</span>
+</span><span id="CompanyData-620"><a href="#CompanyData-620"><span class="linenos">620</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span><span id="CompanyData-621"><a href="#CompanyData-621"><span class="linenos">621</span></a>        <span class="k">return</span> <span class="n">data</span>
+</span><span id="CompanyData-622"><a href="#CompanyData-622"><span class="linenos">622</span></a>
+</span><span id="CompanyData-623"><a href="#CompanyData-623"><span class="linenos">623</span></a>    <span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company_name</span><span class="p">):</span>
+</span><span id="CompanyData-624"><a href="#CompanyData-624"><span class="linenos">624</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData-625"><a href="#CompanyData-625"><span class="linenos">625</span></a><span class="sd">        Retrieves the data of a specific company.</span>
+</span><span id="CompanyData-626"><a href="#CompanyData-626"><span class="linenos">626</span></a>
+</span><span id="CompanyData-627"><a href="#CompanyData-627"><span class="linenos">627</span></a><span class="sd">        Args:</span>
+</span><span id="CompanyData-628"><a href="#CompanyData-628"><span class="linenos">628</span></a><span class="sd">            company_name (str): The name of the company.</span>
+</span><span id="CompanyData-629"><a href="#CompanyData-629"><span class="linenos">629</span></a>
+</span><span id="CompanyData-630"><a href="#CompanyData-630"><span class="linenos">630</span></a><span class="sd">        Returns:</span>
+</span><span id="CompanyData-631"><a href="#CompanyData-631"><span class="linenos">631</span></a><span class="sd">            dict: The company&#39;s data containing &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
+</span><span id="CompanyData-632"><a href="#CompanyData-632"><span class="linenos">632</span></a>
+</span><span id="CompanyData-633"><a href="#CompanyData-633"><span class="linenos">633</span></a><span class="sd">        Raises:</span>
+</span><span id="CompanyData-634"><a href="#CompanyData-634"><span class="linenos">634</span></a><span class="sd">            ValueError: If the company is not found.</span>
+</span><span id="CompanyData-635"><a href="#CompanyData-635"><span class="linenos">635</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CompanyData-636"><a href="#CompanyData-636"><span class="linenos">636</span></a>        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span><span id="CompanyData-637"><a href="#CompanyData-637"><span class="linenos">637</span></a>            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;nome_da_empresa&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">company_name</span><span class="p">:</span>
+</span><span id="CompanyData-638"><a href="#CompanyData-638"><span class="linenos">638</span></a>                <span class="k">return</span> <span class="n">record</span>
+</span><span id="CompanyData-639"><a href="#CompanyData-639"><span class="linenos">639</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Company &#39;</span><span class="si">{</span><span class="n">company_name</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
+</span><span id="CompanyData-640"><a href="#CompanyData-640"><span class="linenos">640</span></a>
+</span><span id="CompanyData-641"><a href="#CompanyData-641"><span class="linenos">641</span></a>    <span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="CompanyData-642"><a href="#CompanyData-642"><span class="linenos">642</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData-643"><a href="#CompanyData-643"><span class="linenos">643</span></a><span class="sd">        Retrieves the data of all companies.</span>
+</span><span id="CompanyData-644"><a href="#CompanyData-644"><span class="linenos">644</span></a>
+</span><span id="CompanyData-645"><a href="#CompanyData-645"><span class="linenos">645</span></a><span class="sd">        Returns:</span>
+</span><span id="CompanyData-646"><a href="#CompanyData-646"><span class="linenos">646</span></a><span class="sd">            list of dict: A list of all company records.</span>
+</span><span id="CompanyData-647"><a href="#CompanyData-647"><span class="linenos">647</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CompanyData-648"><a href="#CompanyData-648"><span class="linenos">648</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 </span></pre></div>
 
 
@@ -2801,15 +3091,15 @@ to access company records and retrieve gross revenue data.</p>
 
     </div>
     <a class="headerlink" href="#CompanyData.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData.__init__-530"><a href="#CompanyData.__init__-530"><span class="linenos">530</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_path</span><span class="p">):</span>
-</span><span id="CompanyData.__init__-531"><a href="#CompanyData.__init__-531"><span class="linenos">531</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData.__init__-532"><a href="#CompanyData.__init__-532"><span class="linenos">532</span></a><span class="sd">        Initializes the CompanyData class with the path of the CSV file.</span>
-</span><span id="CompanyData.__init__-533"><a href="#CompanyData.__init__-533"><span class="linenos">533</span></a>
-</span><span id="CompanyData.__init__-534"><a href="#CompanyData.__init__-534"><span class="linenos">534</span></a><span class="sd">        Args:</span>
-</span><span id="CompanyData.__init__-535"><a href="#CompanyData.__init__-535"><span class="linenos">535</span></a><span class="sd">            csv_file_path (str): The path of the CSV file.</span>
-</span><span id="CompanyData.__init__-536"><a href="#CompanyData.__init__-536"><span class="linenos">536</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CompanyData.__init__-537"><a href="#CompanyData.__init__-537"><span class="linenos">537</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span> <span class="o">=</span> <span class="n">csv_file_path</span>
-</span><span id="CompanyData.__init__-538"><a href="#CompanyData.__init__-538"><span class="linenos">538</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData.__init__-598"><a href="#CompanyData.__init__-598"><span class="linenos">598</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file_path</span><span class="p">):</span>
+</span><span id="CompanyData.__init__-599"><a href="#CompanyData.__init__-599"><span class="linenos">599</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData.__init__-600"><a href="#CompanyData.__init__-600"><span class="linenos">600</span></a><span class="sd">        Initializes the CompanyData class with the path of the CSV file.</span>
+</span><span id="CompanyData.__init__-601"><a href="#CompanyData.__init__-601"><span class="linenos">601</span></a>
+</span><span id="CompanyData.__init__-602"><a href="#CompanyData.__init__-602"><span class="linenos">602</span></a><span class="sd">        Args:</span>
+</span><span id="CompanyData.__init__-603"><a href="#CompanyData.__init__-603"><span class="linenos">603</span></a><span class="sd">            csv_file_path (str): The path of the CSV file.</span>
+</span><span id="CompanyData.__init__-604"><a href="#CompanyData.__init__-604"><span class="linenos">604</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CompanyData.__init__-605"><a href="#CompanyData.__init__-605"><span class="linenos">605</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span> <span class="o">=</span> <span class="n">csv_file_path</span>
+</span><span id="CompanyData.__init__-606"><a href="#CompanyData.__init__-606"><span class="linenos">606</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -2857,20 +3147,20 @@ to access company records and retrieve gross revenue data.</p>
 
     </div>
     <a class="headerlink" href="#CompanyData.load_data"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData.load_data-540"><a href="#CompanyData.load_data-540"><span class="linenos">540</span></a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="CompanyData.load_data-541"><a href="#CompanyData.load_data-541"><span class="linenos">541</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData.load_data-542"><a href="#CompanyData.load_data-542"><span class="linenos">542</span></a><span class="sd">        Loads the data from the CSV file.</span>
-</span><span id="CompanyData.load_data-543"><a href="#CompanyData.load_data-543"><span class="linenos">543</span></a>
-</span><span id="CompanyData.load_data-544"><a href="#CompanyData.load_data-544"><span class="linenos">544</span></a><span class="sd">        Returns:</span>
-</span><span id="CompanyData.load_data-545"><a href="#CompanyData.load_data-545"><span class="linenos">545</span></a><span class="sd">            list of dict: A list of company records with &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
-</span><span id="CompanyData.load_data-546"><a href="#CompanyData.load_data-546"><span class="linenos">546</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CompanyData.load_data-547"><a href="#CompanyData.load_data-547"><span class="linenos">547</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="CompanyData.load_data-548"><a href="#CompanyData.load_data-548"><span class="linenos">548</span></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-</span><span id="CompanyData.load_data-549"><a href="#CompanyData.load_data-549"><span class="linenos">549</span></a>            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
-</span><span id="CompanyData.load_data-550"><a href="#CompanyData.load_data-550"><span class="linenos">550</span></a>            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
-</span><span id="CompanyData.load_data-551"><a href="#CompanyData.load_data-551"><span class="linenos">551</span></a>                <span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">])</span>
-</span><span id="CompanyData.load_data-552"><a href="#CompanyData.load_data-552"><span class="linenos">552</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-</span><span id="CompanyData.load_data-553"><a href="#CompanyData.load_data-553"><span class="linenos">553</span></a>        <span class="k">return</span> <span class="n">data</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData.load_data-608"><a href="#CompanyData.load_data-608"><span class="linenos">608</span></a>    <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="CompanyData.load_data-609"><a href="#CompanyData.load_data-609"><span class="linenos">609</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData.load_data-610"><a href="#CompanyData.load_data-610"><span class="linenos">610</span></a><span class="sd">        Loads the data from the CSV file.</span>
+</span><span id="CompanyData.load_data-611"><a href="#CompanyData.load_data-611"><span class="linenos">611</span></a>
+</span><span id="CompanyData.load_data-612"><a href="#CompanyData.load_data-612"><span class="linenos">612</span></a><span class="sd">        Returns:</span>
+</span><span id="CompanyData.load_data-613"><a href="#CompanyData.load_data-613"><span class="linenos">613</span></a><span class="sd">            list of dict: A list of company records with &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
+</span><span id="CompanyData.load_data-614"><a href="#CompanyData.load_data-614"><span class="linenos">614</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CompanyData.load_data-615"><a href="#CompanyData.load_data-615"><span class="linenos">615</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="CompanyData.load_data-616"><a href="#CompanyData.load_data-616"><span class="linenos">616</span></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+</span><span id="CompanyData.load_data-617"><a href="#CompanyData.load_data-617"><span class="linenos">617</span></a>            <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+</span><span id="CompanyData.load_data-618"><a href="#CompanyData.load_data-618"><span class="linenos">618</span></a>            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+</span><span id="CompanyData.load_data-619"><a href="#CompanyData.load_data-619"><span class="linenos">619</span></a>                <span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;receita_bruta&#39;</span><span class="p">])</span>
+</span><span id="CompanyData.load_data-620"><a href="#CompanyData.load_data-620"><span class="linenos">620</span></a>                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</span><span id="CompanyData.load_data-621"><a href="#CompanyData.load_data-621"><span class="linenos">621</span></a>        <span class="k">return</span> <span class="n">data</span>
 </span></pre></div>
 
 
@@ -2896,23 +3186,23 @@ to access company records and retrieve gross revenue data.</p>
 
     </div>
     <a class="headerlink" href="#CompanyData.get_company_data"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData.get_company_data-555"><a href="#CompanyData.get_company_data-555"><span class="linenos">555</span></a>    <span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company_name</span><span class="p">):</span>
-</span><span id="CompanyData.get_company_data-556"><a href="#CompanyData.get_company_data-556"><span class="linenos">556</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData.get_company_data-557"><a href="#CompanyData.get_company_data-557"><span class="linenos">557</span></a><span class="sd">        Retrieves the data of a specific company.</span>
-</span><span id="CompanyData.get_company_data-558"><a href="#CompanyData.get_company_data-558"><span class="linenos">558</span></a>
-</span><span id="CompanyData.get_company_data-559"><a href="#CompanyData.get_company_data-559"><span class="linenos">559</span></a><span class="sd">        Args:</span>
-</span><span id="CompanyData.get_company_data-560"><a href="#CompanyData.get_company_data-560"><span class="linenos">560</span></a><span class="sd">            company_name (str): The name of the company.</span>
-</span><span id="CompanyData.get_company_data-561"><a href="#CompanyData.get_company_data-561"><span class="linenos">561</span></a>
-</span><span id="CompanyData.get_company_data-562"><a href="#CompanyData.get_company_data-562"><span class="linenos">562</span></a><span class="sd">        Returns:</span>
-</span><span id="CompanyData.get_company_data-563"><a href="#CompanyData.get_company_data-563"><span class="linenos">563</span></a><span class="sd">            dict: The company&#39;s data containing &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
-</span><span id="CompanyData.get_company_data-564"><a href="#CompanyData.get_company_data-564"><span class="linenos">564</span></a>
-</span><span id="CompanyData.get_company_data-565"><a href="#CompanyData.get_company_data-565"><span class="linenos">565</span></a><span class="sd">        Raises:</span>
-</span><span id="CompanyData.get_company_data-566"><a href="#CompanyData.get_company_data-566"><span class="linenos">566</span></a><span class="sd">            ValueError: If the company is not found.</span>
-</span><span id="CompanyData.get_company_data-567"><a href="#CompanyData.get_company_data-567"><span class="linenos">567</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CompanyData.get_company_data-568"><a href="#CompanyData.get_company_data-568"><span class="linenos">568</span></a>        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
-</span><span id="CompanyData.get_company_data-569"><a href="#CompanyData.get_company_data-569"><span class="linenos">569</span></a>            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;nome_da_empresa&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">company_name</span><span class="p">:</span>
-</span><span id="CompanyData.get_company_data-570"><a href="#CompanyData.get_company_data-570"><span class="linenos">570</span></a>                <span class="k">return</span> <span class="n">record</span>
-</span><span id="CompanyData.get_company_data-571"><a href="#CompanyData.get_company_data-571"><span class="linenos">571</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Company &#39;</span><span class="si">{</span><span class="n">company_name</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData.get_company_data-623"><a href="#CompanyData.get_company_data-623"><span class="linenos">623</span></a>    <span class="k">def</span> <span class="nf">get_company_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">company_name</span><span class="p">):</span>
+</span><span id="CompanyData.get_company_data-624"><a href="#CompanyData.get_company_data-624"><span class="linenos">624</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData.get_company_data-625"><a href="#CompanyData.get_company_data-625"><span class="linenos">625</span></a><span class="sd">        Retrieves the data of a specific company.</span>
+</span><span id="CompanyData.get_company_data-626"><a href="#CompanyData.get_company_data-626"><span class="linenos">626</span></a>
+</span><span id="CompanyData.get_company_data-627"><a href="#CompanyData.get_company_data-627"><span class="linenos">627</span></a><span class="sd">        Args:</span>
+</span><span id="CompanyData.get_company_data-628"><a href="#CompanyData.get_company_data-628"><span class="linenos">628</span></a><span class="sd">            company_name (str): The name of the company.</span>
+</span><span id="CompanyData.get_company_data-629"><a href="#CompanyData.get_company_data-629"><span class="linenos">629</span></a>
+</span><span id="CompanyData.get_company_data-630"><a href="#CompanyData.get_company_data-630"><span class="linenos">630</span></a><span class="sd">        Returns:</span>
+</span><span id="CompanyData.get_company_data-631"><a href="#CompanyData.get_company_data-631"><span class="linenos">631</span></a><span class="sd">            dict: The company&#39;s data containing &#39;nome_da_empresa&#39; and &#39;receita_bruta&#39;.</span>
+</span><span id="CompanyData.get_company_data-632"><a href="#CompanyData.get_company_data-632"><span class="linenos">632</span></a>
+</span><span id="CompanyData.get_company_data-633"><a href="#CompanyData.get_company_data-633"><span class="linenos">633</span></a><span class="sd">        Raises:</span>
+</span><span id="CompanyData.get_company_data-634"><a href="#CompanyData.get_company_data-634"><span class="linenos">634</span></a><span class="sd">            ValueError: If the company is not found.</span>
+</span><span id="CompanyData.get_company_data-635"><a href="#CompanyData.get_company_data-635"><span class="linenos">635</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CompanyData.get_company_data-636"><a href="#CompanyData.get_company_data-636"><span class="linenos">636</span></a>        <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+</span><span id="CompanyData.get_company_data-637"><a href="#CompanyData.get_company_data-637"><span class="linenos">637</span></a>            <span class="k">if</span> <span class="n">record</span><span class="p">[</span><span class="s1">&#39;nome_da_empresa&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">company_name</span><span class="p">:</span>
+</span><span id="CompanyData.get_company_data-638"><a href="#CompanyData.get_company_data-638"><span class="linenos">638</span></a>                <span class="k">return</span> <span class="n">record</span>
+</span><span id="CompanyData.get_company_data-639"><a href="#CompanyData.get_company_data-639"><span class="linenos">639</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Company &#39;</span><span class="si">{</span><span class="n">company_name</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -2950,14 +3240,14 @@ to access company records and retrieve gross revenue data.</p>
 
     </div>
     <a class="headerlink" href="#CompanyData.get_all_companies"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData.get_all_companies-573"><a href="#CompanyData.get_all_companies-573"><span class="linenos">573</span></a>    <span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="CompanyData.get_all_companies-574"><a href="#CompanyData.get_all_companies-574"><span class="linenos">574</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="CompanyData.get_all_companies-575"><a href="#CompanyData.get_all_companies-575"><span class="linenos">575</span></a><span class="sd">        Retrieves the data of all companies.</span>
-</span><span id="CompanyData.get_all_companies-576"><a href="#CompanyData.get_all_companies-576"><span class="linenos">576</span></a>
-</span><span id="CompanyData.get_all_companies-577"><a href="#CompanyData.get_all_companies-577"><span class="linenos">577</span></a><span class="sd">        Returns:</span>
-</span><span id="CompanyData.get_all_companies-578"><a href="#CompanyData.get_all_companies-578"><span class="linenos">578</span></a><span class="sd">            list of dict: A list of all company records.</span>
-</span><span id="CompanyData.get_all_companies-579"><a href="#CompanyData.get_all_companies-579"><span class="linenos">579</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="CompanyData.get_all_companies-580"><a href="#CompanyData.get_all_companies-580"><span class="linenos">580</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CompanyData.get_all_companies-641"><a href="#CompanyData.get_all_companies-641"><span class="linenos">641</span></a>    <span class="k">def</span> <span class="nf">get_all_companies</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="CompanyData.get_all_companies-642"><a href="#CompanyData.get_all_companies-642"><span class="linenos">642</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="CompanyData.get_all_companies-643"><a href="#CompanyData.get_all_companies-643"><span class="linenos">643</span></a><span class="sd">        Retrieves the data of all companies.</span>
+</span><span id="CompanyData.get_all_companies-644"><a href="#CompanyData.get_all_companies-644"><span class="linenos">644</span></a>
+</span><span id="CompanyData.get_all_companies-645"><a href="#CompanyData.get_all_companies-645"><span class="linenos">645</span></a><span class="sd">        Returns:</span>
+</span><span id="CompanyData.get_all_companies-646"><a href="#CompanyData.get_all_companies-646"><span class="linenos">646</span></a><span class="sd">            list of dict: A list of all company records.</span>
+</span><span id="CompanyData.get_all_companies-647"><a href="#CompanyData.get_all_companies-647"><span class="linenos">647</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="CompanyData.get_all_companies-648"><a href="#CompanyData.get_all_companies-648"><span class="linenos">648</span></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
 </span></pre></div>
 
 
@@ -2984,18 +3274,18 @@ to access company records and retrieve gross revenue data.</p>
 
     </div>
     <a class="headerlink" href="#error_month"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="error_month-583"><a href="#error_month-583"><span class="linenos">583</span></a><span class="k">def</span> <span class="nf">error_month</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
-</span><span id="error_month-584"><a href="#error_month-584"><span class="linenos">584</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="error_month-585"><a href="#error_month-585"><span class="linenos">585</span></a><span class="sd">    Verifies if the selected month is valid.</span>
-</span><span id="error_month-586"><a href="#error_month-586"><span class="linenos">586</span></a>
-</span><span id="error_month-587"><a href="#error_month-587"><span class="linenos">587</span></a><span class="sd">    Args:</span>
-</span><span id="error_month-588"><a href="#error_month-588"><span class="linenos">588</span></a><span class="sd">        month (str): The month to verify.</span>
-</span><span id="error_month-589"><a href="#error_month-589"><span class="linenos">589</span></a>
-</span><span id="error_month-590"><a href="#error_month-590"><span class="linenos">590</span></a><span class="sd">    Raises:</span>
-</span><span id="error_month-591"><a href="#error_month-591"><span class="linenos">591</span></a><span class="sd">        ValueError: If the month is not in the list of possible months.</span>
-</span><span id="error_month-592"><a href="#error_month-592"><span class="linenos">592</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="error_month-593"><a href="#error_month-593"><span class="linenos">593</span></a>    <span class="k">if</span> <span class="n">month</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">possible_months</span><span class="p">:</span>
-</span><span id="error_month-594"><a href="#error_month-594"><span class="linenos">594</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Month &#39;</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s2">&#39; is not valid. Choose from </span><span class="si">{</span><span class="n">possible_months</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="error_month-651"><a href="#error_month-651"><span class="linenos">651</span></a><span class="k">def</span> <span class="nf">error_month</span><span class="p">(</span><span class="n">month</span><span class="p">):</span>
+</span><span id="error_month-652"><a href="#error_month-652"><span class="linenos">652</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="error_month-653"><a href="#error_month-653"><span class="linenos">653</span></a><span class="sd">    Verifies if the selected month is valid.</span>
+</span><span id="error_month-654"><a href="#error_month-654"><span class="linenos">654</span></a>
+</span><span id="error_month-655"><a href="#error_month-655"><span class="linenos">655</span></a><span class="sd">    Args:</span>
+</span><span id="error_month-656"><a href="#error_month-656"><span class="linenos">656</span></a><span class="sd">        month (str): The month to verify.</span>
+</span><span id="error_month-657"><a href="#error_month-657"><span class="linenos">657</span></a>
+</span><span id="error_month-658"><a href="#error_month-658"><span class="linenos">658</span></a><span class="sd">    Raises:</span>
+</span><span id="error_month-659"><a href="#error_month-659"><span class="linenos">659</span></a><span class="sd">        ValueError: If the month is not in the list of possible months.</span>
+</span><span id="error_month-660"><a href="#error_month-660"><span class="linenos">660</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="error_month-661"><a href="#error_month-661"><span class="linenos">661</span></a>    <span class="k">if</span> <span class="n">month</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">possible_months</span><span class="p">:</span>
+</span><span id="error_month-662"><a href="#error_month-662"><span class="linenos">662</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Month &#39;</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s2">&#39; is not valid. Choose from </span><span class="si">{</span><span class="n">possible_months</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
