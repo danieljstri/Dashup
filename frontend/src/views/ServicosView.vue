@@ -1,24 +1,29 @@
 <script setup>
-import PieChart from '@/components/charts/PieChart.vue';
 import MarkupChartConsultation from '@/components/consultation/MarkupChartConsultation.vue';
 import ProfitCardConsultation from '@/components/consultation/ProfitCardConsultation.vue';
 import MarkupChartExams from '@/components/exams/MarkupChartExams.vue';
 import ProfitCardExams from '@/components/exams/ProfitCardExams.vue';
+import ExpensesAnesthesiaCard from '@/components/anesthesia/ExpensesAnesthesiaCard.vue';
+import ProfitAnesthesiaCard from '@/components/anesthesia/ProfitAnesthesiaCard.vue';
+import RevenueAnesthesiaCard from '@/components/anesthesia/RevenueAnesthesiaCard.vue';
+import RxEAnestesiaChart from '@/components/anesthesia/RxEAnestesiaChart.vue';
+import RevenueCardConsultation from '@/components/consultation/RevenueCardConsultation.vue';
+import ExpensesCardConsultation from '@/components/consultation/ExpensesCardConsultation.vue';
 </script>
 
 <template>
   <div class="content">
     <h2>Bem vindo ao DashUp!</h2>
-    <PieChart />
     <!-- Seção de Consultas -->
     <div class="chart-section">
       <h3>Consultas</h3>
       <div class="chart-group">
         <MarkupChartConsultation />
         <ProfitCardConsultation />
+        <RevenueCardConsultation />
+        <ExpensesCardConsultation />
       </div>
     </div>
-
     <!-- Seção de Exames -->
     <div class="chart-section">
       <h3>Exames</h3>
@@ -27,7 +32,17 @@ import ProfitCardExams from '@/components/exams/ProfitCardExams.vue';
         <ProfitCardExams />
       </div>
     </div>
-    
+    <!-- Seção de Anestesia -->
+    <div class="chart-section">
+      <h3>Anestesia</h3>
+      <div class="chart-group">
+        <RxEAnestesiaChart />
+        <ExpensesAnesthesiaCard />
+        <ProfitAnesthesiaCard />
+        <RevenueAnesthesiaCard />
+        
+      </div>
+    </div>
   </div>
 </template>
 

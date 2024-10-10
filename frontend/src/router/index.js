@@ -28,11 +28,6 @@ const router = createRouter({
       component: () => import('../views/EconomicsView.vue')
     },
     {
-      path: '/pie',
-      name: 'pie',
-      component: () => import('../views/PieView.vue')
-    },
-    {
       path: '/services',
       name: 'services',
       component: () => import('../views/ServicosView.vue')

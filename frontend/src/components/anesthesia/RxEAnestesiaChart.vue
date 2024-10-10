@@ -1,9 +1,11 @@
+<!--Gráfico de Pizza que relaciona Receita, Despeza e Lucro Total no botão de Serviços-->
+
 <template>
-  <div class="graficoPizza">
+  <div class="RxE-chart">
 
     <!-- Renderiza o gráfico somente se chartData estiver pronto -->
     <div class="chart-container" v-if="isChartDataReady">
-      <PieChart :chart-data="chartData" :chart-options="chartOptions"></PieChart>
+      <DoughnutChart :chart-data="chartData" :chart-options="chartOptions"/>
     </div><!-- Conteúdo central do gráfico -->
 
     <div v-else>
@@ -15,17 +17,17 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { getExpensesData, getProfitData, getRevenueData } from '../../services/dataService';
-import { Pie } from 'vue-chartjs';
-import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
+import { getMarkupAnesthesiaData } from '../../services/dataService';
+import { Doughnut } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement, DoughnutController } from 'chart.js';
 
 // Componentes que serão utilizados para o gráfico Pie em serviços com: Receita, Despeza e Lucro
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
 export default {
-  name: 'RecxDesxLuc',
+  name: 'RecxDes',
   components: {
-    PieChart: Pie,
+    DoughnutChart: Doughnut,
   },
 
   setup() {
@@ -39,30 +41,26 @@ export default {
     const fetchData = async () => {
       try {
 
-          // Variáveis que armazenam os dados obtidos de serviços para serem inseridos no gráfico
-          // 'expenses', 'revenue' e 'profit' recebem os resultados das funções que buscam os dados de despesas, receitas e lucros
-          const expenses = await getExpensesData();
-          const revenue = await getRevenueData();
-          const profit = await getProfitData();
-
-          // Extrai os valores específicos de cada objeto retornado para uso no Chart
-          const expensesValue = expenses.value;
-          const revenueValue = revenue.value;
-          const profitValue = profit.value;
-
+          const dataMarkup = await getMarkupAnesthesiaData('janeiro')
+          const revenueValue = dataMarkup.value[2]
+          const fixedexpensesValue = dataMarkup.value[0]
+          const variableexpensesValue = dataMarkup.value[1]
           // Dados para o gráfico
           chartData.value = {
-            labels: ['Receita', 'Despesa', 'Lucro'],
+            labels: ['Receita', 'Despesa variável', 'Despesa fixa'],
             datasets: [
               {
-                data: [revenueValue, expensesValue, profitValue],
-                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'], // Cores dos segmentos
-                hoverBackgroundColor: ['#42b989','#fc9e56', '#00ff06'],
-                borderColor: '#000000', // Cor da borda (preto, neste caso)
-                borderWidth: 2 // Largura da borda
+                data: [revenueValue, variableexpensesValue, fixedexpensesValue],
+                backgroundColor: ['#42b989','#fc9e56','#a6ca18'],
+                hoverBackgroundColor: ['#42b989','#fc9e56', '#a6ca18'],
               },
             ],
           };
+          chartOptions.value = {
+              cutout: '70%', // Ajusta o tamanho do "furo" no meio do gráfico
+              responsive: true,
+              maintainAspectRatio: false,
+            };
 
           isChartDataReady.value = true;
       } catch (error) {
