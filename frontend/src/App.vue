@@ -7,8 +7,10 @@ import SideBar from './components/SideBar.vue';
     <div class="app">
         <!-- Sidebar -->
         <SideBar />
-        <!-- Router View -->
-        <RouterView />
+        <main class="main">
+            <!-- Router View -->
+            <RouterView />
+        </main>
     </div>
 </template>
 
@@ -20,7 +22,7 @@ import SideBar from './components/SideBar.vue';
     --dark: #1e293b;
     --dark-alt: #334155;
     --light: #f1f5f9;
-    --sidebar-width: 300px;
+    --sidebar-width: 250px;
 }
 
 * {
@@ -31,7 +33,7 @@ import SideBar from './components/SideBar.vue';
 }
 
 body {
-    background-color: #26292d;
+    background-color: #ffffff;
 }
 
 button {
@@ -54,4 +56,11 @@ button {
         }
     }
 }
+
+.main {
+    flex: 1;
+  margin-left: var(--sidebar-width);
+}
+
+
 </style>
