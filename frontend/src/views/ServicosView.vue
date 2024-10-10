@@ -9,7 +9,7 @@ import ProfitCardExams from '@/components/exams/ProfitCardExams.vue';
 <template>
   <div class="content">
     <h2>Bem vindo ao DashUp!</h2>
-
+    <PieChart />
     <!-- Seção de Consultas -->
     <div class="chart-section">
       <h3>Consultas</h3>
