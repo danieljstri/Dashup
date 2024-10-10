@@ -1,80 +1,72 @@
 <template>
-    <div class="profit-card-consultation">
-      <h4>{{ chartTitle }}</h4>
-      <div class="content">
-        <p>{{ profit }} </p>
-        <img src="../../assets/59043.png" alt="arrow" width="10" height="10">
-        <span> {{ growth_percentage }}%</span>
-    </div>
-    </div>
-  </template>
-  
-  <script>
-  import { getMarkupConsultationData } from '../../services/dataService';
-  
-  export default {
-    name: 'ProfitCardConsultation',
-    data() {
-      return {
-        profit: 0,
-        title: "Lucro", 
-        comparision: 0,
-      };
-    },
-    async mounted() {
-      try {
-        // function of dataservice being used to get the data, see dataService.js
-        const response = await getMarkupConsultationData('janeiro');
-        console.log(response.month, response.value)
-        const expenses = await response.value[1] + response.value[0];
-        const revenue = await response.value[2];
-        this.profit = revenue - expenses;
-        this.month = response.month;
-        this.chartTitle = `Lucro consultas em ${this.month}`;
+  <ProfitCard
+    :title="chartTitle"
+    :value="profit"
+    :growthPercentage="growthPercentage"
+  />
+</template>
 
-      } catch (error) {
-        console.error('Error fetching profit data:', error);
+<script>
+import { getMarkupConsultationData } from '../../services/dataService';
+import ProfitCard from '@/components/ProfitCard.vue';
+
+// Função auxiliar para obter o nome do mês anterior
+function getPreviousMonth(monthIndex) {
+  const months = [
+    'janeiro', 'fevereiro', 'março', 'abril',
+    'maio', 'junho', 'julho', 'agosto',
+    'setembro', 'outubro', 'novembro', 'dezembro'
+  ];
+  return months[(monthIndex - 1 + 12) % 12];
+}
+
+export default {
+  name: 'ProfitCardConsultation',
+  components: {
+    ProfitCard,
+  },
+  data() {
+    return {
+      profit: 0,
+      chartTitle: '',
+      growthPercentage: 0,
+    };
+  },
+  async mounted() {
+    try {
+      // Obter o mês atual e o mês anterior dinamicamente
+      const now = new Date();
+      const months = [
+        'janeiro', 'fevereiro', 'março', 'abril',
+        'maio', 'junho', 'julho', 'agosto',
+        'setembro', 'outubro', 'novembro', 'dezembro'
+      ];
+      const currentMonthIndex = now.getMonth(); // 0 para janeiro, 11 para dezembro
+      const currentMonthName = months[currentMonthIndex];
+      const previousMonthName = getPreviousMonth(currentMonthIndex);
+
+      // Obter dados para o mês atual
+      const response = await getMarkupConsultationData(currentMonthName);
+      const expenses = response.value[1] + response.value[0];
+      const revenue = response.value[2];
+      this.profit = revenue - expenses;
+      this.chartTitle = `Lucro consultas em ${currentMonthName}`;
+
+      // Obter dados para o mês anterior para calcular o percentual de crescimento
+      const previousResponse = await getMarkupConsultationData(previousMonthName);
+      const previousExpenses = previousResponse.value[1] + previousResponse.value[0];
+      const previousRevenue = previousResponse.value[2];
+      const previousProfit = previousRevenue - previousExpenses;
+
+      // Calcular o percentual de crescimento
+      if (previousProfit !== 0) {
+        this.growthPercentage = ((this.profit - previousProfit) / Math.abs(previousProfit)) * 100;
+      } else {
+        this.growthPercentage = 0; // Tratar caso o lucro anterior seja zero
       }
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .profit-card-consultation {
-    height:fit-content;
-    width: fit-content;
-    min-width: 150px;
-    border: 2px solid #2f3b36;
-    border-radius: 20px;
-    padding: 16px;
-    text-align: center;
-    background-color: #c8d2d9;
-    box-shadow: 0 1px 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .profit-card h4 {
-    margin: 0 0 8px;
-    display: flex;
-    justify-content: center;
-    
-  }
-
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center
-  }
-  
-  .content p {
-    margin: 0;
-    font-size: 1.2em;
-    color: #000000;
-    padding-right: 10px;
-  }
-
-  .content span {
-    margin: 0;
-    font-size: 1.0em;
-    color: green;
-  }
-  </style>
+    } catch (error) {
+      console.error('Error fetching profit data:', error);
+    }
+  },
+};
+</script>
