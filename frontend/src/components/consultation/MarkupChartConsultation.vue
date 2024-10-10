@@ -1,5 +1,5 @@
 <template>
-    <div class="comparision-chart">
+    <div class="Markup-consultation">
         <h3>Comparação Receita x Despesa</h3>
       <!-- Renderiza o gráfico somente se chartData estiver pronto -->
       <div class="chart-container" v-if="isChartDataReady">
@@ -13,7 +13,7 @@
   
   <script>
   import { ref, onMounted } from 'vue';
-  import { getExpensesData, getRevenueData } from '../../services/dataService';
+  import { getMarkupConsultationData } from '../../services/dataService';
   import { Doughnut } from 'vue-chartjs';
   import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
   
@@ -21,7 +21,7 @@
   ChartJS.register(Title, Tooltip, Legend, ArcElement);
   
   export default {
-    name: 'ComparisionRxEChart',
+    name: 'MarkupChartConsultation',
     components: {
       DoughnutChart: Doughnut,
     },
@@ -35,20 +35,18 @@
   
       const fetchData = async () => {
         try {
-            const expenses = await getExpensesData();
-            const revenue = await getRevenueData();
-
-            const expensesValue = expenses.value;
-            const revenueValue = revenue.value;
-
+            const markup = await getMarkupConsultationData('janeiro');
+            const revenue = markup.value[2];
+            const variableexpesnses = markup.value[1];
+            const fixedexpenses = markup.value[0];
             // Dados para o gráfico
             chartData.value = {
-              labels: ['Receita', 'Despesa'],
+              labels: ['Receita', 'Despesa variável', 'Despesa fixa'],
               datasets: [
                 {
-                  data: [revenueValue, expensesValue],
-                  backgroundColor: ['#42b989','#fc9e56'],
-                  hoverBackgroundColor: ['#42b989','#fc9e56'],
+                  data: [revenue, variableexpesnses, fixedexpenses],
+                  backgroundColor: ['#42b989','#fc9e56','#a6ca18'],
+                  hoverBackgroundColor: ['#42b989','#fc9e56', '#a6ca18'],
                 },
               ],
             };
@@ -85,9 +83,9 @@
   .comparision-chart {
     margin: 10px 0;
   }
-  .comparision-chart h3 {
+  .Markup-consultation h3 {
     text-align: center;
-    color: #b0c1ba;
+    color: #3f4038;
     padding-top: 10px;
    }
   .chart-container {

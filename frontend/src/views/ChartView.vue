@@ -1,16 +1,10 @@
 <script setup>
-import RevenueChart from '@/components/charts/RevenueChart.vue';
-import ExpensesChart from '@/components/charts/ExpensesChart.vue';
-import ComparisionRxEChart from '@/components/charts/ComparisionRxEChart.vue';
+import ComparisionRxEChart from '@/components/charts/general/ComparisionRxEChart.vue';
 </script>
 
 <template>
     <div class="content">
       <h1>Gráficos</h1>
-      <div class="datacharts">
-        <RevenueChart/>
-        <ExpensesChart/>
-      </div>
       <div class="comparisioncharts">
         <ComparisionRxEChart />
       </div>
@@ -22,12 +16,6 @@ import ComparisionRxEChart from '@/components/charts/ComparisionRxEChart.vue';
     display: block;
     margin-top: 20px;
     padding: 0px 50px;
-  }
-
-  .datacharts{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
   }
 
   .comparisioncharts{

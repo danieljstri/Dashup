@@ -154,10 +154,11 @@
   <style scoped>
   .chart-container {
     min-width: 200px;
+    background-color: rgba(173,216,230, 0.5);
   }
    h3 {
     text-align: center;
-    color: #b0c1ba;
+    color: #3a3f3d;
     padding-top: 10px;
    }
   </style>

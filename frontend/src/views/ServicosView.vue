@@ -1,5 +1,7 @@
 <script setup>
 import PieChart from '@/components/charts/PieChart.vue';
+import MarkupChartConsultation from '@/components/consultation/MarkupChartConsultation.vue';
+import ProfitCardConsultation from '@/components/consultation/ProfitCardConsultation.vue';
 </script>
 
 <template>
@@ -7,7 +9,14 @@ import PieChart from '@/components/charts/PieChart.vue';
     <h2>Bem vindo ao DashUp!</h2>
     <div class="piechart">
       <PieChart/>
+      <MarkupChartConsultation/>
+        <ProfitCardConsultation/>
     </div>
+    <div class="consultation">
+      <h1>Consultas</h1>
+      <div class="dataconsultation">
+      </div>
+      </div>
   </div>
 </template>
 
@@ -20,10 +29,14 @@ import PieChart from '@/components/charts/PieChart.vue';
 
 .datacharts{
   display: flex;
-  justify-content: space-between;
   margin-top: 20px;
 }
 
+.piechart{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 
 
 </style>
