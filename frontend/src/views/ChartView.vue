@@ -1,5 +1,5 @@
 <script setup>
-import ComparisionRxEChart from '@/components/charts/general/ComparisionRxEChart.vue';
+import ComparisionRxEChart from '@/components/general/ComparisionRxEChart.vue';
 </script>
 
 <template>
