@@ -7,7 +7,7 @@
   ```
 - After that, in the main folder of the project, run:
   ```python
-  python3 -m beckend.app
+  python3 -m backend.app
   ```
 
 - Now, run the Vue frontend (actually --> http://localhost:5173/). To run, first install de npm modules:
