@@ -5,9 +5,9 @@
   ```cmd
   pip install -r requirements.txt
   ```
-- After that, run:
+- After that, in the main folder of the project, run:
   ```python
-  python3 app.py
+  python3 -m beckend.app
   ```
 
 - Now, run the Vue frontend (actually --> http://localhost:5173/). To run, first install de npm modules:
