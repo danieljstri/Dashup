@@ -40,7 +40,7 @@
   </script>
   
   <style scoped>
-  .profit-card {
+  .card-model {
     width: 280px;
     border-radius: 12px;
     padding: 24px;
@@ -49,7 +49,7 @@
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   }
   
-  .profit-card h4 {
+  .card-model h4 {
     margin-bottom: 16px;
     font-size: 1.2rem;
     color: #2d3748;
