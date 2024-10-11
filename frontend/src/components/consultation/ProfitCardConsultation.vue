@@ -1,5 +1,5 @@
 <template>
-  <ProfitCard
+  <CardModel
     :title="chartTitle"
     :value="profit"
     :growthPercentage="growthPercentage"
@@ -8,7 +8,7 @@
 
 <script>
 import { getMarkupConsultationData } from '../../services/dataService';
-import ProfitCard from '@/components/ProfitCard.vue';
+import CardModel from '@/components/CardModel.vue';
 
 // Função auxiliar para obter o nome do mês anterior
 function getPreviousMonth(monthIndex) {
@@ -23,7 +23,7 @@ function getPreviousMonth(monthIndex) {
 export default {
   name: 'ProfitCardConsultation',
   components: {
-    ProfitCard,
+    CardModel,
   },
   data() {
     return {

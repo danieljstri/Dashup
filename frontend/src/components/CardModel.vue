@@ -1,5 +1,5 @@
 <template>
-    <div class="profit-card">
+    <div class="card-model">
       <h4>{{ title }}</h4>
       <div class="content">
         <p>{{ formattedValue }}</p>
@@ -10,7 +10,7 @@
   
   <script>
   export default {
-    name: 'ProfitCard',
+    name: 'CardModel',
     props: {
       title: {
         type: String,

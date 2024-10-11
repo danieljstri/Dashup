@@ -1,5 +1,5 @@
 <template>
-  <ProfitCard
+  <CardModel
     :title="chartTitle"
     :value="profit"
     :growthPercentage="growthPercentage"
@@ -8,12 +8,12 @@
 
 <script>
 import { getMarkupExamsData } from '../../services/dataService';
-import ProfitCard from '@/components/ProfitCard.vue';
+import CardModel from '@/components/CardModel.vue';
 
 export default {
   name: 'ProfitCardExams',
   components: {
-    ProfitCard,
+    CardModel,
   },
   data() {
     return {

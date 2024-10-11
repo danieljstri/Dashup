@@ -1,5 +1,5 @@
 <template>
-    <ProfitCard 
+    <CardModel
     :title="chartTitle"
     :value="expenses"
     :growthPercentage="growthPercentage"/>
@@ -7,12 +7,12 @@
   
   <script> 
   import { getExpensesAnesthesiaData } from '../../services/dataService';
-  import ProfitCard from '@/components/ProfitCard.vue';
+  import CardModel from '@/components/CardModel.vue';
 
   export default {
     name: 'ExpensesCard',
     components: {
-      ProfitCard,
+      CardModel,
     },
     data() {
     return {
