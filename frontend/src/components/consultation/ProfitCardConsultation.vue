@@ -13,7 +13,7 @@ import ProfitCard from '@/components/ProfitCard.vue';
 // Função auxiliar para obter o nome do mês anterior
 function getPreviousMonth(monthIndex) {
   const months = [
-    'janeiro', 'fevereiro', 'março', 'abril',
+    'janeiro', 'fevereiro', 'marco', 'abril',
     'maio', 'junho', 'julho', 'agosto',
     'setembro', 'outubro', 'novembro', 'dezembro'
   ];
