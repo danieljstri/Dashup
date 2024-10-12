@@ -1,14 +1,7 @@
 <script setup>
-import MarkupChartConsultation from '@/components/consultation/MarkupChartConsultation.vue';
-import ProfitCardConsultation from '@/components/consultation/ProfitCardConsultation.vue';
-import MarkupChartExams from '@/components/exams/MarkupChartExams.vue';
-import ProfitCardExams from '@/components/exams/ProfitCardExams.vue';
-import ExpensesAnesthesiaCard from '@/components/anesthesia/ExpensesAnesthesiaCard.vue';
-import ProfitAnesthesiaCard from '@/components/anesthesia/ProfitAnesthesiaCard.vue';
-import RevenueAnesthesiaCard from '@/components/anesthesia/RevenueAnesthesiaCard.vue';
-import RxEAnestesiaChart from '@/components/anesthesia/RxEAnestesiaChart.vue';
-import RevenueCardConsultation from '@/components/consultation/RevenueCardConsultation.vue';
-import ExpensesCardConsultation from '@/components/consultation/ExpensesCardConsultation.vue';
+import ConsultaInformations from '@/components/consultation/ConsultaInformations.vue';
+import AnesthesiaInformations from '@/components/anesthesia/AnesthesiaInformations.vue';
+import ExamsInformations from '@/components/exams/ExamsInformations.vue';
 </script>
 
 <template>
@@ -17,40 +10,27 @@ import ExpensesCardConsultation from '@/components/consultation/ExpensesCardCons
     <!-- Seção de Consultas -->
     <div class="chart-section">
       <h3>Consultas</h3>
-      <div class="chart-group">
-        <MarkupChartConsultation />
-        <ProfitCardConsultation />
-        <RevenueCardConsultation />
-        <ExpensesCardConsultation />
-      </div>
+      <ConsultaInformations />
     </div>
     <!-- Seção de Exames -->
     <div class="chart-section">
       <h3>Exames</h3>
-      <div class="chart-group">
-        <MarkupChartExams />
-        <ProfitCardExams />
-      </div>
+      <ExamsInformations />
     </div>
     <!-- Seção de Anestesia -->
     <div class="chart-section">
       <h3>Anestesia</h3>
-      <div class="chart-group">
-        <RxEAnestesiaChart />
-        <ExpensesAnesthesiaCard />
-        <ProfitAnesthesiaCard />
-        <RevenueAnesthesiaCard />
-        
-      </div>
+      <AnesthesiaInformations />
     </div>
   </div>
 </template>
 
 <style scoped>
+/* Mantenha os estilos existentes */
 .content {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center;
   padding: 20px;
 }
 
@@ -61,8 +41,15 @@ h2 {
 
 .chart-section {
   width: 100%;
-  max-width: 1200px; /* Limita a largura máxima para melhor responsividade */
+  max-width: 1200px;
   margin-bottom: 40px;
+  border-top: 1px solid black;
+  padding-top: 20px;
+}
+
+.chart-section:first-of-type {
+  border-top: none;
+  padding-top: 0;
 }
 
 .chart-section h3 {
@@ -71,38 +58,47 @@ h2 {
   font-size: 1.5rem;
 }
 
-.chart-group {
+.chart-and-cards {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.chart-group {
+  flex: 2;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.card-group {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
-.chart-group > * {
-  flex: 1 1 300px; /* Ajusta a largura mínima dos componentes */
-  max-width: 500px;
+.card-group > * {
+  flex: 1 1 calc(50% - 20px);
+  max-width: calc(50% - 20px);
 }
 
-.consultation {
-  width: 100%;
-  max-width: 1200px;
-  margin-top: 40px;
-}
-
-.consultation h1 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Responsividade para telas menores */
+/* Responsividade */
 @media (max-width: 768px) {
-  .chart-group {
+  .chart-and-cards {
     flex-direction: column;
     align-items: center;
   }
 
-  .chart-group > * {
+  .chart-group,
+  .card-group {
+    flex: none;
+    width: 100%;
+  }
+
+  .card-group > * {
     max-width: 100%;
+    flex: none;
   }
 }
 </style>
