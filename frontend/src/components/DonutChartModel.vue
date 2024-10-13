@@ -71,6 +71,7 @@ export default defineComponent({
   padding-top: 10px;
   background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border-radius: 12px
  }
  .content-container canvas {
   height: 400px;

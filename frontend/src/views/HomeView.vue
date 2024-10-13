@@ -34,7 +34,6 @@ body{
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
-  background-image: url('https://files.oaiusercontent.com/file-pkZX5NaUpG1jBwCzNUlj257p?se=2024-10-08T17%3A30%3A37Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D99743775-e90d-4b47-b33c-54fefd571622.webp&sig=WIfLZE79mi/HR38we0WpLNg/mHsbUrcip3UfGkSzCRc%3D');
 }
 h2 {
   text-align: center;
@@ -47,13 +46,12 @@ header {
 }
 #profitchart, #comparisionchart {
   height: fit-content;
-  border: 3px solid #2f3b36;
-  border-radius: 10px;
 }
 
 #comparisionchart {
   height: fit-content;
   padding-bottom: 35px;
+  padding-left: 15px;
 }
 .content {
   display: flex;

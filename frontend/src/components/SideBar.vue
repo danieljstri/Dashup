@@ -16,17 +16,9 @@
                 <span class="material-icons">home</span>
                 <span class="text">Home</span>
             </router-link>
-            <router-link to="/chart" class="button">
+            <router-link to="/services" class="button">
                 <span class="material-icons">bar_chart</span>
                 <span class="text">Gráfico do Lucro</span>
-            </router-link>
-            <router-link to="/economics" class="button">
-                <span class="material-icons">currency_exchange</span>
-                <span class="text">Economia</span>
-            </router-link>
-            <router-link to="/services" class="button">
-                <span class="material-icons">description</span>
-                <span class="text">Serviços</span>
             </router-link>
         </div>
         <div class="flex"></div>

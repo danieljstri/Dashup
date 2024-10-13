@@ -202,6 +202,13 @@
   .month-selector select {
     padding: 8px;
     font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .month-selector select:hover {
+    cursor: pointer;
+    background-color: #5f5f5f;
+    transition: 1s;
   }
   
   .chart-and-cards {

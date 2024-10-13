@@ -186,15 +186,21 @@ export default {
 }
 
 .month-selector {
-  text-align: right;
-  margin-bottom: 20px;
-}
+    text-align: right;
+    margin-bottom: 20px;
+  }
+  
+  .month-selector select {
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
 
-.month-selector select {
-  padding: 8px;
-  font-size: 1rem;
-}
-
+  .month-selector select:hover {
+    cursor: pointer;
+    background-color: #5f5f5f;
+    transition: 1s;
+  }
 .chart-and-cards {
   display: flex;
   flex-wrap: wrap;
