@@ -35,13 +35,12 @@
     </aside>
 </template>
 
+
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import logoMedUpCompleto from '../../../assets/logoMedUpCompleto.png';
 import logoCompacta from '../../../assets/LogoIcon.png';
-
-
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 
@@ -50,6 +49,7 @@ const ToggleMenu = () => {
     localStorage.setItem("is_expanded", is_expanded.value)
 }
 </script>
+
 
 <style lang="scss" scoped>
 aside {
@@ -78,7 +78,7 @@ aside {
     .logo {
         margin-bottom: 1rem;
         display: flex;
-        justify-content: center; /* opcional para centralizar a imagem */
+        justify-content: center;
     
         img {
             height: auto;
@@ -89,7 +89,7 @@ aside {
         }
 
         &.logo-collapsed img {
-            width: 70px; /* tamanho para logoCompacto */
+            width: 70px; /* tamanho para logoCompacta */
             margin-left: 17px;
             height: 80px;
         }
