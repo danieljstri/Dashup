@@ -1,8 +1,11 @@
 <template>
     <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
-        <div class="logo">
-            <img :src="logoIMG" alt="MedUp" /> 
-        </div>
+        <div :class="['logo', is_expanded ? 'logo-expanded' : 'logo-collapsed']">
+            <img 
+                :src="is_expanded ? logoMedUpCompleto : logoCompacta" 
+                alt="MedUp" 
+            />
+</div>
 
         <div class="menu-toggle-wrap">
             <button class="menu-toggle" @click="ToggleMenu">
@@ -35,6 +38,10 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import logoMedUpCompleto from '../../../assets/logoMedUpCompleto.png';
+import logoCompacta from '../../../assets/LogoIcon.png';
+
+
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 
@@ -70,10 +77,26 @@ aside {
 
     .logo {
         margin-bottom: 1rem;
-
+        display: flex;
+        justify-content: center; /* opcional para centralizar a imagem */
+    
         img {
-            width: 2rem;
+            height: auto;
         }
+
+        &.logo-expanded img {
+            width: 250px; /* tamanho para logoMedUpCompleto */
+        }
+
+        &.logo-collapsed img {
+            width: 70px; /* tamanho para logoCompacto */
+            margin-left: 17px;
+            height: 80px;
+        }
+    }
+
+    .logo img {
+        transition: width 0.9s ease;
     }
 
     .menu-toggle-wrap {
