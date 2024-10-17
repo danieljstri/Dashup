@@ -89,12 +89,13 @@ aside {
         }
 
         &.logo-expanded img {
-            width: 210px; /* tamanho para logoMedUpCompleto */
+            margin-top: 15px;
+            width: 200px; /* tamanho para logoMedUpCompleto */
         }
 
         &.logo-collapsed img {
             width: 69px; /* tamanho para logoCompacta */
-            margin-left: 17px;
+            margin-left: 20px;
             height: 80px;
         }
     }
@@ -129,18 +130,11 @@ aside {
         }
     }
 
-    h3, .button .text {
+    .button .text {
         opacity: 0;
         font-family: 'Noto Sans', sans-serif;
-        font-weight: 200;
+        font-weight: 300;
         transition: opacity 0.3s ease-in-out;
-    }
-
-    h3 {
-        color: var(--grey);
-        font-size: 0.875rem;
-        margin-bottom: 0.5rem;
-        text-transform: uppercase;
     }
 
     .menu {
@@ -163,7 +157,7 @@ aside {
                 color: var(--light);
                 transition: 0.2s ease-in-out;
                 font-family: 'Noto Sans', sans-serif;
-                font-weight: 200;
+                font-weight: 300;
             }
 
             &:hover {
@@ -206,10 +200,11 @@ aside {
             }
         }
 
+        /*textos dos botões*/
         h3, .button .text {
             opacity: 1;
             font-family: 'Noto Sans', sans-serif;
-            font-weight: 200;
+            font-weight: 400;
         }
 
         .button {
