@@ -12,18 +12,19 @@ import ProfitChart from '@/components/general/GeneralChart.vue'
       <h3>Bem vindo!</h3>
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
     </header>
+
     <div class="txt"><h2>Visão Geral</h2></div>
+
     <section class="content">
       <div class="cards">
-        <ProfitCard/>
-        <ExpensesCard/>
-        <RevenueCard/>
+          <ProfitCard/>
+          <ExpensesCard/>
+          <RevenueCard/>
       </div>
       <div class="charts">
        <ProfitChart id="profitchart"/>
        <ComparisionRxEChart id="comparisionchart"/>
       </div>
-      
     </section>
   </main>
 </template>
@@ -85,6 +86,7 @@ header {
   padding-left: 15px;
 }
 
+
 .content {
   display: flex;
   flex-direction: column;
@@ -101,8 +103,9 @@ header {
 
 .cards {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around; 
   align-items: center;
+  gap: 14px; /* Espaçamento entre os cards */
 }
 
 </style>
