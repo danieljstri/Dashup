@@ -12,8 +12,6 @@
                 <span class="material-icons">keyboard_double_arrow_right</span>
             </button>
         </div>
-
-        <h3>Menu</h3>
         <div class="menu">
             <router-link to="/" class="button">
                 <span class="material-icons">home</span>
@@ -25,7 +23,6 @@
             </router-link>
         </div>
         <div class="flex"></div>
-        
         <div class="menu">
             <router-link to="/settings" class="button">
                 <span class="material-icons">settings</span>
@@ -55,10 +52,11 @@ const ToggleMenu = () => {
 aside {
     display: flex;
     flex-direction: column;
-
-    background-color: var(--dark);
+	border-radius: 20px;  /* Adiciona bordas arredondadas*/
+	overflow: hidden;  
+    margin: 0.5rem 0.5rem;  /*Adiciona espaço no topo e na parte de baixo*/
+    background-color: adjust-color(#245269, $lightness: -5%);
     color: var(--light);
-
     width: calc(2rem + 32px);
     overflow: hidden;
     min-height: 100vh;
@@ -85,11 +83,11 @@ aside {
         }
 
         &.logo-expanded img {
-            width: 250px; /* tamanho para logoMedUpCompleto */
+            width: 210px; /* tamanho para logoMedUpCompleto */
         }
 
         &.logo-collapsed img {
-            width: 70px; /* tamanho para logoCompacta */
+            width: 69px; /* tamanho para logoCompacta */
             margin-left: 17px;
             height: 80px;
         }
@@ -159,7 +157,7 @@ aside {
             }
 
             &:hover {
-                background-color: var(--dark-alt);
+                background-color: #245269;
 
                 .material-icons, .text {
                     color: var(--primary);
@@ -167,7 +165,7 @@ aside {
             }
 
             &.router-link-exact-active {
-                background-color: var(--dark-alt);
+                background-color: adjust-color(#245269, $lightness: 5%);
                 border-right: 5px solid var(--primary);
 
                 .material-icons, .text {
