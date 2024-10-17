@@ -69,7 +69,7 @@ header {
     margin: 20px 0; 
     text-align: left; 
     padding-top: 100px;
-    padding-left: 80px; 
+    padding-left: 50px; 
     font-family: 'Noto Sans', sans-serif;
     font-weight: 300;
   }
