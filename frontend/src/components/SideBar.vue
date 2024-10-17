@@ -15,18 +15,18 @@
         <div class="menu">
             <router-link to="/" class="button">
                 <span class="material-icons">home</span>
-                <span class="text">Home</span>
+                <span class="text">VISÃO GERAL</span>
             </router-link>
             <router-link to="/services" class="button">
                 <span class="material-icons">bar_chart</span>
-                <span class="text">Gráfico do Lucro</span>
+                <span class="text">GRÁFICO DO LUCRO</span>
             </router-link>
         </div>
         <div class="flex"></div>
         <div class="menu">
             <router-link to="/settings" class="button">
                 <span class="material-icons">settings</span>
-                <span class="text">Config.</span>
+                <span class="text">CONFIGURAÇÕES</span>
             </router-link>
         </div>
     </aside>
@@ -125,6 +125,8 @@ aside {
 
     h3, .button .text {
         opacity: 0;
+        font-family: 'Noto Sans', sans-serif;
+        font-weight: 200;
         transition: opacity 0.3s ease-in-out;
     }
 
@@ -154,6 +156,8 @@ aside {
             .text {
                 color: var(--light);
                 transition: 0.2s ease-in-out;
+                font-family: 'Noto Sans', sans-serif;
+                font-weight: 200;
             }
 
             &:hover {
@@ -198,6 +202,8 @@ aside {
 
         h3, .button .text {
             opacity: 1;
+            font-family: 'Noto Sans', sans-serif;
+            font-weight: 200;
         }
 
         .button {
