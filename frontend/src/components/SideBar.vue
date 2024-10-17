@@ -1,35 +1,39 @@
 <template>
-    <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
-        <div :class="['logo', is_expanded ? 'logo-expanded' : 'logo-collapsed']">
-            <img 
-                :src="is_expanded ? logoMedUpCompleto : logoCompacta" 
-                alt="MedUp" 
-            />
-</div>
+    <div class="app">
+        <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
+            <div :class="['logo', is_expanded ? 'logo-expanded' : 'logo-collapsed']">
+                <img 
+                    :src="is_expanded ? logoMedUpCompleto : logoCompacta" 
+                    alt="MedUp" 
+                />
+            </div>
 
-        <div class="menu-toggle-wrap">
-            <button class="menu-toggle" @click="ToggleMenu">
-                <span class="material-icons">keyboard_double_arrow_right</span>
-            </button>
-        </div>
-        <div class="menu">
-            <router-link to="/" class="button">
-                <span class="material-icons">home</span>
-                <span class="text">VISÃO GERAL</span>
-            </router-link>
-            <router-link to="/services" class="button">
-                <span class="material-icons">bar_chart</span>
-                <span class="text">GRÁFICO DO LUCRO</span>
-            </router-link>
-        </div>
-        <div class="flex"></div>
-        <div class="menu">
-            <router-link to="/settings" class="button">
-                <span class="material-icons">settings</span>
-                <span class="text">CONFIGURAÇÕES</span>
-            </router-link>
-        </div>
-    </aside>
+            <div class="menu-toggle-wrap">
+                <button class="menu-toggle" @click="ToggleMenu">
+                    <span class="material-icons">keyboard_double_arrow_right</span>
+                </button>
+            </div>
+            <div class="menu">
+                <router-link to="/" class="button">
+                    <span class="material-icons">dashboard</span>
+                    <span class="text">VISÃO GERAL</span>
+                </router-link>
+                <router-link to="/services" class="button">
+                    <span class="material-icons">bar_chart</span>
+                    <span class="text">GRÁFICO DO LUCRO</span>
+                </router-link>
+            </div>
+            <div class="flex"></div>
+            <div class="menu">
+                <router-link to="/settings" class="button">
+                    <span class="material-icons">settings</span>
+                    <span class="text">CONFIGURAÇÕES</span>
+                </router-link>
+            </div>
+        </aside>
+        <main :class="{ 'main-expanded': is_expanded }">
+        </main>
+    </div>
 </template>
 
 
@@ -47,27 +51,29 @@ const ToggleMenu = () => {
 }
 </script>
 
-
 <style lang="scss" scoped>
+
+.app {
+  display: flex; 
+}
+
 aside {
     display: flex;
     flex-direction: column;
-	border-radius: 20px;  /* Adiciona bordas arredondadas*/
+	border-radius: 20px; 
 	overflow: hidden;  
-    margin: 0.5rem 0.5rem;  /*Adiciona espaço no topo e na parte de baixo*/
+    margin: 0.1rem 0.5rem 0.5rem 0.1rem;
     background-color: adjust-color(#245269, $lightness: -5%);
     color: var(--light);
     width: calc(2rem + 32px);
     overflow: hidden;
     min-height: 100vh;
     padding: 1rem;
-
     transition: 0.2s ease-in-out;
-
-    /* Fixar a sidebar no canto esquerdo */
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
 
     .flex {
         flex: 1 1 0%;
@@ -222,4 +228,15 @@ aside {
         z-index: 99;
     }
 }
+
+.main {
+  flex: 1;
+  margin-left: var(--sidebar-width); /* O valor padrão quando a sidebar está fechada */
+  transition: margin-left 0.3s ease; 
+}
+
+.main-expanded {
+  margin-left: calc(var(--sidebar-width) + 20px); /* Ajuste conforme o tamanho da sidebar é expandida */
+}
+
 </style>
