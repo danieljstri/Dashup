@@ -50,8 +50,8 @@ export default {
 
 <style scoped>
 .card-model {
-  width: 310px;
-  height: 167.5px;
+  width: 340px;
+  height: 177.5px;
   padding: 20px;
   border-radius: 16px 0px 0px 0px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
