@@ -40,9 +40,11 @@ h2 {
   color: #2f3b36;
 }
 header {
-  background-color: #abb5bd;
+  background-color: #ffffff;
   padding: 16px;
   border-bottom: 2px solid #2f3b36;
+  border-radius: 10px;
+  width: fit-content;
 }
 #profitchart, #comparisionchart {
   height: fit-content;
