@@ -84,8 +84,8 @@
                 datasets: [
                 {
                     data: [revenueValue, variableexpensesValue, fixedexpensesValue],
-                    backgroundColor: ['#009951', '#f59e0b', '#ff0000'],
-                    hoverBackgroundColor: ['#009951', '#f59e0b', '#ff0000'],
+                    backgroundColor: ['#009951', '#f59e0b', '#d63030'],
+                    hoverBackgroundColor: ['#009951', '#f59e0b', '#d63030'],
                 },
                 ],
             };
