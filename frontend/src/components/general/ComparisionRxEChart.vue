@@ -47,20 +47,17 @@
               datasets: [
                 {
                   data: [revenueValue, expensesValue],
-                  backgroundColor: ['#228B22','#D2691E'],
-                  hoverBackgroundColor: ['#32CD32','#F4A460'],
+                  backgroundColor: ['#28A745','#c03535']
                 },
               ],
             };
   
             // Opções do gráfico
             chartOptions.value = {
-              cutout: '70%', // Ajusta o tamanho do "furo" no meio do gráfico
+              cutout: '60%', // Ajusta o tamanho do "furo" no meio do gráfico
               responsive: true,
               maintainAspectRatio: false,
             };
-  
-  
             isChartDataReady.value = true;
         } catch (error) {
           console.error('Erro ao buscar dados econômicos:', error);
@@ -89,6 +86,8 @@
     text-align: center;
     color: #353a38;
     padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: -5px;
    }
   .chart-container {
     min-width: 200px;
