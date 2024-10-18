@@ -70,7 +70,7 @@ header {
     margin: 0; 
     text-align: left; 
     padding-top: 100px;
-    padding-left: 50px; 
+    padding-left: 100px; 
     font-family: 'Noto Sans', sans-serif;
     font-weight: 400;
   }
@@ -96,18 +96,19 @@ header {
 }
 
 .charts {
-  margin-top: 10px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
+  gap: 50px;
 }
 
 .cards {
   display: flex;
   justify-content: space-around; 
   align-items: center;
-  gap: 14px; /* Espaçamento entre os cards */
+  gap: 30px; /* Espaçamento entre os cards */
 }
 
 </style>
