@@ -50,52 +50,57 @@ export default {
 
 <style scoped>
 .card-model {
-  flex: 1;
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
+  width: 310px;
+  height: 167.5px;
+  padding: 20px;
+  border-radius: 16px 0px 0px 0px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card-model h4 {
-  margin-bottom: 16px;
-  font-size: 1.2rem;
+  margin-left: 5px; 
+  font-size: 1.1rem;
   color: #2d3748;
+  white-space: nowrap; 
+  padding-bottom: 20px;
+  text-align: left;   
+  margin-top: 5px;
 }
 
 .content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
 .content p {
-  margin: 0;
-  font-size: 2rem;
+  margin: 0; 
+  font-size: 2.0rem;
   font-weight: bold;
   color: #1a202c;
-}
-
-.content img {
-  margin: 0 8px;
+  margin-top: 0px; 
+  margin-top: -80px;
 }
 
 .content span {
   font-size: 1rem;
   font-weight: 500;
+  align-items: center;
 }
 
 .positive {
-  color: #38a169; /* Verde para valores positivos */
+  color: #32b36e; /* Verde para valores positivos */
 }
 
 .negative {
-  color: #e53e3e; /* Vermelho para valores negativos */
+  color: #d63030; /* Vermelho para valores negativos */
 }
 
 .arrow {
   font-size: 1.2rem;
   margin-left: 4px;
 }
+
 </style>
