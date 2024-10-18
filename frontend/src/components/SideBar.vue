@@ -15,7 +15,7 @@
             </div>
             <div class="menu">
                 <router-link to="/" class="button">
-                    <span class="material-icons">dashboard</span>
+                    <span class="material-icons">home</span>
                     <span class="text">VISÃO GERAL</span>
                 </router-link>
                 <router-link to="/services" class="button">
@@ -59,10 +59,9 @@ const ToggleMenu = () => {
 
 aside {
     display: flex;
-    flex-direction: column;
-	border-radius: 20px; 
+    flex-direction: column; 
 	overflow: hidden;  
-    margin: 0.1rem 0.5rem 0.5rem 0.1rem;
+    margin: 0rem 0.5rem 0.5rem 0rem;
     background-color: adjust-color(#245269, $lightness: -5%);
     color: var(--light);
     width: calc(2rem + 32px);
