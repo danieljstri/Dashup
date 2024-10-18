@@ -56,23 +56,23 @@ h4 {
 
 header {
   background-color: #eef6ee;
-  padding: 37px; 
-  border-bottom: 1.5px solid #a8aca776;
+  padding: 20px; 
+  border-bottom: 1.5px solid #c3cbc176;
   width: 100%; 
   box-sizing: border-box; 
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 }
 
 .txt {
   h2 {
-    margin: 20px 0; 
+    margin: 0; 
     text-align: left; 
     padding-top: 100px;
     padding-left: 50px; 
     font-family: 'Noto Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
   }
 }
 
@@ -96,9 +96,11 @@ header {
 }
 
 .charts {
+  margin-top: 10px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  text-align: center;
 }
 
 .cards {
