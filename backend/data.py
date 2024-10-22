@@ -457,6 +457,7 @@ class Data:
         )
         return fixed_expenses
 
+
     def getVariablesExpenses(self, month="total"):
         """
         Calculates the variable expenses of the company for a specified month or the total annual variable expenses.
