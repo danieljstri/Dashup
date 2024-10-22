@@ -71,9 +71,18 @@ export default defineComponent({
   padding-top: 10px;
   background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
- }
+  border-radius: 12px;
+}
+
+h3 {
+  text-align: center;
+  margin-left: 12px;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  margin-top: 4px;
+}
+
  .content-container canvas {
-  height: 400px;
+  height: 300px;
  }
 </style>
-

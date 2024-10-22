@@ -3,8 +3,10 @@
     :title="chartTitle"
     :value="Profit"
     :growthPercentage="growthPercentage"
+    customClass="card-container"
   />
 </template>
+
 
 <script>
 import { getProfitData } from '../../services/dataService';
@@ -30,8 +32,6 @@ export default {
 
       const previousResponse = await getProfitData('dezembro');
       this.growthPercentage = (((this.Profit - previousResponse.value) / previousResponse.value) * 100).toFixed(1);
-      
-      // Obter o mês atual e o mês anterior dinamicamente
       
     } catch (error) {
       console.error('Error fetching profit data:', error);

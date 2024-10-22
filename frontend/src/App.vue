@@ -29,11 +29,11 @@ import SideBar from './components/SideBar.vue';
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Fira sans', sans-serif;
+    font-family: 'Noto sans', sans-serif;
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #fbfcf8;
 }
 
 button {
@@ -59,7 +59,7 @@ button {
 
 .main {
     flex: 1;
-  margin-left: var(--sidebar-width);
+    margin-left: 0;
 }
 
 

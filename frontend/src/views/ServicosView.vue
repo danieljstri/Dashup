@@ -6,7 +6,6 @@ import ExamsInformations from '@/components/exams/ExamsInformations.vue';
 
 <template>
   <div class="content">
-    <h2>Bem vindo ao DashUp!</h2>
     <!-- Seção de Consultas -->
     <div class="chart-section">
       <h3>Consultas</h3>
@@ -56,6 +55,7 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 1.5rem;
+  margin-left: 20px;
 }
 
 .chart-and-cards {

@@ -9,17 +9,21 @@ import ProfitChart from '@/components/general/GeneralChart.vue'
 <template>
   <main>
     <header class="header">
-      <h2>Bem vindo ao DashUp!</h2>
+      <h3>Bem vindo!</h3>
+      <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
     </header>
+
+    <div class="txt"><h2>Visão Geral</h2></div>
+
     <section class="content">
+      <div class="cards">
+          <ProfitCard/>
+          <ExpensesCard/>
+          <RevenueCard/>
+      </div>
       <div class="charts">
        <ProfitChart id="profitchart"/>
        <ComparisionRxEChart id="comparisionchart"/>
-      </div>
-      <div class="cards">
-        <ProfitCard/>
-        <ExpensesCard/>
-        <RevenueCard/>
       </div>
     </section>
   </main>
@@ -34,45 +38,77 @@ body{
   background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
-  background-image: url('https://files.oaiusercontent.com/file-pkZX5NaUpG1jBwCzNUlj257p?se=2024-10-08T17%3A30%3A37Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D99743775-e90d-4b47-b33c-54fefd571622.webp&sig=WIfLZE79mi/HR38we0WpLNg/mHsbUrcip3UfGkSzCRc%3D');
 }
-h2 {
-  text-align: center;
+
+h3 {
+  margin-top: 15px;
+  margin-left: var(--sidebar-width);
   color: #2f3b36;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 600;
 }
+h4 {
+  margin-left: var(--sidebar-width);
+  color: #2f3b36;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+
 header {
-  background-color: #abb5bd;
-  padding: 16px;
-  border-bottom: 2px solid #2f3b36;
+  background-color: #eef6ee;
+  padding: 20px; 
+  border-bottom: 1.5px solid #c3cbc176;
+  width: 100%; 
+  box-sizing: border-box; 
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
+.txt {
+  h2 {
+    margin: 0; 
+    text-align: left; 
+    padding-top: 100px;
+    padding-left: 100px; 
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 400;
+  }
+}
+
 #profitchart, #comparisionchart {
   height: fit-content;
-  border: 3px solid #2f3b36;
-  border-radius: 10px;
 }
 
 #comparisionchart {
   height: fit-content;
   padding-bottom: 35px;
+  padding-left: 15px;
 }
+
+
 .content {
   display: flex;
   flex-direction: column;
-  
   align-items: center;
   justify-content: space-between;
-
+  padding-top: 70px; /* Espaço para o cabeçalho fixo */
 }
+
 .charts {
+  margin-top: 30px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  text-align: center;
+  gap: 50px;
 }
 
 .cards {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around; 
   align-items: center;
+  gap: 30px; /* Espaçamento entre os cards */
 }
 
 </style>

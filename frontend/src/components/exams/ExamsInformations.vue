@@ -88,8 +88,8 @@
             datasets: [
                 {
                 data: [revenueValue, variableexpensesValue, fixedexpensesValue],
-                backgroundColor: ['#009951', '#f59e0b', '#ff0000'],
-                hoverBackgroundColor: ['#009951', '#f59e0b', '#ff0000'],
+                backgroundColor: ['#009951', '#f59e0b', '#d63030'],
+                hoverBackgroundColor: ['#009951', '#f59e0b', '#d63030'],
                 },
             ],
           };
@@ -202,6 +202,13 @@
   .month-selector select {
     padding: 8px;
     font-size: 1rem;
+    border-radius: 10px;
+  }
+
+  .month-selector select:hover {
+    cursor: pointer;
+    background-color: #5f5f5f;
+    transition: 1s;
   }
   
   .chart-and-cards {
