@@ -5,4 +5,4 @@ npm run dev
 
 cd ..
 pip install -r requirements.txt
-python3 -m backend.app
+gunicorn backend.app:app
