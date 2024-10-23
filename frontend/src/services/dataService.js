@@ -10,7 +10,7 @@ import axios from 'axios';
  */
 export const getAllData = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/api/all');
+    const response = await axios.get('https://dashup-wdt1.onrender.com/api/all');
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -29,7 +29,7 @@ export const getAllData = async () => {
  */
 export const getProfitData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/lucros/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/lucros/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -48,7 +48,7 @@ export const getProfitData = async (month = "total") => {
  */
 export const getRevenueData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/receitas/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/receitas/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -67,7 +67,7 @@ export const getRevenueData = async (month = "total") => {
  */
 export const getRevenueExamsData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/receitas/exames/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/receitas/exames/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -86,7 +86,7 @@ export const getRevenueExamsData = async (month = "total") => {
  */
 export const getRevenueAnesthesiaData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/receitas/anestesia/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/receitas/anestesia/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -105,7 +105,7 @@ export const getRevenueAnesthesiaData = async (month = "total") => {
  */
 export const getRevenueConsultationData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/receitas/consulta/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/receitas/consulta/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -124,7 +124,7 @@ export const getRevenueConsultationData = async (month = "total") => {
  */
 export const getExpensesData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/despesas/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/despesas/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -143,7 +143,7 @@ export const getExpensesData = async (month = "total") => {
  */
 export const getExpensesRentData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/despesas/aluguel/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/despesas/aluguel/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -162,7 +162,7 @@ export const getExpensesRentData = async (month = "total") => {
  */
 export const getExpensesAnesthesiaData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/despesas/anestesia/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/despesas/anestesia/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -183,7 +183,7 @@ export const getEconomicCompanieData = async (company_name = "DRA ISABELLY DE MO
   try {
     // URL-encode the company name to handle spaces and special characters
     const encodedCompanyName = encodeURIComponent(company_name);
-    const response = await axios.get(`http://localhost:3000/api/economia/${encodedCompanyName}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/economia/${encodedCompanyName}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -202,7 +202,7 @@ export const getEconomicCompanieData = async (company_name = "DRA ISABELLY DE MO
  */
 export const getMarkupAnesthesiaData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/markup/anestesia/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/markup/anestesia/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -221,7 +221,7 @@ export const getMarkupAnesthesiaData = async (month = "total") => {
  */
 export const getMarkupExamsData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/markup/exames/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/markup/exames/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -240,7 +240,7 @@ export const getMarkupExamsData = async (month = "total") => {
  */
 export const getMarkupConsultationData = async (month = "total") => {
   try {
-    const response = await axios.get(`http://localhost:3000/api/markup/consulta/${month}`);
+    const response = await axios.get(`https://dashup-wdt1.onrender.com/api/markup/consulta/${month}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -260,7 +260,7 @@ export const getMarkupConsultationData = async (month = "total") => {
  */
 export const getAllEconomicCompaniesData = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/api/companies');
+    const response = await axios.get('https://dashup-wdt1.onrender.com/api/companies');
     return response.data;
   } catch (error) {
     console.error("Error fetching data:", error);
