@@ -19,12 +19,18 @@
     "chart.js": "^3.9.1",
     "chartjs": "^0.3.24",
     "d3": "^7.9.0",
+    "firebase": "^11.0.1",
+    "firebaseui": "^6.1.0",
     "jsdoc": "^4.0.3",
+    "jwt-decode": "^4.0.0",
+    "pinia": "^2.2.5",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.4",
     "vue": "^3.4.29",
     "vue-chartjs": "^4.1.2",
-    "vue-router": "^4.3.3"
+    "vue-router": "^4.3.3",
+    "vue3-google-login": "^2.0.33",
+    "vue3-google-oauth2": "^1.0.7"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.8.0",
