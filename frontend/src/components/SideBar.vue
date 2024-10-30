@@ -23,6 +23,10 @@
                     <span class="text">GRÁFICO DO LUCRO</span>
                 </router-link>
             </div>
+            <button @click="handlesignOut" v-if="isLoggedIn" class="button">
+                <span class="material-icons">logout</span>
+                <span class="text">SAIR</span>
+            </button>
             <div class="flex"></div>
             <div class="menu">
                 <router-link to="/settings" class="button">
@@ -38,12 +42,36 @@
 
 
 <script setup>
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { onMounted, ref } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 import logoMedUpCompleto from '../../../assets/logoMedUpCompleto.png';
 import logoCompacta from '../../../assets/LogoIcon.png';
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
+
+const isLoggedIn = ref(false)
+
+const router = useRouter();
+
+let auth;
+onMounted(() => {
+    auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        isLoggedIn.value = !!user;
+    });
+});
+
+const handlesignOut = () => {
+    signOut(auth)
+        .then(() => {
+            console.log("User signed out");
+            router.push('/SignIn');
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
 
 const ToggleMenu = () => {
     is_expanded.value = !is_expanded.value
