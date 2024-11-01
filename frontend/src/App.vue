@@ -33,7 +33,7 @@ import SideBar from './components/SideBar.vue';
 }
 
 body {
-    background-color: #fbfcf8;
+    background: linear-gradient(135deg, #026E4E, #245368);
 }
 
 button {
