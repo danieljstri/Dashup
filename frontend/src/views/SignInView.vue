@@ -1,7 +1,7 @@
 <template>
   <form>
     <div class="imgcontainer">
-      <img src="../../public/doctor_icon.ico" alt="Avatar" class="avatar">
+      <img src="../../public/3774299.png" alt="Avatar" class="avatar">
     </div>
 
     <div class="container">
@@ -106,6 +106,7 @@ button {
   border: none;
   cursor: pointer;
   width: fit-content;
+  border-radius: 10px;
 }
 
 /* Add a hover effect for buttons */
