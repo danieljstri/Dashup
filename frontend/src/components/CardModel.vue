@@ -4,12 +4,12 @@
     <div class="content">
       <p>{{ formattedValue }}</p>
       <div class="previous-value" :class="valueDifferenceClass">
-        <span>Anterior:</span>
-      </div>
-      <span :class="growthClass">
+        <span :class="growthClass">
         {{ growthPercentage }}%
         <span class="arrow">{{ growthArrow }}</span>
       </span>
+      </div>
+
     </div>
   </div>
 </template>
@@ -50,8 +50,8 @@ export default {
 
 <style scoped>
 .card-model {
-  width: 340px;
-  height: 177.5px;
+  height: fit-content;
+  width: fit-content;
   padding: 20px;
   border-radius: 16px 0px 0px 0px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
@@ -80,7 +80,6 @@ export default {
   font-size: 2.0rem;
   font-weight: bold;
   color: #1a202c;
-  margin-top: 0px; 
   margin-top: -80px;
 }
 
@@ -91,11 +90,11 @@ export default {
 }
 
 .positive {
-  color: #32b36e; /* Verde para valores positivos */
+  color: #32b36e;
 }
 
 .negative {
-  color: #d63030; /* Vermelho para valores negativos */
+  color: #d63030;
 }
 
 .arrow {
@@ -103,4 +102,33 @@ export default {
   margin-left: 4px;
 }
 
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .card-model {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .card-model h4 {
+    font-size: 1rem;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+
+  .content p {
+    font-size: 1.8rem;
+    margin-top: -20px;
+  }
+
+  .content span {
+    font-size: 0.9rem;
+  }
+
+  .arrow {
+    font-size: 1rem;
+  }
+}
 </style>
