@@ -30,6 +30,14 @@ const routes = [
     },
   },
   {
+    path: '/economia',
+    name: 'economia',
+    component: () => import('../views/EconomicsView.vue'),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: '/economics',
     name: 'economics',
     component: () => import('../views/EconomicsView.vue'),

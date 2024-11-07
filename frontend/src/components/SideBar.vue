@@ -24,6 +24,10 @@
                     <span class="material-icons">bar_chart</span>
                     <span class="text">GRÁFICO DO LUCRO</span>
                 </router-link>
+                <router-link to="/economia" class="button">
+                    <span class="material-icons">bar_chart</span>
+                    <span class="text">GRÁFICO DE ECONOMIA</span>
+                </router-link>
             </div>
             <button @click="handlesignOut" v-if="isLoggedIn" class="button">
                 <span class="material-icons">logout</span>
