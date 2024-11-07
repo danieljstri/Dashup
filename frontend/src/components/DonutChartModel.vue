@@ -83,6 +83,6 @@ h3 {
 }
 
  .content-container canvas {
-  height: 300px;
+  max-height: fit-content;
  }
 </style>
