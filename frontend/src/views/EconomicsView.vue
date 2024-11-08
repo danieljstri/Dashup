@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import EconomicChart from '@/components/charts/EconomicChart.vue';
+import EconomicChart from '@/components/general/EconomicChart.vue';
 
 export default {
   components: {

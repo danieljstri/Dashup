@@ -2,9 +2,8 @@
     <div class="semester-revenue-chart">
       <!-- Renderiza o gráfico somente se chartData estiver pronto -->
       <div class="chart-container" v-if="isChartDataReady">
-        <h3>Dados dos últimos 6 meses
-        </h3>
-        <line-chart :chart-data="chartData" :chart-options="chartOptions"></line-chart>
+        <h3>Dados dos últimos 6 meses</h3>
+        <line-chart :chart-data="chartData" :chart-options="chartOptions" id="chart-canva"></line-chart>
       </div>
       <div v-else>
         <p>Carregando dados...</p>
@@ -65,6 +64,7 @@
               backgroundColor: 'rgba(70, 130, 180, 0.2)', // Cor de fundo com opacidade
               borderColor: '#4682B4', // Cor da linha
               fill: true, // Preencher a área abaixo da linha
+              tension: 0.3, // Curva da linha
             },
           ],
         };
@@ -72,7 +72,31 @@
         // Opções do gráfico
         chartOptions.value = {
           responsive: true,
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
+          spanGaps: true,
+          scales: {
+            x: {
+              display: true,
+              grid: {
+                display: false,
+              },
+              title: {
+                display: true,
+                text: 'Meses',
+              },
+            },
+            y: {
+              display: true,
+              grid: {
+                display: true,
+                borderDash: [5, 5],
+              },
+              title: {
+                display: true,
+                text: 'Receitas',
+              },
+          }
+        },
         };
         isChartDataReady.value = true;
       } catch (error) {
@@ -99,15 +123,14 @@
   border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  min-width: fit-content;
-  max-width: 400px;
+  width: 780px;
   }
-   h3 {
+  h3 {
     text-align: center;
     color: #3a3f3d;
     margin-bottom: 10px;
     margin-left: 35px;
-   }
+ }
   </style>
   
   

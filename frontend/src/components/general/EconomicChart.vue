@@ -1,5 +1,5 @@
 <template>
-    <div class="economic-chart">
+    <section class="economic-chart">
       <!-- Renderiza o gráfico somente se chartData estiver pronto -->
       <div class="chart-container" v-if="isChartDataReady">
         <doughnut-chart :chart-data="chartData" :chart-options="chartOptions"></doughnut-chart>
@@ -14,15 +14,12 @@
             <h2>{{ economyPercentage }}%</h2>
             <p>Economia Total</p>
             <h3> R${{ totalDescount }}</h3>
-
           </div>
         </div>
       </div>
       <div v-else>
         <p>Carregando dados...</p>
       </div>
-      <br>
-      <br>
       <!-- Descrição dos Dados -->
       <div class="data-description" v-if="isChartDataReady">
         <div class="data-item">
@@ -34,7 +31,7 @@
           <span class="data-value">{{ reductionPercentage }}%</span>
         </div>
       </div>
-    </div>
+    </section>
   </template>
   
   <script>
@@ -145,19 +142,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    padding: 1%;
+    max-height: fit-content;
   }
   
   .chart-container {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: fit-content;
   }
   
   .chart-center {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: block;
+    top: 20%;
+    left: 33%;
     text-align: center;
   }
   
@@ -165,9 +167,14 @@
     font-size: 2em;
     color: #36A2EB;
   }
+  .center-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   
   .center-text h2 {
-    margin: 0;
+    padding: 0;
     font-size: 1.5em;
   }
   
@@ -178,15 +185,16 @@
   }
   
   .data-description {
-    margin-top: 20px;
     width: 100%;
     max-width: 300px;
+    max-height: fit-content;
+    padding: 0;
+    margin: 0;
   }
   
   .data-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
   }
   
   .data-label {

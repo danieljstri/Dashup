@@ -1,9 +1,9 @@
 <script setup>
 import ProfitCard from '@/components/general/ProfitCard.vue';
 import ExpensesCard from '@/components/general/ExpensesCard.vue';
-import ComparisionRxEChart from '@/components/general/ComparisionRxEChart.vue';
 import RevenueCard from '@/components/general/RevenueCard.vue';
-import ProfitChart from '@/components/general/GeneralChart.vue'
+import ProfitChart from '@/components/general/GeneralChart.vue';
+import EconomicChart from '@/components/general/EconomicChart.vue';
 </script>
 
 <template>
@@ -17,9 +17,11 @@ import ProfitChart from '@/components/general/GeneralChart.vue'
         <ProfitCard/>
         <ExpensesCard/>
         <RevenueCard/>
-        <ComparisionRxEChart/>
     </section>
+    <section class="second-line">
         <ProfitChart id="semester-chart"/>
+        <EconomicChart id="economic-chart"/>
+    </section>
   </main>
 </template>
 
@@ -59,7 +61,6 @@ body{
   font-weight: 400;
 }
 
-
 h2 {
     margin: 0; 
     text-align: left; 
@@ -71,16 +72,19 @@ h2 {
 .first-line {
     display: flex;
     margin-left: var(--sidebar-width);
+    margin-bottom: 5%;
     grid-auto-columns: 200px;
     grid-auto-rows: min-content;
     gap: 20px
 }
 
-#semester-chart {
+.second-line {
+    display: flex;
     margin-left: var(--sidebar-width);
-    margin-top: 20px;
-    width: 100%;
-    height: 400px;
+    margin-bottom: 5%;
+    grid-auto-columns: 200px;
+    grid-auto-rows: min-content;
+    gap: 20px
 }
 
 @media (max-width: 768px) {
