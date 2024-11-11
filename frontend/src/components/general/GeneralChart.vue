@@ -131,6 +131,13 @@
     margin-bottom: 10px;
     margin-left: 35px;
  }
+
+ @media (max-width: 768px) {
+  .chart-container {
+    width: 100%;
+  }
+  
+ }
   </style>
   
   

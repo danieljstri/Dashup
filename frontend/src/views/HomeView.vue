@@ -13,15 +13,15 @@ import EconomicChart from '@/components/general/EconomicChart.vue';
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
     </header>
     <h2>Visão Geral</h2>
-    <section class="first-line">
-        <ProfitCard/>
-        <ExpensesCard/>
-        <RevenueCard/>
-    </section>
-    <section class="second-line">
-        <ProfitChart id="semester-chart"/>
-        <EconomicChart id="economic-chart"/>
-    </section>
+      <section class="first-line">
+          <ProfitCard/>
+          <ExpensesCard/>
+          <RevenueCard/>
+      </section>
+      <section class="second-line">
+          <ProfitChart id="semester-chart"/>
+          <EconomicChart id="economic-chart"/>
+      </section>
   </main>
 </template>
 
@@ -49,13 +49,12 @@ body{
 }
 .header h3 {
   margin-top: 15px;
-  margin-left: var(--sidebar-width);
   color: #2f3b36;
   font-family: 'Noto Sans', sans-serif;
   font-weight: 600;
 }
 .header h4 {
-  margin-left: var(--sidebar-width);
+
   color: #2f3b36;
   font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
@@ -63,15 +62,16 @@ body{
 
 h2 {
     margin: 0; 
-    text-align: left; 
-    padding: 100px; 
+    padding-top: 15%;
+    padding-bottom: 10%;
+    text-align: left;  
     font-family: 'Noto Sans', sans-serif;
     font-weight: 400;
   }
 
 .first-line {
     display: flex;
-    margin-left: var(--sidebar-width);
+
     margin-bottom: 5%;
     grid-auto-columns: 200px;
     grid-auto-rows: min-content;
@@ -80,7 +80,7 @@ h2 {
 
 .second-line {
     display: flex;
-    margin-left: var(--sidebar-width);
+
     margin-bottom: 5%;
     grid-auto-columns: 200px;
     grid-auto-rows: min-content;
@@ -109,6 +109,11 @@ h2 {
 /* Estilos para telas menores */
 @media (max-width: 768px) {
   .first-line {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .second-line {
     flex-direction: column;
     gap: 20px;
   }
