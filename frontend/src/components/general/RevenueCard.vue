@@ -3,6 +3,7 @@
     :title="chartTitle"
     :value="revenue"
     :growthPercentage="growthPercentage"
+    :image="image"
   />
 </template>
 
@@ -20,6 +21,7 @@ export default {
       revenue: 0,
       chartTitle: '',
       growthPercentage: 0,
+      image: "../../public/Frame 5.png",
     };
   },
   async mounted() {

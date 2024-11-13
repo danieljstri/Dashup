@@ -3,7 +3,7 @@
       <!-- Renderiza o gráfico somente se chartData estiver pronto -->
       <div class="chart-container" v-if="isChartDataReady">
         <h3>Dados dos últimos 6 meses</h3>
-        <line-chart :chart-data="chartData" :chart-options="chartOptions" id="chart-canva"></line-chart>
+        <LineChart :chart-data="chartData" :chart-options="chartOptions" id="chart-canva"></LineChart>
       </div>
       <div v-else>
         <p>Carregando dados...</p>
@@ -18,9 +18,9 @@
   import { ref, onMounted } from 'vue';
   import { getRevenueData } from '../../services/dataService';
   import { Line } from 'vue-chartjs';
-  import { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip } from 'chart.js';
+  import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, PointElement, LinearScale, CategoryScale } from 'chart.js'
 
-  Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip);
+ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, LinearScale, CategoryScale)
 
   
   export default {
@@ -61,9 +61,10 @@
                 Revenuevaluejulho, Revenuevalueagosto, Revenuevaluesetembro,
                 Revenuevalueoutubro, Revenuevaluenovembro, Revenuevaluedezembro
               ],
-              backgroundColor: 'rgba(70, 130, 180, 0.2)', // Cor de fundo com opacidade
-              borderColor: '#4682B4', // Cor da linha
-              fill: true, // Preencher a área abaixo da linha
+              fill: true, // Esta propriedade preenche a área abaixo da linha
+            backgroundColor: 'rgba(75, 192, 192, 0.2)', // Cor da área preenchida
+            borderColor: 'rgba(75, 192, 192, 1)', // Cor da linha
+            borderWidth: 1,
               tension: 0.3, // Curva da linha
             },
           ],
@@ -123,7 +124,7 @@
   border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  width: 780px;
+  width: 1200px;
   }
   h3 {
     text-align: center;

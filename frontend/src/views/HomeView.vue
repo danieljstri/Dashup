@@ -31,6 +31,7 @@ import EconomicChart from '@/components/general/EconomicChart.vue';
   margin: 0;
 }
 body{
+  margin-left: var(--sidebar-width-collapsed);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -40,6 +41,7 @@ body{
   width: 100%;
   background-color: #eef6ee;
   padding: 20px; 
+  margin-left: var(--sidebar-width-collapsed);
   border-bottom: 1.5px solid #c3cbc176;
   width: 100%; 
   box-sizing: border-box; 
@@ -62,8 +64,7 @@ body{
 
 h2 {
     margin: 0; 
-    padding-top: 15%;
-    padding-bottom: 10%;
+    padding: 7% 0 3% 0;
     text-align: left;  
     font-family: 'Noto Sans', sans-serif;
     font-weight: 400;
@@ -71,11 +72,10 @@ h2 {
 
 .first-line {
     display: flex;
-
     margin-bottom: 5%;
     grid-auto-columns: 200px;
     grid-auto-rows: min-content;
-    gap: 20px
+    gap: 16px;
 }
 
 .second-line {

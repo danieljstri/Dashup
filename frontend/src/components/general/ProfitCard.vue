@@ -3,6 +3,7 @@
     :title="chartTitle"
     :value="Profit"
     :growthPercentage="growthPercentage"
+    :image="image"
     customClass="card-container"
   />
 </template>
@@ -22,6 +23,7 @@ export default {
       Profit: 0,
       chartTitle: '',
       growthPercentage: 0,
+      image: "../../public/Frame 5 (2).png",
     };
   },
   async mounted() {

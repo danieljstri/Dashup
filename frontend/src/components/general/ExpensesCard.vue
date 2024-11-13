@@ -3,10 +3,12 @@
     :title="chartTitle"
     :value="Expenses"
     :growthPercentage="growthPercentage"
+    :image="image"
   />
 </template>
 
 <script>
+import { image } from 'd3';
 import { getExpensesData } from '../../services/dataService';
 import CardModel from '@/components/CardModel.vue';
 
@@ -20,6 +22,7 @@ export default {
       Expenses: 0,
       chartTitle: '',
       growthPercentage: 0,
+      image: "../../public/Frame 5 (1).png",
     };
   },
   async mounted() {
