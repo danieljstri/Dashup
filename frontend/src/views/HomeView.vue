@@ -1,9 +1,27 @@
 <script setup>
+import { ref } from 'vue'
 import ProfitCard from '@/components/general/ProfitCard.vue';
 import ExpensesCard from '@/components/general/ExpensesCard.vue';
 import RevenueCard from '@/components/general/RevenueCard.vue';
 import ProfitChart from '@/components/general/GeneralChart.vue';
 import EconomicChart from '@/components/general/EconomicChart.vue';
+
+const months = [
+  { value: 'janeiro', label: 'Janeiro' },
+  { value: 'fevereiro', label: 'Fevereiro' },
+  { value: 'marco', label: 'Março' },
+  { value: 'abril', label: 'Abril' },
+  { value: 'maio', label: 'Maio' },
+  { value: 'junho', label: 'Junho' },
+  { value: 'julho', label: 'Julho' },
+  { value: 'agosto', label: 'Agosto' },
+  { value: 'setembro', label: 'Setembro' },
+  { value: 'outubro', label: 'Outubro' },
+  { value: 'novembro', label: 'Novembro' },
+  { value: 'dezembro', label: 'Dezembro' },
+];
+
+const selectedMonth = ref('janeiro');
 </script>
 
 <template>
@@ -13,15 +31,24 @@ import EconomicChart from '@/components/general/EconomicChart.vue';
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
     </header>
     <h2>Visão Geral</h2>
-      <section class="first-line">
-          <ProfitCard/>
-          <ExpensesCard/>
-          <RevenueCard/>
-      </section>
-      <section class="second-line">
-          <ProfitChart id="semester-chart"/>
-          <EconomicChart id="economic-chart"/>
-      </section>
+
+    <!-- Month Selector -->
+    <select v-model="selectedMonth">
+      <option v-for="month in months" :key="month.value" :value="month.value">
+        {{ month.label }}
+      </option>
+    </select>
+
+    <section class="first-line">
+      <!-- Pass selectedMonth as a prop -->
+      <ProfitCard :selectedMonth="selectedMonth" />
+      <ExpensesCard :selectedMonth="selectedMonth" />
+      <RevenueCard :selectedMonth="selectedMonth" />
+    </section>
+    <section class="second-line">
+      <ProfitChart id="semester-chart" />
+      <EconomicChart id="economic-chart" />
+    </section>
   </main>
 </template>
 
