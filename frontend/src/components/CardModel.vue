@@ -1,16 +1,14 @@
 <template>
   <div class="card-model">
-    <h4>{{ title }}</h4>
-    <div class="content">
-      <p>{{ formattedValue }}</p>
-      <div class="previous-value" :class="valueDifferenceClass">
+    <div class="previous-value" :class="valueDifferenceClass">
+      <img src="../../public/moneybag.png">
         <span :class="growthClass">
         {{ growthPercentage }}%
         <span class="arrow">{{ growthArrow }}</span>
       </span>
-      </div>
-
     </div>
+    <h4>{{ title }}</h4>
+    <p>{{ formattedValue }}</p>
   </div>
 </template>
 
@@ -51,9 +49,9 @@ export default {
 <style scoped>
 .card-model {
   height: fit-content;
-  width: fit-content;
+  width: 350px;
   padding: 20px;
-  border-radius: 16px 0px 0px 0px;
+  border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -62,31 +60,36 @@ export default {
 }
 
 .card-model h4 {
-  margin-left: 5px; 
+  padding: 1rem 0 1rem 0;
+  width: 100%;
   font-size: 1.1rem;
   color: #2d3748;
-  white-space: nowrap; 
-  padding-bottom: 20px;
-  text-align: left;   
-  margin-top: 5px;
+  text-align: left; 
 }
 
-.content {
-  flex-direction: column;
+.previous-value {
+  width: 100%;
+  display: flex;
+  justify-content: space-between
 }
-
-.content p {
-  margin: 0; 
+.card-model p {
+  width: 100%;
+  padding: 1rem 0 0 0;
   font-size: 2.0rem;
   font-weight: bold;
   color: #1a202c;
-  margin-top: -80px;
+  text-align: left;
 }
 
-.content span {
+.previous-value span {
   font-size: 1rem;
   font-weight: 500;
   align-items: center;
+}
+
+.previous-value img {
+  width: 20px;
+  height: 20px;
 }
 
 .positive {
@@ -105,15 +108,16 @@ export default {
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .card-model {
+    display: block;
     width: 90%;
-    height: auto;
+    height: fit-content;
     padding: 15px;
     border-radius: 12px;
   }
 
   .card-model h4 {
     font-size: 1rem;
-    text-align: center;
+    text-align: left;
     padding-bottom: 10px;
   }
 

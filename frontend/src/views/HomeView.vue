@@ -1,9 +1,9 @@
 <script setup>
 import ProfitCard from '@/components/general/ProfitCard.vue';
 import ExpensesCard from '@/components/general/ExpensesCard.vue';
-import ComparisionRxEChart from '@/components/general/ComparisionRxEChart.vue';
 import RevenueCard from '@/components/general/RevenueCard.vue';
-import ProfitChart from '@/components/general/GeneralChart.vue'
+import ProfitChart from '@/components/general/GeneralChart.vue';
+import EconomicChart from '@/components/general/EconomicChart.vue';
 </script>
 
 <template>
@@ -12,48 +12,32 @@ import ProfitChart from '@/components/general/GeneralChart.vue'
       <h3>Bem vindo!</h3>
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
     </header>
-
-    <div class="txt"><h2>Visão Geral</h2></div>
-
-    <section class="content">
+    <h2>Visão Geral</h2>
+      <section class="first-line">
           <ProfitCard/>
           <ExpensesCard/>
           <RevenueCard/>
-       <ProfitChart id="profitchart"/>
-       <ComparisionRxEChart id="comparisionchart"/>
-    </section>
+      </section>
+      <section class="second-line">
+          <ProfitChart id="semester-chart"/>
+          <EconomicChart id="economic-chart"/>
+      </section>
   </main>
 </template>
 
 <style>
-body{
-  margin: 0;
+* { 
   padding: 0;
+  margin: 0;
+}
+body{
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
 }
 
 .header {
   width: 100%;
-}
-h3 {
-  margin-top: 15px;
-  margin-left: var(--sidebar-width);
-  color: #2f3b36;
-  font-family: 'Noto Sans', sans-serif;
-  font-weight: 600;
-}
-h4 {
-  margin-left: var(--sidebar-width);
-  color: #2f3b36;
-  font-family: 'Noto Sans', sans-serif;
-  font-weight: 400;
-}
-
-header {
   background-color: #eef6ee;
   padding: 20px; 
   border-bottom: 1.5px solid #c3cbc176;
@@ -63,49 +47,60 @@ header {
   top: 0;
   left: 0;
 }
+.header h3 {
+  margin-top: 15px;
+  color: #2f3b36;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 600;
+}
+.header h4 {
 
-.txt {
-  h2 {
+  color: #2f3b36;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 400;
+}
+
+h2 {
     margin: 0; 
-    text-align: left; 
-    padding-top: 100px;
-    padding-left: 100px; 
+    padding-top: 15%;
+    padding-bottom: 10%;
+    text-align: left;  
     font-family: 'Noto Sans', sans-serif;
     font-weight: 400;
   }
+
+.first-line {
+    display: flex;
+
+    margin-bottom: 5%;
+    grid-auto-columns: 200px;
+    grid-auto-rows: min-content;
+    gap: 20px
 }
 
-#profitchart, #comparisionchart {
-  height: fit-content;
-}
+.second-line {
+    display: flex;
 
-#comparisionchart {
-  height: fit-content;
-  padding-bottom: 35px;
-  padding-left: 15px;
-}
-
-.content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    margin-bottom: 5%;
+    grid-auto-columns: 200px;
+    grid-auto-rows: min-content;
+    gap: 20px
 }
 
 @media (max-width: 768px) {
-    .content {
+    .first-line {
         grid-template-columns: 1fr;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
-    .content {
+    .first-line {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1200px) {
-    .content {
+    .first-line {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -113,14 +108,19 @@ header {
 
 /* Estilos para telas menores */
 @media (max-width: 768px) {
-  .cards, .charts {
+  .first-line {
     flex-direction: column;
     gap: 20px;
   }
 
-  .txt h2 {
+  .second-line {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  h2 {
     padding-left: 20px;
-    text-align: center;
+    text-align: left;
   }
 
   header {
@@ -132,8 +132,7 @@ header {
     text-align: center;
   }
 
-  .content {
-    padding-top: 100px;
+  .first-line {
     width: 100%;
   }
 }
