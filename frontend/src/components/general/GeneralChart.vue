@@ -124,7 +124,7 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, LinearScale,
   border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  width: 1200px;
+  width: 1080px;
   }
   h3 {
     text-align: center;

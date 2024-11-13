@@ -4,16 +4,16 @@ import ExpensesCard from '@/components/general/ExpensesCard.vue';
 import RevenueCard from '@/components/general/RevenueCard.vue';
 import ProfitChart from '@/components/general/GeneralChart.vue';
 import EconomicChart from '@/components/general/EconomicChart.vue';
+import EconomicBar from '@/components/general/EconomicBar.vue';
 </script>
 
 <template>
   <main>
-    <header class="header">
+    <section class="header">
       <h3>Bem vindo!</h3>
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
-    </header>
-    <h2>Visão Geral</h2>
-      <section class="first-line">
+    </section>
+      <section class="block1 ">
           <ProfitCard/>
           <ExpensesCard/>
           <RevenueCard/>
@@ -22,10 +22,14 @@ import EconomicChart from '@/components/general/EconomicChart.vue';
           <ProfitChart id="semester-chart"/>
           <EconomicChart id="economic-chart"/>
       </section>
+      <EconomicBar/>
   </main>
 </template>
 
 <style>
+:root {
+  --first-line-width:
+}
 * { 
   padding: 0;
   margin: 0;
@@ -38,16 +42,12 @@ body{
 }
 
 .header {
-  width: 100%;
-  background-color: #eef6ee;
-  padding: 20px; 
-  margin-left: var(--sidebar-width-collapsed);
-  border-bottom: 1.5px solid #c3cbc176;
+  display: block;
   width: 100%; 
-  box-sizing: border-box; 
-  position: absolute;
-  top: 0;
-  left: 0;
+  margin-bottom: 1%;
+  box-sizing: border-box;
+  text-align: left;
+  justify-content: center;
 }
 .header h3 {
   margin-top: 15px;
@@ -62,30 +62,23 @@ body{
   font-weight: 400;
 }
 
-h2 {
-    margin: 0; 
-    padding: 7% 0 3% 0;
-    text-align: left;  
-    font-family: 'Noto Sans', sans-serif;
-    font-weight: 400;
-  }
-
 .first-line {
     display: flex;
     margin-bottom: 5%;
     grid-auto-columns: 200px;
     grid-auto-rows: min-content;
     gap: 16px;
+    max-width: fit-content;
 }
 
 .second-line {
     display: flex;
-
     margin-bottom: 5%;
     grid-auto-columns: 200px;
     grid-auto-rows: min-content;
     gap: 20px
 }
+
 
 @media (max-width: 768px) {
     .first-line {

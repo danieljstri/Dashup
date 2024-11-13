@@ -34,7 +34,7 @@ import SideBar from './components/SideBar.vue';
 }
 
 body {
-    background: linear-gradient(135deg, #026E4E, #245368);
+    background: linear-gradient(135deg, #ffffff, #e7eef1);
     background-size: cover;
     background-attachment: fixed;
 }
