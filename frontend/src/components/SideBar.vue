@@ -154,7 +154,7 @@ aside {
         transition: 0.3s ease-out;
     }
 
-    /*Estilização conteiner do botão de expandir e recolher a Sidebar*/
+    /*Estilização conteiner do botão de recolher da Sidebar*/
     .menu-toggle-wrap {
         display: flex;
         justify-content: flex-start;
