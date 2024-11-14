@@ -11,7 +11,7 @@
             </div>
 
             <div :class="['logo', is_expanded ? 'logo-expanded' : 'logo-collapsed']">
-                <!-- Logo detalhada, exibida apenas quando expandido -->
+                <!-- Logo detalhada, exibida apenas quando expandir a sidebar -->
                 <img 
                     v-if="is_expanded" 
                     :src="LogoDetalhada" 
@@ -21,35 +21,44 @@
             <div class="menu">
                 
               <!--div para o botão Visão Geral-->
-                <router-link to="/" class="button">
+                <router-link to="/" class="button" :class="{ active: selectedButton === 'overview' }" 
+                    @click="setActiveButton('overview')">
                     <span class="material-icons">wysiwyg</span>
                     <span class="text">VISÃO GERAL</span>
                 </router-link>
 
               <!--div para o botão dos Gráfico de Lucro-->
-                <router-link to="/services" class="button">
+                <router-link to="/services" class="button" :class="{ active: selectedButton === 'profit-chart' }"
+                    @click="setActiveButton('profit-chart')">
                     <span class="material-icons">bar_chart</span>
                     <span class="text">GRÁFICO DO LUCRO</span>
                 </router-link>
 
               <!--div para o botão relacionado ao Lucro Geral-->
-                <router-link to="/economia" class="button">
+                <router-link to="/economia" class="button" :class="{ active: selectedButton === 'economy-chart' }"
+                    @click="setActiveButton('economy-chart')">
                     <span class="material-icons">bar_chart</span>
                     <span class="text">GRÁFICO DE ECONOMIA</span>
                 </router-link>
             </div>
 
             <div class="frameInferior">
-                   <!--div para o botão de Configurações-->
-                <router-link to="/settings" class="button">
-                    <span class="material-icons">settings</span>
+
+                 <!--div para o botão de Configurações-->
+                <router-link to="/settings" class="button" :class="{ active: selectedButton === 'settings' }"
+                    @click="setActiveButton('settings')">
+                    <span class="material-icons">settings</span> 
                     <span class="text">CONFIGURAÇÕES</span>
                 </router-link>
+
                    <!--Condicional para o botão Sair-->
-                <button @click="handlesignOut" v-if="isLoggedIn" class="button">
+                <button @click="setActiveButton('logout'); handlesignOut()"
+                    v-if="isLoggedIn" class="button"
+                    :class="{ active: selectedButton === 'logout' }" >
                     <span class="material-icons">logout</span>
                     <span class="text">SAIR</span>
                 </button>
+
             </div>
 
             <!--div para definir a posição dos elementos dentro do espaço na SideBar-->
@@ -61,6 +70,7 @@
         </main>
 
     </div>
+
 </template>
 
 <script setup>
@@ -72,6 +82,12 @@ import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 const isLoggedIn = ref(false)
 const router = useRouter();
+const selectedButton = ref(null);
+
+//função que identifica quando o botão foi pressionado
+const setActiveButton = (buttonName) => {
+    selectedButton.value = buttonName;
+};
 
 
 //código de inicialização do serviço de autenticação e verificação de Login
@@ -123,7 +139,7 @@ aside {
     background-color:#245269;
     width: var(--sidebar-width-collapsed);
     min-height: 100vh;
-    transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;  /*transição ao abrir e fechar a sidebar*/
     position: fixed;
     padding: 7px;
     top: 0;
@@ -144,13 +160,13 @@ aside {
         height: 55px; /* Define altura fixa para a logo */
         margin-bottom: 20px;
 
-    }
+    } /*ajuste da imagem da Logo*/
     .logo img {
         height: auto;
         width: 170px;
         margin-top: -47%;
         margin-left: 32px;
-        transition: 0.3s ease-out;
+        transition: 0.1s ease-in;
 
     }
 
@@ -162,9 +178,9 @@ aside {
         margin-bottom: 1rem;
 
         .menu-toggle {
-            transition: 0.3s ease-in-out;
-
+   
             .material-icons {
+                /*ajuste do ícone do botão*/
                 font-size: 1.8rem;
                 color: #CCDEE7;
                 transition: 0.3s ease-out;
@@ -178,83 +194,27 @@ aside {
     .button .text {
         opacity: 0; /*esconder o texto do botão quando a sidebar é recolhida*/
         font-weight: normal;
-        transition: opacity 0.3s ease-in-out;
-        font-family: 'General Sans Variable', sans-serif;
+        font-family: 'General Sans Variable', sans-serif;  /*fonte dos textos que nomeiam cada botão*/
         
     }
 
     .menu {
+        //ajuste do tamanho do conteiner dos botões de informações
         width: 100%; // Usa largura total do contêiner
         min-height: 328px; // Altura mínima para manter posição
         margin-top: 0%; // Margem superior para centralização
 
         .button {
+            //ajuste de todos os botões contidos na classe menu/button
             height: 48px;
             display: flex;
             align-items: center;
-            text-decoration: none;
+            text-decoration: none; //remove sublinhagem padrão da linguagem
             justify-content: flex-start;
             padding-left: 10px; // Ajuste de padding para centralizar ícones
-
+           
             .material-icons { 
-                color: #CCDEE7;
-                width: 25px;
-                height: 25px;
-
-            }
-
-            .text {
-                color: #CCDEE7;
-                font-size: 13px;
-                line-height: 15px; /* Ajustado para alinhar o texto */
-                letter-spacing: 0.05em;
-                text-align: left;
-                text-decoration-skip-ink: none;
-                display: inline-block; /* Mantém o texto na mesma linha */
-                margin-top: 1px;
-                margin-left: 2px;
-               
-            }
-        }
-    }
-    aside.is-expanded .menu {
-        margin-top: 30%; // Altura do menu quando expandido
-
-    }
-
-    aside:not(.is-expanded) .menu {
-        margin-top: 60%; // Ajuste para o estado recolhido
-
-    }
-
-        /* Estilo aplicado enquanto o botão é clicado */
-    .button:active {
-        width: 277px;
-        height: 48px;
-        background-color: #CCDEE7; /* Cor de fundo enquanto é clicado */
-
-    }
-    .button:active .material-icons,
-    .button:active .text {
-        color: #245368; /* Cor do ícone e do texto enquanto é clicado */
-
-    }
-
-    .frameInferior {
-        width: 277px;
-        height: 104px;
-        gap: 8px;
-        margin-top: 85px;
-
-        .button {
-            height: 37px;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            justify-content: flex-start;
-            padding-left: 10px; // Ajuste de padding para centralizar ícones
-
-            .material-icons { 
+                //ajuste de cor e tamanho do ícone que acompanha o texto
                 color: #CCDEE7;
                 width: 24px;
                 height: 24px;
@@ -269,9 +229,75 @@ aside {
                 text-align: left;
                 text-decoration-skip-ink: none;
                 display: inline-block; /* Mantém o texto na mesma linha */
-                margin-top: 1px;
-                margin-left: 5px;
+                margin-left: 6px; //ajuste na distância entre o ícone e o texto
+                margin-top: 1px; // margem para centralizar com a altura do ícone
                
+            }
+        }
+    }
+    aside.is-expanded .menu {
+        margin-top: 30%; // Altura do menu quando expandido
+
+    }
+
+    aside:not(.is-expanded) .menu {
+        margin-top: 60%; // Ajuste para o estado recolhido
+
+    }
+
+    .frameInferior {
+        //ajustando tamanho do contêiner dos botões Config e Sair
+        width: 100%; // Usa largura total do contêiner
+        min-height: 328px; // Altura mínima para manter posição
+        margin-top: 85px; //ajustando à altura proposta
+
+        .button {
+            //definindo posição dos botões dentro do contêiner
+            height: 37px;
+            display: flex;
+            align-items: center;
+            text-decoration: none; //remover sublinhagem padrão da linguagem
+            justify-content: flex-start;
+            padding-left: 10px; // Ajuste de padding para centralizar ícones
+
+            .material-icons { 
+                //definindo estilo do ícone que aconpanha o texto
+                color: #CCDEE7;
+                width: 24px;
+                height: 24px;
+
+            }
+
+            .text {
+                color: #CCDEE7;
+                font-size: 13px;
+                line-height: 15px; /* Ajustado para alinhar o texto */
+                letter-spacing: 0.05em;
+                text-align: left;
+                text-decoration-skip-ink: none;
+                display: inline-block; /* Mantém o texto na mesma linha */
+                margin-left: 7px; //ajuste para alinhar o texto ao ícone
+               
+            }
+        }
+    }
+
+    .button {
+    // Estilos padrão dos botões quando clicado
+        &.active {
+            background-color: #ccdee7f7; // Cor de fundo quando o botão está ativo
+            border-radius: 5px; // Arredondamento de borda
+
+            .text {
+                //estilo do texto quando o botão foi clicado
+                color: #245269;
+                font-weight: 600;
+
+            }
+            .material-icons {
+                //estilo do ícone que acompanha o texto
+                color: #245269;
+
             }
         }
     }
@@ -280,7 +306,9 @@ aside {
         width: var(--sidebar-width);
 
         .menu-toggle .material-icons {
+            //ajuste de rotação e transição do botão que reduz e expande a sidebar
             transform: rotate(180deg);
+            transition: 0.2s ease-in-out;
         }
 
         .button .text {
@@ -303,10 +331,13 @@ aside {
 
     &.main-expanded {
         margin-left: var(--sidebar-width);
+
     }
 
     @media (max-width: 768px) {
         margin-left: 0;
+
     }
 }
+
 </style>
