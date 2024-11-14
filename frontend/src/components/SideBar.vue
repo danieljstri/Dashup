@@ -163,9 +163,9 @@ aside {
     } /*ajuste da imagem da Logo*/
     .logo img {
         height: auto;
-        width: 170px;
-        margin-top: -47%;
-        margin-left: 32px;
+        width: 155px;
+        margin-top: -34%;
+        margin-left: 20px;
         transition: 0.1s ease-in;
 
     }
@@ -174,14 +174,13 @@ aside {
     .menu-toggle-wrap {
         display: flex;
         justify-content: flex-start;
-        margin-left: 7px;
-        margin-bottom: 1rem;
+        margin-left: 10px;
 
         .menu-toggle {
    
             .material-icons {
                 /*ajuste do ícone do botão*/
-                font-size: 1.8rem;
+                font-size: 1.6rem;
                 color: #CCDEE7;
                 transition: 0.3s ease-out;
                 align-items: center;
@@ -254,11 +253,13 @@ aside {
         .button {
             //definindo posição dos botões dentro do contêiner
             height: 37px;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
             text-decoration: none; //remover sublinhagem padrão da linguagem
             justify-content: flex-start;
             padding-left: 10px; // Ajuste de padding para centralizar ícones
+            
 
             .material-icons { 
                 //definindo estilo do ícone que aconpanha o texto
