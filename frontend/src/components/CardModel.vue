@@ -1,11 +1,11 @@
 <template>
   <div class="card-model">
     <div class="previous-value" :class="valueDifferenceClass">
-      <img src="../../public/moneybag.png">
-        <span :class="growthClass">
-        {{ growthPercentage }}%
-        <span class="arrow">{{ growthArrow }}</span>
-      </span>
+      <img :src="image">
+      <section :class="growthClass">
+          <span> {{ growthPercentage }}% </span>
+          <span>{{ growthArrow }}</span>
+      </section>
     </div>
     <h4>{{ title }}</h4>
     <p>{{ formattedValue }}</p>
@@ -27,6 +27,14 @@ export default {
     growthPercentage: {
       type: Number,
       default: 0,
+    },
+    image: {
+      type: String,
+      default: '',
+    },
+    month: {
+      type: String,
+      default: 'janeiro',
     },
   },
   computed: {
@@ -88,27 +96,54 @@ export default {
 }
 
 .previous-value img {
-  width: 20px;
-  height: 20px;
+  max-width: 30px;
+  max-height: 30px;
 }
 
 .positive {
-  color: #32b36e;
+  display: flex; 
+  padding: 2%;
+  background-color: #8CE97A80;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  width: 70px;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+}
+.positive span {
+  color: #10582B;
+  font-size: 0.9rem;
+  font-weight: 1000;
 }
 
 .negative {
-  color: #d63030;
+    display: flex; 
+  padding: 2%;
+  background-color: #F8BD8680;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  width: 70px;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.negative span {
+  color: #da4117;
+  font-size: 0.9rem;
+  font-weight: 1000;
 }
 
 .arrow {
   font-size: 1.2rem;
-  margin-left: 4px;
 }
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
   .card-model {
     display: block;
+    max-width: 767px;
     width: 90%;
     height: fit-content;
     padding: 15px;
