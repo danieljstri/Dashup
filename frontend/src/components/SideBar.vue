@@ -22,7 +22,7 @@
                 
               <!--div para o botão Visão Geral-->
                 <router-link to="/" class="button">
-                    <span class="material-icons">home</span>
+                    <span class="material-icons">wysiwyg</span>
                     <span class="text">VISÃO GERAL</span>
                 </router-link>
 
