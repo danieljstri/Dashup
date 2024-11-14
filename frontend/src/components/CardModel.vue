@@ -32,6 +32,10 @@ export default {
       type: String,
       default: '',
     },
+    month: {
+      type: String,
+      default: 'janeiro',
+    },
   },
   computed: {
     formattedValue() {

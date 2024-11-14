@@ -1,9 +1,27 @@
 <script setup>
+import { ref } from 'vue'
 import ProfitCard from '@/components/general/ProfitCard.vue';
 import ExpensesCard from '@/components/general/ExpensesCard.vue';
 import RevenueCard from '@/components/general/RevenueCard.vue';
 import ProfitChart from '@/components/general/GeneralChart.vue';
 import EconomicChart from '@/components/general/EconomicChart.vue';
+
+const months = [
+  { value: 'janeiro', label: 'Janeiro' },
+  { value: 'fevereiro', label: 'Fevereiro' },
+  { value: 'marco', label: 'Março' },
+  { value: 'abril', label: 'Abril' },
+  { value: 'maio', label: 'Maio' },
+  { value: 'junho', label: 'Junho' },
+  { value: 'julho', label: 'Julho' },
+  { value: 'agosto', label: 'Agosto' },
+  { value: 'setembro', label: 'Setembro' },
+  { value: 'outubro', label: 'Outubro' },
+  { value: 'novembro', label: 'Novembro' },
+  { value: 'dezembro', label: 'Dezembro' },
+];
+
+const selectedMonth = ref('janeiro');
 import EconomicBar from '@/components/general/EconomicBar.vue';
 import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
 </script>
@@ -13,6 +31,26 @@ import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
     <section class="header">
       <h3>Bem vindo!</h3>
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
+    </header>
+    <h2>Visão Geral</h2>
+
+    <!-- Month Selector -->
+    <select v-model="selectedMonth">
+      <option v-for="month in months" :key="month.value" :value="month.value">
+        {{ month.label }}
+      </option>
+    </select>
+
+    <section class="first-line">
+      <!-- Pass selectedMonth as a prop -->
+      <ProfitCard :selectedMonth="selectedMonth" />
+      <ExpensesCard :selectedMonth="selectedMonth" />
+      <RevenueCard :selectedMonth="selectedMonth" />
+    </section>
+    <section class="second-line">
+      <ProfitChart id="semester-chart" />
+      <EconomicChart id="economic-chart" />
+    </section>
     </section>
       <content class="body-content">
       <section class="cash-data">
