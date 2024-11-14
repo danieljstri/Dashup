@@ -1,64 +1,82 @@
 <template>
     <div class="app">
-        <button v-if="!is_expanded" class="expand-btn" @click="ToggleMenu">
-            <span class="material-icons">menu</span>
-        </button>
+                <!-- Sidebar -->
         <aside :class="[{ 'is-expanded': is_expanded }, 'sidebar']">
-            <div :class="['logo', is_expanded ? 'logo-expanded' : 'logo-collapsed']">
-                <img 
-                    :src="is_expanded ? logoMedUpCompleto : logoCompacta" 
-                    alt="MedUp" />
-            </div>
 
+            <!-- Botão para recolher a Sidebar -->
             <div class="menu-toggle-wrap">
                 <button class="menu-toggle" @click="ToggleMenu">
-                    <span class="material-icons">keyboard_double_arrow_right</span>
+                    <span class="material-icons">menu</span>
                 </button>
             </div>
+
+            <div :class="['logo', is_expanded ? 'logo-expanded' : 'logo-collapsed']">
+                <!-- Logo detalhada, exibida apenas quando expandido -->
+                <img 
+                    v-if="is_expanded" 
+                    :src="LogoDetalhada" 
+                    alt="DashUp" />
+            </div>
+            
             <div class="menu">
+                
+              <!--div para o botão Visão Geral-->
                 <router-link to="/" class="button">
                     <span class="material-icons">home</span>
                     <span class="text">VISÃO GERAL</span>
                 </router-link>
+
+              <!--div para o botão dos Gráfico de Lucro-->
                 <router-link to="/services" class="button">
                     <span class="material-icons">bar_chart</span>
                     <span class="text">GRÁFICO DO LUCRO</span>
                 </router-link>
+
+              <!--div para o botão relacionado ao Lucro Geral-->
                 <router-link to="/economia" class="button">
                     <span class="material-icons">bar_chart</span>
                     <span class="text">GRÁFICO DE ECONOMIA</span>
                 </router-link>
             </div>
+
+              <!--Condicional para o botão Sair-->
             <button @click="handlesignOut" v-if="isLoggedIn" class="button">
                 <span class="material-icons">logout</span>
                 <span class="text">SAIR</span>
             </button>
+
+            <!--div para definir a posição dos elementos dentro do espaço na SideBar-->
             <div class="flex"></div>
+
+            <!--div para o botão de Configurações-->
             <div class="menu">
                 <router-link to="/settings" class="button">
                     <span class="material-icons">settings</span>
                     <span class="text">CONFIGURAÇÕES</span>
                 </router-link>
             </div>
+
         </aside>
+
         <main :class="{ 'main-expanded': is_expanded }">
         </main>
+
     </div>
 </template>
+
 
 <script setup>
 import { onMounted, ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
-import logoMedUpCompleto from '../../../assets/logoMedUpCompleto.png';
-import logoCompacta from '../../../assets/LogoIcon.png';
+import LogoDetalhada from "../../../assets/LogoDetalhada.png";
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
-
 const isLoggedIn = ref(false)
-
 const router = useRouter();
 
+
+//código de inicialização do serviço de autenticação e verificação de Login
 let auth;
 onMounted(() => {
     auth = getAuth();
@@ -67,150 +85,149 @@ onMounted(() => {
     });
 });
 
+//const que verifica se foi autorizado o acesso ao Login para direcionar à página inicial
 const handlesignOut = () => {
     signOut(auth)
         .then(() => {
             console.log("User signed out");
+            //rota para onde o usuário será redirecionado
             router.push('/SignIn');
         })
         .catch((error) => {
             console.error(error);
         });
 }
-
+// função arrow que alternará o estado da SideBar entre expandida e compactada
 const ToggleMenu = () => {
+    //quando ToggleMenu for chamada, ou seja, houver uma interação no comprimento, is_expanded terá alteração no valor (em booleano) 
     is_expanded.value = !is_expanded.value
     localStorage.setItem("is_expanded", is_expanded.value)
 }
+
 </script>
 
 <style lang="scss" scoped>
+
 :root {
-    --sidebar-width: 250px;
-    --sidebar-width-collapsed: 60px;
+    --sidebar-width: 240px;
+    --sidebar-width-collapsed: 70px;
 }
-.expand-btn {
-    position: fixed;
-    top: 1rem;
-    left: 1rem;
-    background-color: var(--primary);
-    border: none;
-    border-radius: 50%;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 100; /* Para garantir que o botão fique acima de outros elementos */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s;
 
-    .material-icons {
-        color: var(--light);
-        font-size: 1.5rem;
-    }
-
-    &:hover {
-        background-color: var(--primary-alt);
-    }
-}
 .app {
   display: flex; 
 }
 
+/*Estilização da Sidebar de forma geral*/
 aside {
-    display: flex;
+    display: flex; 
     flex-direction: column; 
     overflow: hidden;  
-    background-color: adjust-color(#245269, $lightness: -5%);
-    color: var(--light);
+    background-color:#245269;
     width: var(--sidebar-width-collapsed);
     min-height: 100vh;
-    padding: 1rem;
-    transition: 0.3s ease-in-out;
+    transition: 0.2s ease-in-out;
     position: fixed;
+    padding: 7px;
     top: 0;
     left: 0;
     z-index: 99;
+    padding-top: 19px;
 
+    /* Contêiner de flex para manter a posição dos elementos */
     .flex {
-        flex: 1 1 0%;
+        flex: 1;
     }
 
+    /* Estilização do contêiner com a imagem da Logo */
     .logo {
-        margin-bottom: 1rem;
         display: flex;
         justify-content: center;
-
-        img {
-            height: auto;
-        }
-
-        &.logo-expanded img {
-            margin-top: 15px;
-            width: 200px;
-        }
-
-        &.logo-collapsed img {
-            width: 40px;
-            margin-left: 10px;
-        }
+        align-items: center;
+        height: 55px; /* Define altura fixa para a logo */
+        margin-bottom: 20px;
+    }
+    .logo img {
+        height: auto;
+        width: 170px;
+        margin-top: -47%;
+        margin-left: 32px;
+        transition: 0.3s ease-out;
     }
 
+    /*Estilização conteiner do botão de expandir e recolher a Sidebar*/
     .menu-toggle-wrap {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
+        margin-left: 7px;
         margin-bottom: 1rem;
-
         .menu-toggle {
             transition: 0.3s ease-in-out;
             .material-icons {
-                font-size: 2rem;
-                color: var(--light);
+                font-size: 1.8rem;
+                color: #CCDEE7;
                 transition: 0.3s ease-out;
-            }
-
-            &:hover {
-                .material-icons {
-                    color: var(--primary);
-                    transform: translateX(0.5rem);
-                }
+                align-items: center;
             }
         }
     }
 
+    /*Parametros globais para os botões da sidebar*/
     .button .text {
-        opacity: 0;
-        font-family: 'Noto Sans', sans-serif;
-        font-weight: 300;
+        opacity: 0; /*esconder o texto do botão quando a sidebar é recolhida*/
+        font-weight: normal;
         transition: opacity 0.3s ease-in-out;
+        font-family: 'General Sans Variable', sans-serif;
+        
     }
 
     .menu {
+        width: 100%; // Usa largura total do contêiner
+        min-height: 328px; // Altura mínima para manter posição
+        margin-top: 0%; // Margem superior para centralização
         .button {
+            height: 48px;
             display: flex;
             align-items: center;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            .material-icons {
-                font-size: 2rem;
-                color: var(--light);
-                transition: 0.2s ease-in-out;
-            }
-            .text {
-                color: var(--light);
-                transition: 0.2s ease-in-out;
-                font-family: 'Noto Sans', sans-serif;
-                font-weight: 300;
+            justify-content: flex-start;
+            padding-left: 10px; // Ajuste de padding para centralizar ícones
+            .material-icons { 
+                color: #CCDEE7;
+                width: 25px;
+                height: 25px;
             }
 
-            &:hover {
-                background-color: #245269;
-                .material-icons, .text {
-                    color: var(--primary);
-                }
+            .text {
+                color: #CCDEE7;
+                font-size: 13px;
+                line-height: 15px; /* Ajustado para alinhar o texto */
+                letter-spacing: 0.05em;
+                text-align: left;
+                text-decoration-skip-ink: none;
+                display: inline-block; /* Mantém o texto na mesma linha */
+                margin-top: 1px;
+                margin-left: 2px;
+               
             }
         }
+    }
+    aside.is-expanded .menu {
+        margin-top: 30%; // Altura do menu quando expandido
+    }
+
+    aside:not(.is-expanded) .menu {
+        margin-top: 60%; // Ajuste para o estado recolhido
+    }
+
+        /* Estilo aplicado enquanto o botão é clicado */
+    .button:active {
+        width: 277px;
+        height: 48px;
+        background-color: #CCDEE7; /* Cor de fundo enquanto é clicado */
+    }
+    .button:active .material-icons,
+    .button:active .text {
+        color: #245368; /* Cor do ícone e do texto enquanto é clicado */
     }
 
     &.is-expanded {

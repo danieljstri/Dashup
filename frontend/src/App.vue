@@ -22,8 +22,8 @@ import SideBar from './components/SideBar.vue';
     --dark: #1e293b;
     --dark-alt: #334155;
     --light: #f1f5f9;
-    --sidebar-width: 250px;
-    --sidebar-width-collapsed: 80px; /* Largura reduzida da sidebar */
+    --sidebar-width: 240px;
+    --sidebar-width-collapsed: 60px; /* Largura reduzida da sidebar */
 }
 
 * {
