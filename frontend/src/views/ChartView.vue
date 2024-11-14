@@ -1,5 +1,5 @@
 <script setup>
-import ComparisionRxEChart from '@/components/general/ComparisionRxEChart.vue';
+import ComparisionRxEChart from '@/components/general/Valuable-ProductCard.vue';
 </script>
 
 <template>

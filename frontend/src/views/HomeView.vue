@@ -5,6 +5,7 @@ import RevenueCard from '@/components/general/RevenueCard.vue';
 import ProfitChart from '@/components/general/GeneralChart.vue';
 import EconomicChart from '@/components/general/EconomicChart.vue';
 import EconomicBar from '@/components/general/EconomicBar.vue';
+import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
 </script>
 
 <template>
@@ -13,23 +14,24 @@ import EconomicBar from '@/components/general/EconomicBar.vue';
       <h3>Bem vindo!</h3>
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
     </section>
-      <section class="block1 ">
-          <ProfitCard/>
-          <ExpensesCard/>
-          <RevenueCard/>
+      <content class="body-content">
+      <section class="cash-data">
+          <div class="cards">
+            <ProfitCard/>
+            <ExpensesCard/>
+            <RevenueCard/>
+          </div>
+          <ProfitChart/>
       </section>
-      <section class="second-line">
-          <ProfitChart id="semester-chart"/>
+      <section class="control-data">
           <EconomicChart id="economic-chart"/>
+          <ValuableProductCard/>
       </section>
-      <EconomicBar/>
+    </content>
   </main>
 </template>
 
 <style>
-:root {
-  --first-line-width:
-}
 * { 
   padding: 0;
   margin: 0;
@@ -62,38 +64,50 @@ body{
   font-weight: 400;
 }
 
-.first-line {
-    display: flex;
+.body-content {
+  display: flex;
+  flex-direction: inline;
+  gap: 16px;
+  max-height: fit-content;
+}
+
+.cash-data {
+    display: block;
     margin-bottom: 5%;
     grid-auto-columns: 200px;
     grid-auto-rows: min-content;
     gap: 16px;
     max-width: fit-content;
 }
-
-.second-line {
+.cards {
     display: flex;
-    margin-bottom: 5%;
-    grid-auto-columns: 200px;
-    grid-auto-rows: min-content;
-    gap: 20px
+    gap: 16px;
+    margin-bottom: 16px;
+    justify-content: center;
+}
+
+.control-data {
+    display: flex;
+    flex-direction: column;
+    max-width: fit-content;
+    gap: 36px;
 }
 
 
 @media (max-width: 768px) {
-    .first-line {
+    .cash-data { 
         grid-template-columns: 1fr;
     }
 }
 
 @media (min-width: 768px) and (max-width: 1200px) {
-    .first-line {
+    .cash-data { 
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1200px) {
-    .first-line {
+    .cash-data { 
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -101,7 +115,7 @@ body{
 
 /* Estilos para telas menores */
 @media (max-width: 768px) {
-  .first-line {
+  .cash-data { 
     flex-direction: column;
     gap: 20px;
   }
@@ -125,7 +139,7 @@ body{
     text-align: center;
   }
 
-  .first-line {
+  .cash-data { 
     width: 100%;
   }
 }

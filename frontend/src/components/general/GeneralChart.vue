@@ -2,7 +2,7 @@
     <div class="semester-revenue-chart">
       <!-- Renderiza o gráfico somente se chartData estiver pronto -->
       <div class="chart-container" v-if="isChartDataReady">
-        <h3>Dados dos últimos 6 meses</h3>
+        <h2>Faturamento</h2>
         <LineChart :chart-data="chartData" :chart-options="chartOptions" id="chart-canva"></LineChart>
       </div>
       <div v-else>
@@ -124,7 +124,6 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, LinearScale,
   border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  width: 1080px;
   }
   h3 {
     text-align: center;
