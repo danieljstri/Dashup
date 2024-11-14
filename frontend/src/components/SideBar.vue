@@ -248,36 +248,37 @@ aside {
         //ajustando tamanho do contêiner dos botões Config e Sair
         width: 100%; // Usa largura total do contêiner
         min-height: 328px; // Altura mínima para manter posição
-        margin-top: 85px; //ajustando à altura proposta
+        margin-top: 100px; //ajustando à altura proposta
 
         .button {
             //definindo posição dos botões dentro do contêiner
             height: 37px;
-            margin-bottom: 5px;
+            margin-bottom: -3px;
             display: flex;
             align-items: center;
             text-decoration: none; //remover sublinhagem padrão da linguagem
             justify-content: flex-start;
-            padding-left: 10px; // Ajuste de padding para centralizar ícones
+            margin-left: 12px;
             
 
             .material-icons { 
                 //definindo estilo do ícone que aconpanha o texto
                 color: #CCDEE7;
-                width: 24px;
-                height: 24px;
+                width: 20px;
+                height: 20px;
+                font-size: 19px;
 
             }
 
             .text {
                 color: #CCDEE7;
-                font-size: 13px;
+                font-size: 11px;
                 line-height: 15px; /* Ajustado para alinhar o texto */
                 letter-spacing: 0.05em;
                 text-align: left;
                 text-decoration-skip-ink: none;
                 display: inline-block; /* Mantém o texto na mesma linha */
-                margin-left: 7px; //ajuste para alinhar o texto ao ícone
+                margin-left: 8px; //ajuste para alinhar o texto ao ícone
                
             }
         }
