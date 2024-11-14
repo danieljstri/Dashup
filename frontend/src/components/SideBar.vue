@@ -39,22 +39,21 @@
                 </router-link>
             </div>
 
-              <!--Condicional para o botão Sair-->
-            <button @click="handlesignOut" v-if="isLoggedIn" class="button">
-                <span class="material-icons">logout</span>
-                <span class="text">SAIR</span>
-            </button>
-
-            <!--div para definir a posição dos elementos dentro do espaço na SideBar-->
-            <div class="flex"></div>
-
-            <!--div para o botão de Configurações-->
-            <div class="menu">
+            <div class="frameInferior">
+                   <!--div para o botão de Configurações-->
                 <router-link to="/settings" class="button">
                     <span class="material-icons">settings</span>
                     <span class="text">CONFIGURAÇÕES</span>
                 </router-link>
+                   <!--Condicional para o botão Sair-->
+                <button @click="handlesignOut" v-if="isLoggedIn" class="button">
+                    <span class="material-icons">logout</span>
+                    <span class="text">SAIR</span>
+                </button>
             </div>
+
+            <!--div para definir a posição dos elementos dentro do espaço na SideBar-->
+            <div class="flex"></div>
 
         </aside>
 
@@ -144,6 +143,7 @@ aside {
         align-items: center;
         height: 55px; /* Define altura fixa para a logo */
         margin-bottom: 20px;
+
     }
     .logo img {
         height: auto;
@@ -151,6 +151,7 @@ aside {
         margin-top: -47%;
         margin-left: 32px;
         transition: 0.3s ease-out;
+
     }
 
     /*Estilização conteiner do botão de recolher da Sidebar*/
@@ -159,13 +160,16 @@ aside {
         justify-content: flex-start;
         margin-left: 7px;
         margin-bottom: 1rem;
+
         .menu-toggle {
             transition: 0.3s ease-in-out;
+
             .material-icons {
                 font-size: 1.8rem;
                 color: #CCDEE7;
                 transition: 0.3s ease-out;
                 align-items: center;
+
             }
         }
     }
@@ -183,6 +187,7 @@ aside {
         width: 100%; // Usa largura total do contêiner
         min-height: 328px; // Altura mínima para manter posição
         margin-top: 0%; // Margem superior para centralização
+
         .button {
             height: 48px;
             display: flex;
@@ -190,10 +195,12 @@ aside {
             text-decoration: none;
             justify-content: flex-start;
             padding-left: 10px; // Ajuste de padding para centralizar ícones
+
             .material-icons { 
                 color: #CCDEE7;
                 width: 25px;
                 height: 25px;
+
             }
 
             .text {
@@ -212,10 +219,12 @@ aside {
     }
     aside.is-expanded .menu {
         margin-top: 30%; // Altura do menu quando expandido
+
     }
 
     aside:not(.is-expanded) .menu {
         margin-top: 60%; // Ajuste para o estado recolhido
+
     }
 
         /* Estilo aplicado enquanto o botão é clicado */
@@ -223,10 +232,48 @@ aside {
         width: 277px;
         height: 48px;
         background-color: #CCDEE7; /* Cor de fundo enquanto é clicado */
+
     }
     .button:active .material-icons,
     .button:active .text {
         color: #245368; /* Cor do ícone e do texto enquanto é clicado */
+
+    }
+
+    .frameInferior {
+        width: 277px;
+        height: 104px;
+        gap: 8px;
+        margin-top: 85px;
+
+        .button {
+            height: 37px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            justify-content: flex-start;
+            padding-left: 10px; // Ajuste de padding para centralizar ícones
+
+            .material-icons { 
+                color: #CCDEE7;
+                width: 24px;
+                height: 24px;
+
+            }
+
+            .text {
+                color: #CCDEE7;
+                font-size: 13px;
+                line-height: 15px; /* Ajustado para alinhar o texto */
+                letter-spacing: 0.05em;
+                text-align: left;
+                text-decoration-skip-ink: none;
+                display: inline-block; /* Mantém o texto na mesma linha */
+                margin-top: 1px;
+                margin-left: 5px;
+               
+            }
+        }
     }
 
     &.is-expanded {
