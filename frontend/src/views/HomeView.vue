@@ -22,7 +22,6 @@ const months = [
 ];
 
 const selectedMonth = ref('janeiro');
-import EconomicBar from '@/components/general/EconomicBar.vue';
 import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
 </script>
 
@@ -31,27 +30,13 @@ import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
     <section class="header">
       <h3>Bem vindo!</h3>
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
-    </header>
-    <h2>Visão Geral</h2>
-
+    </section>
     <!-- Month Selector -->
     <select v-model="selectedMonth">
       <option v-for="month in months" :key="month.value" :value="month.value">
         {{ month.label }}
       </option>
     </select>
-
-    <section class="first-line">
-      <!-- Pass selectedMonth as a prop -->
-      <ProfitCard :selectedMonth="selectedMonth" />
-      <ExpensesCard :selectedMonth="selectedMonth" />
-      <RevenueCard :selectedMonth="selectedMonth" />
-    </section>
-    <section class="second-line">
-      <ProfitChart id="semester-chart" />
-      <EconomicChart id="economic-chart" />
-    </section>
-    </section>
       <content class="body-content">
       <section class="cash-data">
           <div class="cards">
