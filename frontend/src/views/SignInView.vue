@@ -203,10 +203,11 @@ input::placeholder {
 /* Full-width inputs */
 input[type=text], input[type=password] {
   width: 100%;
+  height: 52.1px;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #5D8EA394;
+  border: 1px solid #ccdee7;
   border-radius: 16px;
   box-sizing: border-box;
 }
