@@ -16,10 +16,12 @@
         
         <label for="psw"><b>Senha</b></label>
         <input type="password" placeholder="Digite sua senha" required>
+        <span class="textBtn">Esqueceu a senha?</span>
 
         <div class="buttons">
-          <button @click="signIn">Login</button>
-          <button @click="signInwithGoogle">Login com Google</button>
+          <button class="btn-login" @click="signIn">Continuar</button>
+          <span class="textBtn">Ou entre com:</span>
+          <button class="btn-google" @click="signInwithGoogle">Login com Google</button>
         </div>
       </div>
     </form>
@@ -112,24 +114,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   object-fit: cover;
-  margin-top: 80px;
+  margin-top: 150px;
 }
 
 /* Centraliza elementos do texto principal */
 .textoLogin {
   display: flex;
   flex-direction: column; 
-  align-items: center;    
-  margin-bottom: 20px;    
-  margin-top: 100px;
+  align-items: center;        
 }
 
 /* Estilização do texto Login */
 .text {
   font-family: 'General Sans Variable', sans-serif; /* Adicione uma alternativa de fallback como sans-serif */
-  font-size: 48px;
+  font-size: 47px;
   font-weight: 600;
   line-height: 64.8px;
   letter-spacing: 0.03em;
@@ -159,7 +159,7 @@
 
 .container label {
   display: block;
-  margin-top: 20px; /*ajuste da distância entre as caixas*/
+  margin-top: 15px; /*ajuste da distância entre as caixas*/
 }
 
 /*Estilização dos textos Email e Senha*/
@@ -181,14 +181,10 @@ label {
 
 .buttons {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin-top: 20px;
 }
 
-.buttons button {
-  padding: 10px 20px;
-  cursor: pointer;
-}
 
 /* Estilo para o texto do placeholder */
 input::placeholder {
@@ -200,7 +196,7 @@ input::placeholder {
   line-height: 21.6px; /* Altura da linha */
 }
 
-/* Full-width inputs */
+/* estilo da borda da caixa */
 input[type=text], input[type=password] {
   width: 100%;
   height: 52.1px;
@@ -211,6 +207,29 @@ input[type=text], input[type=password] {
   border-radius: 16px;
   box-sizing: border-box;
 }
+
+.btn-login {
+  width: 461px; 
+  height: 53px; /* Altura fixa */
+  padding: var(--padding-10) var(--padding-20) var(--padding-10) var(--padding-20); 
+  border-radius: 16px;
+  border: 1px solid #ccdee7;
+  background-color: #245368; 
+  color: #fff; 
+  font-family: 'General Sans Variable', sans-serif; 
+  font-weight: 500; 
+  font-size: 16px; 
+  text-align: center; 
+  line-height: 22.4px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; /* Suaviza a transição */
+}
+
+.btn-login:hover {
+  background-color: #1b4253d9; /* Cor ao passar o mouse */
+  opacity: 1;
+}
+
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
