@@ -248,7 +248,7 @@ aside {
         //ajustando tamanho do contêiner dos botões Config e Sair
         width: 100%; // Usa largura total do contêiner
         min-height: 328px; // Altura mínima para manter posição
-        margin-top: 100px; //ajustando à altura proposta
+        margin-top: 120px; //ajustando à altura proposta
 
         .button {
             //definindo posição dos botões dentro do contêiner
@@ -266,7 +266,7 @@ aside {
                 color: #CCDEE7;
                 width: 20px;
                 height: 20px;
-                font-size: 19px;
+                font-size: 18px;
 
             }
 
@@ -278,7 +278,8 @@ aside {
                 text-align: left;
                 text-decoration-skip-ink: none;
                 display: inline-block; /* Mantém o texto na mesma linha */
-                margin-left: 8px; //ajuste para alinhar o texto ao ícone
+                margin-left: 7px; //ajuste para alinhar o texto ao ícone
+                margin-top: -1px;
                
             }
         }
