@@ -85,12 +85,12 @@
   };
   </script>
 
-<style>
+<style scoped>
 
 /* Estilização do container principal */
 .form-container {
   display: flex;
-  height: 100vh; /* Ocupa a altura total da tela */
+  height: 100vh; 
 }
 
 /* Estilização da imagem para ocupar o lado esquerdo */
@@ -98,7 +98,6 @@
   flex: 1; /* Faz com que ocupe metade da tela */
 }
 
-/* Estilização imagem de apresentação */
 .imgLogin img {
   height: 800px;
   width: 600px;
@@ -151,23 +150,33 @@
   letter-spacing: 0.03em;
 }
 
-
 .container {
   width: 100%;
-  max-width: 400px;
+  max-width: 461px;
+  height: 193px;
+  margin-top: 40px;
 }
 
 .container label {
   display: block;
-  margin-top: 10px;
+  margin-top: 20px; /*ajuste da distância entre as caixas*/
+}
+
+/*Estilização dos textos Email e Senha*/
+label {
+  font-family: 'General Sans Variable', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21.6px;
+  letter-spacing: 0.05em;
+  color: #538094;
+
 }
 
 .container input {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
-  border: 1px solid #CCDEE7;
-  border-radius: 16px;
 }
 
 .buttons {
@@ -181,17 +190,26 @@
   cursor: pointer;
 }
 
+/* Estilo para o texto do placeholder */
+input::placeholder {
+  font-family: 'General Sans Variable', sans-serif; /* Fonte do texto */
+  font-size: 16px; /* Tamanho do texto */
+  color: #5d8ea394; /* Cor do texto */
+  font-weight: 500; /* Espessura da fonte */
+  letter-spacing: 0.08em; /* Espaçamento entre letras */
+  line-height: 21.6px; /* Altura da linha */
+}
+
 /* Full-width inputs */
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #CCDEE7;
+  border: 1px solid #5D8EA394;
   border-radius: 16px;
   box-sizing: border-box;
 }
-
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
