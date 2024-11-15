@@ -1,12 +1,10 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import SideBar from './components/SideBar.vue';
+
 </script>
 
 <template>
     <div class="app">
-        <!-- Sidebar -->
-        <SideBar />
         <main class="main">
             <!-- Router View -->
             <RouterView />
@@ -16,12 +14,6 @@ import SideBar from './components/SideBar.vue';
 
 <style lang="scss">
 :root {
-    --primary: #4ade80;
-    --primary-alt: #22c55e;
-    --grey: #64748b;
-    --dark: #1e293b;
-    --dark-alt: #334155;
-    --light: #f1f5f9;
     --sidebar-width: 240px;
     --sidebar-width-collapsed: 60px; /* Largura reduzida da sidebar */
 }
@@ -34,7 +26,7 @@ import SideBar from './components/SideBar.vue';
 }
 
 body {
-    background: linear-gradient(135deg, #283bc4, #19b32b);
+    background: #F3F8F3;
     background-size: cover;
     background-attachment: fixed;
 }
