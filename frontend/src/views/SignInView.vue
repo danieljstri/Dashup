@@ -1,21 +1,30 @@
 <template>
-  <form>
-    <div class="imgcontainer">
-      <img src="../../public/3774299.png" alt="Avatar" class="avatar">
+  <div class="form-container">
+    <div class="imgLogin">
+      <img :src="loginImagem" alt="Apresentação" />
     </div>
 
-    <div class="container">
-      <label for="uname"><b>Email</b></label>
-      <input type="text" placeholder="Digite seu email" required>
+    <form class="loginForm">
+      <div class="textoLogin">
+        <span class="text">Login</span>
+        <span class="subtext">Olá! Seja bem vindo!</span>
+      </div>
 
-      <label for="psw"><b>Senha</b></label>
-      <input type="password" placeholder="Digite sua senha" required>
-      <container class="buttons">
-        <button @click="signIn">Login</button>
-        <button @click="signInwithGoogle">Login com Google</button>
-      </container>
-    </div>
-  </form>
+      <div class="container">
+        <label for="uname"><b>Email</b></label>
+        <input type="text" placeholder="Digite seu email" required>
+        
+        <label for="psw"><b>Senha</b></label>
+        <input type="password" placeholder="Digite sua senha" required>
+
+        <div class="buttons">
+          <button @click="signIn">Login</button>
+          <button @click="signInwithGoogle">Login com Google</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
 </template>
   
   <script setup>
@@ -27,6 +36,8 @@
     signInWithPopup,
   } from 'firebase/auth';
   import { useRouter } from 'vue-router';
+  import loginImagem from "../../../assets/loginImagem.png";
+  
   
   // Variables that will store the email and password
   const email = ref('');
@@ -75,17 +86,99 @@
   </script>
 
 <style>
-/* Bordered form */
-body {
+
+/* Estilização do container principal */
+.form-container {
   display: flex;
-  justify-content: center;
+  height: 100vh; /* Ocupa a altura total da tela */
 }
-form {
-  border: 3px solid #cbcbcb;
-  border-radius: 5%;
-  background-color: #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-  max-width: fit-content;
+
+/* Estilização da imagem para ocupar o lado esquerdo */
+.imgLogin {
+  flex: 1; /* Faz com que ocupe metade da tela */
+}
+
+/* Estilização imagem de apresentação */
+.imgLogin img {
+  height: 800px;
+  width: 600px;
+  margin-left: -80px;
+  margin-top: -30px;
+  object-fit: cover;
+}
+
+/* Estilização do formulário para o lado direito */
+.loginForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  object-fit: cover;
+  margin-top: 80px;
+}
+
+/* Centraliza elementos do texto principal */
+.textoLogin {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  margin-bottom: 20px;    
+  margin-top: 100px;
+}
+
+/* Estilização do texto Login */
+.text {
+  font-family: 'General Sans Variable', sans-serif; /* Adicione uma alternativa de fallback como sans-serif */
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 64.8px;
+  letter-spacing: 0.03em;
+  text-align: center;
+  text-decoration-skip-ink: none;
+  color: #245368;
+}
+
+/* Estilização do subtexto que acompanha o Login */
+.subtext {
+  color: #245368;
+  font-size: 18px; /* Tamanho do texto ajustado para subtexto */
+  margin: 0; /* Remove margens desnecessárias */
+  font-family: 'Inconsolata', sans-serif;
+  font-weight: 400;
+  margin-top: 5px;
+  line-height: 27px;
+  letter-spacing: 0.03em;
+}
+
+
+.container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.container label {
+  display: block;
+  margin-top: 10px;
+}
+
+.container input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #CCDEE7;
+  border-radius: 16px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.buttons button {
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 /* Full-width inputs */
@@ -94,47 +187,11 @@ input[type=text], input[type=password] {
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #CCDEE7;
+  border-radius: 16px;
   box-sizing: border-box;
 }
 
-.buttons {
-  display: flex;
-  justify-content: space-between;
-}
-/* Set a style for all buttons */
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: fit-content;
-  border-radius: 10px;
-}
-
-/* Add a hover effect for buttons */
-button:hover {
-  opacity: 0.8;
-}
-
-/* Center the avatar image inside this container */
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-/* Avatar image */
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-/* Add padding to containers */
-.container {
-  padding: 16px;
-}
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
