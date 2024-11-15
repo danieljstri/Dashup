@@ -1,10 +1,12 @@
 <script setup>
 import { RouterView } from 'vue-router'
-
+import SideBar from './components/SideBar.vue';
 </script>
 
 <template>
     <div class="app">
+        <!-- Sidebar -->
+        <SideBar />
         <main class="main">
             <!-- Router View -->
             <RouterView />
