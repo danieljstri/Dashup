@@ -128,7 +128,7 @@
 
 /* Estilização do texto Login */
 .text {
-  font-family: 'General Sans Variable', sans-serif; /* Adicione uma alternativa de fallback como sans-serif */
+  font-family: 'General Sans Variable', sans-serif;
   font-size: 47px;
   font-weight: 600;
   line-height: 64.8px;
@@ -142,7 +142,7 @@
 .subtext {
   color: #245368;
   font-size: 18px; /* Tamanho do texto ajustado para subtexto */
-  margin: 0; /* Remove margens desnecessárias */
+  margin: 0; 
   font-family: 'Inconsolata', sans-serif;
   font-weight: 400;
   margin-top: 5px;
@@ -188,11 +188,11 @@ label {
 
 /* Estilo para o texto do placeholder */
 input::placeholder {
-  font-family: 'General Sans Variable', sans-serif; /* Fonte do texto */
-  font-size: 16px; /* Tamanho do texto */
-  color: #5d8ea394; /* Cor do texto */
-  font-weight: 500; /* Espessura da fonte */
-  letter-spacing: 0.08em; /* Espaçamento entre letras */
+  font-family: 'General Sans Variable', sans-serif; 
+  font-size: 16px; 
+  color: #5d8ea394; 
+  font-weight: 500; 
+  letter-spacing: 0.08em; 
   line-height: 21.6px; /* Altura da linha */
 }
 
@@ -210,7 +210,7 @@ input[type=text], input[type=password] {
 
 .btn-login {
   width: 461px; 
-  height: 53px; /* Altura fixa */
+  height: 53px; 
   padding: var(--padding-10) var(--padding-20) var(--padding-10) var(--padding-20); 
   border-radius: 16px;
   border: 1px solid #ccdee7;
@@ -222,7 +222,7 @@ input[type=text], input[type=password] {
   text-align: center; 
   line-height: 22.4px; 
   cursor: pointer; 
-  transition: background-color 0.3s ease; /* Suaviza a transição */
+  transition: background-color 0.3s ease; 
 }
 
 .btn-login:hover {
