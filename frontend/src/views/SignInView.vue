@@ -202,14 +202,27 @@ input::placeholder {
 input[type=text], input[type=password] {
   width: 100%;
   height: 52.1px;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 15px 20px;
   display: inline-block;
   border: 1px solid #ccdee7;
   border-radius: 16px;
   box-sizing: border-box;
 }
 
+/*Estilização da opção Esqueceu a senha*/
+.textBtn1 {
+  width: 461px;
+  height: 22px;
+  font-family: 'General Sans Variable', sans-serif;
+  font-size: 16px;
+  color: #538094;
+  font-weight: 500; 
+  letter-spacing: 0.05em; 
+  line-height: 21.6px;
+  text-align: center;
+  margin: 25px 25px 25px 0;
+  display: block; /* Garante que o elemento respeite o espaçamento */
+}
 
 .btn-login {
   width: 461px; 
