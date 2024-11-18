@@ -16,7 +16,7 @@
         
         <label for="psw"><b>Senha</b></label>
         <input type="password" placeholder="Digite sua senha" required>
-        <span class="textBtn1">Esqueceu a senha?</span>
+        <button class="textBtn1" @click="signIn">Esqueceu a senha?</button>
 
         <div class="buttons">
           <button class="btn-login" @click="signIn">Continuar</button>
