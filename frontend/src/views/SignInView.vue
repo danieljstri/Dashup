@@ -246,6 +246,21 @@ input[type=text], input[type=password] {
   opacity: 1;
 }
 
+/*Estilização da opção de Login*/
+.textBtn2 {
+  width: 461px;
+  height: 22px;
+  font-family: 'Inconsolata', sans-serif;
+  font-size: 16px;
+  color: #538094;
+  font-weight: 500; 
+  letter-spacing: 0.05em; 
+  line-height: 21.6px;
+  text-align: center;
+  margin: 70px 25px 25px 0;
+  display: block; /* Garante que o elemento respeite o espaçamento */
+  position: absolute;
+}
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
