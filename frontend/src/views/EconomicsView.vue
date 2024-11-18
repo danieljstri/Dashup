@@ -9,6 +9,7 @@
     
     <!-- Componente de gráfico econômico -->
     <EconomicChart :company-name="selectedCompany"></EconomicChart>
+    
   </div>
 </template>
 

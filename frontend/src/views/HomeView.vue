@@ -1,58 +1,81 @@
-<script setup>
-import { ref } from 'vue'
-import ProfitCard from '@/components/general/ProfitCard.vue';
-import ExpensesCard from '@/components/general/ExpensesCard.vue';
-import RevenueCard from '@/components/general/RevenueCard.vue';
-import ProfitChart from '@/components/general/GeneralChart.vue';
-import EconomicChart from '@/components/general/EconomicChart.vue';
-
-const months = [
-  { value: 'janeiro', label: 'Janeiro' },
-  { value: 'fevereiro', label: 'Fevereiro' },
-  { value: 'marco', label: 'Março' },
-  { value: 'abril', label: 'Abril' },
-  { value: 'maio', label: 'Maio' },
-  { value: 'junho', label: 'Junho' },
-  { value: 'julho', label: 'Julho' },
-  { value: 'agosto', label: 'Agosto' },
-  { value: 'setembro', label: 'Setembro' },
-  { value: 'outubro', label: 'Outubro' },
-  { value: 'novembro', label: 'Novembro' },
-  { value: 'dezembro', label: 'Dezembro' },
-];
-
-const selectedMonth = ref('janeiro');
-import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
-</script>
-
 <template>
   <main>
     <section class="header">
       <h3>Bem vindo!</h3>
       <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
     </section>
+    <Carousel :items-to-show="3" :wrap-around="false">
+      <Slide v-for="(month, index) in months" :key="index">
+        <button class="carousel-item" @click="changeMonth(month)">
+          {{ month }}
+        </button>
+    </Slide>
+  </Carousel>
     <!-- Month Selector -->
-    <select v-model="selectedMonth">
-      <option v-for="month in months" :key="month.value" :value="month.value">
-        {{ month.label }}
-      </option>
-    </select>
-      <content class="body-content">
+    <content class="body-content">
       <section class="cash-data">
-          <div class="cards">
-            <ProfitCard/>
-            <ExpensesCard/>
-            <RevenueCard/>
-          </div>
-          <ProfitChart/>
+        <div class="cards">
+          <ProfitCard :selectedMonth="selectedMonth"/>
+          <ExpensesCard :selectedMonth="selectedMonth"/>
+          <RevenueCard :selectedMonth="selectedMonth"/>
+        </div>
+        <ProfitChart :selectedMonth="selectedMonth"/>
       </section>
       <section class="control-data">
-          <EconomicChart id="economic-chart"/>
-          <ValuableProductCard/>
+        <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
+        <ValuableProductCard :selectedMonth="selectedMonth"/>
       </section>
     </content>
   </main>
 </template>
+
+<script>
+import { ref } from 'vue';
+import ProfitCard from '@/components/general/ProfitCard.vue';
+import ExpensesCard from '@/components/general/ExpensesCard.vue';
+import RevenueCard from '@/components/general/RevenueCard.vue';
+import ProfitChart from '@/components/general/GeneralChart.vue';
+import EconomicChart from '@/components/general/EconomicChart.vue';
+import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
+import { Carousel, Slide } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
+
+const months = [
+        "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+      ];
+
+
+export default {
+  components: {
+    Carousel,
+    Slide,
+    ProfitCard,
+    ExpensesCard,
+    RevenueCard,
+    ProfitChart,
+    EconomicChart,
+    ValuableProductCard,
+  },
+  setup() {
+    const selectedMonth = ref('janeiro');
+
+    const changeMonth = (month) => {
+      selectedMonth.value = month;
+    };
+    return {
+      months,
+      selectedMonth,
+      changeMonth,
+    };
+  },
+  methods: {
+    changeMonth(month) {
+      this.selectedMonth = month;
+    },
+  },
+};
+</script>
 
 <style>
 * { 
@@ -65,7 +88,23 @@ body{
   background-position: center;
   background-repeat: no-repeat;
 }
+.carousel-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
 
+.carousel-item:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
 .header {
   display: block;
   width: 100%; 

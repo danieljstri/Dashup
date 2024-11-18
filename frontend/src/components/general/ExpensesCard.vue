@@ -59,7 +59,6 @@ export default {
         console.error('Error fetching expenses data:', error);
       }
     };
-
     watch(
       () => props.selectedMonth,
       () => {
@@ -77,3 +76,4 @@ export default {
   },
 };
 </script>
+
