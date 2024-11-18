@@ -69,11 +69,6 @@ export default {
       changeMonth,
     };
   },
-  methods: {
-    changeMonth(month) {
-      this.selectedMonth = month;
-    },
-  },
 };
 </script>
 
