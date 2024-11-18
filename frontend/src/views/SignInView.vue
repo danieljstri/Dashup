@@ -16,11 +16,11 @@
         
         <label for="psw"><b>Senha</b></label>
         <input type="password" placeholder="Digite sua senha" required>
-        <span class="textBtn">Esqueceu a senha?</span>
+        <span class="textBtn1">Esqueceu a senha?</span>
 
         <div class="buttons">
           <button class="btn-login" @click="signIn">Continuar</button>
-          <span class="textBtn">Ou entre com:</span>
+          <span class="textBtn2">Ou entre com:</span>
           <button class="btn-google" @click="signInwithGoogle">Login com Google</button>
         </div>
       </div>
@@ -117,6 +117,8 @@
   padding: 10px;
   object-fit: cover;
   margin-top: 150px;
+  width: 461px;
+  height: 456px;
 }
 
 /* Centraliza elementos do texto principal */
@@ -153,8 +155,9 @@
 .container {
   width: 100%;
   max-width: 461px;
-  height: 193px;
+  height: auto; /* Ajuste para evitar restrições */
   margin-top: 40px;
+  overflow: visible; /* Garante que os elementos internos possam ter espaçamento */
 }
 
 .container label {
@@ -185,7 +188,6 @@ label {
   margin-top: 20px;
 }
 
-
 /* Estilo para o texto do placeholder */
 input::placeholder {
   font-family: 'General Sans Variable', sans-serif; 
@@ -207,6 +209,7 @@ input[type=text], input[type=password] {
   border-radius: 16px;
   box-sizing: border-box;
 }
+
 
 .btn-login {
   width: 461px; 
