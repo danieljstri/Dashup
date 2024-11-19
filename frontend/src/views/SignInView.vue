@@ -46,7 +46,7 @@
   } from 'firebase/auth';
   import { useRouter } from 'vue-router';
   import loginImagem from "../../../assets/loginImagem.png";
-  import googleLogo from "../../../assets/google.png";
+  import googleLogo from "../../../assets/google-logo.png";
   
   
   // Variables that will store the email and password
