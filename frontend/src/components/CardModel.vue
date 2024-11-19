@@ -48,7 +48,7 @@ export default {
       };
     },
     growthArrow() {
-      return this.growthPercentage >= 0 ? '↑' : '↓';
+      return this.growthPercentage >= 0 ? '↗' : '↘';
     },
   },
 };

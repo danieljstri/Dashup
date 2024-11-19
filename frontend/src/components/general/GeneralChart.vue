@@ -119,6 +119,11 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, LinearScale,
   </script>
   
   <style scoped>
+  .semester-revenue-chart {
+    max-height: fit-content;
+    padding: 0;
+    margin: 0;
+  }
   .chart-container {
   padding: 20px;
   border-radius: 16px;

@@ -1,16 +1,16 @@
 <template>
   <main>
     <section class="header">
-      <h3>Bem vindo!</h3>
-      <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
+      <div>
+        <h3>Bem vindo!</h3>
+        <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
+      </div>
+      <select v-model="selectedMonth" id="month-selector">
+        <option v-for="month in months" :value="month.value">
+          {{ month.month }}
+        </option>
+      </select>
     </section>
-    <Carousel :items-to-show="3" :wrap-around="false">
-      <Slide v-for="(month, index) in months" :key="index">
-        <button class="carousel-item" @click="changeMonth(month)">
-          {{ month }}
-        </button>
-    </Slide>
-  </Carousel>
     <!-- Month Selector -->
     <content class="body-content">
       <section class="cash-data">
@@ -25,6 +25,7 @@
         <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
         <ValuableProductCard :selectedMonth="selectedMonth"/>
       </section>
+      <EconomicBar />
     </content>
   </main>
 </template>
@@ -37,25 +38,33 @@ import RevenueCard from '@/components/general/RevenueCard.vue';
 import ProfitChart from '@/components/general/GeneralChart.vue';
 import EconomicChart from '@/components/general/EconomicChart.vue';
 import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
-import { Carousel, Slide } from "vue3-carousel";
-import "vue3-carousel/dist/carousel.css";
+import EconomicBar from '@/components/general/EconomicBar.vue';
 
 const months = [
-        "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
-      ];
+  { month: "Janeiro / 2024", value: "janeiro" },
+  { month: "Fevereiro / 2024", value: "fevereiro" },
+  { month: "Março / 2024", value: "março" },
+  { month: "Abril / 2024", value: "abril" },
+  { month: "Maio / 2024", value: "maio" },
+  { month: "Junho / 2024", value: "junho" },
+  { month: "Julho / 2024", value: "julho" },
+  { month: "Agosto / 2024", value: "agosto" },
+  { month: "Setembro / 2024", value: "setembro" },
+  { month: "Outubro / 2024", value: "outubro" },
+  { month: "Novembro / 2024", value: "novembro" },
+  { month: "Dezembro / 2024", value: "dezembro" },
+];
 
 
 export default {
   components: {
-    Carousel,
-    Slide,
     ProfitCard,
     ExpensesCard,
     RevenueCard,
     ProfitChart,
     EconomicChart,
     ValuableProductCard,
+    EconomicBar,
   },
   setup() {
     const selectedMonth = ref('janeiro');
@@ -73,9 +82,11 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.cdnfonts.com/css/chillax');
 * { 
   padding: 0;
   margin: 0;
+  font-family: 'Chillax', sans-serif;
 }
 body{
   margin-left: var(--sidebar-width-collapsed);
@@ -83,56 +94,47 @@ body{
   background-position: center;
   background-repeat: no-repeat;
 }
-.carousel-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-}
-
-.carousel-item:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
 .header {
-  display: block;
+  display: flex;
   width: 100%; 
   margin-bottom: 1%;
   box-sizing: border-box;
   text-align: left;
-  justify-content: center;
+  justify-content: space-between; 
 }
 .header h3 {
   margin-top: 15px;
   color: #2f3b36;
-  font-family: 'Noto Sans', sans-serif;
   font-weight: 600;
 }
 .header h4 {
-
   color: #2f3b36;
-  font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
+}
+#month-selector {
+  margin-top: 15px;
+  padding: 5px;
+  font-size: 16px;
+  font-family: 'Chillax', sans-serif;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid #CCDEE7;
+  background-color: #ffffff;
+  color:  #245368;
 }
 
 .body-content {
   display: flex;
-  flex-direction: inline;
+  flex-wrap: wrap;
   gap: 16px;
-  max-height: fit-content;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .cash-data {
     display: block;
-    margin-bottom: 5%;
-    grid-auto-columns: 200px;
-    grid-auto-rows: min-content;
     gap: 16px;
     max-width: fit-content;
 }
@@ -146,8 +148,9 @@ body{
 .control-data {
     display: flex;
     flex-direction: column;
-    max-width: fit-content;
-    gap: 36px;
+    width: fit-content;
+    height: fit-content;
+    gap: 16px;
 }
 
 

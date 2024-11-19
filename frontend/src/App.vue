@@ -47,6 +47,7 @@ button {
     display: flex;
 
     .main {
+        width: 100%;
         flex: 1;
         padding: 2rem;
     }
