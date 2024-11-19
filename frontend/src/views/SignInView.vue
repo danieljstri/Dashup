@@ -21,7 +21,14 @@
         <div class="buttons">
           <button class="btn-login" @click="signIn">Continuar</button>
           <span class="textBtn2">Ou entre com:</span>
-          <button class="btn-google" @click="signInwithGoogle">Login com Google</button>
+          <button class="btn-google" @click="signInwithGoogle">
+            <div class="google-content">
+              <div class="google-icon">
+                <img :src="googleLogo" alt="Google logo" />
+              </div>
+              <span class="google-text">Login com Google</span>
+            </div>
+          </button>
         </div>
       </div>
     </form>
@@ -39,6 +46,7 @@
   } from 'firebase/auth';
   import { useRouter } from 'vue-router';
   import loginImagem from "../../../assets/loginImagem.png";
+  import googleLogo from "../../../assets/google.png";
   
   
   // Variables that will store the email and password
@@ -116,7 +124,7 @@
   align-items: center;
   padding: 10px;
   object-fit: cover;
-  margin-top: 150px;
+  margin-top: 90px;
   width: 461px;
   height: 456px;
 }
@@ -209,7 +217,7 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-/*Estilização da opção Esqueceu a senha*/
+/* Estilização da opção Esqueceu a senha */
 .textBtn1 {
   width: 461px;
   height: 22px;
@@ -246,7 +254,7 @@ input[type=text], input[type=password] {
   opacity: 1;
 }
 
-/*Estilização da opção de Login*/
+/* Estilização da opção de Login */
 .textBtn2 {
   width: 461px;
   height: 22px;
@@ -257,9 +265,43 @@ input[type=text], input[type=password] {
   letter-spacing: 0.05em; 
   line-height: 21.6px;
   text-align: center;
-  margin: 70px 25px 25px 0;
+  margin: 80px 25px 25px 0;
   display: block; /* Garante que o elemento respeite o espaçamento */
   position: absolute;
+}
+
+/* Estilização da opção Login com Google */
+.google-content {
+  display: flex; 
+  align-items: center; 
+  justify-content: center; /* Centraliza horizontalmente dentro do botão */
+  width: 461px;
+  height: 53px;
+  border-radius: 16px;
+  border: 1px solid #ccdee7;
+  background-color: #ffffff; 
+  font-family: 'General Sans Variable', sans-serif;
+  cursor: pointer;
+  margin-top: 72px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* Ajustes no Icon da logo */
+.google-icon img {
+  width: 23px;
+  height: 23px;
+  margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+  margin-top: 5px;
+}
+
+/* Ajustes no texto do botão */
+.google-text {
+  line-height: 1; /* Alinha o texto com o ícone */
+  font-size: 16px;
+  color: #111216;
+  letter-spacing: 0.05em; 
+  line-height: 21.4px;
 }
 
 /* Change styles for span and cancel button on extra small screens */
