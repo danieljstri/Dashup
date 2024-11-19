@@ -1,12 +1,14 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
 import SideBar from './components/SideBar.vue';
+
+const route = useRoute();
 </script>
 
 <template>
     <div class="app">
         <!-- Sidebar -->
-        <SideBar />
+        <SideBar v-if="route.name !== 'SignIn'"/>
         <main class="main">
             <!-- Router View -->
             <RouterView />
