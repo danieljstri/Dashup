@@ -36,3 +36,5 @@ frontend/.vscode
 
 /app/testes.js
 .venv
+
+backend/bot/.env
