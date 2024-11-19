@@ -1,8 +1,12 @@
-cd frontend
-npm install  
-npm start
+#!/usr/bin/env bash
 
+# Iniciar o backend
+echo "Iniciando o backend..."
+python3 -m backend.app &
 
-cd ..
-pip install -r requirements.txt
-gunicorn backend.app:app
+# Mudar para o diretório do frontend
+cd frontend || exit
+
+# Iniciar o frontend
+echo "Iniciando o frontend..."
+npm run dev
