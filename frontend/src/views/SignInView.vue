@@ -289,8 +289,8 @@ input[type=text], input[type=password] {
 
 /* Ajustes no Icon da logo */
 .google-icon img {
-  width: 23px;
-  height: 23px;
+  width: 24px;
+  height: 24px;
   margin-right: 10px; /* Espaçamento entre o ícone e o texto */
   margin-top: 5px;
 }
