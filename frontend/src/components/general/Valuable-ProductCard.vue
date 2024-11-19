@@ -4,13 +4,14 @@
       <h4>{{ chartTitle }}</h4>
     <footer class="footer">
       <p> Receita: {{ revenue_valuable_product }}</p>
-      <button class="button-detalhes">Ver Detalhes</button>
+      <router-link to="/services" class="button-detalhes">Ver Detalhes</router-link>
     </footer>
     
   </div>
 </template>
 
 <script>
+import { RouterLink, useRouter } from 'vue-router';
 import { ref, watch, onMounted } from 'vue';
 import { getRevenueConsultationData, getRevenueAnesthesiaData, getRevenueExamsData } from '@/services/dataService';
 
@@ -25,6 +26,7 @@ export default {
     const revenue_valuable_product = ref('');
     const chartTitle = ref('');
     const image = '../../public/valor.png';
+    const router = useRouter();
 
     const fetchdata = async () => {
       try {
@@ -101,9 +103,11 @@ export default {
 }
 
 .button-detalhes {
+  display: flex;
+  text-align: center;
+  text-decoration: none;
   padding: 5px;
   font-size: 16px;
-  font-family: 'Chillax', sans-serif;
   font-weight: 500;
   border-radius: 8px;
   border: 1px solid #CCDEE7;
