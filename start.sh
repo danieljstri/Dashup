@@ -10,3 +10,5 @@ cd frontend || exit
 # Iniciar o frontend
 echo "Iniciando o frontend..."
 npm run dev
+
+# Para rodar no Bash: ./start.sh
