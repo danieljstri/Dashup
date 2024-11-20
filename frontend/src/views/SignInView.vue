@@ -1,42 +1,4 @@
-<template>
-  <div class="form-container">
-    <div class="imgLogin">
-      <img :src="loginImagem" alt="Apresentação" />
-    </div>
-
-    <form class="loginForm">
-      <div class="textoLogin">
-        <span class="text">Login</span>
-        <span class="subtext">Olá! Seja bem vindo!</span>
-      </div>
-
-      <div class="container">
-        <label for="uname"><b>Email</b></label>
-        <input type="text" placeholder="Digite seu email" required>
-        
-        <label for="psw"><b>Senha</b></label>
-        <input type="password" placeholder="Digite sua senha" required>
-        <button class="textBtn1" @click="signIn">Esqueceu a senha?</button>
-
-        <div class="buttons">
-          <button class="btn-login" @click="signIn">Continuar</button>
-          <span class="textBtn2">Ou entre com:</span>
-          <button class="btn-google" @click="signInwithGoogle">
-            <div class="google-content">
-              <div class="google-icon">
-                <img :src="googleLogo" alt="Google logo" />
-              </div>
-              <span class="google-text">Login com Google</span>
-            </div>
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-</template>
-  
-  <script setup>
+<script setup>
   import { ref } from 'vue';
   import {
     getAuth,
@@ -47,14 +9,14 @@
   import { useRouter } from 'vue-router';
   import loginImagem from "../../../assets/loginImagem.png";
   import googleLogo from "../../../assets/google-logo.png";
-  
-  
+
+
   // Variables that will store the email and password
   const email = ref('');
   const password = ref('');
   const errMsg = ref('');
   const router = useRouter();
-  
+
   // Function to sign in
   const signIn = () => {
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
@@ -79,7 +41,7 @@
         }
       });
   };
-  
+
   // Function to sign in with Google
   const signInwithGoogle = () => {
     const provider = new GoogleAuthProvider();
@@ -93,19 +55,54 @@
         errMsg.value = 'Erro ao fazer login com Google';
       });
   };
-  </script>
+</script>
+
+<template>
+  <div class="form-container">
+    <div class="imgLogin">
+      <img :src="loginImagem" alt="Apresentação" />
+    </div>
+    <form class="loginForm">
+      <div class="textoLogin">
+        <span class="text">Login</span>
+        <span class="subtext">Olá! Seja bem vindo!</span>
+      </div>
+
+      <div class="container">
+        <label for="uname"><b>Email</b></label>
+        <input type="text" placeholder="Digite seu email" required>
+        <label for="psw"><b>Senha</b></label>
+        <input type="password" placeholder="Digite sua senha" required>
+        <button class="textBtn1" @click="signIn">Esqueceu a senha?</button>
+        <div class="buttons">
+          <button class="btn-login" @click="signIn">Continuar</button>
+          <span class="textBtn2">Ou entre com:</span>
+          <button class="btn-google" @click="signInwithGoogle">
+            <div class="google-content">
+              <div class="google-icon">
+                <img :src="googleLogo" alt="Google logo" />
+              </div>
+              <span class="google-text">Login com Google</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</template>
 
 <style scoped>
 
-/* Estilização do container principal */
+/* Main container styling */
 .form-container {
   display: flex;
   height: 100vh; 
 }
 
-/* Estilização da imagem para ocupar o lado esquerdo */
+/* Stylizing the image to occupy the left side */
 .imgLogin {
-  flex: 1; /* Faz com que ocupe metade da tela */
+  flex: 1; 
 }
 
 .imgLogin img {
@@ -116,7 +113,7 @@
   object-fit: cover;
 }
 
-/* Estilização do formulário para o lado direito */
+/* Styling the form to the right side */
 .loginForm {
   flex: 1;
   display: flex;
@@ -129,14 +126,13 @@
   height: 456px;
 }
 
-/* Centraliza elementos do texto principal */
 .textoLogin {
   display: flex;
   flex-direction: column; 
   align-items: center;        
 }
 
-/* Estilização do texto Login */
+/* Login text styling */
 .text {
   font-family: 'General Sans Variable', sans-serif;
   font-size: 47px;
@@ -148,10 +144,10 @@
   color: #245368;
 }
 
-/* Estilização do subtexto que acompanha o Login */
+/* Stylization of the subtext accompanying the Login */
 .subtext {
   color: #245368;
-  font-size: 18px; /* Tamanho do texto ajustado para subtexto */
+  font-size: 18px; 
   margin: 0; 
   font-family: 'Inconsolata', sans-serif;
   font-weight: 400;
@@ -163,17 +159,17 @@
 .container {
   width: 100%;
   max-width: 461px;
-  height: auto; /* Ajuste para evitar restrições */
+  height: auto; /* Adjust to avoid restrictions */
   margin-top: 40px;
-  overflow: visible; /* Garante que os elementos internos possam ter espaçamento */
+  overflow: visible; /* Ensures that internal elements can be spaced */
 }
 
 .container label {
   display: block;
-  margin-top: 15px; /*ajuste da distância entre as caixas*/
+  margin-top: 15px; /* adjusting the distance between the boxes */
 }
 
-/*Estilização dos textos Email e Senha*/
+/* Styling Email and Password texts */
 label {
   font-family: 'General Sans Variable', sans-serif;
   font-weight: 500;
@@ -196,17 +192,17 @@ label {
   margin-top: 20px;
 }
 
-/* Estilo para o texto do placeholder */
+/* Style for placeholder text */
 input::placeholder {
   font-family: 'General Sans Variable', sans-serif; 
   font-size: 16px; 
   color: #5d8ea394; 
   font-weight: 500; 
   letter-spacing: 0.08em; 
-  line-height: 21.6px; /* Altura da linha */
+  line-height: 21.6px; 
 }
 
-/* estilo da borda da caixa */
+/* box border style */
 input[type=text], input[type=password] {
   width: 100%;
   height: 52.1px;
@@ -217,7 +213,7 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
-/* Estilização da opção Esqueceu a senha */
+/* Forgot password styling */
 .textBtn1 {
   width: 461px;
   height: 22px;
@@ -229,7 +225,7 @@ input[type=text], input[type=password] {
   line-height: 21.6px;
   text-align: center;
   margin: 25px 25px 25px 0;
-  display: block; /* Garante que o elemento respeite o espaçamento */
+  display: block; /* Ensures that the element respects the spacing */
 }
 
 .btn-login {
@@ -250,11 +246,11 @@ input[type=text], input[type=password] {
 }
 
 .btn-login:hover {
-  background-color: #1b4253d9; /* Cor ao passar o mouse */
+  background-color: #1b4253d9;
   opacity: 1;
 }
 
-/* Estilização da opção de Login */
+/* Login option styling */
 .textBtn2 {
   width: 461px;
   height: 22px;
@@ -266,15 +262,15 @@ input[type=text], input[type=password] {
   line-height: 21.6px;
   text-align: center;
   margin: 80px 25px 25px 0;
-  display: block; /* Garante que o elemento respeite o espaçamento */
+  display: block; /* Ensures that the element respects the spacing */
   position: absolute;
 }
 
-/* Estilização da opção Login com Google */
+/* Styling the Login with Google option */
 .google-content {
   display: flex; 
   align-items: center; 
-  justify-content: center; /* Centraliza horizontalmente dentro do botão */
+  justify-content: center; 
   width: 461px;
   height: 53px;
   border-radius: 16px;
@@ -287,17 +283,17 @@ input[type=text], input[type=password] {
   font-weight: 600;
 }
 
-/* Ajustes no Icon da logo */
+/* Adjustments to the logo icon */
 .google-icon img {
   width: 24px;
   height: 24px;
-  margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+  margin-right: 10px; /* Spacing between icon and text */
   margin-top: 5px;
 }
 
-/* Ajustes no texto do botão */
+/* Button text adjustments */
 .google-text {
-  line-height: 1; /* Alinha o texto com o ícone */
+  line-height: 1; /* Align the text with the icon */
   font-size: 16px;
   color: #111216;
   letter-spacing: 0.05em; 

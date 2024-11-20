@@ -1,93 +1,137 @@
-<template>
-  <main>
-    <section class="header">
-      <h3>Bem vindo!</h3>
-      <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
-    </section>
-    <Carousel :items-to-show="3" :wrap-around="false">
-      <Slide v-for="(month, index) in months" :key="index">
-        <button class="carousel-item" @click="changeMonth(month)">
-          {{ month }}
-        </button>
-    </Slide>
-  </Carousel>
-    <!-- Month Selector -->
-    <content class="body-content">
-      <section class="cash-data">
-        <div class="cards">
-          <ProfitCard :selectedMonth="selectedMonth"/>
-          <ExpensesCard :selectedMonth="selectedMonth"/>
-          <RevenueCard :selectedMonth="selectedMonth"/>
-        </div>
-        <ProfitChart :selectedMonth="selectedMonth"/>
-      </section>
-      <section class="control-data">
-        <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
-        <ValuableProductCard :selectedMonth="selectedMonth"/>
-      </section>
-    </content>
-  </main>
-</template>
-
 <script>
-import { ref } from 'vue';
-import ProfitCard from '@/components/general/ProfitCard.vue';
-import ExpensesCard from '@/components/general/ExpensesCard.vue';
-import RevenueCard from '@/components/general/RevenueCard.vue';
-import ProfitChart from '@/components/general/GeneralChart.vue';
-import EconomicChart from '@/components/general/EconomicChart.vue';
-import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
-import { Carousel, Slide } from "vue3-carousel";
-import "vue3-carousel/dist/carousel.css";
+  import { ref } from 'vue';
+  import ProfitCard from '@/components/general/ProfitCard.vue';
+  import ExpensesCard from '@/components/general/ExpensesCard.vue';
+  import RevenueCard from '@/components/general/RevenueCard.vue';
+  import ProfitChart from '@/components/general/GeneralChart.vue';
+  import EconomicChart from '@/components/general/EconomicChart.vue';
+  import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
+  import { Carousel, Slide } from "vue3-carousel";
+  import "vue3-carousel/dist/carousel.css";
 
-const months = [
-        "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-        "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
-      ];
+  const months = [
+          "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+          "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
+        ];
 
 
-export default {
-  components: {
-    Carousel,
-    Slide,
-    ProfitCard,
-    ExpensesCard,
-    RevenueCard,
-    ProfitChart,
-    EconomicChart,
-    ValuableProductCard,
-  },
-  setup() {
-    const selectedMonth = ref('janeiro');
+  export default {
+    components: {
+      Carousel,
+      Slide,
+      ProfitCard,
+      ExpensesCard,
+      RevenueCard,
+      ProfitChart,
+      EconomicChart,
+      ValuableProductCard,
+    },
+    setup() {
+      const selectedMonth = ref('janeiro');
 
-    const changeMonth = (month) => {
-      selectedMonth.value = month;
-    };
-    return {
-      months,
-      selectedMonth,
-      changeMonth,
-    };
-  },
-};
+      const changeMonth = (month) => {
+        selectedMonth.value = month;
+      };
+      return {
+        months,
+        selectedMonth,
+        changeMonth,
+      };
+    },
+  };
 </script>
 
+<template>
+  <div class="layout">
+    <main class="content">
+      <section class="header">
+        <h3>Bem vindo!</h3>
+        <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
+      </section>
+      <Carousel :items-to-show="3" :wrap-around="false">
+        <Slide v-for="(month, index) in months" :key="index">
+          <button class="carousel-item" @click="changeMonth(month)">
+            {{ month }}
+          </button>
+        </Slide>
+      </Carousel>
+      <content class="body-content">
+        <section class="cash-data">
+          <div class="cards">
+            <ProfitCard :selectedMonth="selectedMonth" />
+            <ExpensesCard :selectedMonth="selectedMonth" />
+            <RevenueCard :selectedMonth="selectedMonth" />
+          </div>
+          <ProfitChart :selectedMonth="selectedMonth" />
+        </section>
+        <section class="control-data">
+          <EconomicChart :selectedMonth="selectedMonth" id="economic-chart" />
+          <ValuableProductCard :selectedMonth="selectedMonth" />
+        </section>
+      </content>
+    </main>
+  </div>
+</template>
+
+
+
 <style>
-* { 
+* {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
-body{
-  margin-left: var(--sidebar-width-collapsed);
+
+body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  font-family: 'Noto Sans', sans-serif;
 }
+
+/* Estrutura Principal */
+.layout {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Conteúdo Principal */
+.content {
+  flex: 1;
+  margin-left: var(--sidebar-width-expanded, 250px); /* Espaço da sidebar */
+  padding: 16px;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed ~ .content {
+  margin-left: var(--sidebar-width-collapsed, 80px); /* Ajusta espaço com sidebar colapsada */
+}
+
+/* Header */
+.header {
+  margin-bottom: 1%;
+  text-align: left;
+}
+
+.header h3 {
+  margin-top: 15px;
+  color: #2f3b36;
+  font-weight: 600;
+}
+
+.header h4 {
+  color: #2f3b36;
+  font-weight: 400;
+}
+
+/* Estilos da Home */
 .carousel-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 20px;
+  padding: 5px 10px;
   background-color: #007bff;
   color: white;
   border-radius: 5px;
@@ -100,104 +144,31 @@ body{
   background-color: #0056b3;
   transform: scale(1.05);
 }
-.header {
-  display: block;
-  width: 100%; 
-  margin-bottom: 1%;
-  box-sizing: border-box;
-  text-align: left;
-  justify-content: center;
-}
-.header h3 {
-  margin-top: 15px;
-  color: #2f3b36;
-  font-family: 'Noto Sans', sans-serif;
-  font-weight: 600;
-}
-.header h4 {
-
-  color: #2f3b36;
-  font-family: 'Noto Sans', sans-serif;
-  font-weight: 400;
-}
 
 .body-content {
   display: flex;
-  flex-direction: inline;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 15px;
   max-height: fit-content;
 }
 
-.cash-data {
-    display: block;
-    margin-bottom: 5%;
-    grid-auto-columns: 200px;
-    grid-auto-rows: min-content;
-    gap: 16px;
-    max-width: fit-content;
-}
 .cards {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-    justify-content: center;
+  display: flex;
+  gap: 16px; /* Espaçamento entre os cards */
+  flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+  justify-content: space-between; /* Distribui os cards uniformemente */
 }
 
-.control-data {
-    display: flex;
-    flex-direction: column;
-    max-width: fit-content;
-    gap: 36px;
-}
-
-
+/* Responsividade */
 @media (max-width: 768px) {
-    .cash-data { 
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1200px) {
-    .cash-data { 
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1200px) {
-    .cash-data { 
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
-/* Estilos para telas menores */
-@media (max-width: 768px) {
-  .cash-data { 
+  .body-content {
     flex-direction: column;
-    gap: 20px;
   }
 
-  .second-line {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  h2 {
-    padding-left: 20px;
-    text-align: left;
-  }
-
-  header {
-    padding: 10px;
-  }
-
-  h3, h4 {
-    margin-left: 0;
-    text-align: center;
-  }
-
-  .cash-data { 
-    width: 100%;
+  .content {
+    margin-left: var(--sidebar-width-collapsed, 80px); /* Considerar apenas o espaço colapsado */
   }
 }
+
+
 </style>

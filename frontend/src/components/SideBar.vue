@@ -144,7 +144,6 @@ aside {
     padding: 7px;
     top: 0;
     left: 0;
-    z-index: 99;
     padding-top: 19px;
 
     /* Contêiner de flex para manter a posição dos elementos */

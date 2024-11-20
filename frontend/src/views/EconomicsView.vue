@@ -1,3 +1,19 @@
+<script>
+  import EconomicChart from '@/components/general/EconomicChart.vue';
+
+  export default {
+    components: {
+      EconomicChart,
+    },
+    data() {
+      return {
+        // Nome da empresa selecionada, ver app/empresas.csv
+        selectedCompany: 'DR. FELIPE MANOEL LTDA', // Opção default
+      };
+    },
+  };
+</script>
+
 <template>
   <div>
     <!-- Dropdown para selecionar a empresa -->
@@ -13,21 +29,7 @@
   </div>
 </template>
 
-<script>
-import EconomicChart from '@/components/general/EconomicChart.vue';
 
-export default {
-  components: {
-    EconomicChart,
-  },
-  data() {
-    return {
-      // Nome da empresa selecionada, ver app/empresas.csv
-      selectedCompany: 'DR. FELIPE MANOEL LTDA', // Opção default
-    };
-  },
-};
-</script>
 
 <style scoped>
 select {

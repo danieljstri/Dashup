@@ -1,5 +1,5 @@
 <script setup>
-import ComparisionRxEChart from '@/components/general/Valuable-ProductCard.vue';
+  import ComparisionRxEChart from '@/components/general/Valuable-ProductCard.vue';
 </script>
 
 <template>
@@ -9,9 +9,9 @@ import ComparisionRxEChart from '@/components/general/Valuable-ProductCard.vue';
         <ComparisionRxEChart />
       </div>
     </div>
-  </template>
+</template>
   
-  <style>
+<style scoped>
   .content{
     display: block;
     margin-top: 20px;
@@ -24,5 +24,5 @@ import ComparisionRxEChart from '@/components/general/Valuable-ProductCard.vue';
     margin-top: 20px;
   }
 
-  </style>
+</style>
   

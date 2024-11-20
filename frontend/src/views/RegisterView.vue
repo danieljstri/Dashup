@@ -1,14 +1,4 @@
-<template>
-    <h1>Criar uma conta</h1>
-    <p><input type="text" placeholder="Email" v-model="email" /></p>
-    <p><input type="password" placeholder="Senha" v-model="password" /></p>
-    <p><button @click="register">Criar conta</button></p>
-    <p><button @click="signInwithGoogle">Registrar com Google</button></p>
-    <p v-if="errMsg">{{ errMsg }}</p>
-    <p>Já tem uma conta? <router-link to="/SignIn">Entrar</router-link></p>
-  </template>
-  
-  <script setup>
+<script setup>
   import { ref } from 'vue';
   import {
     getAuth,
@@ -62,7 +52,18 @@
         errMsg.value = 'Erro ao registrar com Google';
       });
   };
-  </script>
+</script>
+
+<template>
+    <h1>Criar uma conta</h1>
+    <p><input type="text" placeholder="Email" v-model="email" /></p>
+    <p><input type="password" placeholder="Senha" v-model="password" /></p>
+    <p><button @click="register">Criar conta</button></p>
+    <p><button @click="signInwithGoogle">Registrar com Google</button></p>
+    <p v-if="errMsg">{{ errMsg }}</p>
+    <p>Já tem uma conta? <router-link to="/SignIn">Entrar</router-link></p>
+</template>
+  
   
 
   

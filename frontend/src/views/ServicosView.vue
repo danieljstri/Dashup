@@ -6,17 +6,17 @@ import ExamsInformations from '@/components/exams/ExamsInformations.vue';
 
 <template>
   <div class="content">
-    <!-- Seção de Consultas -->
+    <!-- Consultation Section -->
     <div class="chart-section">
       <h3>Consultas</h3>
       <ConsultaInformations />
     </div>
-    <!-- Seção de Exames -->
+    <!-- Exams Section -->
     <div class="chart-section">
       <h3>Exames</h3>
       <ExamsInformations />
     </div>
-    <!-- Seção de Anestesia -->
+    <!-- Anesthesia Section -->
     <div class="chart-section">
       <h3>Anestesia</h3>
       <AnesthesiaInformations />
@@ -25,7 +25,7 @@ import ExamsInformations from '@/components/exams/ExamsInformations.vue';
 </template>
 
 <style scoped>
-/* Mantenha os estilos existentes */
+
 .content {
   display: flex;
   flex-direction: column;
