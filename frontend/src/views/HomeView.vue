@@ -1,3 +1,54 @@
+<script>
+  import { ref } from 'vue';
+  import ProfitCard from '@/components/general/ProfitCard.vue';
+  import ExpensesCard from '@/components/general/ExpensesCard.vue';
+  import RevenueCard from '@/components/general/RevenueCard.vue';
+  import ProfitChart from '@/components/general/GeneralChart.vue';
+  import EconomicChart from '@/components/general/EconomicChart.vue';
+  import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
+  import EconomicBar from '@/components/general/EconomicBar.vue';
+
+  const months = [
+    { month: "Janeiro / 2024", value: "janeiro" },
+    { month: "Fevereiro / 2024", value: "fevereiro" },
+    { month: "Março / 2024", value: "março" },
+    { month: "Abril / 2024", value: "abril" },
+    { month: "Maio / 2024", value: "maio" },
+    { month: "Junho / 2024", value: "junho" },
+    { month: "Julho / 2024", value: "julho" },
+    { month: "Agosto / 2024", value: "agosto" },
+    { month: "Setembro / 2024", value: "setembro" },
+    { month: "Outubro / 2024", value: "outubro" },
+    { month: "Novembro / 2024", value: "novembro" },
+    { month: "Dezembro / 2024", value: "dezembro" },
+  ];
+
+
+  export default {
+    components: {
+      ProfitCard,
+      ExpensesCard,
+      RevenueCard,
+      ProfitChart,
+      EconomicChart,
+      ValuableProductCard,
+      EconomicBar,
+    },
+    setup() {
+      const selectedMonth = ref('janeiro');
+
+      const changeMonth = (month) => {
+        selectedMonth.value = month;
+      };
+      return {
+        months,
+        selectedMonth,
+        changeMonth,
+      };
+    },
+  };
+</script>
+
 <template>
   <main>
     <section class="header">
@@ -30,97 +81,12 @@
   </main>
 </template>
 
-<script>
-import { ref } from 'vue';
-import ProfitCard from '@/components/general/ProfitCard.vue';
-import ExpensesCard from '@/components/general/ExpensesCard.vue';
-import RevenueCard from '@/components/general/RevenueCard.vue';
-import ProfitChart from '@/components/general/GeneralChart.vue';
-import EconomicChart from '@/components/general/EconomicChart.vue';
-import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
-import EconomicBar from '@/components/general/EconomicBar.vue';
-
-const months = [
-  { month: "Janeiro / 2024", value: "janeiro" },
-  { month: "Fevereiro / 2024", value: "fevereiro" },
-  { month: "Março / 2024", value: "março" },
-  { month: "Abril / 2024", value: "abril" },
-  { month: "Maio / 2024", value: "maio" },
-  { month: "Junho / 2024", value: "junho" },
-  { month: "Julho / 2024", value: "julho" },
-  { month: "Agosto / 2024", value: "agosto" },
-  { month: "Setembro / 2024", value: "setembro" },
-  { month: "Outubro / 2024", value: "outubro" },
-  { month: "Novembro / 2024", value: "novembro" },
-  { month: "Dezembro / 2024", value: "dezembro" },
-];
-
-
-export default {
-  components: {
-    ProfitCard,
-    ExpensesCard,
-    RevenueCard,
-    ProfitChart,
-    EconomicChart,
-    ValuableProductCard,
-    EconomicBar,
-  },
-  setup() {
-    const selectedMonth = ref('janeiro');
-
-      const changeMonth = (month) => {
-        selectedMonth.value = month;
-      };
-      return {
-        months,
-        selectedMonth,
-        changeMonth,
-      };
-    },
-  };
-</script>
-
-<template>
-  <div class="layout">
-    <main class="content">
-      <section class="header">
-        <h3>Bem vindo!</h3>
-        <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
-      </section>
-      <Carousel :items-to-show="3" :wrap-around="false">
-        <Slide v-for="(month, index) in months" :key="index">
-          <button class="carousel-item" @click="changeMonth(month)">
-            {{ month }}
-          </button>
-        </Slide>
-      </Carousel>
-      <content class="body-content">
-        <section class="cash-data">
-          <div class="cards">
-            <ProfitCard :selectedMonth="selectedMonth" />
-            <ExpensesCard :selectedMonth="selectedMonth" />
-            <RevenueCard :selectedMonth="selectedMonth" />
-          </div>
-          <ProfitChart :selectedMonth="selectedMonth" />
-        </section>
-        <section class="control-data">
-          <EconomicChart :selectedMonth="selectedMonth" id="economic-chart" />
-          <ValuableProductCard :selectedMonth="selectedMonth" />
-        </section>
-      </content>
-    </main>
-  </div>
-</template>
-
-
-
 <style>
 @import url('https://fonts.cdnfonts.com/css/chillax');
 * { 
   padding: 0;
   margin: 0;
-  font-family: 'Chillax', sans-serif;
+  
 }
 
 body {
