@@ -31,54 +31,54 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import ProfitCard from '@/components/general/ProfitCard.vue';
-import ExpensesCard from '@/components/general/ExpensesCard.vue';
-import RevenueCard from '@/components/general/RevenueCard.vue';
-import ProfitChart from '@/components/general/GeneralChart.vue';
-import EconomicChart from '@/components/general/EconomicChart.vue';
-import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
-import EconomicBar from '@/components/general/EconomicBar.vue';
+  import { ref } from 'vue';
+  import ProfitCard from '@/components/general/ProfitCard.vue';
+  import ExpensesCard from '@/components/general/ExpensesCard.vue';
+  import RevenueCard from '@/components/general/RevenueCard.vue';
+  import ProfitChart from '@/components/general/GeneralChart.vue';
+  import EconomicChart from '@/components/general/EconomicChart.vue';
+  import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
+  import EconomicBar from '@/components/general/EconomicBar.vue';
 
-const months = [
-  { month: "Janeiro / 2024", value: "janeiro" },
-  { month: "Fevereiro / 2024", value: "fevereiro" },
-  { month: "Março / 2024", value: "março" },
-  { month: "Abril / 2024", value: "abril" },
-  { month: "Maio / 2024", value: "maio" },
-  { month: "Junho / 2024", value: "junho" },
-  { month: "Julho / 2024", value: "julho" },
-  { month: "Agosto / 2024", value: "agosto" },
-  { month: "Setembro / 2024", value: "setembro" },
-  { month: "Outubro / 2024", value: "outubro" },
-  { month: "Novembro / 2024", value: "novembro" },
-  { month: "Dezembro / 2024", value: "dezembro" },
-];
+  const months = [
+    { month: "Janeiro / 2024", value: "janeiro" },
+    { month: "Fevereiro / 2024", value: "fevereiro" },
+    { month: "Março / 2024", value: "março" },
+    { month: "Abril / 2024", value: "abril" },
+    { month: "Maio / 2024", value: "maio" },
+    { month: "Junho / 2024", value: "junho" },
+    { month: "Julho / 2024", value: "julho" },
+    { month: "Agosto / 2024", value: "agosto" },
+    { month: "Setembro / 2024", value: "setembro" },
+    { month: "Outubro / 2024", value: "outubro" },
+    { month: "Novembro / 2024", value: "novembro" },
+    { month: "Dezembro / 2024", value: "dezembro" },
+  ];
 
 
-export default {
-  components: {
-    ProfitCard,
-    ExpensesCard,
-    RevenueCard,
-    ProfitChart,
-    EconomicChart,
-    ValuableProductCard,
-    EconomicBar,
-  },
-  setup() {
-    const selectedMonth = ref('janeiro');
+  export default {
+    components: {
+      ProfitCard,
+      ExpensesCard,
+      RevenueCard,
+      ProfitChart,
+      EconomicChart,
+      ValuableProductCard,
+      EconomicBar,
+    },
+    setup() {
+      const selectedMonth = ref('janeiro');
 
-    const changeMonth = (month) => {
-      selectedMonth.value = month;
-    };
-    return {
-      months,
-      selectedMonth,
-      changeMonth,
-    };
-  },
-};
+      const changeMonth = (month) => {
+        selectedMonth.value = month;
+      };
+      return {
+        months,
+        selectedMonth,
+        changeMonth,
+      };
+    },
+  };
 </script>
 
 <style>
@@ -86,7 +86,7 @@ export default {
 * { 
   padding: 0;
   margin: 0;
-  font-family: 'Chillax', sans-serif;
+  
 }
 body{
   margin-left: var(--sidebar-width-collapsed);
