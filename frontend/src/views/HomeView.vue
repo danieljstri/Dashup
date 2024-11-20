@@ -1,33 +1,73 @@
+<template>
+  <main>
+    <section class="header">
+      <div>
+        <h3>Bem vindo!</h3>
+        <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
+      </div>
+      <select v-model="selectedMonth" id="month-selector">
+        <option v-for="month in months" :value="month.value">
+          {{ month.month }}
+        </option>
+      </select>
+    </section>
+    <!-- Month Selector -->
+    <content class="body-content">
+      <section class="cash-data">
+        <div class="cards">
+          <ProfitCard :selectedMonth="selectedMonth"/>
+          <ExpensesCard :selectedMonth="selectedMonth"/>
+          <RevenueCard :selectedMonth="selectedMonth"/>
+        </div>
+        <ProfitChart :selectedMonth="selectedMonth"/>
+      </section>
+      <section class="control-data">
+        <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
+        <ValuableProductCard :selectedMonth="selectedMonth"/>
+      </section>
+      <EconomicBar />
+    </content>
+  </main>
+</template>
+
 <script>
-  import { ref } from 'vue';
-  import ProfitCard from '@/components/general/ProfitCard.vue';
-  import ExpensesCard from '@/components/general/ExpensesCard.vue';
-  import RevenueCard from '@/components/general/RevenueCard.vue';
-  import ProfitChart from '@/components/general/GeneralChart.vue';
-  import EconomicChart from '@/components/general/EconomicChart.vue';
-  import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
-  import { Carousel, Slide } from "vue3-carousel";
-  import "vue3-carousel/dist/carousel.css";
+import { ref } from 'vue';
+import ProfitCard from '@/components/general/ProfitCard.vue';
+import ExpensesCard from '@/components/general/ExpensesCard.vue';
+import RevenueCard from '@/components/general/RevenueCard.vue';
+import ProfitChart from '@/components/general/GeneralChart.vue';
+import EconomicChart from '@/components/general/EconomicChart.vue';
+import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
+import EconomicBar from '@/components/general/EconomicBar.vue';
 
-  const months = [
-          "janeiro", "fevereiro", "março", "abril", "maio", "junho",
-          "julho", "agosto", "setembro", "outubro", "novembro", "dezembro",
-        ];
+const months = [
+  { month: "Janeiro / 2024", value: "janeiro" },
+  { month: "Fevereiro / 2024", value: "fevereiro" },
+  { month: "Março / 2024", value: "março" },
+  { month: "Abril / 2024", value: "abril" },
+  { month: "Maio / 2024", value: "maio" },
+  { month: "Junho / 2024", value: "junho" },
+  { month: "Julho / 2024", value: "julho" },
+  { month: "Agosto / 2024", value: "agosto" },
+  { month: "Setembro / 2024", value: "setembro" },
+  { month: "Outubro / 2024", value: "outubro" },
+  { month: "Novembro / 2024", value: "novembro" },
+  { month: "Dezembro / 2024", value: "dezembro" },
+];
 
 
-  export default {
-    components: {
-      Carousel,
-      Slide,
-      ProfitCard,
-      ExpensesCard,
-      RevenueCard,
-      ProfitChart,
-      EconomicChart,
-      ValuableProductCard,
-    },
-    setup() {
-      const selectedMonth = ref('janeiro');
+export default {
+  components: {
+    ProfitCard,
+    ExpensesCard,
+    RevenueCard,
+    ProfitChart,
+    EconomicChart,
+    ValuableProductCard,
+    EconomicBar,
+  },
+  setup() {
+    const selectedMonth = ref('janeiro');
 
       const changeMonth = (month) => {
         selectedMonth.value = month;
@@ -76,90 +116,78 @@
 
 
 <style>
-* {
+@import url('https://fonts.cdnfonts.com/css/chillax');
+* { 
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  font-family: 'Chillax', sans-serif;
 }
 
 body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  font-family: 'Noto Sans', sans-serif;
 }
-
-/* Estrutura Principal */
-.layout {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-}
-
-/* Conteúdo Principal */
-.content {
-  flex: 1;
-  margin-left: var(--sidebar-width-expanded, 250px); /* Espaço da sidebar */
-  padding: 16px;
-  overflow-y: auto;
-  transition: margin-left 0.3s ease;
-}
-
-.sidebar.collapsed ~ .content {
-  margin-left: var(--sidebar-width-collapsed, 80px); /* Ajusta espaço com sidebar colapsada */
-}
-
-/* Header */
 .header {
+  display: flex;
+  width: 100%; 
   margin-bottom: 1%;
+  box-sizing: border-box;
   text-align: left;
+  justify-content: space-between; 
 }
-
 .header h3 {
   margin-top: 15px;
   color: #2f3b36;
   font-weight: 600;
 }
-
 .header h4 {
   color: #2f3b36;
   font-weight: 400;
 }
-
-/* Estilos da Home */
-.carousel-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-}
-
-.carousel-item:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+#month-selector {
+  margin-top: 15px;
+  padding: 5px;
+  font-size: 16px;
+  font-family: 'Chillax', sans-serif;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid #CCDEE7;
+  background-color: #ffffff;
+  color:  #245368;
 }
 
 .body-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
-  max-height: fit-content;
+  gap: 16px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+.cash-data {
+    display: block;
+    gap: 16px;
+    max-width: fit-content;
+}
 .cards {
-  display: flex;
-  gap: 16px; /* Espaçamento entre os cards */
-  flex-wrap: wrap; /* Permite quebra de linha em telas menores */
-  justify-content: space-between; /* Distribui os cards uniformemente */
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    justify-content: center;
 }
 
-/* Responsividade */
+.control-data {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    gap: 16px;
+}
+
+
 @media (max-width: 768px) {
   .body-content {
     flex-direction: column;

@@ -1,62 +1,83 @@
 <template>
   <div class="valuable-product-card">
-    <h4>{{ chartTitle }}</h4>
-    <p> Receita: {{ revenue_valuable_product }}</p>
-    <button class="button">Ver Detalhes</button>
+      <img :src="image" id="logo-valor"/>
+      <h4>{{ chartTitle }}</h4>
+    <footer class="footer">
+      <p> Receita: {{ revenue_valuable_product }}</p>
+      <router-link to="/services" class="button-detalhes">Ver Detalhes</router-link>
+    </footer>
+    
   </div>
 </template>
 
 <script>
-import { getRevenueConsultationData, getRevenueAnesthesiaData, getRevenueExamsData } from '../../services/dataService';
+import { RouterLink, useRouter } from 'vue-router';
+import { ref, watch, onMounted } from 'vue';
+import { getRevenueConsultationData, getRevenueAnesthesiaData, getRevenueExamsData } from '@/services/dataService';
 
 export default {
-  name: 'ValuableProductCard',
-  data() {
-    return {
-      most_valueable_product: '',
-      revenue_valuable_product: 0,
-      chartTitle: '',
-      growthPercentage: 0,
-      image: "../../public/Frame 5.png",
-    };
+  props: {
+    selectedMonth: {
+      type: String,
+      required: true,
+    },
   },
-  async mounted() {
-    try {
-      const RevenueConsultation = await getRevenueConsultationData('janeiro');
-      const RevenueAnesthesia = await getRevenueAnesthesiaData('janeiro');
-      const RevenueExams = await getRevenueExamsData('janeiro');
+  setup(props) {
+    const revenue_valuable_product = ref('');
+    const chartTitle = ref('');
+    const image = '../../public/valor.png';
+    const router = useRouter();
 
-      const consultationdata = RevenueConsultation.value;
-      const anesthesiadata = RevenueAnesthesia.value;
-      const examsdata = RevenueExams.value;
+    const fetchdata = async () => {
+      try {
+        const RevenueConsultation = await getRevenueConsultationData(props.selectedMonth);
+        const RevenueAnesthesia = await getRevenueAnesthesiaData(props.selectedMonth);
+        const RevenueExams = await getRevenueExamsData(props.selectedMonth);
 
-      let product = '';
-      let maior = Math.max(consultationdata, anesthesiadata, examsdata);
-      if (maior == consultationdata) {
-        this.most_valueable_product = RevenueConsultation;
-        product = 'Consulta';
-      } else if (maior == anesthesiadata) {
-        this.most_valueable_product = RevenueAnesthesia;
-        product = 'Anestesia';
-      } else {
-        this.most_valueable_product = RevenueExams;
-        product = 'Exames';
+        const consultationdata = RevenueConsultation.value;
+        const anesthesiadata = RevenueAnesthesia.value;
+        const examsdata = RevenueExams.value;
+
+        let product = '';
+        let maior = Math.max(consultationdata, anesthesiadata, examsdata);
+        if (maior === consultationdata) {
+          product = 'Consulta';
+        } else if (maior === anesthesiadata) {
+          product = 'Anestesia';
+        } else {
+          product = 'Exames';
+        }
+        chartTitle.value = `Produto mais rentável no Mês de ${props.selectedMonth} foi ${product}`;
+        revenue_valuable_product.value = `R$${maior}`;
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-      this.chartTitle = `Produto mais rentável no Mês de ${this.most_valueable_product.month} foi ${product}`;
-      this.revenue_valuable_product = `R$${maior}`;
-      this.growthPercentage = 30;
-      // Obter o mês atual e o mês anterior dinamicamente
-      
-    } catch (error) {
-      console.error('Error fetching profit data:', error);
-    }
+    };
+
+    watch(
+      () => props.selectedMonth,
+      () => {
+        fetchdata();
+      },
+      { immediate: true }
+    );
+
+    onMounted(() => {
+      fetchdata();
+    });
+
+    return {
+      revenue_valuable_product,
+      chartTitle,
+      image,
+    };
   },
 };
 </script>
 <style>
 .valuable-product-card {
-  height: fit-content;
-  width: 350px;
+  min-width: 350px;
+  width: 100%;
   padding: 20px;
   border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
@@ -64,18 +85,45 @@ export default {
 }
 
 .valuable-product-card h4 {
-  width: 100%;
-  font-size: 1.3rem;
-  font-weight: bold;
+  margin: 0;
   color: #1a202c;
-  text-align: left;
+  font-size: 1.2em;
+  font-weight: 600;
 }
 
-.valuable-product-card p {
+#logo-valor {
+  width: 25px;
+  margin: 0;
+  color: goldenrod;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-detalhes {
+  display: flex;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid #CCDEE7;
+  background-color: #ffffff;
+  color:  #245368;
+}
+.button-detalhes:hover {
+  background-color: #245368;
+  color: #ffffff;
+  transition: 1s;
+}
+
+.footer p {
   width: 100%;
   padding: 1rem 0 0 0;
   font-size: 2.0rem;
-  font-weight: bold;
   color: #1a202c;
   text-align: left;
 }

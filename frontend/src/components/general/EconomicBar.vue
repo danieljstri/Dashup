@@ -17,6 +17,9 @@
         if (progress.value < 100) {
           progress.value += 10; // Incrementa o progresso em 10%
         }
+        else if (progress.value == 100) {
+          progress.value = 0; // Reseta o progresso para 0%
+        }
       };
   
       return {
@@ -30,7 +33,6 @@
   <style scoped>
   .progress-container {
     width: 100%;
-    max-width: 400px;
     background-color: #e0e0e0;
     border-radius: 8px;
     padding: 5px;

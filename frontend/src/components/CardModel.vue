@@ -1,45 +1,3 @@
-<script>
-  export default {
-    name: 'CardModel',
-    props: {
-      title: {
-        type: String,
-        required: true,
-      },
-      value: {
-        type: Number,
-        required: true,
-      },
-      growthPercentage: {
-        type: Number,
-        default: 0,
-      },
-      image: {
-        type: String,
-        default: '',
-      },
-      month: {
-        type: String,
-        default: 'janeiro',
-      },
-    },
-    computed: {
-      formattedValue() {
-        return `R$ ${this.value.toFixed(2).replace('.', ',')}`;
-      },
-      growthClass() {
-        return {
-          positive: this.growthPercentage >= 0,
-          negative: this.growthPercentage < 0,
-        };
-      },
-      growthArrow() {
-        return this.growthPercentage >= 0 ? '↑' : '↓';
-      },
-    },
-  };
-</script>
-
 <template>
   <div class="card-model">
     <div class="previous-value" :class="valueDifferenceClass">
@@ -53,6 +11,48 @@
     <p>{{ formattedValue }}</p>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'CardModel',
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    value: {
+      type: Number,
+      required: true,
+    },
+    growthPercentage: {
+      type: Number,
+      default: 0,
+    },
+    image: {
+      type: String,
+      default: '',
+    },
+    month: {
+      type: String,
+      default: 'janeiro',
+    },
+  },
+  computed: {
+    formattedValue() {
+      return `R$ ${this.value.toFixed(2).replace('.', ',')}`;
+    },
+    growthClass() {
+      return {
+        positive: this.growthPercentage >= 0,
+        negative: this.growthPercentage < 0,
+      };
+    },
+    growthArrow() {
+      return this.growthPercentage >= 0 ? '↗' : '↘';
+    },
+  },
+};
+</script>
 
 <style scoped>
   .card-model {

@@ -58,9 +58,13 @@ button {
 }
 
 .app {
-  display: flex;
-  height: 100vh;
-  overflow: hidden; /* Evita rolagem lateral */
+    display: flex;
+
+    .main {
+        width: 100%;
+        flex: 1;
+        padding: 2rem;
+    }
 }
 
 /* Sidebar */

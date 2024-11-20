@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.12'
       # Install all dependencies (including pdoc)
-      - run: pip install -r backend/requirements.txt 
+      - run: pip install -r ./requirements.txt 
       # Build your documentation into docs/
       - run: pdoc -d google backend/ -o ./backend/docs
       - uses: actions/upload-pages-artifact@v3
