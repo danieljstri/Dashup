@@ -1,35 +1,3 @@
-<template>
-  <main>
-    <section class="header">
-      <div>
-        <h3>Bem vindo!</h3>
-        <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
-      </div>
-      <select v-model="selectedMonth" id="month-selector">
-        <option v-for="month in months" :value="month.value">
-          {{ month.month }}
-        </option>
-      </select>
-    </section>
-    <!-- Month Selector -->
-    <content class="body-content">
-      <section class="cash-data">
-        <div class="cards">
-          <ProfitCard :selectedMonth="selectedMonth"/>
-          <ExpensesCard :selectedMonth="selectedMonth"/>
-          <RevenueCard :selectedMonth="selectedMonth"/>
-        </div>
-        <ProfitChart :selectedMonth="selectedMonth"/>
-      </section>
-      <section class="control-data">
-        <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
-        <ValuableProductCard :selectedMonth="selectedMonth"/>
-      </section>
-      <EconomicBar />
-    </content>
-  </main>
-</template>
-
 <script>
   import { ref } from 'vue';
   import ProfitCard from '@/components/general/ProfitCard.vue';
@@ -80,6 +48,38 @@
     },
   };
 </script>
+
+<template>
+  <main>
+    <section class="header">
+      <div>
+        <h3>Bem vindo!</h3>
+        <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
+      </div>
+      <select v-model="selectedMonth" id="month-selector">
+        <option v-for="month in months" :value="month.value">
+          {{ month.month }}
+        </option>
+      </select>
+    </section>
+    <!-- Month Selector -->
+    <content class="body-content">
+      <section class="cash-data">
+        <div class="cards">
+          <ProfitCard :selectedMonth="selectedMonth"/>
+          <ExpensesCard :selectedMonth="selectedMonth"/>
+          <RevenueCard :selectedMonth="selectedMonth"/>
+        </div>
+        <ProfitChart :selectedMonth="selectedMonth"/>
+      </section>
+      <section class="control-data">
+        <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
+        <ValuableProductCard :selectedMonth="selectedMonth"/>
+      </section>
+      <EconomicBar />
+    </content>
+  </main>
+</template>
 
 <style>
 @import url('https://fonts.cdnfonts.com/css/chillax');
