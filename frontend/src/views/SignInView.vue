@@ -235,10 +235,10 @@
 
 /* Stylization of the subtext accompanying the Login */
 .subtext {
-  color: #245368;
+  color: #245368; 
   font-size: 18px; 
   margin: 0; 
-  font-family: 'Inconsolata', sans-serif;
+  font-family: 'Chillax', sans-serif;
   font-weight: 400;
   margin-top: 5px;
   line-height: 27px;
@@ -345,10 +345,10 @@ input::placeholder {
 .textBtn2 {
   width: 461px;
   height: 22px;
-  font-family: 'Inconsolata', sans-serif;
+  font-family: 'Chillax', sans-serif;
   font-size: 16px;
   color: #538094;
-  font-weight: 500; 
+  font-weight: 400; 
   letter-spacing: 0.05em; 
   line-height: 21.6px;
   text-align: center;
