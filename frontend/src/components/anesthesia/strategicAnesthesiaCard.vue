@@ -1,6 +1,6 @@
 <template>
     <strategicCardModel 
-    :rentabilty="rentability"
+    :rentability="rentability"
     :profit="profit"
     :productName="product"/>
   </template>
@@ -34,14 +34,14 @@
         
         // Calcula a rentabilidade e lucratividade
         const rentability = (revenueanesthesiaValue / revenueValue) * 100;
-        const profit = (revenueAnesthesiaData - expensesValue) / revenueValue * 100;
-        if (rentability > 30) {
+        const profit = (revenueanesthesiaValue - expensesValue) / revenueValue * 100;
+        if (rentability > 90) {
           this.rentability = 'ALTA';
         } else {
           this.rentability = 'BAIXA';
         }
 
-        if (profit > 15) {
+        if (profit > 50) {
           this.profit = 'ALTA';
         } else {
           this.profit = 'BAIXA';

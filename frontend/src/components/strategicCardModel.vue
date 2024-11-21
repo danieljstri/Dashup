@@ -1,15 +1,15 @@
 <template>
     <div class="card">
         <section class="line">
-            <section :class="valueDifferenceClass">
-                <span>{{ Arrow }}</span>
+            <section :class="rentabilityClass">
+                <span>{{ Arrow_rent }}</span>
             </section>
             <p id="lineName"> Rentabilidade</p>
-            <p id="status"> {{ rentabilty }}</p>
+            <p id="status"> {{ rentability }}</p>
         </section>
         <section class="line">
-            <section :class="valueDifferenceClass">
-                <span>{{ Arrow }}</span>
+            <section :class="profitClass">
+                <span>{{ Arrow_profit }}</span>
             </section>
             <p id="lineName"> Lucratividade </p>
             <span id="status"> {{ profit }}</span>
@@ -22,7 +22,7 @@
   export default {
     name: 'StrategicCardModel',
     props: {
-      rentabilty: {
+      rentability: {
         type: String,
         required: true,
       },
@@ -36,14 +36,23 @@
       },
     },
     computed: {
-        valueDifferenceClass() {
+        rentabilityClass() {
           return {
-            positive: this.rentabilty == 'ALTA' || this.profit == 'ALTA',
-            negative: this.rentabilty == 'BAIXA' || this.profit == 'BAIXA',
+            'positive_rent': this.rentability == 'ALTA',
+            'negative_rent': this.rentability == 'BAIXA',
           };
         },
-        Arrow() {
-          return this.rentabilty == 'ALTA' || this.profit == 'ALTA' ? '↑' : '↓';
+        profitClass() {
+          return {
+            'positive_profit': this.profit == 'ALTA',
+            'negative_profit': this.profit == 'BAIXA',
+          };
+        },
+        Arrow_rent() {
+          return this.rentability == 'ALTA' ? '↑' : '↓';
+        },
+        Arrow_profit() {
+          return this.profit == 'ALTA' ? '↑' : '↓';
         },
     },
   };
@@ -103,7 +112,7 @@
     text-decoration-skip-ink: none;
 
   }
-  .positive {
+  .positive_rent {
     padding: 6px;
     border-radius: 12px;
     width: 36px;
@@ -113,7 +122,27 @@
     display: flex;
     justify-content: center;
   }
-  .negative {
+  .negative_rent {
+    padding: 6px;
+    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    background-color: #F8BD861A;
+    color: #A63D5B;
+    display: flex;
+    justify-content: center;
+  }
+  .positive_profit {
+    padding: 6px;
+    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    background-color: #8BD8A81F;
+    color: #10582B;
+    display: flex;
+    justify-content: center;
+  }
+  .negative_profit {
     padding: 6px;
     border-radius: 12px;
     width: 36px;
