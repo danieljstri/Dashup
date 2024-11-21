@@ -1,12 +1,12 @@
 <script>
   import { ref } from 'vue';
-  import ProfitCard from '@/components/general/ProfitCard.vue';
-  import ExpensesCard from '@/components/general/ExpensesCard.vue';
-  import RevenueCard from '@/components/general/RevenueCard.vue';
-  import ProfitChart from '@/components/general/GeneralChart.vue';
-  import EconomicChart from '@/components/general/EconomicChart.vue';
-  import ValuableProductCard from '@/components/general/Valuable-ProductCard.vue';
-  import EconomicBar from '@/components/general/EconomicBar.vue';
+  import ProfitCard from '@/components/home_page/ProfitCard.vue';
+  import ExpensesCard from '@/components/home_page/ExpensesCard.vue';
+  import RevenueCard from '@/components/home_page/RevenueCard.vue';
+  import ProfitChart from '@/components/home_page/GeneralChart.vue';
+  import EconomicChart from '@/components/home_page/EconomicChart.vue';
+  import ValuableProductCard from '@/components/home_page/Valuable-ProductCard.vue';
+  import EconomicBar from '@/components/home_page/EconomicBar.vue';
 
   const months = [
     { month: "Janeiro / 2024", value: "janeiro" },

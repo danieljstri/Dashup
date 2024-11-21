@@ -1,16 +1,19 @@
 <script setup>
-import strategicAnesthesiaCard from '@/components/anesthesia/strategicAnesthesiaCard.vue';
-import strategicConsultationCard from '@/components/consultation/strategicConsultationCard.vue';
+import strategicAnesthesiaCard from '@/components/services_page/strategicAnesthesiaCard.vue';
+import strategicConsultationCard from '@/components/services_page/strategicConsultationCard.vue';
+import servicesDetails from '@/components/services_page/servicesDetails.vue';
+
 </script>
 
 <template>
   <section class="strategic-headlight">
-  <div class="cards">
-      <strategicAnesthesiaCard />
-      <strategicConsultationCard />
-
-  </div>
+    <div class="cards">
+        <strategicAnesthesiaCard />
+        <strategicConsultationCard />
+    </div>
   </section>
+  <servicesDetails />
+
 </template>
 
 <style>
