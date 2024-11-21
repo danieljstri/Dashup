@@ -11,7 +11,6 @@ const toggleSidebar = () => {
 };
 </script>
 
-
 <template>
     <div class="app">
       <!-- Sidebar -->
@@ -27,8 +26,6 @@ const toggleSidebar = () => {
       </main>
     </div>
 </template>
-  
-  
   
 
 <style lang="scss">
@@ -105,7 +102,7 @@ button {
   }
 
   .SideBar {
-    width: 100%; /* Ocupa toda a largura no topo */
+    width: 100%; 
     height: var(--sidebar-width-expanded); /* Define altura */
   }
 
