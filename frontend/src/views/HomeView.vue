@@ -86,14 +86,8 @@
 * { 
   padding: 0;
   margin: 0;
-  
 }
 
-body {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 .header {
   display: flex;
   width: 100%; 

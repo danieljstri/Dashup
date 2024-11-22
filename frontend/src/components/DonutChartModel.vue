@@ -16,6 +16,11 @@
         type: Object,
         default: () => ({})
       },
+      percentage: {
+        type: Number,
+        required: true,
+        default: 0
+      },
       title: {
         type: String,
         required: true
@@ -60,32 +65,48 @@
 
 <template>
   <section class="content-container">
-    <h3>{{ title }}</h3>
       <canvas ref="donutChart"></canvas>
+      <h3>{{ title }}</h3>
+      <p>{{ percentage }}%</p>
   </section>
 </template>
 
 <style scoped>
+@import url('https://fonts.cdnfonts.com/css/chillax');
+
+* {
+    font-family: 'Chillax', sans-serif;
+  }
 
   .content-container {
-    text-align: center;
-    color: #3f4038;
-    padding-top: 10px;
-    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
-    margin-bottom: 5px;
+    position: relative;
+    display: block;
+    width:fit-content;
+    height: fit-content;
+    max-width: 150px;
   }
 
-  h3 {
+  .content-container h3 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
     text-align: center;
-    margin-left: 12px;
-    white-space: nowrap;
-    margin-bottom: 10px;
-    margin-top: 4px;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: rgba(36, 83, 104, 1);
+  }
+  .content-container p {
+    position: absolute;
+    top: 60%;
+    right: 15%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 33.6px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: rgba(62, 170, 103, 1);
   }
 
- .content-container canvas {
-  max-height: fit-content;
- }
 </style>

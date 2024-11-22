@@ -15,12 +15,12 @@
   </template>
   
   <script>
-  import strategicAnesthesiaCard from '../services_page/strategicAnesthesiaCard.vue';
-  import strategicConsultationCard from '../services_page/strategicConsultationCard.vue';
+  import comparisionrevenueServices from './revenueDetails/revenueServicescomponent.vue';
+  import RxEAnestesiaChart from '@/components/services_page/revenueDetails/comparisionDonutRxE.vue'
   export default {
     components: {
-      revenue: strategicAnesthesiaCard,
-      expenses: strategicConsultationCard,
+      revenue: RxEAnestesiaChart,
+      expenses: comparisionrevenueServices,
       pagina3: {
         template: '<div><h1>Página 3</h1><p>Conteúdo da página 3</p></div>',
       },
