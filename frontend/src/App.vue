@@ -30,46 +30,46 @@
 
 <style lang="scss">
 
-  :root {
-      --sidebar-width: 250px;
+    :root {
+        --sidebar-width: 250px;
+    }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 768px;
   }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  max-width: 768px;
-}
+  body {
+    background: #f3f8f3;
+    height: 100%;
+  }
 
-body {
-  background: #f3f8f3;
-  height: 100%;
-}
+  button {
+    cursor: pointer;
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+  }
 
-button {
-  cursor: pointer;
-  appearance: none;
-  border: none;
-  outline: none;
-  background: none;
-}
+  .app {
+      display: flex;
 
-.app {
-    display: flex;
+      main {
+          flex: 1 1 0;
+          padding: 2rem;
 
-    main {
-        flex: 1 1 0;
-        padding: 2rem;
+          @media (max-width: 1024px) {
+              padding-left: 6rem;
+          }
+      }
+  }
 
-        @media (max-width: 1024px) {
-            padding-left: 6rem;
-        }
-    }
-}
-
-.main {
-    flex: 1;
-    margin-left: var(--sidebar-width);
-}
+  .main {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+  }
 
 </style>
