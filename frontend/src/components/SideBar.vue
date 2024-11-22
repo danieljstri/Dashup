@@ -1,47 +1,47 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
-import LogoDetalhada from "../../../assets/LogoDetalhada.png";
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+    import { onMounted, ref } from 'vue'
+    import { RouterLink, useRouter } from 'vue-router'
+    import LogoDetalhada from "../../../assets/LogoDetalhada.png";
+    import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 
-const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
-const isLoggedIn = ref(false)
-const router = useRouter();
-const selectedButton = ref(null);
+    const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
+    const isLoggedIn = ref(false)
+    const router = useRouter();
+    const selectedButton = ref(null);
 
-//código de inicialização do serviço de autenticação e verificação de Login
-let auth;
-onMounted(() => {
-    auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-        isLoggedIn.value = !!user;
-    });
-});
-
-//const que verifica se foi autorizado o acesso ao Login para direcionar à página inicial
-const handlesignOut = () => {
-    signOut(auth)
-        .then(() => {
-            console.log("User signed out");
-            //rota para onde o usuário será redirecionado
-            router.push('/SignIn');
-        })
-        .catch((error) => {
-            console.error(error);
+    //código de inicialização do serviço de autenticação e verificação de Login
+    let auth;
+    onMounted(() => {
+        auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            isLoggedIn.value = !!user;
         });
-}
+    });
 
-// função arrow que alternará o estado da SideBar entre expandida e compactada
-const ToggleMenu = () => {
-    //quando ToggleMenu for chamada, ou seja, houver uma interação no comprimento, is_expanded terá alteração no valor (em booleano) 
-    is_expanded.value = !is_expanded.value
-    localStorage.setItem("is_expanded", is_expanded.value)
-}
+    //const que verifica se foi autorizado o acesso ao Login para direcionar à página inicial
+    const handlesignOut = () => {
+        signOut(auth)
+            .then(() => {
+                console.log("User signed out");
+                //rota para onde o usuário será redirecionado
+                router.push('/SignIn');
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
-//função que identifica quando o botão foi pressionado
-const setActiveButton = (buttonName) => {
-    selectedButton.value = buttonName;
-};
+    // função arrow que alternará o estado da SideBar entre expandida e compactada
+    const ToggleMenu = () => {
+        //quando ToggleMenu for chamada, ou seja, houver uma interação no comprimento, is_expanded terá alteração no valor (em booleano) 
+        is_expanded.value = !is_expanded.value
+        localStorage.setItem("is_expanded", is_expanded.value)
+    }
+
+    //função que identifica quando o botão foi pressionado
+    const setActiveButton = (buttonName) => {
+        selectedButton.value = buttonName;
+    };
 
 </script>
 
@@ -51,19 +51,16 @@ const setActiveButton = (buttonName) => {
 
             <div class="menu">
 
-                <div :class="['logo', is_expanded ? 'logo-expanded' : 'logo-collapsed']">
-                <!-- Logo detalhada, exibida apenas quando expandir a sidebar -->
+                <!-- Botão para recolher a Sidebar -->
+                <div :class="['menu-toggle-wrap', is_expanded ? 'logo-expanded' : 'logo-collapsed']">
+                    <button class="menu-toggle" @click="ToggleMenu">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    
                     <img 
                         v-if="is_expanded" 
                         :src="LogoDetalhada" 
                         alt="DashUp" />
-                </div>
-
-                <!-- Botão para recolher a Sidebar -->
-                <div class="menu-toggle-wrap">
-                    <button class="menu-toggle" @click="ToggleMenu">
-                        <span class="material-icons">menu</span>
-                    </button>
                 </div>
                 
                 <!--div para o botão Visão Geral-->
@@ -108,8 +105,6 @@ const setActiveButton = (buttonName) => {
               </div>
 
             <!--div para definir a posição dos elementos dentro do espaço na SideBar-->
-            <div class="flex"></div>
-            
         </aside>
         <main :class="{ 'main-expanded': is_expanded }"></main>
     </div>
@@ -144,7 +139,7 @@ aside {
 
     
     /*ajuste da imagem da Logo*/
-    .logo img {
+   /* .logo img {
         position: absolute;
         align-items: center;
         height: auto;
@@ -153,7 +148,7 @@ aside {
         margin-left: 2.5rem;
         padding-bottom: 40vh;
 
-    }
+    } */
 
     /*Parametros globais para os botões da sidebar*/
     .button .text {
@@ -165,8 +160,8 @@ aside {
     .menu {
         display: inline-block;
         flex-direction: column;
-        gap: 0.5rem; /* Espaçamento consistente entre os botões */
-        flex-grow: 1; /* Preenche o espaço entre o topo e a parte inferior */
+        gap: 0.5rem; 
+        flex-grow: 1; 
         justify-content: flex-start;
         
 
@@ -174,7 +169,7 @@ aside {
             position: relative;
             display: flex;
             align-items: center;
-            height: 45px; /* Altura consistente para todos os botões */
+            height: 45px; 
             padding: 0.2rem 0;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
@@ -205,8 +200,11 @@ aside {
         display: flex;
         justify-content: flex-start;
         margin-bottom: 4rem;
-        margin-top: 1rem;
+        margin-top: 0rem;
         
+        button {
+            padding: 1.2vh 0 0 0;
+        }
         
         .menu-toggle {
 
@@ -218,13 +216,23 @@ aside {
 
             }
         }
+
+        img {
+            position: absolute;
+            align-items: center;
+            transition: 0.3s ease-in-out;
+            height: auto;
+            width: 100%;
+            max-width: 170px;
+            left: 3.2rem;
+            top: 0.2rem;
+        }
     }
 
     .frameInferior {
-        position: absolute;
-        display: grid;
-        margin-top: 83vh; /* Margem proporcional ao tamanho da tela */
-        padding: 0.2rem 0;
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
         
         .button {
             display: flex;
