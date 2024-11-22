@@ -187,19 +187,22 @@
 .form-container {
   display: flex;
   height: 100vh; 
+  max-width: 768px;
 }
 
 /* Stylizing the image to occupy the left side */
 .imgLogin {
-  flex: 1; 
+  display: flex;
+  top: 20px;
+  width: 700px;
+  height: 910px;
+  left: 19px;
+  padding: 2vh 50rem 2vh 2vh;
 }
 
 .imgLogin img {
-  height: 800px;
-  width: 600px;
-  margin-left: -80px;
-  margin-top: -30px;
-  object-fit: cover;
+  height: auto;
+  width: 850px;
 }
 
 /* Styling the form to the right side */
