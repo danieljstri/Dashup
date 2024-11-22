@@ -2,22 +2,31 @@
 import strategicAnesthesiaCard from '@/components/services_page/strategicAnesthesiaCard.vue';
 import strategicConsultationCard from '@/components/services_page/strategicConsultationCard.vue';
 import servicesDetails from '@/components/services_page/servicesDetails.vue';
+import comparisionBarChart from '@/components/services_page/revenueDetails/comparisionBarChart.vue';
 
 </script>
 
 <template>
-  <section class="strategic-headlight">
-    <div class="cards">
-        <strategicAnesthesiaCard />
-        <strategicConsultationCard />
-    </div>
-  </section>
-  <servicesDetails />
-
+  <div class="content-container">
+    <servicesDetails />
+    <section class="strategic-headlight">
+      <div class="cards">
+          <strategicAnesthesiaCard />
+          <strategicConsultationCard />
+      </div>
+    </section>
+    <comparisionBarChart />
+  </div>
 </template>
 
 <style>
 @import url('https://fonts.cdnfonts.com/css/chillax');
+
+.content-container {
+    display: flex;
+    justify-content: space-around;
+
+}
 
 .strategic-headlight {
     display: flex;

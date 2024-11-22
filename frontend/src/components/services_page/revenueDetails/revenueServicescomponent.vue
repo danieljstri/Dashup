@@ -7,20 +7,19 @@
         </div>
         <comparisionRxE />
     </header>
-    <p>{{ revenueAnesthesia }}</p>
-    <p>{{ revenueConsultation }}</p>
-    <p>{{ revenueExams }}</p>
-
+    <comparisionBarChart />
 </template>
   
   <script>
   import { getRevenueAnesthesiaData, getRevenueData, getRevenueConsultationData, getRevenueExamsData, getExpensesData } from '@/services/dataService';
   import comparisionRxE from './comparisionDonutRxE.vue';
+  import comparisionBarChart from './comparisionBarChart.vue';
 
   export default {
     name: 'comparisionrevenueServices',
     components: {
       comparisionRxE,
+      comparisionBarChart,
     },
     data() {
       return {
@@ -62,6 +61,7 @@
 <style>
 .header {
   display: flex;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;

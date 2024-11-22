@@ -1,6 +1,6 @@
 <template>
     <div>
-      <HorizontalBarChart
+      <HistogramModel
         :chartData="chartData"
         :chartOptions="chartOptions"
       />
@@ -8,11 +8,14 @@
   </template>
   
   <script>
-  import HorizontalBarChart from "./components/HorizontalBarChart.vue";
+
+    import HistogramModel from "@/components/HistogramModel.vue";
+    import { getRevenueAnesthesiaData, getRevenueConsultationData, getRevenueExamsData } from "@/services/dataService";
   
   export default {
+    name: "comparisionBarChart",
     components: {
-      HorizontalBarChart,
+      HistogramModel,
     },
     data() {
       return {
@@ -26,28 +29,45 @@
     async mounted() {
       try {
         // Simula a busca de dados de rentabilidade e lucratividade
-        const revenueData = await getRevenueData('janeiro');
         const revenueAnesthesiaData = await getRevenueAnesthesiaData('janeiro');
-        const expensesAnesthesiaData = await getExpensesAnesthesiaData('janeiro');
+        const revenueConsultationData = await getRevenueConsultationData('janeiro');
+        const revenueExamsData = await getRevenueExamsData('janeiro');
   
-        const revenueValue = revenueData.value;
         const revenueanesthesiaValue = revenueAnesthesiaData.value;
-        const expensesValue = expensesAnesthesiaData.value;
-        
+        const revenueConsultationValue = revenueConsultationData.value;
+        const revenueExamsValue = revenueExamsData.value;
+
+        this.chartData = {
+            datasets: [
+            {
+                data: [revenueanesthesiaValue, revenueConsultationValue, revenueExamsValue],
+                backgroundColor: ['#C6F4BC','#C6F4BC','#C6F4BC'],
+            }
+            ],
+        };
+
+        this.chartOptions = {
+          indexAxis: 'y', // Inverte os eixos para criar gráfico horizontal
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+            },
+            title: {
+              display: true,
+              text: 'Comparação de Receitas',
+            },
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+            },
+          },
+        };
+
+        this.createChart();
         // Calcula a rentabilidade e lucratividade
-        const rentability = (revenueanesthesiaValue / revenueValue) * 100;
-        const profit = (revenueanesthesiaValue - expensesValue) / revenueValue * 100;
-        if (rentability > 90) {
-          this.rentability = 'ALTA';
-        } else {
-          this.rentability = 'BAIXA';
-        }
-  
-        if (profit > 50) {
-          this.profit = 'ALTA';
-        } else {
-          this.profit = 'BAIXA';
-        }
       } catch (error) {
         console.error('Error fetching revenue data:', error);
       }
