@@ -1,14 +1,14 @@
 <script setup>
-import { RouterView, useRoute } from 'vue-router';
-import SideBar from './components/SideBar.vue';
-import { ref } from 'vue';
+  import { RouterView, useRoute } from 'vue-router';
+  import SideBar from './components/SideBar.vue';
+  import { ref } from 'vue';
 
-const route = useRoute();
-const isSidebarExpanded = ref(true); // Estado da sidebar (expandida ou colapsada)
+  const route = useRoute();
+  const isSidebarExpanded = ref(true); // Estado da sidebar (expandida ou colapsada)
 
-const toggleSidebar = () => {
-  isSidebarExpanded.value = !isSidebarExpanded.value;
-};
+  const toggleSidebar = () => {
+    isSidebarExpanded.value = !isSidebarExpanded.value;
+  };
 </script>
 
 <template>
@@ -29,86 +29,47 @@ const toggleSidebar = () => {
   
 
 <style lang="scss">
-:root {
-  --sidebar-width-expanded: 240px;
-  --sidebar-width-collapsed: 60px;
-}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Noto Sans', sans-serif;
-}
-
-body {
-  background: #f3f8f3;
-  height: 100%;
-}
-
-button {
-  cursor: pointer;
-  appearance: none;
-  border: none;
-  outline: none;
-  background: none;
-}
-
-.app {
-    display: flex;
-
-    .main {
-        width: 100%;
-        flex: 1;
-        padding: 2rem;
+    :root {
+        --sidebar-width: 250px;
     }
-}
 
-/* Sidebar */
-.SideBar {
-  background-color: #245269;
-  transition: width 0.3s ease;
-}
-
-.SideBar.expanded {
-  width: var(--sidebar-width-expanded);
-}
-
-.SideBar.collapsed {
-  width: var(--sidebar-width-collapsed);
-}
-
-/* Main Content */
-.main {
-  flex: 1; /* Ocupa o espaço restante */
-  transition: margin-left 0.3s ease;
-  padding: 2rem;
-  background: #ffffff;
-}
-
-/* Ajusta a margem do conteúdo com base na largura da sidebar */
-.main.with-sidebar {
-  margin-left: var(--sidebar-width-expanded);
-}
-
-.main.without-sidebar {
-  margin-left: var(--sidebar-width-collapsed);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .app {
-    flex-direction: column; /* Sidebar no topo */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    max-width: 768px;
   }
 
-  .SideBar {
-    width: 100%; 
-    height: var(--sidebar-width-expanded); /* Define altura */
+  body {
+    background: #f3f8f3;
+    height: 100%;
+  }
+
+  button {
+    cursor: pointer;
+    appearance: none;
+    border: none;
+    outline: none;
+    background: none;
+  }
+
+  .app {
+      display: flex;
+
+      main {
+          flex: 1 1 0;
+          padding: 2rem;
+
+          @media (max-width: 1024px) {
+              padding-left: 6rem;
+          }
+      }
   }
 
   .main {
-    margin-left: 0;
-    padding: 1rem;
+      flex: 1;
+      margin-left: var(--sidebar-width);
   }
-}
+
 </style>

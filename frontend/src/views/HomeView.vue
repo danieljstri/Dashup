@@ -82,81 +82,86 @@
 </template>
 
 <style>
-@import url('https://fonts.cdnfonts.com/css/chillax');
-* { 
-  padding: 0;
-  margin: 0;
-}
+  @import url('https://fonts.cdnfonts.com/css/chillax');
+  * { 
+    padding: 0;
+    margin: 0;
+    
+  }
 
-.header {
-  display: flex;
-  width: 100%; 
-  margin-bottom: 1%;
-  box-sizing: border-box;
-  text-align: left;
-  justify-content: space-between; 
-}
-.header h3 {
-  margin-top: 15px;
-  color: #2f3b36;
-  font-weight: 600;
-}
-.header h4 {
-  color: #2f3b36;
-  font-weight: 400;
-}
-#month-selector {
-  margin-top: 15px;
-  padding: 5px;
-  font-size: 16px;
-  font-family: 'Chillax', sans-serif;
-  font-weight: 500;
-  border-radius: 8px;
-  border: 1px solid #CCDEE7;
-  background-color: #ffffff;
-  color:  #245368;
-}
-
-.body-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.cash-data {
-    display: block;
-    gap: 16px;
-    max-width: fit-content;
-}
-.cards {
+  body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .header {
     display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-    justify-content: center;
-}
+    width: 100%; 
+    margin-bottom: 1%;
+    box-sizing: border-box;
+    text-align: left;
+    justify-content: space-between; 
+  }
+  .header h3 {
+    margin-top: 15px;
+    color: #2f3b36;
+    font-weight: 600;
+  }
+  .header h4 {
+    color: #2f3b36;
+    font-weight: 400;
+  }
+  #month-selector {
+    margin-top: 15px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: 'Chillax', sans-serif;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid #CCDEE7;
+    background-color: #ffffff;
+    color:  #245368;
+  }
 
-.control-data {
-    display: flex;
-    flex-direction: column;
-    width: fit-content;
-    height: fit-content;
-    gap: 16px;
-}
-
-
-@media (max-width: 768px) {
   .body-content {
-    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
-  .content {
-    margin-left: var(--sidebar-width-collapsed, 80px); /* Considerar apenas o espaço colapsado */
+  .cash-data {
+      display: block;
+      gap: 16px;
+      max-width: fit-content;
   }
-}
+  .cards {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      justify-content: center;
+  }
 
+  .control-data {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      height: fit-content;
+      gap: 16px;
+  }
+
+
+  @media (max-width: 768px) {
+    .body-content {
+      flex-direction: column;
+    }
+
+    .content {
+      margin-left: var(--sidebar-width); /* Considerar apenas o espaço colapsado */
+    }
+  }
 
 </style>
