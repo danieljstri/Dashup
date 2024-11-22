@@ -21,24 +21,8 @@ const routes = [
     },
   },
   {
-    path: '/chart',
-    name: 'chart',
-    component: () => import('../views/ChartView.vue'),
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
     path: '/economia',
     name: 'economia',
-    component: () => import('../views/EconomicsView.vue'),
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
-    path: '/economics',
-    name: 'economics',
     component: () => import('../views/EconomicsView.vue'),
     meta: {
       requiresAuth: true,

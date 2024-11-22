@@ -1,104 +1,46 @@
 <script setup>
-import ConsultaInformations from '@/components/consultation/ConsultaInformations.vue';
-import AnesthesiaInformations from '@/components/anesthesia/AnesthesiaInformations.vue';
-import ExamsInformations from '@/components/exams/ExamsInformations.vue';
+import strategicAnesthesiaCard from '@/components/services_page/strategicAnesthesiaCard.vue';
+import strategicConsultationCard from '@/components/services_page/strategicConsultationCard.vue';
+import servicesDetails from '@/components/services_page/servicesDetails.vue';
+
 </script>
 
 <template>
-  <div class="content">
-    <!-- Consultation Section -->
-    <div class="chart-section">
-      <h3>Consultas</h3>
-      <ConsultaInformations />
+  <section class="strategic-headlight">
+    <div class="cards">
+        <strategicAnesthesiaCard />
+        <strategicConsultationCard />
     </div>
-    <!-- Exams Section -->
-    <div class="chart-section">
-      <h3>Exames</h3>
-      <ExamsInformations />
-    </div>
-    <!-- Anesthesia Section -->
-    <div class="chart-section">
-      <h3>Anestesia</h3>
-      <AnesthesiaInformations />
-    </div>
-  </div>
+  </section>
+  <servicesDetails />
+
 </template>
 
-<style scoped>
+<style>
+@import url('https://fonts.cdnfonts.com/css/chillax');
 
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-h2 {
-  margin-bottom: 40px;
-  text-align: center;
-}
-
-.chart-section {
-  width: 100%;
-  max-width: 1200px;
-  margin-bottom: 40px;
-  border-top: 1px solid black;
-  padding-top: 20px;
-}
-
-.chart-section:first-of-type {
-  border-top: none;
-  padding-top: 0;
-}
-
-.chart-section h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  margin-left: 20px;
-}
-
-.chart-and-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  align-items: stretch;
-}
-
-.chart-group {
-  flex: 2;
-  min-width: 300px;
-  max-width: 400px;
-}
-
-.card-group {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.card-group > * {
-  flex: 1 1 calc(50% - 20px);
-  max-width: calc(50% - 20px);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .chart-and-cards {
+.strategic-headlight {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-  }
-
-  .chart-group,
-  .card-group {
-    flex: none;
-    width: 100%;
-  }
-
-  .card-group > * {
-    max-width: 100%;
-    flex: none;
-  }
+    width: fit-content;
+    height: fit-content;
+    padding: 35px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(71, 164, 206, 0) 5%, rgba(71, 164, 206, 0.05) 10%, rgba(132, 122, 164, 0.05) 44%, rgba(233, 51, 95, 0.05) 100%);
 }
+
+.cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    gap: 29px;
+    height: fit-content;
+    border-radius: 20px 0px 0px 0px;
+    opacity: 0px;
+}
+
 </style>

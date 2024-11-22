@@ -6,6 +6,7 @@
     GoogleAuthProvider,
     signInWithPopup,
     sendPasswordResetEmail,
+    sendPasswordResetEmail,
   } from 'firebase/auth';
   import { useRouter } from 'vue-router';
   import loginImagem from "../../../assets/loginImagem.png";
@@ -16,11 +17,24 @@
   const password = ref('');
   const errMsg = ref('');
   const router = useRouter();
+  // Variables to store email, password and error message
+  const email = ref('');
+  const password = ref('');
+  const errMsg = ref('');
+  const router = useRouter();
 
   // Function to sign in with email and password
   const signIn = async () => {
     errMsg.value = ''; // clear previous error messages
+  // Function to sign in with email and password
+  const signIn = async () => {
+    errMsg.value = ''; // clear previous error messages
 
+    // Basic validation of inputs
+    if (!email.value) {
+      errMsg.value = 'Por favor, insira seu email.';
+      return;
+    }
     // Basic validation of inputs
     if (!email.value) {
       errMsg.value = 'Por favor, insira seu email.';
@@ -31,7 +45,15 @@
       errMsg.value = 'Por favor, insira um email válido.';
       return;
     }
+    if (!validateEmail(email.value)) {
+      errMsg.value = 'Por favor, insira um email válido.';
+      return;
+    }
 
+    if (!password.value) {
+      errMsg.value = 'Por favor, insira sua senha.';
+      return;
+    }
     if (!password.value) {
       errMsg.value = 'Por favor, insira sua senha.';
       return;
@@ -59,7 +81,32 @@
       }
     }
   };
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
+      console.log('Usuário autenticado:', userCredential.user);
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+      switch (error.code) {
+        case 'auth/user-not-found':
+          errMsg.value = 'Usuário não encontrado.';
+          break;
+        case 'auth/wrong-password':
+          errMsg.value = 'Senha incorreta.';
+          break;
+        case 'auth/invalid-email':
+          errMsg.value = 'Email inválido.';
+          break;
+        default:
+          errMsg.value = 'Ocorreu um erro durante o login.';
+      }
+    }
+  };
 
+  // Function to sign in with Google
+  const signInwithGoogle = async () => {
+    errMsg.value = ''; // clear previous error messages
   // Function to sign in with Google
   const signInwithGoogle = async () => {
     errMsg.value = ''; // clear previous error messages
@@ -75,11 +122,29 @@
       errMsg.value = 'Erro ao fazer login com Google.';
     }
   };
+    try {
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      console.log('Usuário autenticado com Google:', result.user);
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+      errMsg.value = 'Erro ao fazer login com Google.';
+    }
+  };
 
   // Function to reset password
   const resetPassword = async () => {
     errMsg.value = ''; // clear previous error messages
+  // Function to reset password
+  const resetPassword = async () => {
+    errMsg.value = ''; // clear previous error messages
 
+    if (!email.value) {
+      errMsg.value = 'Por favor, insira seu email para redefinir a senha.';
+      return;
+    }
     if (!email.value) {
       errMsg.value = 'Por favor, insira seu email para redefinir a senha.';
       return;
@@ -89,7 +154,29 @@
       errMsg.value = 'Por favor, insira um email válido.';
       return;
     }
+    if (!validateEmail(email.value)) {
+      errMsg.value = 'Por favor, insira um email válido.';
+      return;
+    }
 
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email.value);
+      errMsg.value = 'Foi enviado um email para redefinir sua senha. Acesse o link de lá!';
+    } catch (error) {
+      console.error(error);
+      switch (error.code) {
+        case 'auth/user-not-found':
+          errMsg.value = 'Usuário não encontrado.';
+          break;
+        case 'auth/invalid-email':
+          errMsg.value = 'Email inválido.';
+          break;
+        default:
+          errMsg.value = 'Erro ao enviar email de redefinição de senha.';
+      }
+    }
+  };
     try {
       const auth = getAuth();
       await sendPasswordResetEmail(auth, email.value);
@@ -114,6 +201,11 @@
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
+  // Aux function to validate email
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
 </script>
 
 <template>
@@ -121,6 +213,8 @@
     <div class="imgLogin">
       <img :src="loginImagem" alt="Apresentação" />
     </div>
+
+    <form class="loginForm" @submit.prevent="signIn">
 
     <form class="loginForm" @submit.prevent="signIn">
       <div class="textoLogin">
@@ -158,11 +252,48 @@
           {{ errMsg }}
         </div>
 
+        <label for="email"><b>Email</b></label>
+        <input
+          id="email"
+          type="email"
+          v-model="email"
+          placeholder="Digite seu email"
+          required
+        />
+
+        <label for="password"><b>Senha</b></label>
+        <input
+          id="password"
+          type="password"
+          v-model="password"
+          placeholder="Digite sua senha"
+          required
+        />
+        <button
+          type="button"
+          class="textBtn1"
+          @click="resetPassword"
+        >
+          Esqueceu a senha?
+        </button>
+
+        <div v-if="errMsg" class="subtext">
+          {{ errMsg }}
+        </div>
+
         <div class="buttons">
           <button type="submit" class="btn-login">
             Continuar
           </button>
+          <button type="submit" class="btn-login">
+            Continuar
+          </button>
           <span class="textBtn2">Ou entre com:</span>
+          <button
+            type="button"
+            class="btn-google"
+            @click="signInwithGoogle"
+          >
           <button
             type="button"
             class="btn-google"
@@ -294,13 +425,18 @@ input::placeholder {
 /* estilo da borda da caixa */
 .container input[type="email"],
 .container input[type="password"] {
+/* estilo da borda da caixa */
+.container input[type="email"],
+.container input[type="password"] {
   width: 100%;
   height: 52.1px;
   padding: 15px 20px;
   display: inline-block;
   border: 1px solid #ccdee7; 
+  border: 1px solid #ccdee7; 
   border-radius: 16px;
   box-sizing: border-box;
+  background: #ffffff;
   background: #ffffff;
 }
 
