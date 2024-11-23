@@ -1,6 +1,6 @@
 <template>
   <div>
-    <canvas ref="barChart"></canvas>
+    <canvas class="thechart" ref="barChart"></canvas>
   </div>
 </template>
 
@@ -34,7 +34,8 @@ export default defineComponent({
         chartInstance = new Chart(barChart.value, {
           type: 'bar',
           data: props.chartData,
-          options: props.chartOptions,
+          options: 
+            props.chartOptions
         });
       }
     };
@@ -49,6 +50,15 @@ export default defineComponent({
       () => {
         createChart();
       },
+      { deep: true }
+    );
+
+    watch(
+      () => props.chartOptions,
+      () => {
+        createChart();
+      },
+      { deep: true }
     );
 
     return {
@@ -59,5 +69,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Adicione estilos conforme necessário */
+  .thechart {
+    width: 600px;
+    height: 600px;
+  }
 </style>

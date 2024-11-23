@@ -15,7 +15,6 @@ import comparisionBarChart from '@/components/services_page/revenueDetails/compa
           <strategicConsultationCard />
       </div>
     </section>
-    <comparisionBarChart />
   </div>
 </template>
 
