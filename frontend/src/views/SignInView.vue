@@ -199,34 +199,54 @@ const validateEmail = (email) => {
 
 /* Main container styling */
 .form-container {
-  display: flex; 
-  max-width: 768px;
-}
-
-/* Stylizing the image to occupy the left side */
-.imgLogin {
   display: flex;
-  flex-direction: row;
-  top: 20px;
-  width: 983px;
-  height: auto;
-  left: 19px;
-  padding: 2vh 120vh 3vh 4vh;
+  justify-content: center; 
+  align-items: center;    
+  height: 100vh;          
+  max-width: 100%;                
+  box-sizing: border-box; 
 }
 
-.imgLogin img {
-  width: 650px;
+.imgLogin {
+  display: none; 
 }
 
-/* Styling the form to the right side */
 .loginForm {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20vh;
-  width: 461px;
-  height: auto;
+  width: 100%;
+  max-width: 500px; 
+  padding: 40px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
 }
+
+@media screen and (min-width: 768px) {
+  .form-container {
+    flex-direction: row; 
+    gap: 5rem;         
+  }
+
+  .imgLogin {
+    display: block; 
+    width: 40%;     
+  }
+
+  /* Stylizing the image to occupy the left side */
+  .imgLogin img {
+    max-width: 100%; 
+    height: auto;    
+  }
+
+  /* Styling the Login form  */
+  .loginForm {
+    width: 60%; 
+    padding: 40px;
+  }
+}
+
 
 .textoLogin {
   display: flex;
@@ -276,7 +296,7 @@ label {
 
 }
 
-/* Style for placeholder text (caixa para inserir informações */
+/* Style for placeholder text */
 input::placeholder {
   font-family: 'General Sans Variable', sans-serif; 
   font-size: 16px; 
@@ -286,7 +306,7 @@ input::placeholder {
   line-height: 21.6px; 
 }
 
-/* Informações inseridas na caixa (email e senha) */
+/* text inside the box */
 input:required {
   font-size: 16px;
   color: #334f5b;
@@ -302,7 +322,7 @@ input:required {
 
 input {
   width: 100%;
-  padding-right: 40px; /* Espaço para o botão */
+  
 }
 
 .toggle-password {
@@ -327,7 +347,7 @@ input {
   color: #538094;
 }
 
-/* estilo da borda da caixa */
+/* Boder box Email and password */
 .container input[type="email"],
 .container input[type="password"],
 .container input[type="text"] {
@@ -384,7 +404,7 @@ input {
   opacity: 1;
 }
 
-/* Login option styling  OU ENTRE COM */
+/* Login option styling */
 .textBtn2 {
   width: 461px;
   height: 22px;
