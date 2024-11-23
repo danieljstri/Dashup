@@ -1,5 +1,5 @@
 <script>
-  import EconomicChart from '@/components/general/EconomicChart.vue';
+  import EconomicChart from '@/components/home_page/EconomicChart.vue';
 
   export default {
     components: {
