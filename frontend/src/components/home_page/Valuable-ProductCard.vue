@@ -100,11 +100,14 @@ export default {
 .footer {
   display: flex;
   justify-content: space-between;
+  align-items: end;
 }
 
 .button-detalhes {
   display: flex;
-  text-align: center;
+  max-width: fit-content;
+  max-height: fit-content;
+  align-items: center;
   text-decoration: none;
   padding: 5px;
   font-size: 16px;

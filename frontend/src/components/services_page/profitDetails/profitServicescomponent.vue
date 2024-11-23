@@ -1,66 +1,48 @@
 <template>
-  <div class="comparisionrevenueServices">
+  <div class="comparisionprofitServices">
     <header class="header">
         <div class="total">
             <h2>TOTAL:</h2>
             <aside class="number">
               <p>{{ total }}</p>
-              <span>/ receita</span> 
+              <span>/ Lucro</span> 
             </aside>
           </div>
         <comparisionRxE id="donutchartRxE"/>
     </header>
     <comparisionBarChart id="comparisionChart"/>
     <hr>
-    <rankingRevenue id="rankingList"/>
+    <rankingProfit id="rankingList"/>
   </div>
 </template>
   
   <script>
-  import { getRevenueAnesthesiaData, getRevenueData, getRevenueConsultationData, getRevenueExamsData, getExpensesData } from '@/services/dataService';
-  import comparisionRxE from './comparisionRevenueDonutRxE.vue';
-  import comparisionBarChart from './comparisionRevenueBarChart.vue';
-  import rankingRevenue from './rankingRevenue.vue';
+  import { getProfitData } from '@/services/dataService';
+  import comparisionRxE from './comparisionProfitDonutRxE.vue';
+  import comparisionBarChart from './comparisionProfitBarChart.vue';
+  import rankingProfit from './rankingProfit.vue';
 
   export default {
-    name: 'comparisionrevenueServices',
+    name: 'comparisionprofitServices',
     components: {
       comparisionRxE,
       comparisionBarChart,
-      rankingRevenue,
+      rankingProfit,
     },
     data() {
       return {
         total: 0,
-        revenueAnesthesia: 0,
-        revenueConsultation: 0,
-        revenueExams: 0,
-        comparision: 0,
       };
     },
     async mounted() {
       try {
         // Simula a busca de dados de rentabilidade e lucratividade
-        const revenueData = await getRevenueData('janeiro');
-        const revenueAnesthesiaData = await getRevenueAnesthesiaData('janeiro');
-        const revenueConsultationData = await getRevenueConsultationData('janeiro');
-        const revenueExamsData = await getRevenueExamsData('janeiro');
-        const expensesData = await getExpensesData('janeiro');
+        const ProfitData = await getProfitData('janeiro');
+        const ProfitValue = ProfitData.value;
 
-        const revenueValue = revenueData.value;
-        const revenueanesthesiaValue = revenueAnesthesiaData.value;
-        const revenueConsultationValue = revenueConsultationData.value;
-        const revenueExamsValue = revenueExamsData.value;
-        const expensesValue = expensesData.value;
-
-        this.total = revenueValue
-        this.revenueAnesthesia = revenueanesthesiaValue
-        this.revenueConsultation = revenueConsultationValue
-        this.revenueExams = revenueExamsValue
-
-        this.comparision = ((expensesValue / revenueValue) * 100).toFixed(1);
+        this.total = ProfitValue
       } catch (error) {
-        console.error('Error fetching revenue data:', error);
+        console.error('Error fetching Profit data:', error);
       }
     },
   };

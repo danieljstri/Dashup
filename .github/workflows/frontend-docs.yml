@@ -1,16 +1,14 @@
 name: frontend-website
-# Build the documentation whenever there are new commits on the frontend branch
+
 on:
   push:
     branches:
-      - frontend # Define que esse workflow só roda para commits na branch frontend
+      - main 
 
-# Security: restrict permissions for CI jobs.
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  # Build the documentation and upload the static HTML files as an artifact.
   build:
     runs-on: ubuntu-latest
     steps:
@@ -19,31 +17,40 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      # Install frontend dependencies
       - run: |
           cd frontend
           npm install
-      # Build your frontend documentation into frontend/docs/
       - run: |
           cd frontend
           npm run docs
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
+          name: frontend-docs
           path: frontend/docs/
-          
-  # Deploy the artifact to GitHub pages.
+              
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: deploy-docs
+      cancel-in-progress: false
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
         with:
-          # Publish to the gh-pages branch of the frontend branch
-          branch: frontend # Indica que o deploy será feito para a branch frontend
+          ref: gh-pages
+          fetch-depth: 0
+      - uses: actions/download-artifact@v3
+        with:
+          name: frontend-docs
+          path: frontend-docs
+      - run: ls -la 
+      - run: |
+          mkdir -p frontend
+          cp -r frontend-docs/* frontend/
+      - run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add frontend/
+          git commit -m "Update frontend documentation"
+          git pull --rebase origin gh-pages --allow-unrelated-histories
+          git push origin gh-pages

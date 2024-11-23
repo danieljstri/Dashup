@@ -34,7 +34,8 @@ export default defineComponent({
         chartInstance = new Chart(barChart.value, {
           type: 'bar',
           data: props.chartData,
-          options: props.chartOptions,
+          options: 
+            props.chartOptions
         });
       }
     };
@@ -59,5 +60,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* Adicione estilos conforme necessário */
+div {
+  height: 100%;
+}
 </style>

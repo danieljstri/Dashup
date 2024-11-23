@@ -57,7 +57,7 @@ export default {
 <style scoped>
   .card-model {
     height: fit-content;
-    width: 330px;
+    width: 33%;
     padding: 20px;
     border-radius: 16px;
     background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
@@ -107,7 +107,7 @@ export default {
     background-color: #8CE97A80;
     border-radius: 10px;
     font-size: 0.8rem;
-    width: 70px;
+    width: fit-content;
     text-align: center;
     align-items: center;
     justify-content: space-around;
@@ -124,7 +124,7 @@ export default {
     background-color: #F8BD8680;
     border-radius: 10px;
     font-size: 0.8rem;
-    width: 70px;
+    width: fit-content;
     text-align: center;
     align-items: center;
     justify-content: space-around;

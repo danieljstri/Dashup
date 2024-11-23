@@ -7,6 +7,7 @@
   import EconomicChart from '@/components/home_page/EconomicChart.vue';
   import ValuableProductCard from '@/components/home_page/Valuable-ProductCard.vue';
   import EconomicBar from '@/components/home_page/EconomicBar.vue';
+  import TaxSavingsCard from '@/components/home_page/TaxSavingsCard.vue';
 
   const months = [
     { month: "Janeiro / 2024", value: "janeiro" },
@@ -33,6 +34,7 @@
       EconomicChart,
       ValuableProductCard,
       EconomicBar,
+      TaxSavingsCard
     },
     setup() {
       const selectedMonth = ref('janeiro');
@@ -76,7 +78,7 @@
         <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
         <ValuableProductCard :selectedMonth="selectedMonth"/>
       </section>
-      <EconomicBar />
+      <TaxSavingsCard/>
     </content>
   </main>
 </template>
@@ -129,6 +131,7 @@
     gap: 16px;
     width: 100%;
     height: 100%;
+    max-height: 1000px;
     margin: 0;
     padding: 0;
   }
@@ -136,19 +139,19 @@
   .cash-data {
       display: block;
       gap: 16px;
-      max-width: fit-content;
+      width:80%;
   }
   .cards {
       display: flex;
       gap: 16px;
       margin-bottom: 16px;
-      justify-content: center;
+      justify-content: space-between;
   }
 
   .control-data {
       display: flex;
       flex-direction: column;
-      width: fit-content;
+      width: 13%;
       height: fit-content;
       gap: 16px;
   }

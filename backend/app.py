@@ -9,12 +9,13 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from backend.data import Data, CompanyData
 from backend.economia import economia
+import urllib.parse
 
 app = Flask(__name__)
 CORS(app)
 
 PATH = './app/fluxo.csv'
-COMPANY_DATA_PATH = './app/empresas.csv'
+COMPANY_DATA_PATH = './app/sittax_data.csv'
 
 data = Data(PATH)
 company_data = CompanyData(COMPANY_DATA_PATH)
@@ -257,8 +258,8 @@ def get_company_data(company_name):
         return jsonify({"error": str(e)}), 400
 
 
-@app.route('/api/economia/<company_name>', methods=['GET'])
-def get_economia_data(company_name):
+@app.route('/api/economia/<path:encoded_company_name>', methods=['GET'])
+def get_economia_data(encoded_company_name):
     """
     Retrieves the economia results for a specific company.
 
@@ -270,6 +271,7 @@ def get_economia_data(company_name):
                         If the company is not found, returns a JSON response with the error message and a 400 status code.
     """
     try:
+        company_name = urllib.parse.unquote(encoded_company_name)
         company = company_data.get_company_data(company_name)
         receita_bruta = company['receita_bruta']
         economia_result = economia(receita_bruta)
