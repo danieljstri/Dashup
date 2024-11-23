@@ -7,6 +7,7 @@
   import EconomicChart from '@/components/home_page/EconomicChart.vue';
   import ValuableProductCard from '@/components/home_page/Valuable-ProductCard.vue';
   import EconomicBar from '@/components/home_page/EconomicBar.vue';
+  import TaxSavingsCard from '@/components/home_page/TaxSavingsCard.vue';
 
   const months = [
     { month: "Janeiro / 2024", value: "janeiro" },
@@ -33,6 +34,7 @@
       EconomicChart,
       ValuableProductCard,
       EconomicBar,
+      TaxSavingsCard
     },
     setup() {
       const selectedMonth = ref('janeiro');
@@ -77,6 +79,7 @@
         <ValuableProductCard :selectedMonth="selectedMonth"/>
       </section>
       <EconomicBar />
+      <TaxSavingsCard/>
     </content>
   </main>
 </template>
