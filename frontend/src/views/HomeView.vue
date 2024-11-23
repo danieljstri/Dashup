@@ -76,7 +76,6 @@
         <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
         <ValuableProductCard :selectedMonth="selectedMonth"/>
       </section>
-      <EconomicBar />
     </content>
   </main>
 </template>
@@ -129,6 +128,7 @@
     gap: 16px;
     width: 100%;
     height: 100%;
+    max-height: 1000px;
     margin: 0;
     padding: 0;
   }
@@ -136,19 +136,19 @@
   .cash-data {
       display: block;
       gap: 16px;
-      max-width: fit-content;
+      width:70%;
   }
   .cards {
       display: flex;
       gap: 16px;
       margin-bottom: 16px;
-      justify-content: center;
+      justify-content: space-between;
   }
 
   .control-data {
       display: flex;
       flex-direction: column;
-      width: fit-content;
+      width: 13%;
       height: fit-content;
       gap: 16px;
   }

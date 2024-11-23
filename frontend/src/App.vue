@@ -34,18 +34,18 @@ const toggleSidebar = () => {
 <style lang="scss">
 :root {
   --sidebar-width: 250px;
-  --sidebar-width-col: 82px;
+  --sidebar-width-col: 32px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Chillax', sans-serif;
 }
 
 body {
-  background: #f3f8f3;
-  height: 100%;
+  background: #fafafa;
 }
 
 button {
@@ -72,5 +72,11 @@ button {
 .main {
   flex: 1;
   margin-left: var(--sidebar-width-col);
+}
+@media (max-width: 1024px) {
+  .main {
+    margin-left: 0;
+  }
+  
 }
 </style>

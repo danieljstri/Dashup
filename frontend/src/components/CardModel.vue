@@ -57,7 +57,7 @@ export default {
 <style scoped>
   .card-model {
     height: fit-content;
-    width: 330px;
+    width: 33%;
     padding: 20px;
     border-radius: 16px;
     background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);

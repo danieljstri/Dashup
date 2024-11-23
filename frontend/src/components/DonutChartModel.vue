@@ -24,6 +24,10 @@
       title: {
         type: String,
         required: true
+      },
+      percentageColor: {
+        type: String,
+        required: true
       }
     },
     setup(props) {
@@ -67,7 +71,7 @@
   <section class="content-container">
       <canvas ref="donutChart"></canvas>
       <h3>{{ title }}</h3>
-      <p>{{ percentage }}%</p>
+      <p :style="{color: percentageColor }">{{ percentage }}%</p>
   </section>
 </template>
 
@@ -106,7 +110,6 @@
     text-align: center;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-    color: rgba(62, 170, 103, 1);
   }
 
 </style>

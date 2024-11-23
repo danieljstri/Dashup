@@ -2,7 +2,7 @@
     <div class="content">
     <section class="title">
         <img src="../../../../public/kid_star.png">
-        <h1>Ranking dos serviços <b>mais rentáveis</b></h1>
+        <h1>Ranking dos serviços <b>mais lucrativos</b></h1>
     </section>
     <section class="ranking">
         <div class="ranking-item">
@@ -22,10 +22,10 @@
 </template>
   
   <script>
-  import { getRevenueAnesthesiaData, getRevenueExamsData, getRevenueConsultationData } from '@/services/dataService';
+  import { getMarkupExamsData, getMarkupConsultationData, getExpensesAnesthesiaData } from '@/services/dataService';
 
   export default {
-    name: 'rankingRevenue',
+    name: 'rankingExpenses',
     data() {
       return {
         firstItem: '',
@@ -35,16 +35,21 @@
     },
     async mounted() {
       try {
-        const revenueAnesthesiaData = await getRevenueAnesthesiaData('janeiro');
-        const revenueExamsData = await getRevenueExamsData('janeiro');
-        const revenueConsultationData = await getRevenueConsultationData('janeiro');
-        revenueAnesthesiaData.name = 'Anestesia';
-        revenueExamsData.name = 'Exames';
-        revenueConsultationData.name = 'Consultas';
+        const anesthesiaData = await getExpensesAnesthesiaData('janeiro');
+        const examsData = await getMarkupExamsData('janeiro');
+        const consultationData = await getMarkupConsultationData('janeiro');
 
-        const allData = [revenueAnesthesiaData, revenueExamsData, revenueConsultationData]; 
+        examsData.expenses = (parseFloat(examsData.value[0].toFixed(1)) + parseFloat(examsData.value[1].toFixed(1)));
+        consultationData.expenses = (parseFloat(consultationData.value[0].toFixed(1)) + parseFloat(consultationData.value[1].toFixed(1)));
 
-        const sortedData = allData.sort((a, b) => b.value - a.value);
+        anesthesiaData.name = 'Anestesia';
+        examsData.name = 'Exames';
+        consultationData.name = 'Consultas';
+
+
+        const allData = [anesthesiaData, examsData, consultationData]; 
+        const sortedData = allData.sort((a, b) => b.expenses - a.expenses);
+        console.log(sortedData);
         this.firstItem = sortedData[0].name;
         this.secondItem = sortedData[1].name;
         this.thirdItem = sortedData[2].name;
@@ -98,7 +103,7 @@
         width: 100%;
         display: flex;
         gap: 10px;
-        background: linear-gradient(90deg, rgba(158, 202, 148, 0.485) 0%, rgba(71, 164, 206, 0) 100%);
+        background: linear-gradient(90deg, rgba(253, 198, 135, 0.485) 0%, rgba(71, 164, 206, 0) 100%);
         padding: 2% 10%;
         border-radius: 10px;
     }

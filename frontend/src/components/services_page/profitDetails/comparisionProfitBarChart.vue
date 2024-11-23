@@ -9,7 +9,7 @@
 
 <script>
 import HistogramModel from "@/components/HistogramModel.vue";
-import { getRevenueAnesthesiaData, getRevenueConsultationData, getRevenueExamsData, getRevenueData } from "@/services/dataService";
+import { getMarkupAnesthesiaData, getMarkupConsultationData, getMarkupExamsData, getProfitData } from "@/services/dataService";
 
 export default {
   name: "comparisionBarChart",
@@ -27,28 +27,38 @@ export default {
   async mounted() {
     try {
       // Busca os dados simulados
-      const revenueAnesthesiaData = await getRevenueAnesthesiaData("janeiro");
-      const revenueConsultationData = await getRevenueConsultationData("janeiro");
-      const revenueExamsData = await getRevenueExamsData("janeiro");
-      const revenueData = await getRevenueData("janeiro");
+      const dataProfit = await getProfitData("janeiro");
+      const dataAnesthesia = await getMarkupAnesthesiaData("janeiro");
+      const dataConsultation = await getMarkupConsultationData("janeiro");
+      const dataExams = await getMarkupExamsData("janeiro");
 
-      const revenueanesthesiaValue = revenueAnesthesiaData.value;
-      const revenueConsultationValue = revenueConsultationData.value;
-      const revenueExamsValue = revenueExamsData.value;
-      const revenueValue = revenueData.value;
-      const allData = [
-        revenueanesthesiaValue,
-        revenueConsultationValue,
-        revenueExamsValue,
-      ];
+      console.log(typeof parseFloat(dataConsultation.value[1].toFixed(2)));
+      const profitConsultation = parseFloat(dataConsultation.value[2]) - (parseFloat(dataConsultation.value[0].toFixed(1)) + parseFloat(dataConsultation.value[1].toFixed(1)));
+      const profitExams = parseFloat(dataExams.value[2]) - (parseFloat(dataExams.value[0].toFixed(1)) + parseFloat(dataExams.value[1].toFixed(1)));
+      const profitAnesthesia = parseFloat(dataAnesthesia.value[2]) - (parseFloat(dataAnesthesia.value[0].toFixed(1)) + parseFloat(dataAnesthesia.value[1].toFixed(1)));
+      const profitValue = dataProfit.value;
+      
+        dataAnesthesia.name = 'Anestesia';
+        dataExams.name = 'Exames';
+        dataConsultation.name = 'Consultas';
+
+        dataAnesthesia.profit = profitAnesthesia;
+        dataExams.profit = profitExams;
+        dataConsultation.profit = profitConsultation;
+
+        const allData = [dataAnesthesia, dataExams, dataConsultation]; 
+
+        const sortedData = allData.sort((a, b) => b.profit - a.profit);
+        console.log(sortedData);
+
 
       // Configuração dos dados do gráfico
       this.chartData = {
-        labels: ["Anestesia", "Consulta", "Exames"],
+        labels: [sortedData[0].name, sortedData[1].name, sortedData[2].name],
         datasets: [
           {
-            data: allData,
-            backgroundColor: ["#C6F4BC"],
+            data: [sortedData[0].profit, sortedData[1].profit, sortedData[2].profit],
+            backgroundColor: ["#62B1D4"],
           },
         ],
       };
@@ -76,7 +86,7 @@ export default {
             },
             title: {
               display: true,
-              text: "Receita",
+              text: "Lucro",
               align: "start",
               font: {
                 family: "Chillax",
@@ -84,10 +94,10 @@ export default {
                 size: 17,
               },
             },
-          max: revenueValue,
+          max: profitValue,
           ticks: {
             callback: (value, index) => {
-              const maxvalue = revenueValue;
+              const maxvalue = profitValue;
               if (value === 0 || value === maxvalue) {
                 return value;
               } else {
