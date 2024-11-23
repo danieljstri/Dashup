@@ -43,8 +43,8 @@ export default {
           datasets: [
             {
               data: [totalExpenses, revenueValue],
-              backgroundColor: ['#E3E3E3','#9ECA94'],
-              hoverBackgroundColor: ['#42b989','#fc9e56'],
+              backgroundColor: ['#FDC687','#9ECA94'],
+              hoverBackgroundColor: ['#FEA82F','#82C973'],
               borderRadius: 10,
               spacing: 2,
             },

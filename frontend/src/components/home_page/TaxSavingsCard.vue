@@ -7,9 +7,9 @@
         </div>
         <div class="progress-container">
             <div class="progress-marker-first"></div>
-            <div class="progress-bar-green" style="width: 20%;"></div>
+            <div class="progress-bar-green" :style="{width: taxPercentSaving + '%'}"></div>
             <div class="progress-marker-second"></div>
-            <div class="progress-bar-blue" style="width: 80%;"></div>
+            <div class="progress-bar-blue" :style="{width: (100 - taxPercentSaving) + '%'}"></div>
         </div>
         <div class="bottom">
             <div>
@@ -37,11 +37,19 @@ export default {
 
         const fetchData = async () => {
             try {
-                const economicData = await getEconomicCompanieData('DRA ISABELLY DE MORAIS LTDA');
+                const economicData = await getEconomicCompanieData('54.457.781/0001-77 - DRA UIARA DANTAS SERVICOS EM SAUDE LTDA');
+                const TaxNonMedup = economicData.economia.non_medup.aliquota;
+                const TaxMedup = economicData.economia.medup.aliquota;
+                const receita = economicData.receita_bruta;
+                
+                const TaxWithoutMedup = parseInt((receita * TaxNonMedup).toFixed(1));
+                const TaxSavingMedup = parseInt((receita * TaxMedup).toFixed(1));
+                
+
                 console.log(economicData);
-                taxSaving.value = 1000;
-                taxTotal.value = 5000;
-                taxPercentSaving.value = 20;
+                taxSaving.value = TaxSavingMedup;
+                taxTotal.value = TaxWithoutMedup;
+                taxPercentSaving.value = parseInt(((TaxSavingMedup / TaxWithoutMedup) * 100).toFixed(1));
             } catch (error) {
                 console.log(error);
             }
@@ -77,7 +85,7 @@ p {
 }
 
 .tax-savings-component {
-    width: 500px;
+    width: 100%;
     padding: 42px 70px;
     background:
         linear-gradient(270deg,
@@ -85,9 +93,6 @@ p {
             rgba(71, 164, 206, 0) 100%);
     border-radius: 17px;
     box-shadow: 0px 1.7px 5.61px 0.85px rgba(139, 216, 168, 0.12);
-    margin: 50px;
-
-
 }
 
 

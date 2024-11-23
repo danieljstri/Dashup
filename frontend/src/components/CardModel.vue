@@ -107,7 +107,7 @@ export default {
     background-color: #8CE97A80;
     border-radius: 10px;
     font-size: 0.8rem;
-    width: 70px;
+    width: fit-content;
     text-align: center;
     align-items: center;
     justify-content: space-around;
@@ -124,7 +124,7 @@ export default {
     background-color: #F8BD8680;
     border-radius: 10px;
     font-size: 0.8rem;
-    width: 70px;
+    width: fit-content;
     text-align: center;
     align-items: center;
     justify-content: space-around;

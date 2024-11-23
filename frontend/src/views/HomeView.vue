@@ -139,7 +139,7 @@
   .cash-data {
       display: block;
       gap: 16px;
-      width:70%;
+      width:80%;
   }
   .cards {
       display: flex;

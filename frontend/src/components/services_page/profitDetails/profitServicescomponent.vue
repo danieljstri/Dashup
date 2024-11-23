@@ -5,7 +5,7 @@
             <h2>TOTAL:</h2>
             <aside class="number">
               <p>{{ total }}</p>
-              <span>/ receita</span> 
+              <span>/ Lucro</span> 
             </aside>
           </div>
         <comparisionRxE id="donutchartRxE"/>

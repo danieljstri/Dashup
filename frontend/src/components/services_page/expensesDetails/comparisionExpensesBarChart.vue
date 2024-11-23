@@ -86,7 +86,7 @@ export default {
             },
             title: {
               display: true,
-              text: "Lucro",
+              text: "Despesas",
               align: "start",
               font: {
                 family: "Chillax",
