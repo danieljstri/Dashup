@@ -11,124 +11,132 @@
   import loginImagem from "../../../assets/loginImagem.png";
   import googleLogo from "../../../assets/google-logo.png";
 
-  // Variables to store email, password and error message
-  const email = ref('');
-  const password = ref('');
-  const errMsg = ref('');
-  const router = useRouter();
+// Variables to store email, password, error message, and password visibility
+const email = ref('');
+const password = ref('');
+const errMsg = ref('');
+const showPassword = ref(false); // Estado para alternar visibilidade da senha
+const router = useRouter();
 
-  // Function to sign in with email and password
-  const signIn = async () => {
-    errMsg.value = ''; // clear previous error messages
+// Function to toggle password visibility
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+};
 
-    // Basic validation of inputs
-    if (!email.value) {
-      errMsg.value = 'Por favor, insira seu email.';
-      return;
+// Function to sign in with email and password
+const signIn = async () => {
+  errMsg.value = ''; // clear previous error messages
+
+  if (!email.value) {
+    errMsg.value = 'Por favor, insira seu email.';
+    return;
+  }
+
+  if (!validateEmail(email.value)) {
+    errMsg.value = 'Por favor, insira um email válido.';
+    return;
+  }
+
+  if (!password.value) {
+    errMsg.value = 'Por favor, insira sua senha.';
+    return;
+  }
+
+  try {
+    const auth = getAuth();
+    const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
+    console.log('Usuário autenticado:', userCredential.user);
+    router.push('/');
+  } catch (error) {
+    console.error(error);
+    switch (error.code) {
+      case 'auth/user-not-found':
+        errMsg.value = 'Usuário não encontrado.';
+        break;
+      case 'auth/wrong-password':
+        errMsg.value = 'Senha incorreta.';
+        break;
+      case 'auth/invalid-email':
+        errMsg.value = 'Email inválido.';
+        break;
+      default:
+        errMsg.value = 'Ocorreu um erro durante o login.';
     }
+  }
+};
 
-    if (!validateEmail(email.value)) {
-      errMsg.value = 'Por favor, insira um email válido.';
-      return;
+// Function to sign in with Google
+const signInwithGoogle = async () => {
+  errMsg.value = '';
+
+  try {
+    const auth = getAuth();
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    console.log('Usuário autenticado com Google:', result.user);
+    router.push('/');
+  } catch (error) {
+    console.error(error);
+    errMsg.value = 'Erro ao fazer login com Google.';
+  }
+};
+
+// Function to reset password
+const resetPassword = async () => {
+  errMsg.value = '';
+
+  if (!email.value) {
+    errMsg.value = 'Por favor, insira seu email para redefinir a senha.';
+    return;
+  }
+
+  if (!validateEmail(email.value)) {
+    errMsg.value = 'Por favor, insira um email válido.';
+    return;
+  }
+
+  try {
+    const auth = getAuth();
+    await sendPasswordResetEmail(auth, email.value);
+    errMsg.value = 'Foi enviado um email para redefinir sua senha. Acesse o link de lá!';
+  } catch (error) {
+    console.error(error);
+    switch (error.code) {
+      case 'auth/user-not-found':
+        errMsg.value = 'Usuário não encontrado.';
+        break;
+      case 'auth/invalid-email':
+        errMsg.value = 'Email inválido.';
+        break;
+      default:
+        errMsg.value = 'Erro ao enviar email de redefinição de senha.';
     }
+  }
+};
 
-    if (!password.value) {
-      errMsg.value = 'Por favor, insira sua senha.';
-      return;
-    }
-
-    try {
-      const auth = getAuth();
-      const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
-      console.log('Usuário autenticado:', userCredential.user);
-      router.push('/');
-    } catch (error) {
-      console.error(error);
-      switch (error.code) {
-        case 'auth/user-not-found':
-          errMsg.value = 'Usuário não encontrado.';
-          break;
-        case 'auth/wrong-password':
-          errMsg.value = 'Senha incorreta.';
-          break;
-        case 'auth/invalid-email':
-          errMsg.value = 'Email inválido.';
-          break;
-        default:
-          errMsg.value = 'Ocorreu um erro durante o login.';
-      }
-    }
-  };
-
-  // Function to sign in with Google
-  const signInwithGoogle = async () => {
-    errMsg.value = ''; // clear previous error messages
-
-    try {
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      console.log('Usuário autenticado com Google:', result.user);
-      router.push('/');
-    } catch (error) {
-      console.error(error);
-      errMsg.value = 'Erro ao fazer login com Google.';
-    }
-  };
-
-  // Function to reset password
-  const resetPassword = async () => {
-    errMsg.value = ''; // clear previous error messages
-
-    if (!email.value) {
-      errMsg.value = 'Por favor, insira seu email para redefinir a senha.';
-      return;
-    }
-
-    if (!validateEmail(email.value)) {
-      errMsg.value = 'Por favor, insira um email válido.';
-      return;
-    }
-
-    try {
-      const auth = getAuth();
-      await sendPasswordResetEmail(auth, email.value);
-      errMsg.value = 'Foi enviado um email para redefinir sua senha. Acesse o link de lá!';
-    } catch (error) {
-      console.error(error);
-      switch (error.code) {
-        case 'auth/user-not-found':
-          errMsg.value = 'Usuário não encontrado.';
-          break;
-        case 'auth/invalid-email':
-          errMsg.value = 'Email inválido.';
-          break;
-        default:
-          errMsg.value = 'Erro ao enviar email de redefinição de senha.';
-      }
-    }
-  };
-
-  // Aux function to validate email
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  };
+// Aux function to validate email
+const validateEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+};
 </script>
 
 <template>
   <div class="form-container">
+
     <div class="imgLogin">
       <img :src="loginImagem" alt="Apresentação" />
     </div>
 
     <form class="loginForm" @submit.prevent="signIn">
+    
       <div class="textoLogin">
         <span class="text">Login</span>
         <span class="subtext">Olá! Seja bem vindo!</span>
       </div>
 
       <div class="container">
+
         <label for="email"><b>Email</b></label>
         <input
           id="email"
@@ -139,29 +147,35 @@
         />
 
         <label for="password"><b>Senha</b></label>
-        <input
-          id="password"
-          type="password"
-          v-model="password"
-          placeholder="Digite sua senha"
-          required
-        />
-        <button
-          type="button"
-          class="textBtn1"
-          @click="resetPassword"
-        >
+        <div class="input-wrapper">
+          <input
+            id="password"
+            :type="showPassword ? 'text' : 'password'"
+            v-model="password"
+            placeholder="Digite sua senha"
+            required
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            @click="togglePasswordVisibility"
+          >
+          <span class="material-icons">
+            {{ showPassword ? 'visibility' : 'visibility_off' }}
+          </span>
+          </button>
+        </div>
+
+        <button type="button" @click="resetPassword" class="reset-password">
           Esqueceu a senha?
         </button>
 
-        <div v-if="errMsg" class="subtext">
+        <div v-if="errMsg" class="error-message">
           {{ errMsg }}
         </div>
 
         <div class="buttons">
-          <button type="submit" class="btn-login">
-            Continuar
-          </button>
+          <button type="submit" class="btn-login">Continuar</button>
           <span class="textBtn2">Ou entre com:</span>
           <button
             type="button"
@@ -185,52 +199,47 @@
 
 /* Main container styling */
 .form-container {
-  display: flex;
-  height: 100vh; 
+  display: flex; 
   max-width: 768px;
 }
 
 /* Stylizing the image to occupy the left side */
 .imgLogin {
   display: flex;
+  flex-direction: row;
   top: 20px;
-  width: 700px;
-  height: 910px;
+  width: 983px;
+  height: auto;
   left: 19px;
-  padding: 2vh 50rem 2vh 2vh;
+  padding: 2vh 120vh 3vh 4vh;
 }
 
 .imgLogin img {
-  height: auto;
-  width: 850px;
+  width: 650px;
 }
 
 /* Styling the form to the right side */
 .loginForm {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
-  object-fit: cover;
-  margin-top: 90px;
+  padding-top: 20vh;
   width: 461px;
-  height: 456px;
+  height: auto;
 }
 
 .textoLogin {
   display: flex;
   flex-direction: column; 
-  align-items: center;        
+  align-items: center;       
 }
 
 /* Login text styling */
 .text {
   font-family: 'General Sans Variable', sans-serif;
   font-size: 47px;
-  font-weight: 600;
-  line-height: 64.8px;
-  letter-spacing: 0.03em;
+  font-weight: 700;
+  letter-spacing: 0.09em;
   text-align: center;
   text-decoration-skip-ink: none;
   color: #245368;
@@ -240,63 +249,88 @@
 .subtext {
   color: #245368; 
   font-size: 18px; 
-  margin: 0; 
+  line-height: 60px;
   font-family: 'Chillax', sans-serif;
   font-weight: 400;
-  margin-top: 5px;
-  line-height: 27px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.09em;
 }
 
 .container {
-  width: 100%;
-  max-width: 461px;
-  height: auto; /* Adjust to avoid restrictions */
-  margin-top: 40px;
-  overflow: visible; /* Ensures that internal elements can be spaced */
-}
-
-.container label {
-  display: block;
-  margin-top: 15px; /* adjusting the distance between the boxes */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Styling Email and Password texts */
+.container label {
+  display: block;
+  padding: 1.7rem 0 0.5rem 0.5rem;
+}
+
 label {
   font-family: 'General Sans Variable', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 21.6px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.07em;
   color: #538094;
 
 }
 
-.container input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-}
-
-.buttons {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-}
-
-/* Style for placeholder text */
+/* Style for placeholder text (caixa para inserir informações */
 input::placeholder {
   font-family: 'General Sans Variable', sans-serif; 
   font-size: 16px; 
-  color: #5d8ea394; 
+  color: #245368; 
   font-weight: 500; 
   letter-spacing: 0.08em; 
   line-height: 21.6px; 
 }
 
+/* Informações inseridas na caixa (email e senha) */
+input:required {
+  font-size: 16px;
+  color: #334f5b;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  width: 100%;
+  padding-right: 40px; /* Espaço para o botão */
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.reset-password {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: #538094;
+  cursor: pointer;
+}
+
+.material-icons {
+  vertical-align: middle;
+  color: #538094;
+}
+
 /* estilo da borda da caixa */
 .container input[type="email"],
-.container input[type="password"] {
+.container input[type="password"],
+.container input[type="text"] {
   width: 100%;
   height: 52.1px;
   padding: 15px 20px;
@@ -307,10 +341,17 @@ input::placeholder {
   background: #ffffff;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  
+}
+
 /* Forgot password styling */
 .textBtn1 {
   width: 461px;
   height: 22px;
+  padding: 20px 0 10px 0;
   font-family: 'General Sans Variable', sans-serif;
   font-size: 16px;
   color: #538094;
@@ -318,14 +359,13 @@ input::placeholder {
   letter-spacing: 0.05em; 
   line-height: 21.6px;
   text-align: center;
-  margin: 25px 25px 25px 0;
-  display: block; /* Ensures that the element respects the spacing */
+  display: block; 
 }
 
 .btn-login {
   width: 461px; 
-  height: 53px; 
-  padding: var(--padding-10) var(--padding-20) var(--padding-10) var(--padding-20); 
+  height: 55px; 
+  padding: 10px;
   border-radius: 16px;
   border: 1px solid #ccdee7;
   background-color: #245368; 
@@ -344,7 +384,7 @@ input::placeholder {
   opacity: 1;
 }
 
-/* Login option styling */
+/* Login option styling  OU ENTRE COM */
 .textBtn2 {
   width: 461px;
   height: 22px;
@@ -355,7 +395,6 @@ input::placeholder {
   letter-spacing: 0.05em; 
   line-height: 21.6px;
   text-align: center;
-  margin: 80px 25px 25px 0;
   display: block; /* Ensures that the element respects the spacing */
   position: absolute;
 }
@@ -372,7 +411,6 @@ input::placeholder {
   background-color: #ffffff; 
   font-family: 'General Sans Variable', sans-serif;
   cursor: pointer;
-  margin-top: 72px;
   white-space: nowrap;
   font-weight: 600;
 }
@@ -381,8 +419,6 @@ input::placeholder {
 .google-icon img {
   width: 24px;
   height: 24px;
-  margin-right: 10px; /* Spacing between icon and text */
-  margin-top: 5px;
 }
 
 /* Button text adjustments */
