@@ -1,9 +1,9 @@
 name: frontend-website
-# Build the documentation whenever there are new commits on the frontend branch
+# Build the documentation whenever there are new commits on the main branch
 on:
   push:
     branches:
-      - frontend # Define que esse workflow só roda para commits na branch frontend
+      - main 
 
 # Security: restrict permissions for CI jobs.
 permissions:
