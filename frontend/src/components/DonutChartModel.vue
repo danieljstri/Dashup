@@ -97,7 +97,7 @@
   }
   .content-container p {
     position: absolute;
-    top: 60%;
+    top: 50%;
     right: 15%;
     transform: translate(-50%, -50%);
     font-size: 24px;

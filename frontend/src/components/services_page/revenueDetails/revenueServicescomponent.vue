@@ -1,25 +1,32 @@
 <template>
+  <div class="comparisionrevenueServices">
     <header class="header">
         <div class="total">
             <h2>TOTAL:</h2>
-            <p>{{ total }}</p>
-            <span>/ receita</span>
-        </div>
-        <comparisionRxE />
+            <aside class="number">
+              <p>{{ total }}</p>
+              <span>/ receita</span> 
+            </aside>
+          </div>
+        <comparisionRxE id="donutchartRxE"/>
     </header>
-    <comparisionBarChart />
+    <comparisionBarChart id="comparisionChart"/>
+    <rankingRevenue id="rankingList"/>
+  </div>
 </template>
   
   <script>
   import { getRevenueAnesthesiaData, getRevenueData, getRevenueConsultationData, getRevenueExamsData, getExpensesData } from '@/services/dataService';
   import comparisionRxE from './comparisionDonutRxE.vue';
   import comparisionBarChart from './comparisionBarChart.vue';
+  import rankingRevenue from './rankingRevenue.vue';
 
   export default {
     name: 'comparisionrevenueServices',
     components: {
       comparisionRxE,
       comparisionBarChart,
+      rankingRevenue,
     },
     data() {
       return {
@@ -59,22 +66,33 @@
   </script>
 
 <style>
+.comparisionrevenueServices {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .header {
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  height: 20%;
 }
 
 .total {
+  font-family: 'Chillax', sans-serif;
     width: 50%;
-    gap: 30px;
     display: flex;
     text-align: left;
     justify-content: left;
     align-items: center;
+    gap: 36px;
 }  
+.number {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 .total h2 {
     font-size: 18px;
     font-weight: 400;
@@ -102,4 +120,12 @@
     text-decoration-skip-ink: none;
     color: rgba(83, 128, 148, 1)
 }
+#donutchartRxE {
+  width: 20%;
+}
+#comparisionChart {
+  height: 50%;
+}
+
+
 </style>

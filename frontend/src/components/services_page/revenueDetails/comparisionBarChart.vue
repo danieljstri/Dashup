@@ -10,7 +10,6 @@
 <script>
 import HistogramModel from "@/components/HistogramModel.vue";
 import { getRevenueAnesthesiaData, getRevenueConsultationData, getRevenueExamsData, getRevenueData } from "@/services/dataService";
-import { max } from "d3";
 
 export default {
   name: "comparisionBarChart",
@@ -59,10 +58,31 @@ export default {
         indexAxis: "y", // Gráfico horizontal
         responsive: true,
         maintainAspectRatio: false,
+        plugins: {
+          legend: {
+          display: false,
+          position: "top",
+          labels: {
+            font: {
+              fontColor:" #538094",
+            },
+          },
+        },
+      },
         scales: {
           x: {
             grid: {
               display: false,
+            },
+            title: {
+              display: true,
+              text: "Receita",
+              align: "start",
+              font: {
+                family: "Chillax",
+                weight: "bold",
+                size: 17,
+              },
             },
           max: revenueValue,
           ticks: {
@@ -80,14 +100,19 @@ export default {
             grid: {
               display: false,
             },
-          },
+            title: {
+              display: true,
+              text: "Serviços",
+              align: "start",
+              font: {
+                family: "Chillax",
+                weight: "bold",
+                size: 17,
+              },
+            },
         },
-        plugins: {
-          legend: {
-            display: false,
-          },
-        },
-    };
+    },
+  };
     } catch (error) {
       console.error("Error fetching revenue data:", error);
     }
