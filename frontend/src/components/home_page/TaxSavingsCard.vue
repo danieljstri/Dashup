@@ -1,29 +1,61 @@
 <template>
 <div class="tax-savings-component">
         <div class="header">
-            <p class="tax-saving">R$ 2.148,67</p>
+            <p class="tax-saving">{{ taxSaving }}</p>
             <p class="title">Economia Medup</p>
 
         </div>
         <div class="progress-container">
             <div class="progress-marker-first"></div>
-            <div class="progress-bar-green" style="width: 15%;"></div>
+            <div class="progress-bar-green" style="width: 20%;"></div>
             <div class="progress-marker-second"></div>
-            <div class="progress-bar-blue" style="width: 85%;"></div>
+            <div class="progress-bar-blue" style="width: 80%;"></div>
         </div>
         <div class="bottom">
             <div>
-                <p class="tax-percent-saving">9,8</p>
+                <p class="tax-percent-saving">{{ taxPercentSaving }}</p>
                 <p class="tax-percent-saving-subtitle">de redução de impostos</p>
             </div>
             <div>
-                <p class="tax-total">R$ 80.148,67</p>
+                <p class="tax-total">{{ taxTotal }}</p>
                 <p class="tax-total-subtitle">Total de Imposto</p>
             </div>
 
         </div>
     </div>
 </template>
+<script>
+import { ref, onMounted } from 'vue';
+import { } from '../../services/dataService';
+export default {
+    name: 'TaxSavingsCard',
+    setup() {
+        const taxSaving = ref(0);
+        const taxTotal = ref(0);
+        const taxPercentSaving = ref(0);
+
+        const fetchData = () => {
+            try {
+                taxSaving.value = 1000;
+                taxTotal.value = 5000;
+                taxPercentSaving.value = 20;
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        onMounted(() => {
+            fetchData();
+        });
+
+        return {
+            taxSaving,
+            taxTotal,
+            taxPercentSaving,
+        };
+    },
+};
+</script>
 
 <style lang="scss" scoped>
 
