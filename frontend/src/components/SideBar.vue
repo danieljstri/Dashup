@@ -137,19 +137,6 @@ aside {
         flex: 1 1 0%;
     }
 
-    
-    /*ajuste da imagem da Logo*/
-   /* .logo img {
-        position: absolute;
-        align-items: center;
-        height: auto;
-        width: 155px;
-        transition: 0.3s ease-in-out;
-        margin-left: 2.5rem;
-        padding-bottom: 40vh;
-
-    } */
-
     /*Parametros globais para os botões da sidebar*/
     .button .text {
         opacity: 0; /*esconder o texto do botão quando a sidebar é recolhida*/
