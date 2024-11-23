@@ -616,7 +616,7 @@ class CompanyData:
         with open(self.csv_file_path, 'r') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                row['receita_bruta'] = float(row['receita_bruta'])
+                row['receita_bruta'] = float(row['receita_bruta'].replace(',', '.'))
                 data.append(row)
         return data
 

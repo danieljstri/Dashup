@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 PATH = './app/fluxo.csv'
-COMPANY_DATA_PATH = './app/empresas.csv'
+COMPANY_DATA_PATH = './app/sittax_data.csv'
 
 data = Data(PATH)
 company_data = CompanyData(COMPANY_DATA_PATH)
