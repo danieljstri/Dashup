@@ -26,7 +26,8 @@
 </template>
 <script>
 import { ref, onMounted } from 'vue';
-import { } from '../../services/dataService';
+import { getEconomicCompanieData } from '../../services/dataService';
+
 export default {
     name: 'TaxSavingsCard',
     setup() {
@@ -34,8 +35,10 @@ export default {
         const taxTotal = ref(0);
         const taxPercentSaving = ref(0);
 
-        const fetchData = () => {
+        const fetchData = async () => {
             try {
+                const economicData = await getEconomicCompanieData('DRA ISABELLY DE MORAIS LTDA');
+                console.log(economicData);
                 taxSaving.value = 1000;
                 taxTotal.value = 5000;
                 taxPercentSaving.value = 20;
