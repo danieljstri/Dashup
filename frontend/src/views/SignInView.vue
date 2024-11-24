@@ -176,7 +176,7 @@ const validateEmail = (email) => {
 
         <div class="buttons">
           <button type="submit" class="btn-login">Continuar</button>
-          <span class="textBtn2">Ou entre com:</span>
+          <span class="optionLogin">Ou entre com:</span>
           <button
             type="button"
             class="btn-google"
@@ -246,7 +246,6 @@ const validateEmail = (email) => {
     padding: 40px;
   }
 }
-
 
 .textoLogin {
   display: flex;
@@ -322,7 +321,6 @@ input:required {
 
 input {
   width: 100%;
-  
 }
 
 .toggle-password {
@@ -332,14 +330,6 @@ input {
   border: none;
   cursor: pointer;
   font-size: 1.2em;
-}
-
-.reset-password {
-  margin-top: 10px;
-  background: none;
-  border: none;
-  color: #538094;
-  cursor: pointer;
 }
 
 .material-icons {
@@ -361,26 +351,27 @@ input {
   background: #ffffff;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: column;
-  
-}
-
-/* Forgot password styling */
-.textBtn1 {
-  width: 461px;
-  height: 22px;
-  padding: 20px 0 10px 0;
+.reset-password {
   font-family: 'General Sans Variable', sans-serif;
   font-size: 16px;
   color: #538094;
   font-weight: 500; 
   letter-spacing: 0.05em; 
-  line-height: 21.6px;
+  padding: 15px;
+  line-height: 21.5px;
   text-align: center;
-  display: block; 
+  display: block;
+  background: none;
+  border: none;
+  color: #538094;
+  cursor: pointer;
 }
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .btn-login {
   width: 461px; 
@@ -394,7 +385,8 @@ input {
   font-weight: 500; 
   font-size: 16px; 
   text-align: center; 
-  line-height: 22.4px; 
+  line-height: 21px; 
+  letter-spacing: 0.09em;
   cursor: pointer; 
   transition: background-color 0.3s ease; 
 }
@@ -405,9 +397,7 @@ input {
 }
 
 /* Login option styling */
-.textBtn2 {
-  width: 461px;
-  height: 22px;
+.optionLogin {
   font-family: 'Chillax', sans-serif;
   font-size: 16px;
   color: #538094;
@@ -416,7 +406,7 @@ input {
   line-height: 21.6px;
   text-align: center;
   display: block; /* Ensures that the element respects the spacing */
-  position: absolute;
+  padding: 20px;
 }
 
 /* Styling the Login with Google option */
@@ -439,6 +429,7 @@ input {
 .google-icon img {
   width: 24px;
   height: 24px;
+  margin-right: 10px;
 }
 
 /* Button text adjustments */
@@ -446,8 +437,14 @@ input {
   line-height: 1; /* Align the text with the icon */
   font-size: 16px;
   color: #111216;
-  letter-spacing: 0.05em; 
+  letter-spacing: 0.07em; 
   line-height: 21.4px;
+}
+
+.google-content:hover {
+  background-color: #47ff2f35;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
 }
 
 /* Change styles for span and cancel button on extra small screens */
