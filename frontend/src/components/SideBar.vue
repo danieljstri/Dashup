@@ -74,15 +74,15 @@
                   <router-link to="/services" class="button" :class="{ active: selectedButton === 'profit-chart' }"
                       @click="setActiveButton('profit-chart')">
                       <span class="material-icons">bar_chart</span>
-                      <span class="text">GRÁFICO DO LUCRO</span>
+                      <span class="text">SERVIÇOS</span>
                   </router-link>
   
-                <!--div para o botão relacionado ao Lucro Geral-->
+                <!-- div para o botão relacionado ao Lucro Geral
                   <router-link to="/economia" class="button" :class="{ active: selectedButton === 'economy-chart' }"
                       @click="setActiveButton('economy-chart')">
                       <span class="material-icons">bar_chart</span>
                       <span class="text">GRÁFICO DE ECONOMIA</span>
-                  </router-link>
+                  </router-link> -->
               </div>
   
               <div class="frameInferior">
@@ -104,9 +104,7 @@
   
               </div>
 
-            <!--div para definir a posição dos elementos dentro do espaço na SideBar-->
         </aside>
-        <main :class="{ 'main-expanded': is_expanded }"></main>
     </div>
 </template>
 
@@ -127,15 +125,12 @@ aside {
     min-height: 100vh;
     max-width: 768px;
     padding: 1rem;
-    transition: width 0.2s ease-in-out; /* Transição suave para largura */
-    position: fixed;
+    transition: width 0.2s ease-in-out; 
+    // position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
-
-    .flex {
-        flex: 1 1 0%;
-    }
+    
 
     /*Parametros globais para os botões da sidebar*/
     .button .text {
@@ -174,7 +169,7 @@ aside {
                 line-height: 15px;
                 opacity: 0;
                 transition: opacity 0.2s ease-in-out;
-                white-space: nowrap; /* Evita quebra de texto */
+                white-space: nowrap; 
                 letter-spacing: 0.05em;
                 
             }
@@ -186,7 +181,7 @@ aside {
     .menu-toggle-wrap {
         display: flex;
         justify-content: flex-start;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
         margin-top: 0rem;
         
         button {
@@ -211,8 +206,8 @@ aside {
             height: auto;
             width: 100%;
             max-width: 170px;
-            left: 3.2rem;
-            top: 0.2rem;
+            left: 2.7rem;
+            top: 0.3rem;
         }
     }
 
