@@ -24,14 +24,14 @@ import servicesDetails from '@/components/services_page/servicesDetails.vue';
 </template>
 
 <style>
-@import url('https://fonts.cdnfonts.com/css/chillax');
+/* @import url('https://fonts.cdnfonts.com/css/chillax'); */
 
 .header-page {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 86px;
-    padding: 30px 20px;
+    padding: 5px 20px;
     height: fit-content;
 }
 
@@ -41,7 +41,6 @@ import servicesDetails from '@/components/services_page/servicesDetails.vue';
   font-weight: 500;
   line-height: 37.95px;
   text-align: left;
-  text-underline-position: from-font;
   text-decoration-skip-ink: none;
   color: #245368;
 }

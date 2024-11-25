@@ -65,5 +65,10 @@
     max-height: 100%;
     background: white;
   }
+
+  .barra-botoes {
+    display: flex;
+    gap: 20px;
+  }
   </style>
   
