@@ -84,7 +84,7 @@
 </template>
 
 <style>
-  @import url('https://fonts.cdnfonts.com/css/chillax');
+  
   * { 
     padding: 0;
     margin: 0;
