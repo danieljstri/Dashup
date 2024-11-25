@@ -13,7 +13,7 @@ const toggleSidebar = () => {
 
 <template>
   <!-- Renderiza a estrutura somente se a rota não for SignIn -->
-  <div v-if="route.name !== 'SignIn'" class="app">
+  <div v-if="route.name !== 'SignIn' && route.name !== 'Register'" class="app">
     <!-- Sidebar -->
     <SideBar
       :class="{ expanded: isSidebarExpanded, collapsed: !isSidebarExpanded }"
@@ -25,7 +25,7 @@ const toggleSidebar = () => {
     </main>
   </div>
 
-  <!-- Renderiza apenas o RouterView se a rota for SignIn -->
+  <!-- Renderiza apenas o RouterView se a rota for SignIn e Register -->
   <div v-else>
     <RouterView />
   </div>
