@@ -261,7 +261,7 @@ const validateEmail = (email) => {
 /* Login text styling */
 .text {
   font-family: 'General Sans Variable', sans-serif;
-  font-size: 47px;
+  font-size: 40px;
   font-weight: 700;
   letter-spacing: 0.09em;
   text-align: center;
@@ -273,7 +273,7 @@ const validateEmail = (email) => {
 .subtext {
   color: #245368; 
   font-size: 18px; 
-  line-height: 60px;
+  line-height: 40px;
   font-family: 'Chillax', sans-serif;
   font-weight: 400;
   letter-spacing: 0.09em;
@@ -288,7 +288,6 @@ const validateEmail = (email) => {
 .container label {
   display: block;
   padding: 1.7rem 0 0.5rem 0.5rem;
-  font-family: 'General Sans Variable', sans-serif;
 }
 
 label {
@@ -426,7 +425,6 @@ input {
   border-radius: 16px;
   border: 1px solid #ccdee7;
   background-color: #ffffff; 
-  font-family: 'General Sans Variable', sans-serif;
   cursor: pointer;
   white-space: nowrap;
   font-weight: 600;
@@ -501,3 +499,4 @@ input {
   }
 }
 </style>
+

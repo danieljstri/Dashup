@@ -210,7 +210,7 @@ const togglePasswordVisibility = () => {
 .subtext {
   color: #245368; 
   font-size: 18px; 
-  line-height: 25.2px;
+  line-height: 40px;
   font-family: 'Chillax', sans-serif;
   font-weight: 400;
   letter-spacing: 0.05em;
