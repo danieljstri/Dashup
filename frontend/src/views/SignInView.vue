@@ -186,10 +186,14 @@ const validateEmail = (email) => {
               <div class="google-icon">
                 <img :src="googleLogo" alt="Google logo" />
               </div>
-              <span class="google-text">Login com Google</span>
+              <span class="google-text">Entre com o Google</span>
             </div>
           </button>
         </div>
+        <p class="account-text">
+          Não tem conta? 
+          <router-link to="/register" class="register-link">Inscreva-se</router-link>
+        </p>
       </div>
     </form>
   </div>
@@ -226,7 +230,8 @@ const validateEmail = (email) => {
 @media screen and (min-width: 768px) {
   .form-container {
     flex-direction: row; 
-    gap: 5rem;         
+    gap: 5rem;
+    background: linear-gradient(180deg, rgba(221, 232, 238, 0.5) 48.5%, rgba(222, 230, 234, 0.5) 100%);         
   }
 
   .imgLogin {
@@ -283,6 +288,7 @@ const validateEmail = (email) => {
 .container label {
   display: block;
   padding: 1.7rem 0 0.5rem 0.5rem;
+  font-family: 'General Sans Variable', sans-serif;
 }
 
 label {
@@ -297,7 +303,7 @@ label {
 
 /* Style for placeholder text */
 input::placeholder {
-  font-family: 'General Sans Variable', sans-serif; 
+  font-family: 'General Sans Variable', sans-serif;
   font-size: 16px; 
   color: #245368; 
   font-weight: 500; 
@@ -311,6 +317,7 @@ input:required {
   color: #334f5b;
   font-weight: 500;
   letter-spacing: 0.08em;
+  font-family: 'General Sans Variable', sans-serif;
 }
 
 .input-wrapper {
@@ -435,16 +442,52 @@ input {
 /* Button text adjustments */
 .google-text {
   line-height: 1; /* Align the text with the icon */
+  color: #111216; 
+  font-family: 'General Sans Variable', sans-serif;
   font-size: 16px;
-  color: #111216;
-  letter-spacing: 0.07em; 
-  line-height: 21.4px;
+  font-weight: 500;
+  line-height: 22.4px;
+  letter-spacing: 0.05em;
+  text-align: left;
+  text-decoration-skip-ink: none;
+
 }
 
 .google-content:hover {
-  background-color: #47ff2f35;
+  background-color: #f4fef4d1;
   transition: all 0.2s ease-in-out;
   opacity: 1;
+}
+
+/* Estilo para o texto "Não tem conta?" */
+.account-text {
+  font-family: 'Chillax', sans-serif;
+  font-size: 14px;
+  color: #245368;
+  font-weight: 400; 
+  letter-spacing: 0.03em; 
+  line-height: 19.6px;
+  padding-top: 1rem;
+  text-align: center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 0.5rem;
+}
+
+/* Estilo para o link "Inscreva-se" */
+.register-link {
+  font-family: 'General Sans Variable', sans-serif;
+  color: #245368;
+  font-size: 14px;
+  font-weight: 400; 
+  letter-spacing: 0.03em; 
+  line-height: 19.6px;
+  text-decoration: underline solid;
+  text-align: center;
+  text-underline-offset: 19%;
+  text-decoration-thickness: 7.5%;
+  text-decoration-skip-ink: auto;
 }
 
 /* Change styles for span and cancel button on extra small screens */
