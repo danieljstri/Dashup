@@ -2,7 +2,7 @@
     <div class="content">
     <section class="title">
         <img src="../../../../public/kid_star.png">
-        <h1>Ranking dos serviços <b>mais lucrativos</b></h1>
+        <h1>Ranking dos serviços <b>mais custosos</b></h1>
     </section>
     <section class="ranking">
         <div class="ranking-item">

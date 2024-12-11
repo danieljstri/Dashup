@@ -122,8 +122,7 @@ aside {
     margin: 0rem 0.5rem 0.5rem 0rem;
     background-color: #245269;
     width: calc(2rem + 32px);
-    min-height: 100vh;
-    max-width: 768px;
+    height: 100vh;
     padding: 1rem;
     transition: width 0.2s ease-in-out; 
     // position: fixed;
@@ -131,7 +130,6 @@ aside {
     left: 0;
     z-index: 1;
     
-
     /*Parametros globais para os botões da sidebar*/
     .button .text {
         opacity: 0; /*esconder o texto do botão quando a sidebar é recolhida*/

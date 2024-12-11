@@ -1,12 +1,13 @@
 <template>
   <div class="valuable-product-card">
+    <div class="wrapper">  
       <img :src="image" id="logo-valor"/>
-      <h4>{{ chartTitle }}</h4>
-    <footer class="footer">
-      <p> Receita: {{ revenue_valuable_product }}</p>
-      <router-link to="/services" class="button-detalhes">Ver Detalhes</router-link>
-    </footer>
-    
+        <h4>{{ chartTitle }}</h4>
+      <footer class="footer">
+        <p> Receita: {{ revenue_valuable_product }}</p>
+        <router-link to="/services" class="button-detalhes">Ver Detalhes</router-link>
+      </footer>
+    </div>
   </div>
 </template>
 
@@ -47,7 +48,7 @@ export default {
         } else {
           product = 'Exames';
         }
-        chartTitle.value = `Produto mais rentável no Mês de ${props.selectedMonth} foi ${product}`;
+        chartTitle.value = `Produto mais valioso em ${props.selectedMonth}: ${product}`;
         revenue_valuable_product.value = `R$${maior}`;
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -76,15 +77,20 @@ export default {
 </script>
 <style>
 .valuable-product-card {
-  min-width: 350px;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   padding: 20px;
   border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
 }
+.wrapper {
+  display: inline-block;
+}
 
-.valuable-product-card h4 {
+.wrapper h4 {
   margin: 0;
   color: #1a202c;
   font-size: 1.2em;
@@ -124,9 +130,9 @@ export default {
 }
 
 .footer p {
-  width: 100%;
+  width: 30%;
   padding: 1rem 0 0 0;
-  font-size: 2.0rem;
+  font-size: 1.5rem;
   color: #1a202c;
   text-align: left;
 }

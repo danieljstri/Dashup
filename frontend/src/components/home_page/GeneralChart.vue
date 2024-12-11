@@ -120,15 +120,13 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, LinearScale,
   
   <style scoped>
   .semester-revenue-chart {
-    height: 100%;
+    height: fit-content;
     max-height: 525px;
     padding: 0;
     margin: 0;
   }
   .chart-container {
   padding: 20px;
-  width: 100%;
-  height: 100%;
   border-radius: 16px;
   background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
@@ -142,7 +140,7 @@ ChartJS.register(Title, Tooltip, Legend, LineElement, PointElement, LinearScale,
 
  #chart-canva {
   width: 100%;
-  height: 100%;
+  height: fit-content;
   padding: 20px;
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <DonutChartModel
+  <DonutChartModel id="donutchartRxE"
   :chartData="chartData"
   :chartOptions="chartOptions"
   :title="title"
@@ -42,7 +42,7 @@ export default {
           datasets: [
             {
               data: [totalExpenses, revenueValue],
-              backgroundColor: ['#E3E3E3','#FDC687'],
+              backgroundColor: ['#FDC687','#42b989'],
               hoverBackgroundColor: ['#42b989','#fc9e56'],
               borderRadius: 10,
               spacing: 2,

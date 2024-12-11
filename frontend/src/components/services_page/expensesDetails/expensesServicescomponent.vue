@@ -73,7 +73,7 @@
     text-align: left;
     justify-content: left;
     align-items: center;
-    gap: 36px;
+    gap: 10px;
 }  
 .number {
   display: flex;
@@ -108,7 +108,7 @@
     color: rgba(83, 128, 148, 1)
 }
 #donutchartRxE {
-  width: 20%;
+  width: fit-content;
 }
 #comparisionChart {
   height: 50%;
