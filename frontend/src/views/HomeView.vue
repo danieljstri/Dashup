@@ -10,20 +10,25 @@
   import TaxSavingsCard from '@/components/home_page/TaxSavingsCard.vue';
 
   const months = [
-    { month: "Janeiro / 2024", value: "janeiro" },
-    { month: "Fevereiro / 2024", value: "fevereiro" },
-    { month: "Março / 2024", value: "março" },
-    { month: "Abril / 2024", value: "abril" },
-    { month: "Maio / 2024", value: "maio" },
-    { month: "Junho / 2024", value: "junho" },
-    { month: "Julho / 2024", value: "julho" },
-    { month: "Agosto / 2024", value: "agosto" },
-    { month: "Setembro / 2024", value: "setembro" },
-    { month: "Outubro / 2024", value: "outubro" },
-    { month: "Novembro / 2024", value: "novembro" },
-    { month: "Dezembro / 2024", value: "dezembro" },
+    { month: "Janeiro", value: "janeiro" },
+    { month: "Fevereiro", value: "fevereiro" },
+    { month: "Março", value: "marco" },
+    { month: "Abril", value: "abril" },
+    { month: "Maio", value: "maio" },
+    { month: "Junho", value: "junho" },
+    { month: "Julho", value: "julho" },
+    { month: "Agosto", value: "agosto" },
+    { month: "Setembro", value: "setembro" },
+    { month: "Outubro", value: "outubro" },
+    { month: "Novembro", value: "novembro" },
+    { month: "Dezembro", value: "dezembro" },
   ];
 
+  const years = [
+    { year: "2022", value: 2022 },
+    { year: "2023", value: 2023 },
+    { year: "2024", value: 2024 },
+  ];
 
   export default {
     components: {
@@ -38,14 +43,23 @@
     },
     setup() {
       const selectedMonth = ref('janeiro');
+      const selectedYear = ref('2024');
 
       const changeMonth = (month) => {
         selectedMonth.value = month;
       };
+      
+      const changeYear = (year) => {
+        selectedYear.value = year;
+      };
+
       return {
         months,
+        years,
         selectedMonth,
+        selectedYear,
         changeMonth,
+        changeYear,
       };
     },
   };
@@ -58,11 +72,18 @@
         <h3>Bem vindo!</h3>
         <h4>Aqui está um resumo da saúde financeira do seu empreendimento.</h4>
       </div>
-      <select v-model="selectedMonth" id="month-selector">
-        <option v-for="month in months" :value="month.value">
-          {{ month.month }}
-        </option>
-      </select>
+      <div class="date-selectors">
+        <select v-model="selectedYear" id="year-selector">
+          <option v-for="year in years" :value="year.value">
+            {{ year.year }}
+          </option>
+        </select>
+        <select v-model="selectedMonth" id="month-selector">
+          <option v-for="month in months" :value="month.value">
+            {{ month.month }}
+          </option>
+        </select>
+      </div>
     </section>
     <!-- Month Selector -->
     <content class="body-content">
@@ -157,5 +178,20 @@
       gap: 16px;
   }
 
+  .date-selectors {
+    display: flex;
+    gap: 8px;
+  }
+  #year-selector, #month-selector {
+    margin-top: 15px;
+    padding: 5px;
+    font-size: 16px;
+    font-family: 'Chillax', sans-serif;
+    font-weight: 500;
+    border-radius: 8px;
+    border: 1px solid #CCDEE7;
+    background-color: #ffffff;
+    color:  #245368;
+  }
 
 </style>
