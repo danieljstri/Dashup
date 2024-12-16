@@ -38,3 +38,5 @@ frontend/.vscode
 .venv
 
 backend/bot/.env
+backend/client_secrets.json
+backend/fluxo.csv
