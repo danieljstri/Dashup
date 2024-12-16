@@ -42,6 +42,15 @@
   .componente-principal {
     margin: 0;
   }
+  .revenue, .expenses, .profit {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: #f0f0f0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #245368;
+  }
   
   .revenue:hover {
     background: linear-gradient(180deg, rgba(130, 149, 157, 0.1) 0%, rgba(71, 164, 206, 0.02) 50.5%);
@@ -61,7 +70,7 @@
   }
   .conteudo {
     border-radius: 16px;
-    padding: 20px 60px;
+    padding: 20px;
     max-height: 100%;
     background: white;
   }

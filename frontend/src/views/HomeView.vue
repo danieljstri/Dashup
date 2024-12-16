@@ -72,7 +72,7 @@
           <ExpensesCard :selectedMonth="selectedMonth"/>
           <RevenueCard :selectedMonth="selectedMonth"/>
         </div>
-        <ProfitChart :selectedMonth="selectedMonth"/>
+        <ProfitChart :selectedMonth="selectedMonth" id="general-chart"/>
       </section>
       <section class="control-data">
         <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
@@ -131,7 +131,6 @@
     gap: 16px;
     width: 100%;
     height: 100%;
-    max-height: 1000px;
     margin: 0;
     padding: 0;
   }
@@ -140,31 +139,23 @@
       display: block;
       gap: 16px;
       width:80%;
+      height: 70%;
   }
   .cards {
       display: flex;
+      flex-direction: row;
       gap: 16px;
       margin-bottom: 16px;
       justify-content: space-between;
   }
 
   .control-data {
+    margin: 0;
       display: flex;
       flex-direction: column;
-      width: 13%;
-      height: fit-content;
+      width: 18.5%;
       gap: 16px;
   }
 
-
-  @media (max-width: 768px) {
-    .body-content {
-      flex-direction: column;
-    }
-
-    .content {
-      margin-left: var(--sidebar-width); /* Considerar apenas o espaço colapsado */
-    }
-  }
 
 </style>

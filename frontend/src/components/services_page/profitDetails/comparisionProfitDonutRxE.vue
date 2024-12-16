@@ -63,7 +63,7 @@ export default {
             },
         };
 
-        this.title = 'Receita / Despesa';
+        this.title = 'Lucro / Despesa';
         this.percentage = (((fixedexpensesValue + variableexpensesValue) / revenueValue) * 100).toFixed(0);
         console.log(this.percentage);
         this.percentageColor = '#62B1D4';

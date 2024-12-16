@@ -17,7 +17,6 @@ import servicesDetails from '@/components/services_page/servicesDetails.vue';
           <strategicAnesthesiaCard />
           <strategicConsultationCard />
           <strategicAnesthesiaCard />
-
       </div>
     </section>
   </div>

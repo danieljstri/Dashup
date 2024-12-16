@@ -91,12 +91,10 @@
   }
 
   .content-container h3 {
-    font-size: 16px;
+    display: flex;
     font-weight: 400;
     line-height: 19.2px;
     text-align: center;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
     color: rgba(36, 83, 104, 1);
   }
   .content-container p {
