@@ -54,7 +54,7 @@ export default {
         growthPercentage.value = (
           ((revenue.value - previousResponse.value) / previousResponse.value) *
           100
-        ).toFixed(1);
+        );
       } catch (error) {
         console.error('Error fetching revenue data:', error);
       }

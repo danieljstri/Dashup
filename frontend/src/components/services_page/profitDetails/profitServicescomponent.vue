@@ -40,7 +40,7 @@
         const ProfitData = await getProfitData('janeiro');
         const ProfitValue = ProfitData.value;
 
-        this.total = ProfitValue
+        this.total = Intl.NumberFormat('pt-BR', { style: 'currency', currency:'BRL'}).format(ProfitValue)
       } catch (error) {
         console.error('Error fetching Profit data:', error);
       }

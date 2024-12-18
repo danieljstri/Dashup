@@ -40,7 +40,7 @@
         const ExpensesData = await getExpensesData('janeiro');
         const ExpensesValue = ExpensesData.value;
 
-        this.total = ExpensesValue
+        this.total = Intl.NumberFormat('pt-BR', { style: 'currency', currency:'BRL'}).format(ExpensesValue)
       } catch (error) {
         console.error('Error fetching Expenses data:', error);
       }

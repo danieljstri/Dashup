@@ -285,7 +285,7 @@ aside {
     }
 
     @media (max-width: 768px) {
-        width: var(--sidebar-width);
+        width: var(--sidebar-width-col);
         position: fixed;
         z-index: 99;
     }

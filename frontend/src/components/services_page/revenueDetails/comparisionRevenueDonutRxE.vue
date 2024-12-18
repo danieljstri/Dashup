@@ -9,7 +9,7 @@
 
 <script>
 import DonutChartModel from '../../DonutChartModel.vue';
-import { getMarkupAnesthesiaData } from '../../../services/dataService';
+import { getRevenueData, getExpensesData } from '../../../services/dataService';
 
 
 
@@ -33,16 +33,18 @@ export default {
   },
     async mounted() {
       try {
-        const dataMarkup = await getMarkupAnesthesiaData('janeiro')
-        const revenueValue = parseFloat(dataMarkup.value[2])
-        const fixedexpensesValue = parseFloat(dataMarkup.value[0].toFixed(1))
-        const variableexpensesValue = parseFloat(dataMarkup.value[1].toFixed(1))
-        const totalExpenses = fixedexpensesValue + variableexpensesValue
+        const revenueData = await getRevenueData();
+        const expensesData = await getExpensesData();
+
+        const revenueValue = revenueData.value;
+        const expensesValue = expensesData.value;
+
+        const revenuepercentage = ((expensesValue / revenueValue) * 100).toFixed(0);
         // Dados para o gráfico
         this.chartData = {
           datasets: [
             {
-              data: [totalExpenses, revenueValue],
+              data: [revenuepercentage, 100 - revenuepercentage],
               backgroundColor: ['#FDC687','#9ECA94'],
               hoverBackgroundColor: ['#FEA82F','#82C973'],
               borderRadius: 10,
@@ -63,7 +65,7 @@ export default {
             },
         };
         this.title = 'Receita / Despesa';
-        this.percentage = (((fixedexpensesValue + variableexpensesValue) / revenueValue) * 100).toFixed(0);
+        this.percentage = revenuepercentage;
         this.percentageColor = '#3EAA67';
 
         console.log(this.percentage);

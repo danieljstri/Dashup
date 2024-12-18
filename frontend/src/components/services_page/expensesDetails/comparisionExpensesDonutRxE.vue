@@ -9,7 +9,7 @@
 
 <script>
 import DonutChartModel from '../../DonutChartModel.vue';
-import { getMarkupConsultationData } from '../../../services/dataService';
+import { getRevenueData, getExpensesData } from '../../../services/dataService';
 
 
 
@@ -32,16 +32,18 @@ export default {
   },
     async mounted() {
       try {
-        const dataMarkup = await getMarkupConsultationData('janeiro')
-        const revenueValue = parseFloat(dataMarkup.value[2])
-        const fixedexpensesValue = parseFloat(dataMarkup.value[0].toFixed(1))
-        const variableexpensesValue = parseFloat(dataMarkup.value[1].toFixed(1))
-        const totalExpenses = fixedexpensesValue + variableexpensesValue
+        const revenueData = await getRevenueData();
+        const expensesData = await getExpensesData();
+
+        const revenueValue = revenueData.value;
+        const expensesValue = expensesData.value;
+
+        const expensespercentage = ((expensesValue / revenueValue) * 100).toFixed(0);
         // Dados para o gráfico
         this.chartData = {
           datasets: [
             {
-              data: [totalExpenses, revenueValue],
+              data: [expensespercentage, 100 - expensespercentage],
               backgroundColor: ['#FDC687','#42b989'],
               hoverBackgroundColor: ['#42b989','#fc9e56'],
               borderRadius: 10,
@@ -62,7 +64,7 @@ export default {
             },
         };
         this.title = 'Receita / Despesa';
-        this.percentage = (((fixedexpensesValue + variableexpensesValue) / revenueValue) * 100).toFixed(0);
+        this.percentage = expensespercentage;
         console.log(this.percentage);
         this.percentageColor = '#D7985E';
       } catch (error) {

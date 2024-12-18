@@ -54,11 +54,12 @@ export default {
         growthPercentage.value = (
           ((Profit.value - previousResponse.value) / previousResponse.value) *
           100
-        ).toFixed(1);
+        );
       } catch (error) {
         console.error('Error fetching profit data:', error);
       }
     };
+
 
     watch(
       () => props.selectedMonth,

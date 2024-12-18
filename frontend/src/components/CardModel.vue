@@ -3,7 +3,7 @@
     <div class="previous-value" :class="valueDifferenceClass">
       <img :src="image">
       <section :class="growthClass">
-          <span> {{ growthPercentage }}% </span>
+          <span> {{ formattedGrowthPercentage }}</span>
           <span>{{ growthArrow }}</span>
       </section>
     </div>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: 'CardModel',
   props: {
@@ -39,7 +41,10 @@ export default {
   },
   computed: {
     formattedValue() {
-      return `R$ ${this.value.toFixed(2).replace('.', ',')}`;
+      return Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(this.value);
     },
     growthClass() {
       return {
@@ -49,6 +54,9 @@ export default {
     },
     growthArrow() {
       return this.growthPercentage >= 0 ? '↗' : '↘';
+    },
+    formattedGrowthPercentage() {
+      return `${this.growthPercentage.toFixed(1).replace('.', ',')}%`;
     },
   },
 };

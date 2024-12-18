@@ -32,33 +32,17 @@
     data() {
       return {
         total: 0,
-        revenueAnesthesia: 0,
-        revenueConsultation: 0,
-        revenueExams: 0,
-        comparision: 0,
       };
     },
     async mounted() {
       try {
         // Simula a busca de dados de rentabilidade e lucratividade
         const revenueData = await getRevenueData('janeiro');
-        const revenueAnesthesiaData = await getRevenueAnesthesiaData('janeiro');
-        const revenueConsultationData = await getRevenueConsultationData('janeiro');
-        const revenueExamsData = await getRevenueExamsData('janeiro');
-        const expensesData = await getExpensesData('janeiro');
 
         const revenueValue = revenueData.value;
-        const revenueanesthesiaValue = revenueAnesthesiaData.value;
-        const revenueConsultationValue = revenueConsultationData.value;
-        const revenueExamsValue = revenueExamsData.value;
-        const expensesValue = expensesData.value;
 
-        this.total = revenueValue
-        this.revenueAnesthesia = revenueanesthesiaValue
-        this.revenueConsultation = revenueConsultationValue
-        this.revenueExams = revenueExamsValue
+        this.total = Intl.NumberFormat('pt-BR', { style: 'currency', currency:'BRL'}).format(revenueValue)
 
-        this.comparision = ((expensesValue / revenueValue) * 100).toFixed(1);
       } catch (error) {
         console.error('Error fetching revenue data:', error);
       }

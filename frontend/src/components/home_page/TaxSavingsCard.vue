@@ -2,6 +2,10 @@
 <div class="tax-savings-component">
         <div class="header">
             <p class="tax-saving">{{ taxSaving }}</p>
+            <div class="percentage">
+                <p class="tax-percent-saving">{{ taxPercentSaving }}</p>
+                <p class="tax-percent-saving-subtitle">de redução de impostos</p>
+            </div>
             <p class="title">Economia Medup</p>
 
         </div>
@@ -12,10 +16,6 @@
             <div class="progress-bar-blue" :style="{width: (100 - taxPercentSaving) + '%'}"></div>
         </div>
         <div class="bottom">
-            <div>
-                <p class="tax-percent-saving">{{ taxPercentSaving }}</p>
-                <p class="tax-percent-saving-subtitle">de redução de impostos</p>
-            </div>
             <div>
                 <p class="tax-total">{{ taxTotal }}</p>
                 <p class="tax-total-subtitle">Total de Imposto</p>
@@ -47,8 +47,8 @@ export default {
                 
 
                 console.log(economicData);
-                taxSaving.value = TaxSavingMedup;
-                taxTotal.value = TaxWithoutMedup;
+                taxSaving.value = Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(TaxSavingMedup);
+                taxTotal.value = Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(TaxWithoutMedup);
                 taxPercentSaving.value = parseInt(((TaxSavingMedup / TaxWithoutMedup) * 100).toFixed(1));
             } catch (error) {
                 console.log(error);
@@ -175,16 +175,26 @@ p {
 
 .bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
+    text-align: left;
     margin-left: 11px;
     margin-top: 9px;
     height: 54px;
+    width:100%;
+}
+
+.percentage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 
 .tax-percent-saving {
-    font-size: 23.8px;
+    font-size: 30px;
     color: #249E52;
 }
 
