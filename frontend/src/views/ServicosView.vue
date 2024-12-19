@@ -13,7 +13,7 @@ import servicesDetails from '@/components/services_page/servicesDetails.vue';
   <div class="content-container">
     <servicesDetails id="services-component"/>
     <section class="strategic-headlight">
-      <div class="cards">
+      <div class="cards-services">
           <strategicAnesthesiaCard />
           <strategicConsultationCard />
           <strategicAnesthesiaCard />
@@ -79,7 +79,7 @@ import servicesDetails from '@/components/services_page/servicesDetails.vue';
     background: linear-gradient(180deg, rgba(71, 164, 206, 0.01) 0%, rgba(71, 164, 206, 0.05) 10%, rgba(132, 122, 164, 0.05) 44%, rgba(233, 51, 95, 0.05) 100%);
 }
 
-.cards {
+.cards-services {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

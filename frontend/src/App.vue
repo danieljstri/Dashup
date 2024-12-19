@@ -34,7 +34,7 @@ const toggleSidebar = () => {
 <style lang="scss">
 :root {
   --sidebar-width: 240px;
-  --sidebar-width-col: 32px;
+  --sidebar-width-col: 7%;
 }
 
 * {
@@ -64,14 +64,17 @@ button {
     padding: 0.5rem 2rem 0.5rem 0.5rem;
 
     @media (max-width: 1024px) {
-      padding-left: 6rem;
+      padding-left: 2rem;
     }
   }
 }
 
 .main {
   flex: 1;
-  // margin-left: var(--sidebar-width-col);
+  margin-left: var(--sidebar-width-col);
+}
+.isSidebarExpanded + .with-sidebar{
+  margin-left: var(--sidebar-width);
 }
 @media (max-width: 1024px) {
   .main {

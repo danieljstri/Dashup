@@ -76,17 +76,9 @@
                       <span class="material-icons">bar_chart</span>
                       <span class="text">SERVIÇOS</span>
                   </router-link>
-  
-                <!-- div para o botão relacionado ao Lucro Geral
-                  <router-link to="/economia" class="button" :class="{ active: selectedButton === 'economy-chart' }"
-                      @click="setActiveButton('economy-chart')">
-                      <span class="material-icons">bar_chart</span>
-                      <span class="text">GRÁFICO DE ECONOMIA</span>
-                  </router-link> -->
               </div>
   
               <div class="frameInferior">
-  
                    <!--div para o botão de Configurações-->
                   <router-link to="/settings" class="button" :class="{ active: selectedButton === 'settings' }"
                       @click="setActiveButton('settings')">
@@ -95,8 +87,8 @@
                   </router-link>
   
                      <!--Condicional para o botão Sair-->
-                  <button @click="setActiveButton('logout'); handlesignOut()"
-                      v-if="isLoggedIn" class="button"
+                  <button class="btnLogOut" @click="setActiveButton('logout'); handlesignOut()"
+                      v-if="isLoggedIn" 
                       :class="{ active: selectedButton === 'logout' }" >
                       <span class="material-icons">logout</span>
                       <span class="text">SAIR</span>
@@ -125,10 +117,9 @@ aside {
     height: 100vh;
     padding: 1rem;
     transition: width 0.2s ease-in-out; 
-    // position: fixed;
-    top: 0;
-    left: 0;
+    position: fixed;
     z-index: 1;
+
     
     /*Parametros globais para os botões da sidebar*/
     .button .text {
@@ -150,7 +141,7 @@ aside {
             display: flex;
             align-items: center;
             height: 45px; 
-            padding: 0.2rem 0;
+            padding: 0.2rem 0.2rem;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
 
@@ -181,7 +172,7 @@ aside {
         justify-content: flex-start;
         margin-bottom: 3rem;
         margin-top: 0rem;
-        
+        padding-left: 0.2rem;
         button {
             padding: 1.2vh 0 0 0;
         }
@@ -219,7 +210,7 @@ aside {
             position: relative;
             align-items: center;
             height: 40px; 
-            padding: 0.2rem 0;
+            padding: 0.2rem 0.2rem;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
 
@@ -240,6 +231,31 @@ aside {
                 white-space: nowrap; /* Evita quebra de texto */
                 letter-spacing: 0.05em;
                
+            }
+        }
+        .btnLogOut {
+            display: flex;
+            position: relative;
+            align-items: center;
+            height: 40px; 
+            padding: 0.2rem 0.3rem;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+
+            .material-icons {
+                color: #CCDEE7;
+                margin-right: 1rem;
+                transition: margin 0.2s ease-in-out;
+            }
+
+            .text {
+                color: #CCDEE7;
+                font-size: 13px;
+                line-height: 15px;
+                opacity: 0;
+                transition: opacity 0.2s ease-in-out;
+                white-space: nowrap; 
+                letter-spacing: 0.05em;
             }
         }
     }

@@ -4,7 +4,7 @@
   import ExpensesCard from '@/components/home_page/ExpensesCard.vue';
   import RevenueCard from '@/components/home_page/RevenueCard.vue';
   import ProfitChart from '@/components/home_page/GeneralChart.vue';
-  import EconomicChart from '@/components/home_page/EconomicChart.vue';
+  import MedUpMerchan from '@/components/home_page/MedUpMerchan.vue';
   import ValuableProductCard from '@/components/home_page/Valuable-ProductCard.vue';
   import EconomicBar from '@/components/home_page/EconomicBar.vue';
   import TaxSavingsCard from '@/components/home_page/TaxSavingsCard.vue';
@@ -36,7 +36,7 @@
       ExpensesCard,
       RevenueCard,
       ProfitChart,
-      EconomicChart,
+      MedUpMerchan,
       ValuableProductCard,
       EconomicBar,
       TaxSavingsCard
@@ -96,7 +96,7 @@
         <ProfitChart :selectedMonth="selectedMonth" id="general-chart"/>
       </section>
       <section class="control-data">
-        <EconomicChart :selectedMonth="selectedMonth" id="economic-chart"/>
+        <MedUpMerchan id="MerchanMedUp"/>
         <ValuableProductCard :selectedMonth="selectedMonth"/>
       </section>
       <TaxSavingsCard/>
@@ -112,10 +112,8 @@
     
   }
 
-  body {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  main {
+    flex: 1;
   }
   .header {
     display: flex;
@@ -163,19 +161,25 @@
       height: 70%;
   }
   .cards {
-      display: flex;
+      display: inline-flex;
       flex-direction: row;
-      gap: 16px;
+      flex-wrap: wrap;
+      min-width: 100%;
+      width: 100%;
       margin-bottom: 16px;
+      gap: 16px;
       justify-content: space-between;
   }
 
   .control-data {
-    margin: 0;
+      margin: 0;
       display: flex;
       flex-direction: column;
       width: 18.5%;
       gap: 16px;
+  }
+  #MerchanMedUp {
+    height: 100%;
   }
 
   .date-selectors {
@@ -192,6 +196,19 @@
     border: 1px solid #CCDEE7;
     background-color: #ffffff;
     color:  #245368;
+  }
+
+  @media (max-width: 1024px) {
+    .cash-data {
+      width: 100%;
+    }
+    .cards {
+      justify-content: center;
+    }
+    .control-data {
+      width: 100%;
+    }
+    
   }
 
 </style>

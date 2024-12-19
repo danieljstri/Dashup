@@ -65,7 +65,7 @@ export default {
 <style scoped>
   .card-model {
     height: fit-content;
-    width: 33%;
+    width: 32%;
     padding: 20px;
     border-radius: 16px;
     background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
@@ -151,7 +151,6 @@ export default {
   /* Estilos responsivos */
   @media (max-width: 768px) {
     .card-model {
-      display: block;
       max-width: 767px;
       width: 90%;
       height: fit-content;

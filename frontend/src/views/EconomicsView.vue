@@ -1,5 +1,5 @@
 <script>
-  import EconomicChart from '@/components/home_page/EconomicChart.vue';
+  import EconomicChart from '@/components/home_page/MedUpMerchan.vue';
 
   export default {
     components: {
