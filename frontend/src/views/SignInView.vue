@@ -125,7 +125,7 @@ const validateEmail = (email) => {
   <div class="form-container">
 
     <div class="imgLogin">
-      <img :src="loginImagem" alt="Apresentação" />
+      <img :src="loginImagem" alt="Apresentação" width="80%" />
     </div>
 
     <form class="loginForm" @submit.prevent="signIn">
@@ -207,12 +207,12 @@ const validateEmail = (email) => {
   justify-content: center; 
   align-items: center;    
   height: 100vh;          
-  max-width: 100%;                
+  width: 100%;                
   box-sizing: border-box; 
 }
 
 .imgLogin {
-  display: none; 
+  display: none;
 }
 
 .loginForm {
@@ -452,7 +452,7 @@ input {
 }
 
 .google-content:hover {
-  background-color: #f4fef4d1;
+  background-color: #EAEEF0;
   transition: all 0.2s ease-in-out;
   opacity: 1;
 }

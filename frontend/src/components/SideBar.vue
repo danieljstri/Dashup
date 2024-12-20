@@ -47,6 +47,9 @@
 
 <template>
     <div class="app">
+        <div class="toggle-button" @click="ToggleMenu">
+            <span class="material-icons">menu</span>
+        </div>
         <aside :class="`${is_expanded ? 'is-expanded' : ''}`">
 
             <div class="menu">
@@ -61,7 +64,7 @@
                         v-if="is_expanded" 
                         :src="LogoDetalhada" 
                         alt="DashUp" />
-                </div>
+                    </div>
                 
                 <!--div para o botão Visão Geral-->
                   <router-link to="/" class="button" :class="{ active: selectedButton === 'overview' }" 
@@ -119,6 +122,7 @@ aside {
     transition: width 0.2s ease-in-out; 
     position: fixed;
     z-index: 1;
+
 
     
     /*Parametros globais para os botões da sidebar*/
@@ -252,7 +256,8 @@ aside {
                 color: #CCDEE7;
                 font-size: 13px;
                 line-height: 15px;
-                opacity: 0;
+                opacity: 1;
+                font-weight: 500;
                 transition: opacity 0.2s ease-in-out;
                 white-space: nowrap; 
                 letter-spacing: 0.05em;
@@ -299,12 +304,64 @@ aside {
         }
 
     }
+}
 
-    @media (max-width: 768px) {
-        width: var(--sidebar-width-col);
-        position: fixed;
-        z-index: 99;
+.toggle-button {
+    display: flex;
+    position: fixed;
+    align-items: baseline;
+    justify-content: baseline;
+    align-content: baseline;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+    background-color: #245269;
+    border-radius: 100%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    .material-icons {
+        color: #CCDEE7;
     }
+
+    &:hover {
+        background-color: #1a3d4c;
+    }
+}
+
+@media (max-width: 768px) {
+        aside {
+            background: none;
+            transform: translateY(-100%);
+            height: fit-content;
+            width: fit-content;
+            margin: 0;
+            transition: transform 0.3s ease;
+        }
+        .menu-toggle-wrap.logo-expanded {
+            margin-bottom: 1rem;
+        }
+        .menu-toggle-wrap img {
+            display: none;
+        }
+        .is-expanded {
+            transform: translateY(0);
+        }
+        .toggle-button {
+            display: block;
+        }
+        .button {
+            background-color: #245269;
+            opacity: 0.9;
+        }
+        .frameInferior {
+            background-color: #245269;
+            .button {
+                background-color: #245269;
+                opacity: 0.9;
+            }
+        }
 }
 
 .main {

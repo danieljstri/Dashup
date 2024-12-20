@@ -88,6 +88,8 @@ export default {
 }
 .wrapper {
   display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 
 .wrapper h4 {
@@ -135,5 +137,17 @@ export default {
   font-size: 1.5rem;
   color: #1a202c;
   text-align: left;
+}
+
+@media (max-width: 1024px) {
+  .valuable-product-card {
+    height: 100%;
+  }
+  .wrapper h4 {
+    font-size: 1em;
+  }
+  .footer p {
+    font-size: 1.2rem;
+  }
 }
 </style>

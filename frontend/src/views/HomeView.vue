@@ -199,6 +199,9 @@
   }
 
   @media (max-width: 1024px) {
+    main {
+      max-width: 100%;
+    }
     .cash-data {
       width: 100%;
     }

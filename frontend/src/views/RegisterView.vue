@@ -13,6 +13,9 @@
   // Variables that will store the email and password
   const email = ref('');
   const password = ref('');
+  const confirmPassword = ref('');
+  const name = ref('');
+  const passwordMismatch = ref(false);
   const errMsg = ref('');
   const router = useRouter();
   const showPassword = ref(false); // Estado para alternar visibilidade da senha
@@ -24,27 +27,16 @@ const togglePasswordVisibility = () => {
   
   // Function to create a new user
   const register = () => {
+    if (password.value !== confirmPassword.value) {
+      passwordMismatch.value = true;
+    }
+    else {
     createUserWithEmailAndPassword(getAuth(), email.value, password.value)
       .then((data) => {
         console.log('User created', data);
         router.push('/');
-      })
-      .catch((error) => {
-        console.error(error);
-        switch (error.code) {
-          case 'auth/email-already-in-use':
-            errMsg.value = 'Email já está em uso';
-            break;
-          case 'auth/invalid-email':
-            errMsg.value = 'Email inválido';
-            break;
-          case 'auth/weak-password':
-            errMsg.value = 'Senha fraca';
-            break;
-          default:
-            errMsg.value = 'Erro desconhecido';
-        }
       });
+  };
   };
   
   // Function to register with Google
@@ -66,7 +58,7 @@ const togglePasswordVisibility = () => {
   <div class="form-container">
 
     <div class="imgLogin">
-      <img :src="loginImagem" alt="Apresentação" />
+      <img :src="loginImagem" alt="Apresentação" width="80%"/>
     </div>
 
     <form class="loginForm" @submit.prevent="register">
@@ -77,6 +69,15 @@ const togglePasswordVisibility = () => {
       </div>
 
       <div class="container">
+
+        <label for="name">Nome Completo</label>
+        <input
+          id="name"
+          type="text"
+          v-model="name"
+          placeholder="Digite seu nome"
+          required>
+        
 
         <label for="email"><b>Email</b></label>
         <input
@@ -107,12 +108,31 @@ const togglePasswordVisibility = () => {
           </button>
         </div>
 
-        <div v-if="errMsg" class="error-message">
-          {{ errMsg }}
+        <header class="confirmation-header" >
+          <label for="password"><b>Confirme sua senha</b></label>
+          <span v-if="passwordMismatch" :class="{ show: passwordMismatch }" class="error-message">As senhas não coincidem.</span>
+        </header>
+        <div class="input-wrapper">
+          <input
+            id="password"
+            :type="showPassword ? 'text' : 'password'"
+            v-model="passwordConfirm"
+            placeholder="Digite sua senha"
+            required
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            @click="togglePasswordVisibility"
+          >
+          <span class="material-icons">
+            {{ showPassword ? 'visibility' : 'visibility_off' }}
+          </span>
+          </button>
         </div>
 
         <div class="buttons">
-          <button type="submit" class="btn-login">Criar conta</button>
+          <button type="submit" class="btn-login" :disabled="passwordMismatch">Criar conta</button>
           <span class="optionLogin">Ou entre com:</span>
           <button
             type="button"
@@ -144,12 +164,12 @@ const togglePasswordVisibility = () => {
   justify-content: center; 
   align-items: center;    
   height: 100vh;          
-  max-width: 100%;                
+  width: 100%;                
   box-sizing: border-box; 
 }
 
 .imgLogin {
-  display: none; 
+  display: none;
 }
 
 .loginForm {
@@ -235,7 +255,6 @@ label {
   line-height: 21.6px;
   letter-spacing: 0.07em;
   color: #538094;
-
 }
 
 /* Style for placeholder text */
@@ -295,19 +314,33 @@ input {
   background: #ffffff;
 }
 
+
+.confirmation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .error-message {
   font-family: 'General Sans Variable', sans-serif;
+  font-weight: 500;
   font-size: 16px;
-  color: #538094;
-  font-weight: 500; 
-  letter-spacing: 0.05em; 
-  padding-top: 1.5rem;
-  text-align: center;
-  display: block;
-  background: none;
-  border: none;
-  color: #538094;
-  cursor: pointer;
+  letter-spacing: 0.07em;
+  color: #dc7830;
+  background-color: #f8d3d3;
+  border: 1px solid #dc7830;
+  padding: 10px;
+  border-radius: 16px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.error-message.show {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .buttons {
